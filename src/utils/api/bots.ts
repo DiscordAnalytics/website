@@ -112,7 +112,7 @@ export default class BotsResource {
     return this.api.request('GET', `/bots/${botId}/reports`)
   }
 
-  createEmailReport(botId: string, frequency: 'weekly' | 'monthly'): Promise<void> {
+  createEmailReport(botId: string, frequency: 'weekly' | 'monthly'): Promise<StatsReport> {
     return this.api.request('POST', `/bots/${botId}/reports`, { frequency })
   }
 
