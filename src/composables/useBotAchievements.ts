@@ -48,6 +48,7 @@ export default function useBotAchievements(botId: string) {
 
   async function reset() {
     if (!api.userId) throw new APIError(401, 'Not authenticated')
+    await api.bots.resetAchievements(botId)
     store.botAchievements[botId] = []
   }
 
