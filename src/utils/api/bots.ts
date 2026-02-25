@@ -10,14 +10,9 @@ import type {
 } from '@/utils/types.ts'
 import type { DateRange } from 'reka-ui'
 import { dateToUTCDateTime } from '@/utils/dateTime.ts'
-import EventsResource from '@/utils/api/events.ts'
 
 export default class BotsResource {
   constructor(private readonly api: APIClient) {}
-
-  get events(): EventsResource {
-    return new EventsResource(this.api)
-  }
 
   get(botId: string): Promise<Bot> {
     return this.api.request('GET', `/bots/${botId}`)
