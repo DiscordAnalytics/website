@@ -1,6 +1,7 @@
 import UsersResource from '@/utils/api/users.ts'
 import { useCookies } from '@vueuse/integrations'
 import BotsResource from '@/utils/api/bots.ts'
+import { useConfig } from '@/composables/useConfig.ts'
 
 export enum APIScope {
   User,
@@ -24,10 +25,9 @@ export class APIClient {
   readonly userId: string | null
 
   constructor(userId: string | null, token: string | null, scope: APIScope) {
-    const baseUrl = import.meta.env.VITE_API_URL
-    if (!baseUrl) throw new Error('Missing VITE_API_URL env variable')
+    const { apiBaseUrl } = useConfig()
 
-    this.baseUrl = baseUrl
+    this.baseUrl = apiBaseUrl
     this.userId = userId
     this.scope = scope
 
