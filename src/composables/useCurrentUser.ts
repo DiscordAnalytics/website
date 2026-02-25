@@ -1,4 +1,4 @@
-import useAPI, { APIError, APIScope } from '@/utils/api'
+import useAPI, { APIScope } from '@/utils/api'
 import { useStore } from '@/stores'
 import { computed } from 'vue'
 
@@ -9,7 +9,7 @@ export default function useCurrentUser() {
   const userInfos = computed(() => store.userInfos)
 
   async function fetch() {
-    if (!api.userId) throw new APIError(401, 'Not Authenticated')
+    if (!api.userId) throw new Error('Not Authenticated')
     store.userInfos = await api.users.get(api.userId)
     const { ownedBots, inBotTeam } = await api.users.getBots(api.userId)
     store.userBots = [...ownedBots, ...inBotTeam]

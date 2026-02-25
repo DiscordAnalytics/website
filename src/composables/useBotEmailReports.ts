@@ -1,4 +1,4 @@
-import useAPI, { APIError, APIScope } from '@/utils/api'
+import useAPI, { APIScope } from '@/utils/api'
 import { useStore } from '@/stores'
 import { computed } from 'vue'
 
@@ -9,12 +9,12 @@ export default function useBotEmailReports(botId: string) {
   const reports = computed(() => store.botEmailReports[botId] ?? [])
 
   async function fetch() {
-    if (!api.userId) throw new APIError(401, 'Not authenticated')
+    if (!api.userId) throw new Error('Not authenticated')
     store.botEmailReports[botId] = await api.bots.getEmailReports(botId)
   }
 
   async function create(frequency: 'weekly' | 'monthly') {
-    if (!api.userId) throw new APIError(401, 'Not authenticated')
+    if (!api.userId) throw new Error('Not authenticated')
     const report = await api.bots.createEmailReport(botId, frequency)
 
     if (!store.botEmailReports[botId]) store.botEmailReports[botId] = []
@@ -22,7 +22,7 @@ export default function useBotEmailReports(botId: string) {
   }
 
   async function remove(frequency: 'weekly' | 'monthly') {
-    if (!api.userId) throw new APIError(401, 'Not authenticated')
+    if (!api.userId) throw new Error('Not authenticated')
     await api.bots.deleteEmailReport(botId, frequency)
 
     const list = store.botEmailReports[botId] ?? []

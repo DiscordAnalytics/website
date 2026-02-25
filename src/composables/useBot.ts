@@ -1,4 +1,4 @@
-import useAPI, { APIError, APIScope } from '@/utils/api'
+import useAPI, { APIScope } from '@/utils/api'
 import { useStore } from '@/stores'
 import { computed } from 'vue'
 
@@ -14,12 +14,12 @@ export default function useBot(botId: string, scope: APIScope = APIScope.User) {
   }
 
   async function regenToken() {
-    if (!bot.value) throw new APIError(404, 'Bot not found')
+    if (!bot.value) throw new Error('Bot not found')
     return api.bots.regenToken(botId, bot.value.token)
   }
 
   async function toggleAdvancedStats() {
-    if (!bot.value) throw new APIError(404, 'Bot not found')
+    if (!bot.value) throw new Error('Bot not found')
     await api.bots.updateSettings(botId, { advanced_stats: !bot.value.advancedStats })
 
     const botIndex = store.userBots.findIndex((b) => b.botId === botId)
@@ -27,7 +27,7 @@ export default function useBot(botId: string, scope: APIScope = APIScope.User) {
   }
 
   async function updateVotesWebhook(webhookUrl: string) {
-    if (!bot.value) throw new APIError(404, 'Bot not found')
+    if (!bot.value) throw new Error('Bot not found')
     await api.bots.updateVotesWebhook(botId, webhookUrl)
 
     const botIndex = store.userBots.findIndex((b) => b.botId === botId)

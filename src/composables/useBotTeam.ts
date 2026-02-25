@@ -1,4 +1,4 @@
-import useAPI, { APIError, APIScope } from '@/utils/api'
+import useAPI, { APIScope } from '@/utils/api'
 import { useStore } from '@/stores'
 import { computed } from 'vue'
 
@@ -9,7 +9,7 @@ export default function useBotCustomEvents(botId: string) {
   const team = computed(() => store.botTeams[botId] ?? [])
 
   async function fetch() {
-    if (!api.userId) throw new APIError(401, 'Not authenticated')
+    if (!api.userId) throw new Error('Not authenticated')
     store.botTeams[botId] = (await api.bots.getTeammates(botId)).team
   }
 
@@ -17,14 +17,14 @@ export default function useBotCustomEvents(botId: string) {
     teammateId: string,
     sendMethod?: 'mail',
   ): Promise<{ invitationId: string; message: string }> {
-    if (!api.userId) throw new APIError(401, 'Not authenticated')
+    if (!api.userId) throw new Error('Not authenticated')
     const result = await api.bots.addTeammate(botId, teammateId, sendMethod)
     await fetch()
     return result
   }
 
   async function remove(teammateId: string) {
-    if (!api.userId) throw new APIError(401, 'Not authenticated')
+    if (!api.userId) throw new Error('Not authenticated')
     await api.bots.deleteTeammate(botId, teammateId)
 
     const list = store.botTeams[botId]
