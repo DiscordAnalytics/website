@@ -15,17 +15,17 @@ export default function useBot(botId: string, scope: APIScope = APIScope.User) {
 
   async function regenToken() {
     if (!bot.value) throw new APIError(404, 'Bot not found')
-    await api.bots.regenToken(botId, bot.value.token)
+    return api.bots.regenToken(botId, bot.value.token)
   }
 
   async function toggleAdvancedStats() {
     if (!bot.value) throw new APIError(404, 'Bot not found')
-    await api.bots.updateSettings(botId, { advanced_stats: !bot.value.advancedStats })
+    return api.bots.updateSettings(botId, { advanced_stats: !bot.value.advancedStats })
   }
 
   async function updateVotesWebhook(webhookUrl: string) {
     if (!bot.value) throw new APIError(404, 'Bot not found')
-    await api.bots.updateVotesWebhook(botId, webhookUrl)
+    return api.bots.updateVotesWebhook(botId, webhookUrl)
   }
 
   return { bot }
