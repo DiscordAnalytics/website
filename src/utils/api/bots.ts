@@ -105,7 +105,7 @@ export default class BotsResource {
   updateAchievement(
     botId: string,
     body: Pick<Achievement, 'description' | 'id' | 'title' | 'lang' | 'shared'>,
-  ): Promise<void> {
+  ): Promise<Achievement> {
     return this.api.request('PATCH', `/bots/${botId}/achievements`, body)
   }
 
