@@ -46,8 +46,19 @@ export default class BotsResource {
     return this.api.request('GET', `/bots/${botId}/events`)
   }
 
-  createEvent(botId: string, body: { event_key: string; graph_name: string }): Promise<void> {
+  createEvent(
+    botId: string,
+    body: { event_key: string; graph_name: string },
+  ): Promise<CustomEvent> {
     return this.api.request('POST', `/bots/${botId}/events`, body)
+  }
+
+  updateEvent(botId: string, event_key: string, graph_name: string): Promise<CustomEvent> {
+    return this.api.request('PATCH', `/bots/${botId}/events/${event_key}`, { graph_name })
+  }
+
+  deleteEvent(botId: string, event_key: string): Promise<void> {
+    return this.api.request('DELETE', `/bots/${botId}/events/${event_key}`)
   }
 
   getTeammates(botId: string): Promise<{ team: Teammate[] }> {
