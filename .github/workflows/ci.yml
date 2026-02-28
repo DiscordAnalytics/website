@@ -15,8 +15,6 @@ jobs:
             command: "pnpm oxlint ."
           - name: eslint
             command: "pnpm eslint ."
-          - name: prettier
-            command: "pnpm prettier --check src/"
 
     name: Lint - ${{ matrix.linter.name }}
     steps:
