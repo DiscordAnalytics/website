@@ -45,7 +45,6 @@ export interface User {
   username: string
   avatar?: string
   avatarDecoration?: string
-  email: string
   banned: boolean
   joinedAt: string
   createdAt: string
