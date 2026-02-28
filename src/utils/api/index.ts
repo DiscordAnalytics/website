@@ -24,7 +24,7 @@ export class APIError extends Error {
     public readonly status: number,
     message: string,
   ) {
-    super(message)
+    super(`${status} - ${message}`)
     this.name = 'APIError'
   }
 }
