@@ -33,8 +33,8 @@ export default class BotsResource {
     return this.api.request('DELETE', `/bots/${botId}`)
   }
 
-  regenToken(botId: string, token: string): Promise<void> {
-    return this.api.request('PATCH', `/bots/${botId}/token`, { token })
+  regenToken(botId: string): Promise<void> {
+    return this.api.request('PATCH', `/bots/${botId}/token`)
   }
 
   getEvents(botId: string): Promise<CustomEvent[]> {

@@ -15,7 +15,7 @@ export default function useBot(botId: string, scope: APIScope = APIScope.User) {
 
   async function regenToken() {
     if (!bot.value) throw new Error('Bot not found')
-    return api.bots.regenToken(botId, bot.value.token)
+    return api.bots.regenToken(botId)
   }
 
   async function toggleAdvancedStats() {
