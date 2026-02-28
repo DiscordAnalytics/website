@@ -44,7 +44,7 @@ export interface User {
   userId: string
   username: string
   avatar?: string
-  avatar_decoration?: string
+  avatarDecoration?: string
   email: string
   banned: boolean
   joinedAt: string
@@ -61,12 +61,11 @@ export interface Bot {
   language?: string
   framework?: string
   ownerId: string
-  token: string
-  banned: boolean
-  version: string
-  team: Teammate[]
+  suspended: boolean
+  version?: string
+  team: string[]
   lastPush?: string
-  votesWebhookUrl: string
+  votesWebhookUrl?: string
   advancedStats: boolean
 }
 
@@ -99,7 +98,7 @@ export interface RawStats {
     name: string
     type: InteractionType
     number: number
-    command_type?: ApplicationCommandType
+    commandType?: ApplicationCommandType
   }[]
   interactionsLocales?: {
     locale: string
@@ -115,21 +114,21 @@ export interface RawStats {
   }[]
   addedGuilds?: number
   removedGuilds?: number
-  users_type?: {
+  usersType?: {
     admin: number
     moderator: number
-    new_member: number
+    newMember: number
     other: number
-    private_message: number
+    privateMessage: number
   }
-  custom_events: Record<string, number>
-  user_install_count: number
+  customEvents: Record<string, number>
+  userInstallCount: number
 }
 
 export interface CustomEvent {
-  bot_id: string
-  event_key: string
-  graph_name: string
+  botId: string
+  eventKey: string
+  graphName: string
 }
 
 export interface RawVotes {
@@ -138,14 +137,6 @@ export interface RawVotes {
   provider: VotesProvider
   botId: string
   count: number
-}
-
-export interface GlobalRawStats {
-  id: number
-  date: string
-  botCount: number
-  userCount: number
-  logsEntryCount: number
 }
 
 export interface FormattedStats {
@@ -208,34 +199,21 @@ export interface FormattedStats {
 
 export interface Achievement {
   id: string
-  bot_id: string
   editable: boolean
-  achieved_on?: string
+  achievedOn?: string
   objective: {
     type: GoalType
     value: number
   }
-  current: number
+  current?: number
   title: string
-  title_i18n?: string
+  titleI18n?: string
   description: string
-  description_i18n?: string
+  descriptionI18n?: string
   shared?: boolean
   from?: string
   lang?: string
-  used_by: number
-}
-
-export interface LogData {
-  type: string
-  date: Date
-  content: string
-}
-
-export interface RawLogsData {
-  name: string
-  content: string
-  path: string
+  usedBy: number
 }
 
 export interface BlogArticle {
@@ -266,16 +244,16 @@ export interface Teammate {
 
 export interface TeamInvitationData {
   invitation: {
-    invitation_id: string
-    user_id: string
-    bot_id: string
-    expiration: Date
+    invitationId: string
+    userId: string
+    botId: string
+    expiration: string
     accepted: boolean
   }
-  bot_avatar?: string
-  bot_username: string
-  owner_avatar?: string
-  owner_username: string
+  botAvatar?: string
+  botUsername: string
+  ownerAvatar?: string
+  ownerUsername: string
 }
 
 export interface AppMonetizationData {

@@ -33,7 +33,7 @@ export default class BotsResource {
     return this.api.request('DELETE', `/bots/${botId}`)
   }
 
-  regenToken(botId: string): Promise<void> {
+  regenToken(botId: string): Promise<{ token: string }> {
     return this.api.request('PATCH', `/bots/${botId}/token`)
   }
 
@@ -41,15 +41,12 @@ export default class BotsResource {
     return this.api.request('GET', `/bots/${botId}/events`)
   }
 
-  createEvent(
-    botId: string,
-    body: { event_key: string; graph_name: string },
-  ): Promise<CustomEvent> {
+  createEvent(botId: string, body: Omit<CustomEvent, 'botId'>): Promise<CustomEvent> {
     return this.api.request('POST', `/bots/${botId}/events`, body)
   }
 
-  updateEvent(botId: string, event_key: string, graph_name: string): Promise<CustomEvent> {
-    return this.api.request('PATCH', `/bots/${botId}/events/${event_key}`, { graph_name })
+  updateEvent(botId: string, eventKey: string, graphName: string): Promise<CustomEvent> {
+    return this.api.request('PATCH', `/bots/${botId}/events/${eventKey}`, { graphName })
   }
 
   deleteEvent(botId: string, event_key: string): Promise<void> {
