@@ -3,6 +3,7 @@ import { useCookies } from '@vueuse/integrations'
 import BotsResource from '@/utils/api/bots.ts'
 import { useConfig } from '@/composables/useConfig.ts'
 import { computed, reactive } from 'vue'
+import { oneMonthInSec } from '@/utils/dateTime.ts'
 
 const authState = reactive<{
   userId: string | null
@@ -112,14 +113,14 @@ export function useAuthToken() {
       httpOnly: true,
       secure: true,
       sameSite: 'strict',
-      maxAge: 60 * 60 * 24 * 30, // 30 days
+      maxAge: oneMonthInSec,
       path: '/',
     })
 
     cookies.set('user_id', tokens.userId, {
       secure: true,
       sameSite: 'strict',
-      maxAge: 60 * 60 * 24 * 30, // 30 days
+      maxAge: oneMonthInSec,
       path: '/',
     })
   }

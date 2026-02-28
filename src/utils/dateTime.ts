@@ -72,3 +72,4 @@ export const dfWithHour = new DateFormatter('en-US', {
 })
 
 export const oneMonthAgo = new Date(new Date().setDate(new Date().getDate() - 30))
+export const oneMonthInSec = 60 * 60 * 24 * 30
