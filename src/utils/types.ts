@@ -304,6 +304,13 @@ export interface SearchParam {
   type: string
 }
 
+interface AuthTokens {
+  userId: string | null
+  accessToken: string | null
+  accessTokenExpiration: number | null
+  refreshToken: string | null
+}
+
 export const searchBotParams: SearchParam[] = [
   { key: 'botId', type: 'string' },
   { key: 'username', type: 'string' },
