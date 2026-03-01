@@ -1,0 +1,38 @@
+services:
+  app:
+    image: ghcr.io/discordanalytics/website
+    ports:
+      - "80:80"
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:80" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+    volumes:
+      - ./config.js:/app/dist/public/config.js:ro
+
+  db:
+    image: mongo:8
+    volumes:
+      - ./db_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  api:
+    image: ghcr.io/discordanalytics/api
+    depends_on:
+      db:
+        condition: service_started
+    env_file:
+      - .env
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:3001/heatlh" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
