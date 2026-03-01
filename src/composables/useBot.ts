@@ -18,6 +18,11 @@ export default function useBot(botId: string, scope: APIScope = APIScope.User) {
     return api.bots.regenToken(botId)
   }
 
+  async function getToken() {
+    if (!bot.value) throw new Error('Bot not found')
+    return api.bots.getToken(botId)
+  }
+
   async function toggleAdvancedStats() {
     if (!bot.value) throw new Error('Bot not found')
     await api.bots.updateSettings(botId, { advanced_stats: !bot.value.advancedStats })

@@ -37,6 +37,10 @@ export default class BotsResource {
     return this.api.request('PATCH', `/bots/${botId}/token`)
   }
 
+  getToken(botId: string): Promise<{ token: string }> {
+    return this.api.request('GET', `/bots/${botId}/token`)
+  }
+
   getEvents(botId: string): Promise<CustomEvent[]> {
     return this.api.request('GET', `/bots/${botId}/events`)
   }
