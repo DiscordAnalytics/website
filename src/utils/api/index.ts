@@ -1,5 +1,5 @@
 import UsersResource from '@/utils/api/users.ts'
-import { useCookies } from '@vueuse/integrations'
+import { useCookies } from '@vueuse/integrations/useCookies'
 import BotsResource from '@/utils/api/bots.ts'
 import { useConfig } from '@/composables/useConfig.ts'
 import { computed, reactive } from 'vue'
