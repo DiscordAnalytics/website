@@ -46,6 +46,13 @@ RUN pnpm docs:build
 
 FROM nginx:stable-alpine AS production-cloud
 
+LABEL maintainer="Discord Analytics"
+LABEL org.opencontainers.image.title="Discord Analytics Website"
+LABEL org.opencontainers.image.description="Official DiscordAnalytics Website docker image"
+LABEL org.opencontainers.image.source="https://github.com/DiscordAnalytics/website"
+LABEL org.opencontainers.image.vendor="Discord Analytics"
+LABEL org.opencontainers.image.licenses="AGPL"
+
 COPY /app/docker/nginx.cloud.conf /etc/nginx/nginx.conf
 COPY --from=main-app /app/dist /usr/share/nginx/html
 COPY --from=docs /app/docs/.vitepress/dist /usr/share/nginx/html/docs
@@ -55,6 +62,13 @@ EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 
 FROM nginx:stable-alpine AS production-sh
+
+LABEL maintainer="Discord Analytics"
+LABEL org.opencontainers.image.title="Discord Analytics Website"
+LABEL org.opencontainers.image.description="Official DiscordAnalytics Website docker image"
+LABEL org.opencontainers.image.source="https://github.com/DiscordAnalytics/website"
+LABEL org.opencontainers.image.vendor="Discord Analytics"
+LABEL org.opencontainers.image.licenses="AGPL"
 
 COPY /app/nginx.sh.conf /etc/nginx/nginx.conf
 COPY --from=main-app /app/dist /usr/share/nginx/html
