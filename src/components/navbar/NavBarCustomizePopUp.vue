@@ -2,7 +2,7 @@
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import { MoonIcon, PaletteIcon, SunIcon } from 'lucide-vue-next'
+import { MonitorIcon, MoonIcon, PaletteIcon, SunIcon } from 'lucide-vue-next'
 import { useStore } from '@/stores'
 import { ref } from 'vue'
 import { useColorMode, useLocalStorage } from '@vueuse/core'
@@ -11,6 +11,7 @@ import { toast } from 'vue-sonner'
 import { isChristmas } from '@/components/navbar/index.ts'
 import { Switch } from '@/components/ui/switch'
 import { cn } from '@/lib/utils.ts'
+import { ButtonGroup } from '@/components/ui/button-group'
 
 const { setTheme } = useStore()
 const i18n = useI18n()
@@ -100,24 +101,37 @@ function handleCarrotClick() {
       <h2 class="text-lg font-semibold mt-2">
         {{ $t('components.navbar.customize.theme.title') }}
       </h2>
-      <div class="flex items-center gap-4 p-4">
+      <ButtonGroup>
         <Button
           variant="outline"
-          class="h-8 light:border-2 light:border-foreground"
+          size="sm"
+          :class="{ 'bg-accent text-accent-foreground': mode === 'light' }"
           @click="mode = 'light'"
         >
-          <SunIcon class="mr-2" />
-          {{ $t('components.navbar.customize.theme.light') }}
+          <SunIcon class="mr-2 h-4 w-4" />
+          Light
         </Button>
+
         <Button
           variant="outline"
-          class="h-8 dark:border-2 dark:border-foreground"
+          size="sm"
+          :class="{ 'bg-accent text-accent-foreground': mode === 'dark' }"
           @click="mode = 'dark'"
         >
-          <MoonIcon class="mr-2" />
-          {{ $t('components.navbar.customize.theme.dark') }}
+          <MoonIcon class="mr-2 h-4 w-4" />
+          Dark
         </Button>
-      </div>
+
+        <Button
+          variant="outline"
+          size="sm"
+          :class="{ 'bg-accent text-accent-foreground': mode === 'auto' }"
+          @click="mode = 'auto'"
+        >
+          <MonitorIcon class="mr-2 h-4 w-4" />
+          Auto
+        </Button>
+      </ButtonGroup>
       <div v-if="isChristmas" class="flex items-center justify-between gap-2">
         {{ $t('components.navbar.customize.enableSnow') }}
         <Switch
