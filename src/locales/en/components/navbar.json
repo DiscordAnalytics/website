@@ -1,0 +1,56 @@
+{
+  "carroted": "You've been carrotted",
+  "links": {
+    "documentation": {
+      "trigger": "Documentation",
+      "items": {
+        "docs": {
+          "title": "Documentation",
+          "description": "Learn how to use Discord Analytics and its features with our documentation."
+        },
+        "get_started": {
+          "title": "Get Started",
+          "description": "Get started with Discord Analytics."
+        },
+        "api": {
+          "title": "API Docs",
+          "description": "Official API reference"
+        },
+        "advanced": {
+          "title": "Advanced Usage",
+          "description": "Advanced usage of Discord Analytics."
+        }
+      }
+    },
+    "blog": "Blog",
+    "app_monetization": "App Monetization Explorer",
+    "support": "Support"
+  },
+  "customize": {
+    "title": "Customize",
+    "color": "Color",
+    "theme": {
+      "title": "Theme",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "language": {
+      "title": "Language",
+      "not_maintained": "The language you select is maintained by the community. Discord Analytics cannot be held responsible for translation errors or untranslated text. Participate in the translation on translate.discordanalytics.xyz",
+      "locales": {
+        "fr": "French",
+        "en": "English",
+        "tr": "Turkish"
+      }
+    },
+    "enableSnow": "Enable snow"
+  },
+  "account": {
+    "links": {
+      "dashboard": "Dashboard",
+      "admin": "Admin Panel"
+    },
+    "login": "Login",
+    "logout": "Logout"
+  }
+}

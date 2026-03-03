@@ -1,10 +1,13 @@
 import useAPI, { APIScope } from '@/utils/api'
 import { useStore } from '@/stores'
 import { computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
 export default function useCurrentUser() {
   const api = useAPI(APIScope.User)
   const store = useStore()
+  const router = useRouter()
+  const route = useRoute()
 
   const userInfos = computed(() => store.userInfos)
 
@@ -15,5 +18,14 @@ export default function useCurrentUser() {
     store.userBots = [...ownedBots, ...inBotTeam]
   }
 
-  return { fetch, userInfos }
+  async function logout() {
+    api.clearTokens()
+    store.clear()
+
+    if (route.path.startsWith('/dash') || route.path.startsWith('/auth')) {
+      await router.push('/')
+    }
+  }
+
+  return { fetch, userInfos, logout }
 }

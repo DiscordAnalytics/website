@@ -59,6 +59,10 @@ export class APIClient {
     return this.authTokens.userId.value
   }
 
+  public clearTokens() {
+    this.authTokens.clearTokens()
+  }
+
   async request<T>(
     method: 'GET' | 'POST' | 'PATCH' | 'DELETE',
     path: string,

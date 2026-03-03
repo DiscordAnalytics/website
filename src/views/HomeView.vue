@@ -1,7 +1,11 @@
 <script setup lang="ts">
+import PageLayout from '@/components/layouts/PageLayout.vue'
 import { Button } from '@/components/ui/button'
 </script>
 
 <template>
-  <Button>Button?</Button>
+  <PageLayout>
+    <h1>Welcome home :)</h1>
+    <Button>BUTTON ????</Button>
+  </PageLayout>
 </template>

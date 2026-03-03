@@ -4,6 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  /* Default Light Theme */
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -19,24 +20,38 @@
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --ring: oklch(0.145 0 0);
+  --radius: 0.5rem;
+
+  /* Chart & Sidebar Defaults */
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --radius: 0.625rem;
+
   --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-foreground: oklch(0.441 0.011 285.823);
   --sidebar-primary: oklch(0.205 0 0);
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.97 0 0);
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* Visualization Variables */
+  --vis-tooltip-background-color: none !important;
+  --vis-tooltip-border-color: none !important;
+  --vis-tooltip-text-color: none !important;
+  --vis-tooltip-shadow-color: none !important;
+  --vis-tooltip-backdrop-filter: none !important;
+  --vis-tooltip-padding: none !important;
+  --vis-primary-color: var(--primary);
+  --vis-secondary-color: var(--secondary);
+  --vis-text-color: var(--muted-foreground);
 }
 
 .dark {
@@ -58,20 +73,75 @@
   --destructive-foreground: oklch(0.637 0.237 25.331);
   --border: oklch(0.269 0 0);
   --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
+  --ring: oklch(0.839 0.01 262);
   --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.97 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-primary-foreground: oklch(1 0 0);
   --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-accent-foreground: oklch(0.97 0 0);
   --sidebar-border: oklch(0.269 0 0);
   --sidebar-ring: oklch(0.439 0 0);
+}
+
+/* --- Zinc Theme --- */
+.theme-zinc.light {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.961 0.003 240);
+  --muted-foreground: oklch(0.552 0.016 240);
+  --border: oklch(0.92 0.004 240);
+}
+.theme-zinc.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.269 0.006 240);
+  --muted-foreground: oklch(0.708 0.012 240);
+}
+
+/* --- Orange Theme --- */
+.theme-orange.light {
+  --foreground: oklch(0.145 0.015 20);
+  --primary: oklch(0.658 0.22 35);
+  --primary-foreground: oklch(0.985 0.01 60);
+}
+.theme-orange.dark {
+  --background: oklch(0.145 0.015 20);
+  --foreground: oklch(0.985 0.01 60);
+  --primary: oklch(0.603 0.211 32);
+}
+
+/* --- Red Theme --- */
+.theme-red.light {
+  --primary: oklch(0.618 0.231 25.7);
+  --primary-foreground: oklch(0.985 0.01 0);
+}
+.theme-red.dark {
+  --primary: oklch(0.618 0.231 25.7);
+  --primary-foreground: oklch(0.985 0.01 0);
+}
+
+/* --- Blue Theme --- */
+.theme-blue.light {
+  --foreground: oklch(0.145 0.05 222);
+  --primary: oklch(0.588 0.215 240);
+}
+.theme-blue.dark {
+  --background: oklch(0.145 0.05 222);
+  --foreground: oklch(0.985 0.01 210);
+  --primary: oklch(0.646 0.222 250);
+}
+
+/* --- Green Theme --- */
+.theme-green.light {
+  --primary: oklch(0.635 0.19 145);
+}
+.theme-green.dark {
+  --primary: oklch(0.705 0.18 145);
 }
 
 @theme inline {
@@ -117,7 +187,7 @@
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
+  body, #app {
+    @apply bg-background text-foreground min-h-screen!;
   }
 }
