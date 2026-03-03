@@ -1,3 +1,3 @@
-export function useConfig() {
+export default function useConfig() {
   return window.CONFIG
 }
