@@ -56,7 +56,6 @@ export class APIClient {
   }
 
   public get userId(): string | null {
-    console.log(',', this.authTokens.userId.value)
     return this.authTokens.userId.value
   }
 
@@ -105,7 +104,6 @@ export function useAuthToken() {
   const cookies = useCookies()
   const refreshToken = cookies.get('refresh_token')
   const userId = cookies.get('user_id', { doNotParse: true })
-  console.log('e', userId)
 
   if (userId) authState.userId = userId
 
@@ -128,7 +126,6 @@ export function useAuthToken() {
     })
 
     if (tokens.userId) {
-      console.log('t', tokens.userId)
       authState.userId = tokens.userId
       cookies.set('user_id', tokens.userId, {
         secure: true,
