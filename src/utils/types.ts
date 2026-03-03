@@ -281,11 +281,16 @@ export interface SearchParam {
   type: string
 }
 
-interface AuthTokens {
+export interface AuthTokens {
   userId: string | null
   accessToken: string | null
   accessTokenExpiration: number | null
   refreshToken: string | null
+}
+
+export interface OAuthConfig {
+  clientId: string
+  scopes: string[]
 }
 
 export const searchBotParams: SearchParam[] = [
