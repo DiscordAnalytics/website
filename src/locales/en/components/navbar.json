@@ -28,11 +28,11 @@
   },
   "customize": {
     "title": "Customize",
+    "description": "Truly your Discord Analytics",
     "color": "Color",
     "theme": {
       "title": "Theme",
-      "light": "Light",
-      "dark": "Dark"
+      "system": "System"
     },
     "language": {
       "title": "Language",
