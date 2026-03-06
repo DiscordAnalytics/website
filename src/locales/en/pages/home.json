@@ -1,1 +1,92 @@
-{}
+{
+  "hero": {
+    "title": "Stats for your Discord bot",
+    "description": "Discord Analytics is a powerful analytics tool for Discord bots that allows you to monitor and track your bot's activity in depth.",
+    "cta": {
+      "primary": "Get Started",
+      "secondary": "Learn More"
+    },
+    "image_alt": "Dashboard's screenshot"
+  },
+  "features": {
+    "title": "Discord Analytics is all that...",
+    "cards": {
+      "teams": {
+        "title": "A collaborative platform",
+        "description": "Invite your teammates to access your bot's stats"
+      },
+      "graphs": {
+        "title": "A ton of graphs",
+        "description": "Dozens of interactive graphs: user growth, command usage, server activity, and more."
+      },
+      "votes": {
+        "title": "All your votes in one place",
+        "description": "Merge all your votes webhooks one"
+      },
+      "email": {
+        "title": "Email reports",
+        "description": "Your weekly report every sunday in your mailbox",
+        "preview": {
+          "sender": "Discord Analytics",
+          "subject": "Weekly report for Analytics Guard",
+          "time": "2min ago"
+        }
+      },
+      "achievements": {
+        "title": "Time to flex",
+        "description": "Flex hard – craft unique achievements or grab fan-favorites from the Community Store."
+      },
+      "custom_graphs": {
+        "title": "Your bot, your stats",
+        "description": "Create the graphs that fit the most your bot"
+      }
+    }
+  },
+  "community": {
+    "title": "...but it's also you!",
+    "description": "Discord Analytics is completely free and funded by your donations. The use of these funds is fully transparent thanks to public access to the transaction history.",
+    "cta": {
+      "primary": "Contribute",
+      "secondary": "Learn more"
+    },
+    "transactions": {
+      "vps": "VPS renewal"
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "questions": {
+      "1": {
+        "question": "Is Discord Analytics free?",
+        "answer": "Yes, and as long as our costs allow it, Discord Analytics will remain completely free."
+      },
+      "2": {
+        "question": "What languages and libraries does Discord Analytics support?",
+        "answer": "Discord Analytics currently supports JavaScript and Python, and we are working on adding more languages and libraries.",
+        "link": "See our documentation for more information."
+      },
+      "3": {
+        "question": "How can I contact Discord Analytics?",
+        "answer": {
+          "1": "Our team is ready to answer your questions on our",
+          "2": "Discord server",
+          "3": "or by",
+          "4": "email."
+        }
+      },
+      "4": {
+        "question": "What are the service limits?",
+        "answer": "By default, you are limited to 3 bots, servers or activities. This limit can be increased on request. To do so, please contact our teams."
+      },
+      "5": {
+        "question": "How can I contribute to Discord Analytics?",
+        "answer": "You can help us by translating Discord Analytics into other languages, or by extending the compatibility of our services to new languages and libraries.",
+        "link": "Learn more about contributing."
+      }
+    }
+  },
+  "cta": {
+    "start": "Start collecting stats, today.",
+    "sign_up": "Sign up for free"
+  }
+}

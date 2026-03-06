@@ -26,4 +26,10 @@ export default defineConfigWithVueTs(
   skipFormatting,
 
   eslintPluginPrettierRecommended,
+
+  {
+    rules: {
+      'vue/multi-word-component-names': 'off',
+    },
+  },
 )
