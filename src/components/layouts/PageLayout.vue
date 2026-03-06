@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { NavBar } from '@/components/navbar'
+import Footer from '@/components/Footer.vue'
 
 withDefaults(
   defineProps<{
@@ -18,5 +19,7 @@ withDefaults(
     <NavBar v-if="$props.navbar" />
 
     <slot />
+
+    <Footer v-if="$props.footer" />
   </main>
 </template>

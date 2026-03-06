@@ -1,0 +1,44 @@
+{
+  "banner": {
+    "title": "Join the community",
+    "description": "Join our official support to get help and be kept up to date on new features for Discord Analytics!",
+    "button": "Join"
+  },
+  "columns": {
+    "product": {
+      "title": "Product",
+      "items": {
+        "features": "Features",
+        "achievements": "Community Achievements",
+        "docs": "Documentation",
+        "integrate": "Integrate in your bot"
+      }
+    },
+    "company": {
+      "title": "Company",
+      "items": {
+        "source_code": "Source Code",
+        "blog": "Blog",
+        "status": "Services Status"
+      }
+    },
+    "contact": {
+      "title": "Contact",
+      "items": {
+        "mail": "Mail",
+        "discord": "Discord"
+      }
+    },
+    "legals": {
+      "title": "Legals",
+      "items": {
+        "terms": "Terms of Service",
+        "privacy": "Privacy Policy"
+      }
+    }
+  },
+  "credits": {
+    "date": "Discord Analytics - {'©'} 2023-{currentYear} All rights reserved",
+    "trademark": "Discord Analytics is not affiliated with Discord Inc. The Discord name is a trademark of Discord Inc."
+  }
+}
