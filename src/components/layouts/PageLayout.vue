@@ -15,7 +15,7 @@ withDefaults(
 </script>
 
 <template>
-  <main class="max-w-425 mx-auto px-4">
+  <main class="max-w-425 mx-auto px-4 min-h-screen flex flex-col justify-between">
     <NavBar v-if="$props.navbar" />
 
     <slot />
