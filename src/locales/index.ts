@@ -1,5 +1,5 @@
 import * as EnAuth from './en/pages/auth.json'
-import * as FrAuth from './en/pages/auth.json'
+import * as FrAuth from './fr/pages/auth.json'
 import * as EnHome from './en/pages/home.json'
 import * as FrHome from './fr/pages/home.json'
 

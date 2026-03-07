@@ -22,8 +22,6 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: 10
 
       - name: Use Node.js
         uses: actions/setup-node@v6
@@ -37,6 +35,25 @@ jobs:
       - name: Run ${{ matrix.linter.name }}
         run: ${{ matrix.linter.command }}
 
+  locales:
+    runs-on: ubuntu-latest
+
+    name: Check for missing locale keys
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: latest
+          cache: 'pnpm'
+
+      - name: Run check
+        run: pnpm locales:check
+
   build:
     runs-on: ubuntu-latest
     name: Build TypeScript
@@ -45,8 +62,6 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: 10
 
       - name: Use Node.js
         uses: actions/setup-node@v6
