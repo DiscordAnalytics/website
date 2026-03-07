@@ -39,6 +39,7 @@ export default defineConfigWithVueTs(
       '@intlify/vue-i18n/no-missing-keys': 'off',
       '@intlify/vue-i18n/no-unused-keys': 'off',
       '@intlify/vue-i18n/key-format-style': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
     },
     settings: {
       'vue-i18n': {
