@@ -18,11 +18,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import ThemedImg from '@/components/ThemedImg.vue'
 import { timeAgo } from '@/utils/dateTime.ts'
+import { Skeleton } from '@/components/ui/skeleton'
 
 const { articles, tags, fetch: fetchArticles } = useBlogArticles()
 
 const selectedTags = ref<string[]>([])
 const searchQuery = ref<string>('')
+const isLoading = ref<boolean>(false)
 const filteredArticles = computed(() => {
   return articles.value
     .filter(
@@ -49,8 +51,10 @@ function toggleTag(tag: string, checked: boolean) {
   }
 }
 
-onBeforeMount(() => {
-  if (articles.value.length === 0) fetchArticles()
+onBeforeMount(async () => {
+  isLoading.value = true
+  if (articles.value.length === 0) await fetchArticles()
+  isLoading.value = false
 })
 </script>
 
@@ -87,7 +91,28 @@ onBeforeMount(() => {
     </header>
 
     <div
-      v-if="filteredArticles.length > 0"
+      v-if="isLoading"
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 mb-16"
+    >
+      <Card v-for="i in 8" :key="i" class="overflow-clip">
+        <CardHeader class="p-0">
+          <AspectRatio :ratio="16 / 9">
+            <Skeleton class="h-full w-full rounded-none" />
+          </AspectRatio>
+          <div class="px-4 pt-4 pb-2 flex flex-col gap-2">
+            <Skeleton class="h-4 w-3/4" />
+            <Skeleton class="h-3 w-full" />
+            <Skeleton class="h-3 w-5/6" />
+          </div>
+        </CardHeader>
+        <CardContent class="px-4 flex items-center gap-2">
+          <Skeleton class="h-3 w-16" />
+          <Skeleton class="h-5 w-12 rounded" />
+        </CardContent>
+      </Card>
+    </div>
+    <div
+      v-else-if="filteredArticles.length > 0"
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 mb-16"
     >
       <RouterLink
