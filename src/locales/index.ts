@@ -2,6 +2,8 @@ import * as EnAuth from './en/pages/auth.json'
 import * as FrAuth from './fr/pages/auth.json'
 import * as EnHome from './en/pages/home.json'
 import * as FrHome from './fr/pages/home.json'
+import * as EnBlog from './en/pages/blog.json'
+import * as FrBlog from './fr/pages/blog.json'
 
 import * as EnNavBar from './en/components/navbar.json'
 import * as FrNavBar from './fr/components/navbar.json'
@@ -17,6 +19,7 @@ export const english = {
   },
   pages: {
     auth: EnAuth,
+    blog: EnBlog,
     home: EnHome,
   },
 }
@@ -28,6 +31,7 @@ export const french = {
   },
   pages: {
     auth: FrAuth,
+    blog: FrBlog,
     home: FrHome,
   },
 }

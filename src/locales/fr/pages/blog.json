@@ -1,0 +1,13 @@
+{
+  "header": {
+    "search": "Rechercher...",
+    "dropdown": "Filtres"
+  },
+  "no_results": {
+    "title": "Aucun articles",
+    "description": "Aucun article trouvé pour les filtres sélectionnés"
+  },
+  "updated": "(Modifié)",
+  "updated_on": "Mis à jour le",
+  "table_of_contents": "Table des matières"
+}

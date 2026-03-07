@@ -2,6 +2,7 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import type {
   Achievement,
+  BlogArticle,
   Bot,
   Color,
   CustomEvent,
@@ -20,6 +21,7 @@ export const useStore = defineStore('store', () => {
   const botTeams = ref<{ [botId: string]: Teammate[] }>({})
   const botEmailReports = ref<{ [botId: string]: StatsReport[] }>({})
   const botStats = ref<{ [botId: string]: { stats: RawStats[]; votes: RawVotes[] } }>({})
+  const blogArticles = ref<BlogArticle[]>([])
 
   const theme = ref<Color>('zinc')
 
@@ -52,6 +54,7 @@ export const useStore = defineStore('store', () => {
     botTeams,
     botEmailReports,
     botStats,
+    blogArticles,
     theme,
     setTheme,
     clear,
