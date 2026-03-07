@@ -49,7 +49,6 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: latest
-          cache: 'pnpm'
 
       - name: Run check
         run: pnpm locales:check
