@@ -7,8 +7,8 @@ const mode = useColorMode()
 function getLogoPath(): string {
   const variant = mode.value === 'light' ? 'dark' : 'light'
 
-  if (isChristmas) return `/brand/long_logo_${variant}_christmas.webp`
-  else return `/brand/long_logo_${variant}.webp`
+  const suffix = isChristmas ? '_christmas' : ''
+  return `/brand/long_logo_${variant}${suffix}.webp`
 }
 </script>
 
