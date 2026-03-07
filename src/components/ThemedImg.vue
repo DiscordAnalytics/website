@@ -15,5 +15,5 @@ const isDark = computed(() => mode.value === 'dark' || (mode.value === 'auto' &&
 </script>
 
 <template>
-  <img :src="isDark ? $props.darkImg : $props.lightImg" :alt="$props.alt" :class="$attrs.class" />
+  <img :src="isDark ? $props.darkImg : $props.lightImg" :alt="$props.alt" v-bind="$attrs" />
 </template>
