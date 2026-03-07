@@ -192,3 +192,24 @@
     @apply bg-background text-foreground min-h-screen!;
   }
 }
+
+::-webkit-scrollbar {
+  width: 0.625rem;
+  height: 0.625rem;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 9999px;
+  border: 1px solid var(--background);
+}
+::-webkit-scrollbar-corner {
+  background: var(--background);
+}
+
+* {
+  scrollbar-width: 0.625rem;
+  scrollbar-color: var(--border) var(--background);
+}
