@@ -19,7 +19,7 @@ onBeforeMount(() => {
 
 <template>
   <nav
-    class="flex md:items-center justify-between px-8 py-4 w-full md:flex-row flex-col gap-2 relative z-50"
+    class="flex md:items-center justify-between py-4 w-full md:flex-row flex-col gap-2 relative z-50"
   >
     <NavBarLogo />
 
