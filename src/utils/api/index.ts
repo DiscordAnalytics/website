@@ -5,6 +5,7 @@ import { useConfig } from '@/composables'
 import { computed, reactive } from 'vue'
 import { oneMonthInSec } from '@/utils/dateTime.ts'
 import OAuthRessource from '@/utils/api/oauth.ts'
+import ArticlesResource from '@/utils/api/articles.ts'
 
 const authState = reactive<{
   userId: string | null
@@ -101,6 +102,10 @@ export class APIClient {
 
   get oauth(): OAuthRessource {
     return new OAuthRessource(this)
+  }
+
+  get articles(): ArticlesResource {
+    return new ArticlesResource(this)
   }
 }
 
