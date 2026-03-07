@@ -3,7 +3,7 @@ export const maintainedLocales = ['en', 'fr']
 // Use import.meta.glob to automatically import all JSON translation files
 const modules = import.meta.glob('../**/*.json', { eager: true })
 
-type Translations = Record<string, any>
+export type Translations = Record<string, any>
 
 // Helper to transform paths to nested objects
 function buildLocaleTree(locale: string) {

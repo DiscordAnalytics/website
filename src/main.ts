@@ -8,8 +8,7 @@ import * as locales from './locales'
 
 const app = createApp(App)
 
-type MessageFormat = typeof locales.english
-export const i18n = createI18n<[MessageFormat], 'en' | 'fr'>({
+export const i18n = createI18n<[locales.Translations], 'en' | 'fr'>({
   legacy: false,
   globalInjection: true,
   locale: 'en',
