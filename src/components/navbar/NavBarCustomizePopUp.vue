@@ -25,8 +25,8 @@ const i18n = useI18n()
 const mode = useColorMode({ emitAuto: true })
 
 const carrotClick = ref<number>(0)
-const isCarroted = useLocalStorage('isCarroted', 'false')
-const isSnowEnabled = useLocalStorage('snowEnabled', 'true')
+const isCarroted = useLocalStorage('isCarroted', false)
+const isSnowEnabled = useLocalStorage('snowEnabled', true)
 const [DefineContent, Content] = createReusableTemplate()
 
 const themes = [
@@ -41,13 +41,13 @@ function handleCarrotClick() {
   store.setTheme('orange')
   ++carrotClick.value
   if (carrotClick.value > 3) {
-    if (isCarroted.value === 'false') {
-      isCarroted.value = 'true'
+    if (!isCarroted.value) {
+      isCarroted.value = true
       toast(i18n.t('components.navbar.carroted'))
       carrotClick.value = 0
     } else {
       toast(i18n.t('components.navbar.uncarroted'))
-      isCarroted.value = 'false'
+      isCarroted.value = false
       carrotClick.value = 0
     }
   }
@@ -118,8 +118,8 @@ function handleCarrotClick() {
         <div v-if="isChristmas" class="flex justify-between items-center">
           <p class="text-sm w-fit">{{ $t('components.navbar.customize.enableSnow') }}</p>
           <Switch
-            :default-value="isSnowEnabled === 'true'"
-            @update:model-value="(value: boolean) => (isSnowEnabled = String(value))"
+            :default-value="isSnowEnabled"
+            @update:model-value="(value: boolean) => (isSnowEnabled = value)"
           />
         </div>
       </div>
