@@ -12,9 +12,9 @@ jobs:
       matrix:
         linter:
           - name: oxlint
-            command: "pnpm oxlint ."
+            command: 'pnpm oxlint .'
           - name: eslint
-            command: "pnpm eslint ."
+            command: 'pnpm eslint .'
 
     name: Lint - ${{ matrix.linter.name }}
     steps:
