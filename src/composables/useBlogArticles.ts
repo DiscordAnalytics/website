@@ -17,5 +17,9 @@ export default function useBlogArticles() {
     )
   }
 
-  return { articles, tags, fetch }
+  async function getArticle(articleId: string) {
+    return await api.articles.getArticle(articleId)
+  }
+
+  return { articles, tags, fetch, getArticle }
 }

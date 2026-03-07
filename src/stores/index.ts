@@ -21,7 +21,7 @@ export const useStore = defineStore('store', () => {
   const botTeams = ref<{ [botId: string]: Teammate[] }>({})
   const botEmailReports = ref<{ [botId: string]: StatsReport[] }>({})
   const botStats = ref<{ [botId: string]: { stats: RawStats[]; votes: RawVotes[] } }>({})
-  const blogArticles = ref<BlogArticle[]>([])
+  const blogArticles = ref<Omit<BlogArticle, 'content'>[]>([])
 
   const theme = ref<Color>('zinc')
 
