@@ -1,17 +1,20 @@
 <script setup lang="ts">
-import { Button } from '@/components/ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
 import { useI18n } from 'vue-i18n'
 import { maintainedLocales } from '@/locales'
 import { toast } from 'vue-sonner'
-import { ChevronDownIcon } from 'lucide-vue-next'
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+
+defineProps<{
+  mobile?: boolean
+}>()
 
 const i18n = useI18n()
 
@@ -41,24 +44,20 @@ function switchLocale(locale: (typeof i18n.availableLocales)[number]) {
 </script>
 
 <template>
-  <DropdownMenu>
-    <DropdownMenuTrigger>
-      <Button variant="ghost">
-        {{ selectLocale(i18n.locale.value) }}
-        <ChevronDownIcon class="ml-2" />
-      </Button>
-    </DropdownMenuTrigger>
-    <DropdownMenuContent>
-      <DropdownMenuLabel>{{ $t('components.navbar.customize.language.title') }}</DropdownMenuLabel>
-      <DropdownMenuSeparator />
-      <DropdownMenuItem
-        v-for="locale in i18n.availableLocales"
-        :id="locale"
-        :key="locale"
-        @click="switchLocale(locale)"
-      >
-        {{ selectLocale(locale) }}
-      </DropdownMenuItem>
-    </DropdownMenuContent>
-  </DropdownMenu>
+  <Select
+    :default-value="i18n.locale.value"
+    @update:model-value="(value) => switchLocale(value as (typeof i18n.availableLocales)[number])"
+  >
+    <SelectTrigger :class="$props.mobile ? 'w-full' : 'border-none shadow-none gap-1'">
+      <SelectValue placeholder="Select lang" />
+    </SelectTrigger>
+    <SelectContent class="w-(--reka-select-trigger-width)">
+      <SelectGroup>
+        <SelectLabel>{{ $t('components.navbar.customize.language.title') }}</SelectLabel>
+        <SelectItem v-for="locale in i18n.availableLocales" :value="locale" :key="locale">
+          {{ selectLocale(locale) }}
+        </SelectItem>
+      </SelectGroup>
+    </SelectContent>
+  </Select>
 </template>

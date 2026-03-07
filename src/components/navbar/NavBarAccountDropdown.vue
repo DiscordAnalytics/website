@@ -9,22 +9,41 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import DiscordAvatar from '@/components/DiscordAvatar.vue'
-import { ChartLineIcon, LogOutIcon, ShieldIcon } from 'lucide-vue-next'
+import { ChartLineIcon, ChevronsUpDownIcon, LogOutIcon, ShieldIcon } from 'lucide-vue-next'
+import { Button } from '@/components/ui/button'
+
+defineProps<{
+  mobile?: boolean
+}>()
 
 const { userInfos, logout } = useCurrentUser()
 </script>
 
 <template>
   <DropdownMenu v-if="userInfos">
-    <DropdownMenuTrigger class="cursor-pointer">
+    <DropdownMenuTrigger class="cursor-pointer w-full">
+      <Button v-if="$props.mobile" variant="outline" class="justify-between w-full h-12">
+        <div class="flex items-center gap-2">
+          <DiscordAvatar
+            :id="userInfos.userId"
+            :alt="userInfos.username"
+            :avatar="userInfos.avatar"
+            :avatar-decoration="userInfos.avatarDecoration"
+            size="sm"
+          />
+          {{ userInfos.username }}
+        </div>
+        <ChevronsUpDownIcon />
+      </Button>
       <DiscordAvatar
+        v-else
         :id="userInfos.userId"
         :alt="userInfos.username"
         :avatar="userInfos.avatar"
         :avatar-decoration="userInfos.avatarDecoration"
       />
     </DropdownMenuTrigger>
-    <DropdownMenuContent align="end">
+    <DropdownMenuContent align="end" class="w-(--reka-dropdown-menu-trigger-width)">
       <DropdownMenuLabel>{{ userInfos.username }}</DropdownMenuLabel>
       <DropdownMenuSeparator />
       <RouterLink to="/dash">

@@ -9,8 +9,14 @@ import {
 import { Button } from '@/components/ui/button'
 import useCurrentUser from '@/composables/useCurrentUser.ts'
 import { onBeforeMount } from 'vue'
+import NavBarMobileSheet from '@/components/navbar/NavBarMobileSheet.vue'
+import { MenuIcon } from 'lucide-vue-next'
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 
+const breakpoints = useBreakpoints(breakpointsTailwind)
 const { userInfos, fetch: fetchCurrentUser } = useCurrentUser()
+
+const largerThanMd = breakpoints.greater('md')
 
 onBeforeMount(() => {
   if (!userInfos.value) fetchCurrentUser().catch(() => {})
@@ -18,14 +24,12 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <nav
-    class="flex md:items-center justify-between py-4 w-full md:flex-row flex-col gap-2 relative z-50"
-  >
+  <nav class="flex md:items-center justify-between py-4 w-full flex-row gap-2 relative z-50">
     <NavBarLogo />
 
-    <NavBarLinks />
+    <NavBarLinks v-if="largerThanMd" />
 
-    <div class="flex items-center gap-2">
+    <div v-if="largerThanMd" class="flex items-center gap-2">
       <NavBarCustomizePopUp />
       <NavBarLocaleSelector />
       <RouterLink v-if="!userInfos" to="/auth">
@@ -35,5 +39,11 @@ onBeforeMount(() => {
       </RouterLink>
       <NavBarAccountDropdown v-else />
     </div>
+
+    <NavBarMobileSheet v-if="!largerThanMd" class="block md:hidden">
+      <Button variant="secondary" size="icon">
+        <MenuIcon />
+      </Button>
+    </NavBarMobileSheet>
   </nav>
 </template>

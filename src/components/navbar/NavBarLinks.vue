@@ -13,7 +13,7 @@ import { BookOpenIcon } from 'lucide-vue-next'
 </script>
 
 <template>
-  <NavigationMenu class="hidden md:flex">
+  <NavigationMenu class="flex">
     <NavigationMenuList class="flex-wrap">
       <NavigationMenuItem>
         <NavigationMenuTrigger>{{
