@@ -1,5 +1,6 @@
 {
   "hero": {
+    "tag": "Gratuit & Open Source",
     "title": "Statistiques pour votre bot Discord",
     "description": "Discord Analytics est un outil de statistiques puissant pour les bots Discord qui vous permet de traquer l'activité de votre bot en temps réel.",
     "cta": {

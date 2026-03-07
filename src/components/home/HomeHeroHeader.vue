@@ -15,7 +15,8 @@ import { SparklesIcon } from 'lucide-vue-next'
   >
     <div class="flex flex-col items-center justify-center gap-8 h-full md:mt-52">
       <Badge variant="default" class="hover:bg-primary">
-        <SparklesIcon class="w-4 h-4" /> Free & Open Source Software
+        <SparklesIcon class="w-4 h-4" />
+        {{ $t('pages.home.hero.tag') }}
       </Badge>
       <h1 class="text-6xl font-black text-center text-balance">
         {{ $t('pages.home.hero.title') }}

@@ -1,5 +1,6 @@
 {
   "hero": {
+    "tag": "Free & Open Source Software",
     "title": "Stats for your Discord bot",
     "description": "Discord Analytics is a powerful analytics tool for Discord bots that allows you to monitor and track your bot's activity in depth.",
     "cta": {
