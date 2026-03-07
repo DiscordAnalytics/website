@@ -28,8 +28,8 @@ import ThemedImg from '@/components/ThemedImg.vue'
         <div class="flex items-center justify-between mb-8 flex-col md:flex-row gap-4">
           <div class="flex flex-col gap-2 w-fit">
             <ThemedImg
-              dark-img="/brand/long_logo_light.webp"
-              light-img="/brand/long_logo_dark.webp"
+              dark-img="/brand/long_logo_dark.webp"
+              light-img="/brand/long_logo_light.webp"
               alt="Discord Analytics"
               class="w-52"
             />

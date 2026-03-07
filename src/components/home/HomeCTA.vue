@@ -6,8 +6,8 @@ import ThemedImg from '@/components/ThemedImg.vue'
 <template>
   <section id="cta" class="flex flex-col gap-6 items-center">
     <ThemedImg
-      dark-img="/brand/long_logo_light.webp"
-      light-img="/brand/long_logo_dark.webp"
+      dark-img="/brand/long_logo_dark.webp"
+      light-img="/brand/long_logo_light.webp"
       alt="Discord Analytics"
       class="sm:w-48 w-28"
     />

@@ -5,10 +5,8 @@ import { isChristmas } from '.'
 const mode = useColorMode()
 
 function getLogoPath(): string {
-  const variant = mode.value === 'light' ? 'dark' : 'light'
-
   const suffix = isChristmas ? '_christmas' : ''
-  return `/brand/long_logo_${variant}${suffix}.webp`
+  return `/brand/long_logo_${mode.value}${suffix}.webp`
 }
 </script>
 

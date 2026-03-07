@@ -90,8 +90,8 @@ onBeforeMount(async () => {
   >
     <div class="flex items-center gap-4">
       <ThemedImg
-        dark-img="/brand/long_logo_light.webp"
-        light-img="/brand/long_logo_dark.webp"
+        dark-img="/brand/long_logo_dark.webp"
+        light-img="/brand/long_logo_light.webp"
         alt="Discord Analytics"
         class="w-32"
       />
