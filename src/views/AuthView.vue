@@ -65,7 +65,7 @@ onBeforeMount(async () => {
 
     setTokens({
       accessToken,
-      accessTokenExpiration: expiresIn,
+      expiresIn,
       refreshToken,
       userId: id,
     })

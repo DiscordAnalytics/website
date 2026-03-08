@@ -14,6 +14,7 @@ import DiscordAvatar from '@/components/DiscordAvatar.vue'
 import MarkdownItAnchor from 'markdown-it-anchor'
 import TableOfContent from '@/components/TableOfContent.vue'
 import Shiki from '@shikijs/markdown-it'
+import type { PluginSimple } from 'markdown-it'
 
 const { getArticle } = useBlogArticles()
 const route = useRoute()
@@ -21,7 +22,7 @@ const route = useRoute()
 const article = ref<BlogArticle | null>(null)
 const articleId = computed(() => route.params.articleId as string)
 const articleEl = useTemplateRef('articleEl')
-const markdownPlugins = shallowRef<unknown[]>([MarkdownItAnchor])
+const markdownPlugins = shallowRef<PluginSimple[]>([MarkdownItAnchor])
 const anchors = computed<Anchor[]>(() => {
   if (!articleEl.value) return []
   return Array.from(
