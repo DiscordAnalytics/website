@@ -14,8 +14,8 @@ export default function useCurrentUser() {
   async function fetch() {
     if (!api.userId) throw new Error('Not Authenticated')
     store.userInfos = await api.users.get(api.userId)
-    const { ownedBots, inBotTeam } = await api.users.getBots(api.userId)
-    store.userBots = [...ownedBots, ...inBotTeam]
+    const { ownedBots, teamBots } = await api.users.getBots(api.userId)
+    store.userBots = [...ownedBots, ...teamBots]
   }
 
   async function logout() {

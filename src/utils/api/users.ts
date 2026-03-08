@@ -11,7 +11,7 @@ export default class UsersResource {
     return this.api.request('GET', `/users/${userId}`)
   }
 
-  getBots(userId: string): Promise<{ ownedBots: Bot[]; inBotTeam: Bot[] }> {
+  getBots(userId: string): Promise<{ ownedBots: Bot[]; teamBots: Bot[] }> {
     return this.api.request('GET', `/users/${userId}/bots`)
   }
 }
