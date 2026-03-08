@@ -25,11 +25,11 @@ const router = createRouter({
 
 router.beforeEach(async (to) => {
   const { userInfos, fetch: fetchUser } = useCurrentUser()
-  if ((to.path.startsWith('/dash') || to.path.startsWith('/admin')) && !userInfos) {
+  if ((to.path.startsWith('/dash') || to.path.startsWith('/admin')) && !userInfos.value) {
     try {
       await fetchUser()
     } catch {
-      return { path: '/auth' }
+      return `/auth?redirect=${encodeURI(to.fullPath)}`
     }
   }
 })
