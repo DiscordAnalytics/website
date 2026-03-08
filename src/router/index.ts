@@ -21,6 +21,10 @@ const router = createRouter({
       component: () => import('@/views/blog/ArticlesReader.vue'),
     },
     {
+      path: '/dash',
+      component: () => import('@/views/dash/DashHome.vue'),
+    },
+    {
       path: '/dash/onboarding',
       component: () => import('@/views/dash/DashOnboarding.vue'),
     },

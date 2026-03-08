@@ -10,6 +10,7 @@ export default function useCurrentUser() {
   const route = useRoute()
 
   const userInfos = computed(() => store.userInfos)
+  const userBots = computed(() => store.userBots)
   const ownedBots = computed(() => store.userBots.filter((bot) => bot.ownerId === api.userId))
 
   async function fetch() {
@@ -28,5 +29,5 @@ export default function useCurrentUser() {
     }
   }
 
-  return { userInfos, ownedBots, fetch, logout }
+  return { userInfos, userBots, ownedBots, fetch, logout }
 }
