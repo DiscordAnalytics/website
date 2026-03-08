@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onBeforeMount, ref, useTemplateRef } from 'vue'
+import { computed, onBeforeMount, ref, shallowRef, useTemplateRef } from 'vue'
 import type { Anchor, BlogArticle } from '@/utils/types.ts'
 import PageLayout from '@/components/layouts/PageLayout.vue'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -13,6 +13,7 @@ import VueMarkdown from 'vue-markdown-render'
 import DiscordAvatar from '@/components/DiscordAvatar.vue'
 import MarkdownItAnchor from 'markdown-it-anchor'
 import TableOfContent from '@/components/TableOfContent.vue'
+import Shiki from '@shikijs/markdown-it'
 
 const { getArticle } = useBlogArticles()
 const route = useRoute()
@@ -20,6 +21,7 @@ const route = useRoute()
 const article = ref<BlogArticle | null>(null)
 const articleId = computed(() => route.params.articleId as string)
 const articleEl = useTemplateRef('articleEl')
+const markdownPlugins = shallowRef<unknown[]>([MarkdownItAnchor])
 const anchors = computed<Anchor[]>(() => {
   if (!articleEl.value) return []
   return Array.from(
@@ -34,7 +36,18 @@ const anchors = computed<Anchor[]>(() => {
 })
 
 onBeforeMount(async () => {
-  article.value = await getArticle(articleId.value)
+  const [shikiPlugin, fetchedArticle] = await Promise.all([
+    Shiki({
+      themes: {
+        light: 'github-light',
+        dark: 'github-dark',
+      },
+    }),
+    getArticle(articleId.value),
+  ])
+
+  markdownPlugins.value = [MarkdownItAnchor, shikiPlugin]
+  article.value = fetchedArticle
 })
 </script>
 
@@ -104,7 +117,7 @@ onBeforeMount(async () => {
           </div>
         </div>
 
-        <VueMarkdown :source="article.content" :plugins="[MarkdownItAnchor]" />
+        <VueMarkdown :source="article.content" :plugins="markdownPlugins" />
       </article>
       <article v-else class="col-span-2">
         <AspectRatio :ratio="16 / 5">

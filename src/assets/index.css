@@ -191,6 +191,15 @@
   body, #app {
     @apply bg-background text-foreground min-h-screen!;
   }
+  .shiki,
+  .shiki span {
+    background-color: var(--shiki-light-bg, var(--muted)) !important;
+  }
+  .dark .shiki,
+  .dark .shiki span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+  }
 }
 
 ::-webkit-scrollbar {
