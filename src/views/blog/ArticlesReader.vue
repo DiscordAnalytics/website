@@ -45,7 +45,7 @@ onBeforeMount(async () => {
       <article
         ref="articleEl"
         v-if="article"
-        class="col-span-2 prose lg:prose-xl mx-auto max-w-full md:max-w-auto"
+        class="col-span-2 prose lg:prose-xl dark:prose-invert mx-auto max-w-full md:max-w-auto"
       >
         <AspectRatio :ratio="16 / 5" class="not-prose">
           <img
