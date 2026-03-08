@@ -34,7 +34,7 @@
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
 
-  --sidebar: oklch(98.4317% 0.0018 248.56);
+  --sidebar: oklch(100% 0.0001 263.28);
   --sidebar-foreground: oklch(37.045% 0.012 285.75);
   --sidebar-primary: oklch(21.0278% 0.0318 264.66);
   --sidebar-primary-foreground: oklch(98.4317% 0.0018 248.56);
@@ -254,7 +254,6 @@
 .slide-left-leave-from {
   transform: translateX(0);
 }
-
 
 .slide-left-leave-to {
   transform: translateX(100%);

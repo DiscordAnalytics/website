@@ -1,3 +1,5 @@
+import type { FunctionalComponent } from 'vue'
+
 export enum InteractionType {
   Unknown,
   Ping,
@@ -72,10 +74,7 @@ export type Color = 'zinc' | 'orange' | 'red' | 'blue' | 'green'
 
 export interface BotScanResult {
   title: string
-  message: string
-  link?: string
   type: 'info' | 'warn' | 'error'
-  botId: string
 }
 
 export interface RawStats {
@@ -291,6 +290,14 @@ export interface AuthTokens {
 export interface OAuthConfig {
   clientId: string
   scopes: string[]
+}
+
+export interface SidebarItem {
+  title: string
+  icon?: FunctionalComponent
+  to?: string
+  children?: SidebarItem[]
+  tag?: string
 }
 
 export const searchBotParams: SearchParam[] = [

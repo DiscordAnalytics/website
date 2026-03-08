@@ -28,6 +28,16 @@ const router = createRouter({
       path: '/dash/onboarding',
       component: () => import('@/views/dash/DashOnboarding.vue'),
     },
+    {
+      path: '/dash/bots/:id',
+      redirect(to) {
+        return `/dash/bots/${to.params.id}/interactions`
+      },
+    },
+    {
+      path: '/dash/bots/:id/interactions',
+      component: () => import('@/views/dash/bots/BotInteractions.vue'),
+    },
   ],
 })
 
