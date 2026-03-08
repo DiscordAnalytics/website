@@ -39,62 +39,76 @@ import ThemedImg from '@/components/ThemedImg.vue'
               <h3 class="font-semibold">
                 {{ $t('components.footer.columns.product.title') }}
               </h3>
-              <Button variant="link" href="/#learn-more" class="px-0 justify-start">
-                {{ $t('components.footer.columns.product.items.features') }}
-              </Button>
-              <Button variant="link" href="/community/achievements" class="px-0 justify-start">
-                {{ $t('components.footer.columns.product.items.achievements') }}
-              </Button>
-              <Button variant="link" href="/docs" class="px-0 justify-start">
-                {{ $t('components.footer.columns.product.items.docs') }}
-              </Button>
-              <Button
-                variant="link"
-                href="/docs/get-started/installation"
-                class="px-0 justify-start"
-              >
-                {{ $t('components.footer.columns.product.items.integrate') }}
-              </Button>
+              <RouterLink to="/#learn-more">
+                <Button variant="link" class="px-0 justify-start">
+                  {{ $t('components.footer.columns.product.items.features') }}
+                </Button>
+              </RouterLink>
+              <RouterLink to="/community/achievements">
+                <Button variant="link" class="px-0 justify-start">
+                  {{ $t('components.footer.columns.product.items.achievements') }}
+                </Button>
+              </RouterLink>
+              <RouterLink to="/docs">
+                <Button variant="link" class="px-0 justify-start">
+                  {{ $t('components.footer.columns.product.items.docs') }}
+                </Button>
+              </RouterLink>
+              <RouterLink to="/docs/get-started/installation">
+                <Button variant="link" class="px-0 justify-start">
+                  {{ $t('components.footer.columns.product.items.integrate') }}
+                </Button>
+              </RouterLink>
             </div>
             <div class="flex flex-col">
               <h3 class="font-semibold">
                 {{ $t('components.footer.columns.company.title') }}
               </h3>
-              <Button variant="link" href="/blog" class="px-0 justify-start">
-                {{ $t('components.footer.columns.company.items.blog') }}
-              </Button>
-              <Button variant="link" href="/status" class="px-0 justify-start">
-                {{ $t('components.footer.columns.company.items.status') }}
-              </Button>
-              <Button variant="link" href="/github" class="px-0 justify-start">
-                {{ $t('components.footer.columns.company.items.source_code') }}
-              </Button>
+              <RouterLink to="/blog">
+                <Button variant="link" class="px-0 justify-start">
+                  {{ $t('components.footer.columns.company.items.blog') }}
+                </Button>
+              </RouterLink>
+              <RouterLink to="/status">
+                <Button variant="link" class="px-0 justify-start">
+                  {{ $t('components.footer.columns.company.items.status') }}
+                </Button>
+              </RouterLink>
+              <RouterLink to="/github">
+                <Button variant="link" class="px-0 justify-start">
+                  {{ $t('components.footer.columns.company.items.source_code') }}
+                </Button>
+              </RouterLink>
             </div>
             <div class="flex flex-col">
               <h3 class="font-semibold">
                 {{ $t('components.footer.columns.contact.title') }}
               </h3>
-              <Button
-                variant="link"
-                href="mailto:contact@discordanalytics.xyz"
-                class="px-0 justify-start"
-              >
-                {{ $t('components.footer.columns.contact.items.mail') }}
-              </Button>
-              <Button variant="link" href="/support" class="px-0 justify-start">
-                {{ $t('components.footer.columns.contact.items.discord') }}
-              </Button>
+              <a href="mailto:contact@discordanalytics.xyz">
+                <Button variant="link" class="px-0 justify-start">
+                  {{ $t('components.footer.columns.contact.items.mail') }}
+                </Button>
+              </a>
+              <RouterLink to="/support">
+                <Button variant="link" class="px-0 justify-start">
+                  {{ $t('components.footer.columns.contact.items.discord') }}
+                </Button>
+              </RouterLink>
             </div>
             <div class="flex flex-col">
               <h3 class="font-semibold">
                 {{ $t('components.footer.columns.legals.title') }}
               </h3>
-              <Button variant="link" href="/docs/legals/terms" class="px-0 justify-start">
-                {{ $t('components.footer.columns.legals.items.terms') }}
-              </Button>
-              <Button variant="link" href="/docs/legals/privacy-policy" class="px-0 justify-start">
-                {{ $t('components.footer.columns.legals.items.privacy') }}
-              </Button>
+              <RouterLink to="/docs/legals/terms">
+                <Button variant="link" class="px-0 justify-start">
+                  {{ $t('components.footer.columns.legals.items.terms') }}
+                </Button>
+              </RouterLink>
+              <RouterLink to="/docs/legals/privacy-policy">
+                <Button variant="link" class="px-0 justify-start">
+                  {{ $t('components.footer.columns.legals.items.privacy') }}
+                </Button>
+              </RouterLink>
             </div>
           </div>
         </div>
