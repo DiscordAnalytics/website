@@ -8,6 +8,14 @@ export default function useBot(botId: string, scope: APIScope = APIScope.User) {
 
   const bot = computed(() => store.userBots.find((bot) => bot.botId === botId))
 
+  async function fetch() {
+    const index = store.userBots.findIndex((bot) => bot.botId === botId)
+    const updated = await api.bots.get(botId)
+
+    if (index !== -1) store.userBots[index] = updated
+    else store.userBots.push(updated)
+  }
+
   async function remove() {
     await api.bots.deleteBot(botId)
     store.userBots = store.userBots.filter((bot) => bot.botId !== botId)
@@ -39,5 +47,5 @@ export default function useBot(botId: string, scope: APIScope = APIScope.User) {
     if (botIndex >= 0) store.userBots[botIndex]!.votesWebhookUrl = webhookUrl
   }
 
-  return { bot, remove, regenToken, getToken, toggleAdvancedStats, updateVotesWebhook }
+  return { bot, fetch, remove, regenToken, getToken, toggleAdvancedStats, updateVotesWebhook }
 }

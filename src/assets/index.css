@@ -222,3 +222,73 @@
   scrollbar-width: 0.625rem;
   scrollbar-color: var(--border) var(--background);
 }
+
+/*             TRANSITIONS ANIMATIONS             */
+
+/* ------ Slide ------ */
+.slide-left-enter-active,
+.slide-left-leave-active,
+.slide-right-enter-active,
+.slide-right-leave-active {
+  transition: transform 0.3s ease;
+}
+
+.slide-right-enter-from {
+  transform: translateX(100%);
+}
+
+.slide-right-enter-to,
+.slide-right-leave-from {
+  transform: translateX(0);
+}
+
+.slide-right-leave-to {
+  transform: translateX(-100%);
+}
+
+.slide-left-enter-from {
+  transform: translateX(-100%);
+}
+
+.slide-left-enter-to,
+.slide-left-leave-from {
+  transform: translateX(0);
+}
+
+
+.slide-left-leave-to {
+  transform: translateX(100%);
+}
+
+/* ------ Fold ------ */
+.library-enter-active {
+  animation: fold-in 0.35s ease-out;
+  transform-origin: top center;
+}
+
+.library-leave-active {
+  animation: fold-out 0.2s ease-in;
+  transform-origin: top center;
+}
+
+@keyframes fold-in {
+  from {
+    opacity: 0;
+    transform: perspective(600px) rotateX(-12deg) scaleY(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(600px) rotateX(0deg) scaleY(1);
+  }
+}
+
+@keyframes fold-out {
+  from {
+    opacity: 1;
+    transform: perspective(600px) rotateX(0deg) scaleY(1);
+  }
+  to {
+    opacity: 0;
+    transform: perspective(600px) rotateX(-12deg) scaleY(0.96);
+  }
+}

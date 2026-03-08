@@ -10,6 +10,7 @@ export default function useCurrentUser() {
   const route = useRoute()
 
   const userInfos = computed(() => store.userInfos)
+  const ownedBots = computed(() => store.userBots.filter((bot) => bot.ownerId === api.userId))
 
   async function fetch() {
     if (!api.userId) throw new Error('Not Authenticated')
@@ -27,5 +28,5 @@ export default function useCurrentUser() {
     }
   }
 
-  return { fetch, userInfos, logout }
+  return { userInfos, ownedBots, fetch, logout }
 }

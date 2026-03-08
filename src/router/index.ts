@@ -20,6 +20,10 @@ const router = createRouter({
       path: '/blog/:articleId',
       component: () => import('@/views/blog/ArticlesReader.vue'),
     },
+    {
+      path: '/dash/onboarding',
+      component: () => import('@/views/dash/DashOnboarding.vue'),
+    },
   ],
 })
 
