@@ -45,12 +45,13 @@ export class APIClient {
     this.scope = scope
   }
 
-  private get headers(): HeadersInit {
+  private async getHeaders(): Promise<HeadersInit> {
+    const accesToken = await this.authTokens.getAccessToken()
     switch (this.scope) {
       case APIScope.User:
-        return { Authorization: `User ${this.authTokens.accessToken.value}` }
+        return { Authorization: `User ${accesToken}` }
       case APIScope.Admin:
-        return { Authorization: `Admin ${this.authTokens.accessToken.value}` }
+        return { Authorization: `Admin ${accesToken}` }
       default:
         return {}
     }
@@ -71,7 +72,7 @@ export class APIClient {
     contentType: string = 'application/json',
   ): Promise<T> {
     const headers = {
-      ...this.headers,
+      ...(await this.getHeaders()),
       'Content-Type': contentType,
     }
 
@@ -116,16 +117,15 @@ export function useAuthToken() {
 
   if (userId) authState.userId = userId
 
-  if (refreshToken && !authState.accessToken) refreshAccessToken()
-
   function setTokens(tokens: {
     accessToken: string
-    accessTokenExpiration: number
+    expiresIn: number
     refreshToken: string
     userId?: string
   }) {
     authState.accessToken = tokens.accessToken
-    authState.accessTokenExpiration = tokens.accessTokenExpiration
+    // Add 30s buffer to refresh before actual expiration
+    authState.accessTokenExpiration = Date.now() + (tokens.expiresIn - 30) * 1000
 
     cookies.set('refresh_token', tokens.refreshToken, {
       secure: true,
@@ -155,8 +155,7 @@ export function useAuthToken() {
 
   function isAccessTokenExpired(): boolean {
     if (!authState.accessTokenExpiration) return true
-    // Add 60s buffer to refresh before actual expiration
-    return Date.now() >= authState.accessTokenExpiration - 60000
+    return Date.now() >= authState.accessTokenExpiration
   }
 
   async function getAccessToken(): Promise<string | null> {
@@ -168,7 +167,6 @@ export function useAuthToken() {
   }
 
   async function refreshAccessToken() {
-    const refreshToken = cookies.get('refresh_token')
     if (!refreshToken) {
       clearTokens()
       return
