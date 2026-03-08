@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { Toaster } from '@/components/ui/sonner'
 import 'vue-sonner/style.css'
-import { onBeforeMount } from 'vue'
+import { onBeforeMount, onErrorCaptured } from 'vue'
 import { useStore } from '@/stores'
 import type { Color } from '@/utils/types.ts'
 import { useI18n } from 'vue-i18n'
 import { usePreferredLanguages } from '@vueuse/core'
+import { toast } from 'vue-sonner'
 
 const { setTheme } = useStore()
 const i18n = useI18n()
@@ -28,6 +29,13 @@ onBeforeMount(() => {
     }
   }
   document.documentElement.lang = i18n.locale.value
+})
+
+onErrorCaptured((err, instance, info) => {
+  toast.error('An error occurred', {
+    description: `${err.message} - ${info}`,
+    duration: 15000,
+  })
 })
 </script>
 
