@@ -2,7 +2,9 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import type {
   Achievement,
+  BlogArticle,
   Bot,
+  Color,
   CustomEvent,
   RawStats,
   RawVotes,
@@ -19,6 +21,30 @@ export const useStore = defineStore('store', () => {
   const botTeams = ref<{ [botId: string]: Teammate[] }>({})
   const botEmailReports = ref<{ [botId: string]: StatsReport[] }>({})
   const botStats = ref<{ [botId: string]: { stats: RawStats[]; votes: RawVotes[] } }>({})
+  const blogArticles = ref<Omit<BlogArticle, 'content'>[]>([])
+
+  const theme = ref<Color>('zinc')
+
+  function setTheme(newTheme: Color) {
+    theme.value = newTheme
+
+    const allColors: Color[] = ['zinc', 'orange', 'red', 'blue', 'green']
+
+    document.documentElement.classList.remove(...allColors.map((color) => `theme-${color}`))
+    document.documentElement.classList.add(`theme-${newTheme}`)
+
+    localStorage.setItem('theme', newTheme)
+  }
+
+  function clear() {
+    userInfos.value = null
+    userBots.value = []
+    botAchievements.value = {}
+    botCustomEvents.value = {}
+    botTeams.value = {}
+    botEmailReports.value = {}
+    botStats.value = {}
+  }
 
   return {
     userInfos,
@@ -28,5 +54,9 @@ export const useStore = defineStore('store', () => {
     botTeams,
     botEmailReports,
     botStats,
+    blogArticles,
+    theme,
+    setTheme,
+    clear,
   }
 })

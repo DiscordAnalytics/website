@@ -4,8 +4,8 @@ on:
   release:
     types: [published]
   workflow_run:
-    workflows: ["Release"]
-    types: [ completed ]
+    workflows: ['Release']
+    types: [completed]
   workflow_dispatch:
 
 env:
@@ -31,9 +31,9 @@ jobs:
             runner: ubuntu-24.04-arm
             platform: linux/arm64
           - target: production-sh
-            suffix: ""
+            suffix: ''
           - target: production-cloud
-            suffix: "-cloud"
+            suffix: '-cloud'
 
     steps:
       - name: Checkout repository
@@ -85,9 +85,9 @@ jobs:
         target: [production-cloud, production-sh]
         include:
           - target: production-sh
-            suffix: ""
+            suffix: ''
           - target: production-cloud
-            suffix: "-cloud"
+            suffix: '-cloud'
     steps:
       - name: Download digests
         uses: actions/download-artifact@v4
@@ -107,15 +107,15 @@ jobs:
         working-directory: /tmp/digests
         run: |
           TAGS="-t ${{ env.GHCR_REPO }}:latest${{ matrix.suffix }}"
-          
+
           if [[ "${{ github.event_name }}" == "release" ]]; then
             VERSION="${{ github.event.release.tag_name }}"
             TAGS="$TAGS -t ${{ env.GHCR_REPO }}:${VERSION}${{ matrix.suffix }}"
           fi
-          
+
           if [[ "${{ matrix.target }}" == "production-cloud" ]]; then
             TAGS="$TAGS -t ${{ env.GHCR_REPO }}:cloud"
           fi
-          
+
           docker buildx imagetools create $TAGS \
             $(printf '${{ env.GHCR_REPO }}@sha256:%s ' *)

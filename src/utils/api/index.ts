@@ -1,9 +1,11 @@
 import UsersResource from '@/utils/api/users.ts'
-import { useCookies } from '@vueuse/integrations'
+import { useCookies } from '@vueuse/integrations/useCookies'
 import BotsResource from '@/utils/api/bots.ts'
-import { useConfig } from '@/composables/useConfig.ts'
+import { useConfig } from '@/composables'
 import { computed, reactive } from 'vue'
 import { oneMonthInSec } from '@/utils/dateTime.ts'
+import OAuthRessource from '@/utils/api/oauth.ts'
+import ArticlesResource from '@/utils/api/articles.ts'
 
 const authState = reactive<{
   userId: string | null
@@ -18,6 +20,7 @@ const authState = reactive<{
 export enum APIScope {
   User,
   Admin,
+  Guest,
 }
 
 export class APIError extends Error {
@@ -32,25 +35,33 @@ export class APIError extends Error {
 
 export class APIClient {
   private readonly baseUrl: string
-  private readonly headers: { [key: string]: string } = {}
   readonly scope: APIScope
-  readonly userId: string | null
+  private readonly authTokens = useAuthToken()
 
-  constructor(userId: string | null, token: string | null, scope: APIScope) {
+  constructor(scope: APIScope) {
     const { apiBaseUrl } = useConfig()
 
     this.baseUrl = apiBaseUrl
-    this.userId = userId
     this.scope = scope
+  }
 
-    switch (scope) {
+  private get headers(): HeadersInit {
+    switch (this.scope) {
       case APIScope.User:
-        this.headers = { Authorization: `User ${token}` }
-        break
+        return { Authorization: `User ${this.authTokens.accessToken.value}` }
       case APIScope.Admin:
-        this.headers = { Authorization: `Admin ${token}` }
-        break
+        return { Authorization: `Admin ${this.authTokens.accessToken.value}` }
+      default:
+        return {}
     }
+  }
+
+  public get userId(): string | null {
+    return this.authTokens.userId.value
+  }
+
+  public clearTokens() {
+    this.authTokens.clearTokens()
   }
 
   async request<T>(
@@ -88,12 +99,20 @@ export class APIClient {
   get bots(): BotsResource {
     return new BotsResource(this)
   }
+
+  get oauth(): OAuthRessource {
+    return new OAuthRessource(this)
+  }
+
+  get articles(): ArticlesResource {
+    return new ArticlesResource(this)
+  }
 }
 
 export function useAuthToken() {
   const cookies = useCookies()
   const refreshToken = cookies.get('refresh_token')
-  const userId = cookies.get('user_id')
+  const userId = cookies.get('user_id', { doNotParse: true })
 
   if (userId) authState.userId = userId
 
@@ -103,26 +122,27 @@ export function useAuthToken() {
     accessToken: string
     accessTokenExpiration: number
     refreshToken: string
-    userId: string
+    userId?: string
   }) {
     authState.accessToken = tokens.accessToken
     authState.accessTokenExpiration = tokens.accessTokenExpiration
-    authState.userId = tokens.userId
 
     cookies.set('refresh_token', tokens.refreshToken, {
-      httpOnly: true,
       secure: true,
       sameSite: 'strict',
       maxAge: oneMonthInSec,
       path: '/',
     })
 
-    cookies.set('user_id', tokens.userId, {
-      secure: true,
-      sameSite: 'strict',
-      maxAge: oneMonthInSec,
-      path: '/',
-    })
+    if (tokens.userId) {
+      authState.userId = tokens.userId
+      cookies.set('user_id', tokens.userId, {
+        secure: true,
+        sameSite: 'strict',
+        maxAge: oneMonthInSec,
+        path: '/',
+      })
+    }
   }
 
   function clearTokens() {
@@ -155,9 +175,12 @@ export function useAuthToken() {
     }
 
     try {
-      const response = await fetch('/api/auth/refresh', {
+      const response = await fetch(`${window.CONFIG.apiBaseUrl}/auth/refresh`, {
         method: 'POST',
-        credentials: 'include', // Send cookies
+        body: JSON.stringify({ refreshToken }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
       })
 
       if (!response.ok) throw new Error('Refresh failed')
@@ -182,6 +205,5 @@ export function useAuthToken() {
 }
 
 export default function useAPI(scope: APIScope): APIClient {
-  const { userId, accessToken } = useAuthToken()
-  return new APIClient(userId.value, accessToken.value, scope)
+  return new APIClient(scope)
 }

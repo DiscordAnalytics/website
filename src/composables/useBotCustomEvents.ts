@@ -13,7 +13,7 @@ export default function useBotCustomEvents(botId: string) {
     store.botCustomEvents[botId] = await api.bots.getEvents(botId)
   }
 
-  async function create(body: { event_key: string; graph_name: string }) {
+  async function create(body: { eventKey: string; graphName: string }) {
     if (!api.userId) throw new Error('Not authenticated')
     const event = await api.bots.createEvent(botId, body)
 
@@ -26,7 +26,7 @@ export default function useBotCustomEvents(botId: string) {
     const event = await api.bots.updateEvent(botId, event_key, graph_name)
 
     const list = store.botCustomEvents[botId] ?? []
-    const eventIndex = list.findIndex((e) => e.event_key === event_key)
+    const eventIndex = list.findIndex((e) => e.eventKey === event_key)
 
     if (eventIndex >= 0) list[eventIndex] = event
     else list.push(event)
@@ -39,7 +39,7 @@ export default function useBotCustomEvents(botId: string) {
     const list = store.botCustomEvents[botId]
     if (!list) return
 
-    const eventIndex = list.findIndex((e) => e.event_key === event_key)
+    const eventIndex = list.findIndex((e) => e.eventKey === event_key)
     if (eventIndex >= 0) list.splice(eventIndex, 1)
   }
 

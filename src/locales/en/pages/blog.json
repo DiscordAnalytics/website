@@ -1,0 +1,13 @@
+{
+  "header": {
+    "search": "Search...",
+    "dropdown": "Tags"
+  },
+  "no_results": {
+    "title": "No articles",
+    "description": "No articles found for the selected filters"
+  },
+  "updated": "(Updated)",
+  "updated_on": "Updated on",
+  "table_of_contents": "Table of contents"
+}

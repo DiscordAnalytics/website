@@ -3,7 +3,7 @@ import { useStore } from '@/stores'
 import { computed } from 'vue'
 import type { DateRange } from 'reka-ui'
 
-export function useBotStats(botId: string) {
+export default function useBotStats(botId: string) {
   const api = useAPI(APIScope.User)
   const store = useStore()
 

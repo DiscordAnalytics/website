@@ -39,5 +39,5 @@ export default function useBot(botId: string, scope: APIScope = APIScope.User) {
     if (botIndex >= 0) store.userBots[botIndex]!.votesWebhookUrl = webhookUrl
   }
 
-  return { bot, remove, regenToken, toggleAdvancedStats, updateVotesWebhook }
+  return { bot, remove, regenToken, getToken, toggleAdvancedStats, updateVotesWebhook }
 }

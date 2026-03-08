@@ -34,5 +34,5 @@ export default function useBotCustomEvents(botId: string) {
     if (eventIndex >= 0) list.splice(eventIndex, 1)
   }
 
-  return { team, fetch, remove }
+  return { team, fetch, add, remove }
 }
