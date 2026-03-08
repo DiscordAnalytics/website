@@ -68,7 +68,12 @@ const avatarDecorationUrl = computed(() => {
 
 <template>
   <div
-    :class="cn('relative inline-flex items-center justify-center', sizeConfig[size].container)"
+    :class="
+      cn(
+        'relative inline-flex items-center justify-center',
+        avatarDecorationUrl ? sizeConfig[size].container : sizeConfig[size].avatar,
+      )
+    "
     ref="avatarBox"
   >
     <img
