@@ -18,6 +18,10 @@ export default class BotsResource {
     return this.api.request('GET', `/bots/${botId}`)
   }
 
+  add(botId: string, ownerId: string): Promise<Bot> {
+    return this.api.request('POST', `/bots/${botId}`, { userId: ownerId })
+  }
+
   getStats(botId: string, range: DateRange): Promise<{ stats: RawStats[]; votes: RawVotes[] }> {
     const start = dateToUTCDateTime(range.start!).split('T')[0]
     const end = dateToUTCDateTime(range.end!).split('T')[0]
