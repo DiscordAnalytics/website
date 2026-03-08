@@ -15,13 +15,13 @@ env:
 jobs:
   build:
     if: >
-      github.event_name != 'workflow_run' || 
+      github.event_name != 'workflow_run' ||
       github.event.workflow_run.conclusion == 'success'
     runs-on: ${{ matrix.runner }}
     strategy:
       fail-fast: false
       matrix:
-        target: [production-cloud, production-sh]
+        env: [cloud, sh]
         arch: [amd64, arm64]
         include:
           - arch: amd64
@@ -30,10 +30,6 @@ jobs:
           - arch: arm64
             runner: ubuntu-24.04-arm
             platform: linux/arm64
-          - target: production-sh
-            suffix: ''
-          - target: production-cloud
-            suffix: '-cloud'
 
     steps:
       - name: Checkout repository
@@ -58,7 +54,7 @@ jobs:
         with:
           context: .
           file: docker/Dockerfile
-          target: ${{ matrix.target }}
+          target: production
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
           outputs: type=image,name=${{ env.GHCR_REPO }},push-by-digest=true,name-canonical=true,push=true
@@ -72,7 +68,7 @@ jobs:
       - name: Upload digest
         uses: actions/upload-artifact@v4
         with:
-          name: digests-${{ matrix.target }}-${{ matrix.arch }}
+          name: digests-${{ matrix.env }}-${{ matrix.arch }}
           path: /tmp/digests/*
           if-no-files-found: error
           retention-days: 1
@@ -82,18 +78,14 @@ jobs:
     needs: build
     strategy:
       matrix:
-        target: [production-cloud, production-sh]
-        include:
-          - target: production-sh
-            suffix: ''
-          - target: production-cloud
-            suffix: '-cloud'
+        env: [cloud, sh]
+
     steps:
       - name: Download digests
         uses: actions/download-artifact@v4
         with:
           path: /tmp/digests
-          pattern: digests-${{ matrix.target }}-*
+          pattern: digests-${{ matrix.env }}-*
           merge-multiple: true
 
       - name: Log in to GHCR
@@ -106,14 +98,14 @@ jobs:
       - name: Create manifest and push
         working-directory: /tmp/digests
         run: |
-          TAGS="-t ${{ env.GHCR_REPO }}:latest${{ matrix.suffix }}"
+          TAGS="-t ${{ env.GHCR_REPO }}:latest-${{ matrix.env }}"
 
           if [[ "${{ github.event_name }}" == "release" ]]; then
             VERSION="${{ github.event.release.tag_name }}"
-            TAGS="$TAGS -t ${{ env.GHCR_REPO }}:${VERSION}${{ matrix.suffix }}"
+            TAGS="$TAGS -t ${{ env.GHCR_REPO }}:${VERSION}-${{ matrix.env }}"
           fi
 
-          if [[ "${{ matrix.target }}" == "production-cloud" ]]; then
+          if [[ "${{ matrix.env }}" == "cloud" ]]; then
             TAGS="$TAGS -t ${{ env.GHCR_REPO }}:cloud"
           fi
 
