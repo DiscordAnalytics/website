@@ -43,7 +43,7 @@ const { userInfos, logout } = useCurrentUser()
         :avatar-decoration="userInfos.avatarDecoration"
       />
     </DropdownMenuTrigger>
-    <DropdownMenuContent align="end" class="w-(--reka-dropdown-menu-trigger-width)">
+    <DropdownMenuContent align="end" class="w-(--reka-dropdown-menu-trigger-width) md:w-auto">
       <DropdownMenuLabel>{{ userInfos.username }}</DropdownMenuLabel>
       <DropdownMenuSeparator />
       <RouterLink to="/dash">
