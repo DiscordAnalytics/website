@@ -85,8 +85,8 @@ export class APIClient {
     // eslint-enable no-invalid-fetch-options
 
     if (!response.ok) {
-      const message = await response.text().catch(() => response.statusText)
-      throw new APIError(response.status, message)
+      const message = await response.json().catch(() => response.statusText)
+      throw new APIError(response.status, message.error)
     }
 
     return response.json() as Promise<T>
