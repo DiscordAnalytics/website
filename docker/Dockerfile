@@ -32,6 +32,8 @@ COPY public ./public
 
 RUN pnpm build
 
+ARG ENV=cloud
+
 FROM deps AS build-docs
 
 WORKDIR /app
@@ -43,7 +45,7 @@ COPY src/assets ./src/assets
 COPY public ./public
 COPY docs ./docs
 
-RUN pnpm docs:build
+RUN [ "$ENV" = "cloud" ] && pnpm docs:build
 
 FROM nginx:stable-alpine AS production
 
@@ -62,8 +64,7 @@ RUN if [ "$ENV" = "sh" ]; then mv /etc/nginx/nginx.sh.conf /etc/nginx/nginx.conf
 
 COPY --from=build-app /app/dist /usr/share/nginx/html
 
-COPY --from=build-docs /app/docs/.vitepress/dist /usr/share/nginx/html/docs
-RUN [ "$ENV" = "sh" ] && rm -rf /usr/share/nginx/html/docs
+RUN [ "$ENV" = "cloud" ] && cp -r /app/docs/.vitepress/dists
 
 EXPOSE 80
 
