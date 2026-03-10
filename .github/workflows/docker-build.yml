@@ -54,7 +54,6 @@ jobs:
         with:
           context: .
           file: docker/Dockerfile
-          target: production
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
           outputs: type=image,name=${{ env.GHCR_REPO }},push-by-digest=true,name-canonical=true,push=true
