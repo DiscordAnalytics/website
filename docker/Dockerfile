@@ -63,6 +63,7 @@ RUN if [ "$ENV" = "sh" ]; then mv /etc/nginx/nginx.sh.conf /etc/nginx/nginx.conf
 COPY --from=build-app /app/dist /usr/share/nginx/html
 
 COPY --from=build-docs /app/docs/.vitepress/dist /usr/share/nginx/html/docs
+RUN [ "$ENV" = "sh" ] && rm -rf /usr/share/nginx/html/docs
 
 EXPOSE 80
 
