@@ -32,11 +32,13 @@ COPY public ./public
 
 RUN pnpm build
 
-ARG ENV=cloud
-
 FROM deps AS build-docs
 
+ARG ENV=cloud
+
 WORKDIR /app
+
+RUN [ "$ENV" = "cloud" ] || exit 0
 
 COPY --from=deps /app/node_modules ./node_modules
 
@@ -45,7 +47,7 @@ COPY src/assets ./src/assets
 COPY public ./public
 COPY docs ./docs
 
-RUN [ "$ENV" = "cloud" ] && pnpm docs:build
+RUN pnpm docs:build
 
 FROM nginx:stable-alpine AS production
 
@@ -58,13 +60,19 @@ LABEL org.opencontainers.image.licenses="AGPL"
 
 ARG ENV=cloud
 
-COPY /app/docker/nginx.cloud.conf /etc/nginx/nginx.conf
-COPY /app/nginx.sh.conf /etc/nginx/nginx.sh.conf
-RUN if [ "$ENV" = "sh" ]; then mv /etc/nginx/nginx.sh.conf /etc/nginx/nginx.conf; fi
+COPY /app/docker/nginx.cloud.conf /tmp/nginx-cloud.conf
+COPY /app/nginx.sh.conf /tmp/nginx-sh.conf
+RUN if [ "$ENV" = "sh" ]; then \
+      cp /tmp/nginx-sh.conf /etc/nginx/nginx.conf; \
+    else \
+      cp /tmp/nginx-cloud.conf /etc/nginx/nginx.conf; \
+    fi \
+ && rm -f /tmp/nginx-*.conf
 
 COPY --from=build-app /app/dist /usr/share/nginx/html
 
-RUN [ "$ENV" = "cloud" ] && cp -r /app/docs/.vitepress/dists
+COPY --from=build-docs /app/docs/.vitepress/dist /usr/share/nginx/html/docs
+RUN [ "$ENV" = "sh" ] && rm -rf /usr/share/nginx/html/docs
 
 EXPOSE 80
 
