@@ -58,7 +58,7 @@ import scanBot, { getScanTypeColor } from '@/utils/botScanner.ts'
 
 const route = useRoute()
 const currentBotId = useRouteParams<string>('id')
-const { bot: currentBot } = useBot(currentBotId.value)
+const { bot: currentBot } = useBot(currentBotId)
 const { userBots } = useCurrentUser()
 const breakpoints = useBreakpoints(breakpointsTailwind)
 
@@ -155,9 +155,9 @@ watch(userBots, async () => {
 </script>
 
 <template>
-  <main class="h-screen">
+  <main class="h-screen max-h-screen">
     <NavBar class="max-w-425 mx-auto px-4" />
-    <div v-if="currentBot" class="border-t">
+    <div v-if="currentBot" class="border-t" :key="currentBotId">
       <SidebarProvider>
         <Sidebar>
           <SidebarHeader>
@@ -199,29 +199,35 @@ watch(userBots, async () => {
                   >
                     <DropdownMenuLabel>My Bots</DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem v-for="bot in userBots" :key="bot.botId" class="gap-2 p-2">
-                      <DiscordAvatar
-                        :id="bot.botId"
-                        :alt="bot.username"
-                        :avatar="bot.avatar"
-                        size="sm"
-                      />
-                      <div class="flex flex-col text-left text-sm gap-1">
-                        <span class="truncate font-semibold">{{ currentBot.username }}</span>
-                        <div v-if="scanResults[currentBotId]" class="flex items-center gap-1">
-                          <span
-                            :class="`h-2 w-2 rounded-full ${getScanTypeColor(scanResults[currentBotId]!.type)}`"
-                          />
-                          <span class="truncate text-xs">
-                            {{ scanResults[currentBotId]!.title }}
-                          </span>
+                    <RouterLink
+                      v-for="bot in userBots"
+                      :to="`/dash/bots/${bot.botId}`"
+                      :key="bot.botId"
+                    >
+                      <DropdownMenuItem class="gap-2 p-2">
+                        <DiscordAvatar
+                          :id="bot.botId"
+                          :alt="bot.username"
+                          :avatar="bot.avatar"
+                          size="sm"
+                        />
+                        <div class="flex flex-col text-left text-sm gap-1">
+                          <span class="truncate font-semibold">{{ bot.username }}</span>
+                          <div v-if="scanResults[currentBotId]" class="flex items-center gap-1">
+                            <span
+                              :class="`h-2 w-2 rounded-full ${getScanTypeColor(scanResults[currentBotId]!.type)}`"
+                            />
+                            <span class="truncate text-xs">
+                              {{ scanResults[currentBotId]!.title }}
+                            </span>
+                          </div>
+                          <div v-else class="flex items-center gap-1">
+                            <Skeleton class="h-2 w-2" />
+                            <Skeleton class="h-2 w-20" />
+                          </div>
                         </div>
-                        <div v-else class="flex items-center gap-1">
-                          <Skeleton class="h-2 w-2" />
-                          <Skeleton class="h-2 w-20" />
-                        </div>
-                      </div>
-                    </DropdownMenuItem>
+                      </DropdownMenuItem>
+                    </RouterLink>
                     <DropdownMenuSeparator />
                     <RouterLink to="/dash/onboarding">
                       <DropdownMenuItem class="gap-2 p-2">
@@ -256,8 +262,8 @@ watch(userBots, async () => {
             </SidebarGroup>
           </SidebarContent>
         </Sidebar>
-        <SidebarInset class="p-4 h-full">
-          <header class="flex items-center">
+        <SidebarInset class="p-4 max-h-[calc(100vh-6.25rem)] overflow-y-scroll pb-16">
+          <header class="flex items-center justify-between">
             <SidebarTrigger />
             <slot name="header" />
           </header>
