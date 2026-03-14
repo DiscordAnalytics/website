@@ -11,12 +11,10 @@ import {
 import { Button } from '@/components/ui/button'
 import { ArrowLeftIcon, TriangleAlertIcon } from 'lucide-vue-next'
 import { useBot } from '@/composables'
-import { useRoute } from 'vue-router'
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { useRouteQuery } from '@vueuse/router'
 
-const route = useRoute()
 const botId = useRouteQuery<string>('botId', '')
 const { bot, fetch: fetchBot } = useBot(botId)
 
