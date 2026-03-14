@@ -93,9 +93,12 @@ const presets: Preset[] = [
 
 function detectPreset(start: CalendarDate, end: CalendarDate): string {
   const match = presets.find(({ key, range }) => {
-    if (key === 'custom') return false
     const r = range()
-    return r.start.toString() === start.toString() && r.end.toString() === end.toString()
+    return (
+      key !== 'custom' &&
+      r.start.toString() === start.toString() &&
+      r.end.toString() === end.toString()
+    )
   })
   return match?.key ?? 'custom'
 }
