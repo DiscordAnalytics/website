@@ -11,9 +11,11 @@ import { Button } from '@/components/ui/button'
 import { PartyPopperIcon } from 'lucide-vue-next'
 import { useRoute } from 'vue-router'
 import { useBot } from '@/composables'
+import { useRouteQuery } from '@vueuse/router'
 
 const route = useRoute()
-const { bot } = useBot(route.query.botId as string)
+const botId = useRouteQuery<string>('botId', '')
+const { bot } = useBot(botId)
 </script>
 
 <template>

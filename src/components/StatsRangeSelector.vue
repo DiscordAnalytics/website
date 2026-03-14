@@ -12,7 +12,7 @@ import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils.ts'
 import { CalendarIcon } from 'lucide-vue-next'
 import { RangeCalendar } from '@/components/ui/range-calendar'
-import type { AcceptableValue } from 'reka-ui'
+import type { AcceptableValue, DateRange } from 'reka-ui'
 import {
   CalendarDate,
   endOfMonth,
@@ -152,7 +152,7 @@ watch(
       </PopoverTrigger>
       <PopoverContent class="w-auto p-0">
         <RangeCalendar
-          v-model="store.statsRange"
+          v-model="store.statsRange as DateRange"
           :number-of-months="2"
           :maximum-days="365"
           prevent-deselect
