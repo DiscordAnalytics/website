@@ -19,13 +19,13 @@ export function getRangeGranularity(dateRange: DateRange): Granularity {
 }
 
 /** Truncates a date to midnight UTC (day bucket). */
-const toDate = (raw: string | Date): Date => {
+const truncateToDate = (raw: string | Date): Date => {
   const d = new Date(raw)
   return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()))
 }
 
 const toBucket = (raw: string | Date, granularity: Granularity): Date =>
-  granularity === 'hour' ? new Date(raw) : toDate(raw)
+  granularity === 'hour' ? new Date(raw) : truncateToDate(raw)
 
 const isSameBucket = (a: Date, b: Date): boolean => a.getTime() === b.getTime()
 
@@ -36,19 +36,15 @@ const isSameBucket = (a: Date, b: Date): boolean => a.getTime() === b.getTime()
 function generateBuckets(dateRange: DateRange): Date[] {
   if (!dateRange.start || !dateRange.end) return []
   const granularity = getRangeGranularity(dateRange)
-  const buckets: Date[] = []
-  const end = toDate(dateRange.end.toDate('UTC'))
-  let current = toDate(dateRange.start.toDate('UTC'))
+  const end = truncateToDate(dateRange.end.toDate('UTC'))
+  const current = truncateToDate(dateRange.start.toDate('UTC'))
 
-  const step = granularity === 'hour' ? 60 * 60 * 1000 : 24 * 60 * 60 * 1000
+  const stepMs = granularity === 'hour' ? 60 * 60 * 1000 : 24 * 60 * 60 * 1000
   const endTime = granularity === 'hour' ? dateRange.end.toDate('UTC').getTime() : end.getTime()
 
-  while (current.getTime() <= endTime) {
-    buckets.push(current)
-    current = new Date(current.getTime() + step)
-  }
+  const bucketCount = Math.floor((endTime - current.getTime()) / stepMs) + 1
 
-  return buckets
+  return Array.from({ length: bucketCount }, (_, i) => new Date(current.getTime() + i * stepMs))
 }
 
 export function calculateInteractions(
@@ -126,6 +122,11 @@ export function calculateInteractions(
     }
   }
 
+  const addCount = (entry: ChartData, keys: string[], interactionName: string, count: number) => {
+    if (keys.includes(interactionName))
+      entry[interactionName] = ((entry[interactionName] as number) || 0) + count
+  }
+
   for (const date of generateBuckets(dateRange)) {
     let totalInteractionsCount = 0
     const dailyStats = rawStats.find((stats) =>
@@ -148,18 +149,30 @@ export function calculateInteractions(
     for (const interaction of dailyInteractions) {
       const interactionName = interaction.name.replace(/\d{17,19}/g, 'id')
 
-      if (top3Interactions.some((x) => x.name === interactionName))
-        dailyData.mostUsedInteractions[interactionName] =
-          ((dailyData.mostUsedInteractions[interactionName] as number) || 0) + interaction.number
-      if (top5Commands.some((x) => x.name === interactionName))
-        dailyData.mostUsedCommands[interactionName] =
-          ((dailyData.mostUsedCommands[interactionName] as number) || 0) + interaction.number
-      if (top5Components.some((x) => x.name === interactionName))
-        dailyData.mostUsedComponents[interactionName] =
-          ((dailyData.mostUsedComponents[interactionName] as number) || 0) + interaction.number
-      if (top5Modals.some((x) => x.name === interactionName))
-        dailyData.mostUsedModals[interactionName] =
-          ((dailyData.mostUsedModals[interactionName] as number) || 0) + interaction.number
+      addCount(
+        dailyData.mostUsedInteractions,
+        top3Interactions.map((x) => x.name),
+        interactionName,
+        interaction.number,
+      )
+      addCount(
+        dailyData.mostUsedCommands,
+        top5Commands.map((x) => x.name),
+        interactionName,
+        interaction.number,
+      )
+      addCount(
+        dailyData.mostUsedComponents,
+        top5Components.map((x) => x.name),
+        interactionName,
+        interaction.number,
+      )
+      addCount(
+        dailyData.mostUsedModals,
+        top5Modals.map((x) => x.name),
+        interactionName,
+        interaction.number,
+      )
 
       totalInteractionsCount += interaction.number
     }
@@ -391,45 +404,28 @@ export function calculateVotes(
   }
 
   // Aggregate votes by bucket and provider
-  const votesMap = new Map<number, { total: number; byProvider: Map<string, number> }>()
+  const votesMap = new Map<Date, { total: number; byProvider: Map<string, number> }>()
+  const pieMap = new Map<string, number>()
 
   rawVotes.forEach((votes) => {
     const date = toBucket(votes.date, granularity)
     const providerName = selectVotesProvider(votes.provider)
-    const existing = votesMap.get(date.getTime())
 
-    if (existing) {
-      existing.total += votes.count
-      if (providerName)
-        existing.byProvider.set(
-          providerName,
-          (existing.byProvider.get(providerName) ?? 0) + votes.count,
-        )
-    } else {
-      const byProvider = new Map<string, number>()
-      if (providerName) byProvider.set(providerName, votes.count)
-      votesMap.set(date.getTime(), { total: votes.count, byProvider })
-    }
-
+    if (!votesMap.has(date)) votesMap.set(date, { total: 0, byProvider: new Map() })
+    const entry = votesMap.get(date)!
+    entry.total += votes.count
     if (providerName) {
-      const updatePie = (
-        pieArray: FormattedStats['votes']['votesPie'],
-        name: string,
-        count: number,
-      ) => {
-        const entry = pieArray.find((x) => x.name === name)
-        if (entry) (entry.total as number) += count
-        else pieArray.push({ name, total: count })
-      }
-      updatePie(chartsData.votesPie, providerName, votes.count)
+      entry.byProvider.set(providerName, (entry.byProvider.get(providerName) ?? 0) + votes.count)
+      pieMap.set(providerName, (pieMap.get(providerName) ?? 0) + votes.count)
     }
   })
 
-  for (const date of generateBuckets(dateRange)) {
-    const entry = votesMap.get(date.getTime())
-    const total = entry?.total ?? 0
+  chartsData.votesPie = Array.from(pieMap.entries()).map(([name, total]) => ({ name, total }))
 
-    chartsData.allVotesEvolution.push({ date, Votes: total })
+  for (const date of generateBuckets(dateRange)) {
+    const entry = votesMap.get(date)
+
+    chartsData.allVotesEvolution.push({ date, Votes: entry?.total ?? 0 })
     chartsData.topggVotesEvolution.push({ date, Votes: entry?.byProvider.get('Top.gg') ?? 0 })
     chartsData.botlistmeVotesEvolution.push({
       date,
@@ -504,19 +500,14 @@ export function goal2Percent(goal: Achievement): number {
   return Math.min(Number.isNaN(percent) ? 0 : percent, 100)
 }
 
+const votesProviderMap: Record<VotesProvider, string> = {
+  topgg: 'Top.gg',
+  botlistme: 'BotList.me',
+  dblist: 'Discord Bot List',
+  discordplace: 'Discord Place',
+  discordscom: 'Discords.com',
+}
+
 export function selectVotesProvider(entry: VotesProvider): string | undefined {
-  switch (entry) {
-    case 'topgg':
-      return 'Top.gg'
-    case 'botlistme':
-      return 'BotList.me'
-    case 'dblist':
-      return 'Discord Bot List'
-    case 'discordplace':
-      return 'Discord Place'
-    case 'discordscom':
-      return 'Discords.com'
-    default:
-      return undefined
-  }
+  return votesProviderMap[entry]
 }
