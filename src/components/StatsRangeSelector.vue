@@ -10,7 +10,7 @@ import { onMounted, ref, type Ref, watch } from 'vue'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils.ts'
-import { CalendarIcon } from 'lucide-vue-next'
+import { CalendarIcon, ChevronLeftIcon, ChevronRightIcon } from 'lucide-vue-next'
 import { RangeCalendar } from '@/components/ui/range-calendar'
 import type { AcceptableValue, DateRange } from 'reka-ui'
 import {
@@ -24,6 +24,7 @@ import {
 import { df } from '@/utils/dateTime.ts'
 import { useRouteQuery } from '@vueuse/router'
 import { useStore } from '@/stores'
+import { ButtonGroup } from '@/components/ui/button-group'
 
 const store = useStore()
 const startQuery = useRouteQuery<string | null>('start')
@@ -33,6 +34,7 @@ const statsRange = ref({
   start: undefined,
   end: undefined,
 }) as Ref<DateRange>
+const selectValue = ref('last30days')
 
 const tz = getLocalTimeZone()
 const today = getToday(tz)
@@ -108,7 +110,25 @@ function handleSelectChange(key: AcceptableValue) {
   if (preset && key !== 'custom') statsRange.value = preset.range()
 }
 
-const selectValue = ref('last30days')
+function shiftRange(direction: 'forward' | 'backward') {
+  const start = statsRange.value.start!
+  const end = statsRange.value.end!
+  const duration = {
+    years: end.year - start.year,
+    months: end.month - start.month,
+    days: end.day - start.day + 1,
+  }
+
+  statsRange.value =
+    direction === 'forward'
+      ? { start: end.add({ days: 1 }), end: end.add(duration) }
+      : { start: start.subtract(duration), end: start.subtract({ days: 1 }) }
+
+  selectValue.value =
+    statsRange.value.start && statsRange.value.end
+      ? detectPreset(statsRange.value.start as CalendarDate, statsRange.value.end as CalendarDate)
+      : 'custom'
+}
 
 onMounted(() => {
   try {
@@ -148,6 +168,14 @@ watch(statsRange, (value) => {
 
 <template>
   <div class="flex items-center w-fit gap-2">
+    <ButtonGroup v-if="statsRange.start && statsRange.end">
+      <Button variant="outline" size="icon" @click="shiftRange('backward')">
+        <ChevronLeftIcon />
+      </Button>
+      <Button variant="outline" size="icon" @click="shiftRange('forward')">
+        <ChevronRightIcon />
+      </Button>
+    </ButtonGroup>
     <Popover v-if="selectValue === 'custom'">
       <PopoverTrigger as-child>
         <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
