@@ -24,12 +24,16 @@ import {
 import { df } from '@/utils/dateTime.ts'
 import { useRouteQuery } from '@vueuse/router'
 import { useStore } from '@/stores'
+import { breakpointsTailwind, createReusableTemplate, useBreakpoints } from '@vueuse/core'
 import { ButtonGroup } from '@/components/ui/button-group'
 
 const store = useStore()
 const startQuery = useRouteQuery<string | null>('start')
 const endQuery = useRouteQuery<string | null>('end')
+const breakpoints = useBreakpoints(breakpointsTailwind)
+const [DefineNavArrows, NavArrows] = createReusableTemplate()
 
+const largerThanMd = breakpoints.greater('md')
 const statsRange = ref({
   start: undefined,
   end: undefined,
@@ -167,7 +171,7 @@ watch(statsRange, (value) => {
 </script>
 
 <template>
-  <div class="flex items-center w-fit gap-2">
+  <DefineNavArrows>
     <ButtonGroup v-if="statsRange.start && statsRange.end">
       <Button variant="outline" size="icon" @click="shiftRange('backward')">
         <ChevronLeftIcon />
@@ -176,6 +180,10 @@ watch(statsRange, (value) => {
         <ChevronRightIcon />
       </Button>
     </ButtonGroup>
+  </DefineNavArrows>
+
+  <div class="flex items-center justify-end flex-wrap w-fit gap-2">
+    <NavArrows v-if="largerThanMd" />
     <Popover v-if="selectValue === 'custom'">
       <PopoverTrigger as-child>
         <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
@@ -190,7 +198,7 @@ watch(statsRange, (value) => {
       <PopoverContent class="w-auto p-0">
         <RangeCalendar
           v-model="statsRange"
-          :number-of-months="2"
+          :number-of-months="largerThanMd ? 2 : 1"
           :maximum-days="365"
           prevent-deselect
           :max-value="
@@ -204,6 +212,8 @@ watch(statsRange, (value) => {
         />
       </PopoverContent>
     </Popover>
+
+    <NavArrows v-if="!largerThanMd" />
 
     <Select v-model="selectValue" @update:model-value="handleSelectChange">
       <SelectTrigger class="w-48 cursor-pointer">

@@ -276,7 +276,7 @@ watch(userBots, async () => {
           </SidebarContent>
         </Sidebar>
         <SidebarInset class="p-4 max-h-[calc(100vh-6.25rem)] overflow-y-scroll pb-16">
-          <header class="flex items-center justify-between">
+          <header class="flex md:items-center justify-between">
             <SidebarTrigger />
             <slot name="header" />
           </header>
