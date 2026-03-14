@@ -27,7 +27,7 @@ export default class BotsResource {
     const end = dateToUTCDateTime(range.end!).split('T')[0]
     return this.api.request(
       'GET',
-      `/bots/${botId}/stats?start=${start}&end=${end}`,
+      `/bots/${botId}/stats?from=${start}&to=${end}`,
       undefined,
       'application/www-form-urlencoded',
     )
