@@ -64,7 +64,7 @@ const charts = computed((): ChartConfig[] => [
     isEmpty: (data) => data.reduce((sum, e) => sum + (e.count as number), 0) === 0,
   },
   {
-    title: t('pages.dash.stats.charts.guilds.localesPie'),
+    title: t('pages.dash.stats.charts.guilds.sizePie'),
     data: guildsData.value?.guildsSizeDistribution ?? [],
     tabs: [],
     component: PieChart,

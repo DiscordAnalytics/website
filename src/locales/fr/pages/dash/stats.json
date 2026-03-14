@@ -14,6 +14,22 @@
       "mostUsedModals": "Most Used modals"
     },
     "trendUp": "En hausse de {percentage}% sur cette période",
-    "trendDown": "En baisse de {percentage}% sur cette période"
+    "trendDown": "En baisse de {percentage}% sur cette période",
+    "guilds": {
+      "evolution": "Évolution des serveurs",
+      "localesEvolution": "Évolution des langues des serveurs",
+      "localesPie": "Répartition des langues des serveurs",
+      "sizePie": "Répartition des serveurs par taille",
+      "addsAndRemoves": "Ajouts et suppressions",
+      "biggestGuildsRank": {
+        "title": "Classement des plus grands serveurs",
+        "guild": "Serveur",
+        "members": "Nombre de membres"
+      },
+      "mostActiveGuildsRank": {
+        "title": "Classement des serveurs les plus actifs",
+        "interactions": "Nombre d'interactions"
+      }
+    }
   }
 }

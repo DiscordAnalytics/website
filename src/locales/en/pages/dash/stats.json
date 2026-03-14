@@ -17,6 +17,7 @@
       "evolution": "Evolution of Guilds",
       "localesEvolution": "Evolution of Guilds Locales",
       "localesPie": "Distribution of Guilds Locales",
+      "sizePie": "Distribution of Guilds by Size",
       "addsAndRemoves": "Additions and Removals",
       "biggestGuildsRank": {
         "title": "Largest guilds rankings",
