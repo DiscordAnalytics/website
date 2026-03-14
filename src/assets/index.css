@@ -233,6 +233,7 @@
   transition: transform 0.3s ease;
 }
 
+.slide-left-leave-to,
 .slide-right-enter-from {
   transform: translateX(100%);
 }
@@ -242,10 +243,7 @@
   transform: translateX(0);
 }
 
-.slide-right-leave-to {
-  transform: translateX(-100%);
-}
-
+.slide-right-leave-to,
 .slide-left-enter-from {
   transform: translateX(-100%);
 }
@@ -253,10 +251,6 @@
 .slide-left-enter-to,
 .slide-left-leave-from {
   transform: translateX(0);
-}
-
-.slide-left-leave-to {
-  transform: translateX(100%);
 }
 
 /* ------ Fold ------ */
