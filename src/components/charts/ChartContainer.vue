@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import type { ChartConfig, ChartTab } from '@/utils/types.ts'
 import { Skeleton } from '@/components/ui/skeleton'
 
@@ -30,14 +30,6 @@ const trend = computed<{ evolution: 'up' | 'down'; percentage: number } | undefi
     percentage:
       previous === 0 ? 100 : Math.abs(Math.round(((current - previous) / previous) * 10000) / 100),
   }
-})
-
-onMounted(() => {
-  console.log(trend.value)
-})
-
-watch(trend, (value) => {
-  console.log(value)
 })
 </script>
 
