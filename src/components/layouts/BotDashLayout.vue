@@ -51,92 +51,90 @@ import {
 } from '@/components/ui/empty'
 import { Button } from '@/components/ui/button'
 import { useRoute } from 'vue-router'
-import type { BotScanResult, SidebarItem } from '@/utils/types.ts'
+import type { BotScanResult } from '@/utils/types.ts'
 import { Skeleton } from '@/components/ui/skeleton'
-import { onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import scanBot, { getScanTypeColor } from '@/utils/botScanner.ts'
+import { useI18n } from 'vue-i18n'
 
 const route = useRoute()
 const currentBotId = useRouteParams<string>('id')
 const { bot: currentBot } = useBot(currentBotId)
 const { userBots } = useCurrentUser()
+const { t } = useI18n()
 const breakpoints = useBreakpoints(breakpointsTailwind)
 
 const largerThanMd = breakpoints.greater('md')
 const scanResults = ref<{ [botId: string]: BotScanResult }>({})
 
-const sidebarItems = [
+const sidebarItems = computed(() => [
   {
-    title: 'Stats',
+    title: t('pages.dash.layout.sidebar.links.stats'),
     children: [
       {
-        title: 'Interactions',
+        title: t('pages.dash.layout.sidebar.links.interactions'),
         icon: Pointer,
         to: '/dash/bots/:id/interactions',
       },
       {
-        title: 'Guilds',
+        title: t('pages.dash.layout.sidebar.links.guilds'),
         icon: Server,
         to: '/dash/bots/:id/guilds',
       },
       {
-        title: 'Users',
+        title: t('pages.dash.layout.sidebar.links.users'),
         icon: Users,
         to: '/dash/bots/:id/users',
       },
+      { title: t('pages.dash.layout.sidebar.links.votes'), icon: Vote, to: '/dash/bots/:id/votes' },
       {
-        title: 'Votes',
-        icon: Vote,
-        to: '/dash/bots/:id/votes',
-      },
-      {
-        title: 'Custom Events',
+        title: t('pages.dash.layout.sidebar.links.customEvents'),
         icon: ChartNoAxesColumn,
         to: '/dash/bots/:id/custom-events',
       },
     ],
   },
   {
-    title: 'Achievements',
+    title: t('pages.dash.layout.sidebar.links.achievements'),
     children: [
       {
-        title: 'My Achievements',
+        title: t('pages.dash.layout.sidebar.links.myAchievements'),
         icon: Trophy,
         to: '/dash/bots/:id/achievements',
       },
       {
-        title: 'Community Store',
+        title: t('pages.dash.layout.sidebar.links.communityStore'),
         icon: Store,
         to: '/community/achievements',
       },
     ],
   },
   {
-    title: 'Settings',
+    title: t('pages.dash.layout.sidebar.links.settings'),
     children: [
       {
-        title: 'General',
+        title: t('pages.dash.layout.sidebar.links.general'),
         icon: Settings,
         to: '/dash/bots/:id/settings/general',
       },
       {
-        title: 'Email Reports',
+        title: t('pages.dash.layout.sidebar.links.emailReports'),
         icon: Mail,
         to: '/dash/bots/:id/settings/reports',
       },
       {
-        title: 'Integrations',
+        title: t('pages.dash.layout.sidebar.links.integrations'),
         icon: Webhook,
         to: '/dash/bots/:id/settings/integrations',
       },
       {
-        title: 'Danger Zone',
+        title: t('pages.dash.layout.sidebar.links.dangerZone'),
         icon: TriangleAlert,
         to: '/dash/bots/:id/settings/danger-zone',
       },
     ],
   },
-] as SidebarItem[]
+])
 
 async function scanBots() {
   for (const bot of userBots.value) {
@@ -197,7 +195,9 @@ watch(userBots, async () => {
                     :side="largerThanMd ? 'right' : 'bottom'"
                     class="w-(--reka-dropdown-menu-trigger-width)"
                   >
-                    <DropdownMenuLabel>My Bots</DropdownMenuLabel>
+                    <DropdownMenuLabel>
+                      {{ $t('pages.dash.layout.sidebar.selector.myBots') }}
+                    </DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <RouterLink
                       v-for="bot in userBots"
@@ -236,7 +236,9 @@ watch(userBots, async () => {
                         >
                           <PlusIcon />
                         </div>
-                        <div class="font-medium text-muted-foreground">Add bot</div>
+                        <div class="font-medium text-muted-foreground">
+                          {{ $t('pages.dash.layout.sidebar.selector.addBot') }}
+                        </div>
                       </DropdownMenuItem>
                     </RouterLink>
                   </DropdownMenuContent>
@@ -278,14 +280,14 @@ watch(userBots, async () => {
               <EmptyMedia variant="icon">
                 <TriangleAlert />
               </EmptyMedia>
-              <EmptyTitle>Configuration isn't finished</EmptyTitle>
+              <EmptyTitle>{{ $t('pages.dash.layout.notConfigured.title') }}</EmptyTitle>
               <EmptyDescription>
-                It seems you didn't finished configuring Discord Analytics on your bot.
+                {{ $t('pages.dash.layout.notConfigured.description') }}
               </EmptyDescription>
             </EmptyHeader>
             <EmptyContent>
               <RouterLink :to="`/dash/onboarding?botId=${currentBotId}`">
-                <Button>Finish configuration</Button>
+                <Button>{{ $t('pages.dash.layout.notConfigured.button') }}</Button>
               </RouterLink>
             </EmptyContent>
           </Empty>

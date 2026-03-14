@@ -1,0 +1,19 @@
+{
+  "charts": {
+    "empty": {
+      "title": "Graphique vide",
+      "description": "Aucune donnée dans ce graphique pour la durée sélectionnée"
+    },
+    "interactions": {
+      "evolution": "Évolution des interactions",
+      "mostUsed": "Interactions les plus utilisées",
+      "typesPie": "Interactions les plus utilisées par type",
+      "mostUsedCommands": "Most Used commands",
+      "commandsTypesPie": "Most Used commands by type",
+      "mostUsedComponents": "Most Used components",
+      "mostUsedModals": "Most Used modals"
+    },
+    "trendUp": "En hausse de {percentage}% sur cette période",
+    "trendDown": "En baisse de {percentage}% sur cette période"
+  }
+}

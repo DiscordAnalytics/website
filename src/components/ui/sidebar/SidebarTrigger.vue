@@ -21,6 +21,6 @@ const { toggleSidebar } = useSidebar()
     @click="toggleSidebar"
   >
     <PanelLeft />
-    <span class="sr-only">Toggle Sidebar</span>
+    <span class="sr-only">{{ $t('pages.dash.layout.sidebar.toggle') }}</span>
   </Button>
 </template>

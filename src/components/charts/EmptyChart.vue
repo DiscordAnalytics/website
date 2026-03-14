@@ -9,8 +9,8 @@ import { FrownIcon } from 'lucide-vue-next'
       <EmptyMedia variant="icon">
         <FrownIcon />
       </EmptyMedia>
-      <EmptyTitle>Empty chart</EmptyTitle>
-      <EmptyDescription>No data in this chart for the selected date range</EmptyDescription>
+      <EmptyTitle>{{ $t('pages.dash.stats.charts.empty.title') }}</EmptyTitle>
+      <EmptyDescription>{{ $t('pages.dash.stats.charts.empty.description') }}</EmptyDescription>
     </EmptyHeader>
   </Empty>
 </template>

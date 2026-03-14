@@ -139,6 +139,7 @@ watch(
   <div class="flex items-center w-fit gap-2">
     <Popover v-if="selectValue === 'custom'">
       <PopoverTrigger as-child>
+        <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
         <Button variant="outline" :class="cn('w-70 justify-start text-left font-normal')">
           <CalendarIcon class="mr-2 h-4 w-4" />
           {{
@@ -147,6 +148,7 @@ watch(
           -
           {{ store.statsRange.end ? df.format(store.statsRange.end.toDate('Europe/Paris')) : '' }}
         </Button>
+        <!-- eslint-enable @intlify/vue-i18n/no-raw-text -->
       </PopoverTrigger>
       <PopoverContent class="w-auto p-0">
         <RangeCalendar

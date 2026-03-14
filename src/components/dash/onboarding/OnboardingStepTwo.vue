@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group'
 import { Spinner } from '@/components/ui/spinner'
-import { useRoute } from 'vue-router'
 import { useBot } from '@/composables'
 import { onMounted, ref } from 'vue'
 import { Button } from '@/components/ui/button'
@@ -22,14 +21,15 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { useClipboard } from '@vueuse/core'
 import { toast } from 'vue-sonner'
 import { useI18n } from 'vue-i18n'
+import { useRouteQuery } from '@vueuse/router'
 
 defineEmits<{
   (e: 'submit'): void
 }>()
 
-const route = useRoute()
+const botId = useRouteQuery<string>('botId', '')
 const { copy, isSupported: isCopySupported } = useClipboard()
-const { bot, getToken } = useBot(route.query.botId as string)
+const { getToken } = useBot(botId)
 const { t } = useI18n()
 
 const isLoading = ref<boolean>(false)
@@ -100,6 +100,7 @@ onMounted(() => {
               :placeholder="$t('pages.dash.onboarding.stepTwo.integrate.selectLibraryPlaceholder')"
             />
           </SelectTrigger>
+          <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
           <SelectContent class="w-(--reka-select-trigger-width)">
             <SelectGroup>
               <SelectLabel>
@@ -117,6 +118,7 @@ onMounted(() => {
               <SelectItem value="discord.py"> Discord.py </SelectItem>
             </SelectGroup>
           </SelectContent>
+          <!-- eslint-enable @intlify/vue-i18n/no-raw-text -->
         </Select>
       </p>
 

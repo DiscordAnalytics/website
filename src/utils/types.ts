@@ -150,7 +150,7 @@ export interface ChartTab {
 
 export interface ChartConfig {
   title: string
-  description: string
+  description?: string
   data: (ChartData | Omit<ChartData, 'date'>)[]
   tabs: Omit<ChartTab, 'value'>[]
   component: Component

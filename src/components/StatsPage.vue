@@ -26,6 +26,7 @@ defineProps<{
         :tabs="
           chart.tabs.map((tab) => ({ ...tab, value: chart.getValue(chart.data, tab.id) ?? 0 }))
         "
+        :data="chart.data"
         :is-loading="$props.isLoading"
         :class="`col-span-${chart.colSpan ?? 1}`"
       >

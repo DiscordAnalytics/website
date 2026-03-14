@@ -30,7 +30,7 @@ onMounted(() => setTimeout(() => redirect(), 500))
         <EmptyMedia variant="icon">
           <Spinner />
         </EmptyMedia>
-        <EmptyTitle>Dashboard is loading...</EmptyTitle>
+        <EmptyTitle>{{ $t('pages.dash.home.title') }}</EmptyTitle>
       </EmptyHeader>
     </Empty>
   </PageLayout>

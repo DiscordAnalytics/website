@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { ref, watch } from 'vue'
-import type { ChartTab } from '@/utils/types.ts'
+import { computed, onMounted, ref, watch } from 'vue'
+import type { ChartConfig, ChartTab } from '@/utils/types.ts'
 import { Skeleton } from '@/components/ui/skeleton'
 
 const props = defineProps<{
   title: string
-  description: string
+  description?: string
   tabs: ChartTab[]
+  data: ChartConfig['data']
   isLoading: boolean
 }>()
 
@@ -16,6 +17,28 @@ const activeTab = ref<string>(props.tabs.length > 0 ? props.tabs[0]!.id : '')
 watch(props, ({ tabs }) => {
   if (tabs.length > 0) activeTab.value = tabs[0]!.id
 })
+
+const trend = computed<{ evolution: 'up' | 'down'; percentage: number } | undefined>(() => {
+  if (props.data.length < 2 || !Object.keys(props.data[0] ?? {}).includes('date')) return undefined
+  const category = activeTab.value
+  const previous = props.data[0]![category] as number
+  const current = props.data[props.data.length - 1]![category] as number
+  const evolution = previous > current ? 'down' : previous < current ? 'up' : undefined
+  if (!evolution) return undefined
+  return {
+    evolution,
+    percentage:
+      previous === 0 ? 100 : Math.abs(Math.round(((current - previous) / previous) * 10000) / 100),
+  }
+})
+
+onMounted(() => {
+  console.log(trend.value)
+})
+
+watch(trend, (value) => {
+  console.log(value)
+})
 </script>
 
 <template>
@@ -23,7 +46,13 @@ watch(props, ({ tabs }) => {
     <CardHeader class="flex flex-col items-stretch border-b p-0! sm:flex-row min-h-25">
       <div class="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
         <CardTitle>{{ $props.title }}</CardTitle>
-        <CardDescription>{{ $props.description }}</CardDescription>
+        <CardDescription v-if="$props.description">{{ $props.description }}</CardDescription>
+        <CardDescription v-else-if="trend && trend.evolution === 'up'">
+          {{ $t('pages.dash.stats.charts.trendUp', { percentage: trend.percentage }) }}
+        </CardDescription>
+        <CardDescription v-else-if="trend && trend.evolution === 'down'">
+          {{ $t('pages.dash.stats.charts.trendDown', { percentage: trend.percentage }) }}
+        </CardDescription>
       </div>
       <div class="flex">
         <button
