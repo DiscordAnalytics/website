@@ -14,6 +14,7 @@ import { useBot } from '@/composables'
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { useRouteQuery } from '@vueuse/router'
+import type { Bot } from '@/utils/types.ts'
 
 const botId = useRouteQuery<string>('botId', '')
 const { bot, fetch: fetchBot } = useBot(botId)
@@ -26,13 +27,16 @@ const emit = defineEmits<{
   (e: 'exit'): void
 }>()
 
+function isBotReady(b: Bot): boolean {
+  return !!(b.framework && b.language && b.lastPush)
+}
+
 onMounted(() => {
-  if (bot.value && bot.value.framework && bot.value.language && bot.value.lastPush) emit('submit')
+  if (bot.value && isBotReady(bot.value)) emit('submit')
   else
     interval.value = setInterval(async () => {
       fetchCount.value++
-      if (bot.value && (!bot.value.language || !bot.value.framework || !bot.value.lastPush))
-        await fetchBot()
+      if (bot.value && !isBotReady(bot.value)) await fetchBot()
       else if (bot.value) {
         fetchCount.value = 0
       }
