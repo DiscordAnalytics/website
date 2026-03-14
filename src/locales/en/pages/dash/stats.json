@@ -37,6 +37,11 @@
       "activity": "Distribution of activity over the week",
       "types": "Types of users"
     },
+    "votes": {
+      "evolution": "Votes Evolution (all providers)",
+      "pie": "Distribution per provider",
+      "providerEvolution": "Votes Evolution on {provider}"
+    },
     "trendUp": "Trending up by {percentage}% on this period",
     "trendDown": "Trending down by {percentage}% on this period"
   }
