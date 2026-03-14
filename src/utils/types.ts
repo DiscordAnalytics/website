@@ -157,6 +157,7 @@ export interface ChartConfig {
   colSpan?: number
   getValue: (data: (ChartData | Omit<ChartData, 'date'>)[], currentTab: string) => number
   isEmpty: (data: (ChartData | Omit<ChartData, 'date'>)[], currentTab: string) => boolean
+  tickFormatter?: (d: number | Date) => string
 }
 
 export interface FormattedStats {

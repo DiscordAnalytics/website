@@ -40,6 +40,7 @@ defineProps<{
           :data="chart.data"
           :tabs="chart.tabs"
           :active-tab="activeTab"
+          :tickFormatter="chart.tickFormatter"
         />
       </ChartContainer>
 

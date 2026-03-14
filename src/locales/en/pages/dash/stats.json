@@ -29,6 +29,14 @@
         "interactions": "Interactions Count"
       }
     },
+    "users": {
+      "evolution": "Evolution of Users",
+      "installsEvolution": "Evolution of User Installs",
+      "localesEvolution": "Evolution of User Locales",
+      "localesPie": "Distribution of User Locales",
+      "activity": "Distribution of activity over the week",
+      "types": "Types of users"
+    },
     "trendUp": "Trending up by {percentage}% on this period",
     "trendDown": "Trending down by {percentage}% on this period"
   }

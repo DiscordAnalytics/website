@@ -321,11 +321,11 @@ export function calculateUsers(
       { date: new Date('1970-01-11'), Interactions: 0 }, // Sunday
     ],
     usersTypesPie: [
-      { name: 'Server Administrator', number: 0 },
-      { name: 'Server Moderator', number: 0 },
-      { name: 'New Member', number: 0 },
-      { name: 'Member', number: 0 },
-      { name: 'DM User', number: 0 },
+      { name: 'Server Administrator', count: 0 },
+      { name: 'Server Moderator', count: 0 },
+      { name: 'New Member', count: 0 },
+      { name: 'Member', count: 0 },
+      { name: 'DM User', count: 0 },
     ],
     userInstallEvolution: [],
   }
@@ -353,23 +353,23 @@ export function calculateUsers(
     if (isLast) {
       stats.interactionsLocales?.forEach((locale) => {
         const existingLocaleData = chartsData.usersLocalesPie.find((x) => x.name === locale.locale)
-        if (existingLocaleData) (existingLocaleData.total as number) += locale.number
-        else chartsData.usersLocalesPie.push({ name: locale.locale, total: locale.number })
+        if (existingLocaleData) (existingLocaleData.count as number) += locale.number
+        else chartsData.usersLocalesPie.push({ name: locale.locale, count: locale.number })
       })
 
       if (stats.usersType) {
         chartsData.usersTypesPie = [
-          { name: 'Server Administrator', number: stats.usersType.admin },
-          { name: 'Server Moderator', number: stats.usersType.moderator },
-          { name: 'New Member', number: stats.usersType.newMember },
-          { name: 'Member', number: stats.usersType.other },
-          { name: 'DM User', number: stats.usersType.privateMessage },
+          { name: 'Server Administrator', count: stats.usersType.admin },
+          { name: 'Server Moderator', count: stats.usersType.moderator },
+          { name: 'New Member', count: stats.usersType.newMember },
+          { name: 'Member', count: stats.usersType.other },
+          { name: 'DM User', count: stats.usersType.privateMessage },
         ]
       }
     }
   })
 
-  const top5Locales = sortedLocales.slice(0, 5).map(([loc]) => loc)
+  const top3Locales = sortedLocales.slice(0, 3).map(([loc]) => loc)
 
   for (const date of generateBuckets(dateRange)) {
     const stats = rawStats.find((s) => isSameBucket(toBucket(s.date, granularity), date))
@@ -378,11 +378,11 @@ export function calculateUsers(
     chartsData.userInstallEvolution.push({ date, Installations: stats?.userInstallCount ?? 0 })
 
     const localeEntry: ChartData = { date }
-    for (const loc of top5Locales) {
+    for (const loc of top3Locales) {
       const localeData = stats?.interactionsLocales?.find((l) => l.locale === loc)
       localeEntry[loc] = localeData?.number ?? 0
     }
-    if (top5Locales.length > 0) chartsData.usersLocalesEvolution.push(localeEntry)
+    if (top3Locales.length > 0) chartsData.usersLocalesEvolution.push(localeEntry)
   }
 
   return chartsData
