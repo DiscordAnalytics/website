@@ -28,7 +28,7 @@ defineProps<{
         "
         :data="chart.data"
         :is-loading="$props.isLoading"
-        :class="`col-span-${chart.colSpan ?? 1}`"
+        :class="chart.colSpan === 2 ? 'xl:col-span-2' : 'xl:col-span-1'"
       >
         <LineChartSkeleton v-if="$props.isLoading" class="w-full" />
         <EmptyChart v-else-if="chart.isEmpty(chart.data, activeTab)" />

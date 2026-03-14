@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type ChartConfig, ChartSingleTooltip } from '@/components/ui/chart'
+import { type ChartConfig, ChartLegend, ChartSingleTooltip } from '@/components/ui/chart'
 import { VisDonut, VisSingleContainer } from '@unovis/vue'
 import type { ChartData, ChartTab } from '@/utils/types.ts'
 import { computed } from 'vue'
@@ -23,7 +23,7 @@ const chartConfig = computed(() => {
 </script>
 
 <template>
-  <div class="flex flex-col justify-center text-xs relative mx-auto aspect-square max-h-62.5">
+  <div class="flex flex-col justify-center text-xs relative mx-auto max-h-full">
     <VisSingleContainer
       :data="
         $props.data.map((e) => ({
@@ -51,5 +51,14 @@ const chartConfig = computed(() => {
         :value-formatter="(tick: number) => `${tick.toLocaleString()}`"
       />
     </VisSingleContainer>
+
+    <ChartLegend
+      :items="
+        $props.data.map((item, i) => ({
+          name: item.name as string,
+          color: `var(--chart-${i + 1})`,
+        }))
+      "
+    />
   </div>
 </template>
