@@ -53,19 +53,30 @@ import { Button } from '@/components/ui/button'
 import { useRoute } from 'vue-router'
 import type { BotScanResult } from '@/utils/types.ts'
 import { Skeleton } from '@/components/ui/skeleton'
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onMounted, type Ref, ref, watch } from 'vue'
 import scanBot, { getScanTypeColor } from '@/utils/botScanner.ts'
 import { useI18n } from 'vue-i18n'
+import { useStore } from '@/stores'
+import { storeToRefs } from 'pinia'
+import type { DateRange } from 'reka-ui'
 
 const route = useRoute()
 const currentBotId = useRouteParams<string>('id')
 const { bot: currentBot } = useBot(currentBotId)
+const { statsRange: a } = storeToRefs(useStore())
+const statsRange = a as Ref<DateRange>
 const { userBots } = useCurrentUser()
 const { t } = useI18n()
 const breakpoints = useBreakpoints(breakpointsTailwind)
 
 const largerThanMd = breakpoints.greater('md')
 const scanResults = ref<{ [botId: string]: BotScanResult }>({})
+
+const statsRangeQuery = computed(() =>
+  statsRange.value.start && statsRange.value.end
+    ? `?start=${statsRange.value.start.toString()}&end=${statsRange.value.end}`
+    : '',
+)
 
 const sidebarItems = computed(() => [
   {
@@ -74,23 +85,23 @@ const sidebarItems = computed(() => [
       {
         title: t('pages.dash.layout.sidebar.links.interactions'),
         icon: Pointer,
-        to: '/dash/bots/:id/interactions',
+        to: `/dash/bots/:id/interactions${statsRangeQuery.value}`,
       },
       {
         title: t('pages.dash.layout.sidebar.links.guilds'),
         icon: Server,
-        to: '/dash/bots/:id/guilds',
+        to: `/dash/bots/:id/guilds${statsRangeQuery.value}`,
       },
       {
         title: t('pages.dash.layout.sidebar.links.users'),
         icon: Users,
-        to: '/dash/bots/:id/users',
+        to: `/dash/bots/:id/users${statsRangeQuery.value}`,
       },
       { title: t('pages.dash.layout.sidebar.links.votes'), icon: Vote, to: '/dash/bots/:id/votes' },
       {
         title: t('pages.dash.layout.sidebar.links.customEvents'),
         icon: ChartNoAxesColumn,
-        to: '/dash/bots/:id/custom-events',
+        to: `/dash/bots/:id/custom-events${statsRangeQuery.value}`,
       },
     ],
   },
