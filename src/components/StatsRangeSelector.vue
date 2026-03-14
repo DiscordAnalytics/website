@@ -6,7 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { ref, watch } from 'vue'
+import { onMounted, ref, type Ref, watch } from 'vue'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils.ts'
@@ -26,9 +26,13 @@ import { useRouteQuery } from '@vueuse/router'
 import { useStore } from '@/stores'
 
 const store = useStore()
-
 const startQuery = useRouteQuery<string | null>('start')
 const endQuery = useRouteQuery<string | null>('end')
+
+const statsRange = ref({
+  start: undefined,
+  end: undefined,
+}) as Ref<DateRange>
 
 const tz = getLocalTimeZone()
 const today = getToday(tz)
@@ -98,41 +102,48 @@ function detectPreset(start: CalendarDate, end: CalendarDate): string {
 
 function handleSelectChange(key: AcceptableValue) {
   const preset = presets.find((p) => p.key === key)
-  if (preset && key !== 'custom') store.statsRange = preset.range()
+  if (preset && key !== 'custom') statsRange.value = preset.range()
 }
 
-try {
-  if (startQuery.value && endQuery.value) {
-    const parsedStart = parseDate(startQuery.value)
-    const parsedEnd = parseDate(endQuery.value)
-    store.statsRange = { start: parsedStart, end: parsedEnd }
-  } else {
-    store.statsRange = {
+const selectValue = ref('last30days')
+
+onMounted(() => {
+  try {
+    if (startQuery.value && endQuery.value) {
+      const parsedStart = parseDate(startQuery.value)
+      const parsedEnd = parseDate(endQuery.value)
+      console.log(parsedStart, parsedEnd)
+      statsRange.value = { start: parsedStart, end: parsedEnd }
+    } else {
+      statsRange.value = {
+        start: today.subtract({ days: 30 }),
+        end: today,
+      }
+    }
+  } catch {
+    // Malformed query params — keep store default (last 30 days)
+    statsRange.value = {
       start: today.subtract({ days: 30 }),
       end: today,
     }
-    startQuery.value = store.statsRange.start!.toString()
-    endQuery.value = store.statsRange.end!.toString()
   }
-} catch {
-  // Malformed query params — keep store default (last 30 days)
-}
 
-const selectValue = ref(
-  store.statsRange.start && store.statsRange.end
-    ? detectPreset(store.statsRange.start as CalendarDate, store.statsRange.end as CalendarDate)
-    : 'last30days',
-)
+  selectValue.value =
+    statsRange.value.start && statsRange.value.end
+      ? detectPreset(statsRange.value.start as CalendarDate, statsRange.value.end as CalendarDate)
+      : 'last30days'
+})
 
-watch(
-  () => store.statsRange,
-  (value) => {
-    if (value.start && value.end) {
-      startQuery.value = value.start.toString()
-      endQuery.value = value.end.toString()
+watch(statsRange, (value) => {
+  if (value.start && value.end) {
+    startQuery.value = value.start.toString()
+    endQuery.value = value.end.toString()
+    store.statsRange = {
+      start: value.start,
+      end: value.end,
     }
-  },
-)
+  }
+})
 </script>
 
 <template>
@@ -142,17 +153,15 @@ watch(
         <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
         <Button variant="outline" :class="cn('w-70 justify-start text-left font-normal')">
           <CalendarIcon class="mr-2 h-4 w-4" />
-          {{
-            store.statsRange.start ? df.format(store.statsRange.start.toDate('Europe/Paris')) : ''
-          }}
+          {{ statsRange.start ? df.format(statsRange.start.toDate('Europe/Paris')) : '' }}
           -
-          {{ store.statsRange.end ? df.format(store.statsRange.end.toDate('Europe/Paris')) : '' }}
+          {{ statsRange.end ? df.format(statsRange.end.toDate('Europe/Paris')) : '' }}
         </Button>
         <!-- eslint-enable @intlify/vue-i18n/no-raw-text -->
       </PopoverTrigger>
       <PopoverContent class="w-auto p-0">
         <RangeCalendar
-          v-model="store.statsRange as DateRange"
+          v-model="statsRange"
           :number-of-months="2"
           :maximum-days="365"
           prevent-deselect
