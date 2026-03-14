@@ -5,7 +5,7 @@ export async function fetchLatestVersion(url: string, versionKey: string): Promi
   const res = await fetch(url, { cache: 'force-cache' })
   const data = await res.json()
 
-  const version = versionKey.split('.').reduce((acc, part) => acc && acc[part], data)
+  const version = versionKey.split('.').reduce((acc, part) => acc?.[part], data)
   return versionKey === 'tag_name' ? version.split('v')[1] : version
 }
 
@@ -14,8 +14,8 @@ export function compareVersions(versionA: string, versionB: string): boolean {
   const b = versionB.split('.').map(Number)
 
   for (let i = 0; i < Math.max(a.length, b.length); i++) {
-    const currA = a[i] || 0
-    const currB = b[i] || 0
+    const currA = a[i] ?? 0
+    const currB = b[i] ?? 0
     if (currA > currB) return true
     if (currA < currB) return false
   }
@@ -69,14 +69,14 @@ export default async function scanBot(bot: Bot): Promise<BotScanResult> {
       type: 'error',
     }
 
-  for (const check of frameworkChecks) {
-    if (check.frameworks.includes(bot.framework)) {
-      const latestVersion = await fetchLatestVersion(check.fetchUrl, check.versionKey)
-      if (!compareVersions(bot.version as string, latestVersion))
-        return {
-          title: 'Package outdated',
-          type: 'warn',
-        }
+  const check = frameworkChecks.find((c) => c.frameworks.includes(bot.framework ?? ''))
+  if (check) {
+    const latestVersion = await fetchLatestVersion(check.fetchUrl, check.versionKey)
+    if (!compareVersions(bot.version, latestVersion)) {
+      return {
+        title: 'Package outdated',
+        type: 'warn',
+      }
     }
   }
 
