@@ -8,7 +8,6 @@ import {
   type VotesProvider,
 } from '@/utils/types.ts'
 import type { DateRange } from 'reka-ui'
-import { getLocalTimeZone } from '@internationalized/date'
 
 type Granularity = 'hour' | 'day'
 
@@ -37,14 +36,12 @@ const isSameBucket = (a: Date, b: Date): boolean => a.getTime() === b.getTime()
 function generateBuckets(dateRange: DateRange): Date[] {
   if (!dateRange.start || !dateRange.end) return []
   const granularity = getRangeGranularity(dateRange)
-  const tz = getLocalTimeZone()
-
   const buckets: Date[] = []
-  const end = toDate(dateRange.end.toDate(tz))
-  let current = toDate(dateRange.start.toDate(tz))
+  const end = toDate(dateRange.end.toDate('UTC'))
+  let current = toDate(dateRange.start.toDate('UTC'))
 
   const step = granularity === 'hour' ? 60 * 60 * 1000 : 24 * 60 * 60 * 1000
-  const endTime = granularity === 'hour' ? dateRange.end.toDate(tz).getTime() : end.getTime()
+  const endTime = granularity === 'hour' ? dateRange.end.toDate('UTC').getTime() : end.getTime()
 
   while (current.getTime() <= endTime) {
     buckets.push(current)
