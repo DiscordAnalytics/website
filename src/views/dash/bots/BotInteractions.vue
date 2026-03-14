@@ -105,10 +105,8 @@ const charts = computed((): ChartConfig[] => [
 watch(statsRange, async (value, oldValue) => {
   if (value.start !== oldValue.start || value.end !== oldValue.end) {
     isLoading.value = true
-    setTimeout(async () => {
-      await fetchStats(value)
-      isLoading.value = false
-    }, 1000)
+    await fetchStats(value)
+    isLoading.value = false
   }
 })
 </script>
