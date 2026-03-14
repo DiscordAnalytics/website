@@ -13,6 +13,21 @@
       "mostUsedComponents": "Most Used components",
       "mostUsedModals": "Most Used modals"
     },
+    "guilds": {
+      "evolution": "Evolution of Guilds",
+      "localesEvolution": "Evolution of Guilds Locales",
+      "localesPie": "Distribution of Guilds Locales",
+      "addsAndRemoves": "Additions and Removals",
+      "biggestGuildsRank": {
+        "title": "Largest guilds rankings",
+        "guild": "Guild",
+        "members": "Members Count"
+      },
+      "mostActiveGuildsRank": {
+        "title": "Most active guilds rankings",
+        "interactions": "Interactions Count"
+      }
+    },
     "trendUp": "Trending up by {percentage}% on this period",
     "trendDown": "Trending down by {percentage}% on this period"
   }

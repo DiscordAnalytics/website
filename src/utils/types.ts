@@ -176,7 +176,7 @@ export interface FormattedStats {
     addsAndRemoves: ChartData[]
     guildsSizeDistribution: Omit<ChartData, 'date'>[]
     biggestGuildsRank: {
-      date: string
+      date?: string
       icon?: string
       name: string
       id: string

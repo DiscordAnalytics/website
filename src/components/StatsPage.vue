@@ -40,6 +40,8 @@ defineProps<{
           :active-tab="activeTab"
         />
       </ChartContainer>
+
+      <slot />
     </main>
   </BotDashLayout>
 </template>

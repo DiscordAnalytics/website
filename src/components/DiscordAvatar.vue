@@ -11,6 +11,7 @@ interface Props {
   avatarDecoration?: string
   size?: 'sm' | 'md' | 'lg' | 'xl'
   animation?: 'window-focus' | 'hover' | 'disabled'
+  isGuildIcon?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -45,13 +46,16 @@ const sizeConfig = {
   },
 }
 
+const imageType = computed(() => (props.isGuildIcon ? 'icons' : 'avatars'))
+
 const avatarFallbackUrl = computed(
   () => `https://cdn.discordapp.com/embed/avatars/${Number((BigInt(props.id) >> 22n) % 6n)}.png`,
 )
 
 const avatarUrl = computed(() => {
-  if (props.avatar) return `https://cdn.discordapp.com/avatars/${props.id}/${props.avatar}.webp`
-  else return avatarFallbackUrl.value
+  return props.avatar
+    ? `https://cdn.discordapp.com/${imageType.value}/${props.id}/${props.avatar}.webp`
+    : avatarFallbackUrl.value
 })
 
 const animateDecoration = computed(() => {
@@ -61,8 +65,9 @@ const animateDecoration = computed(() => {
 })
 
 const avatarDecorationUrl = computed(() => {
-  if (!props.avatarDecoration) return null
-  return `https://cdn.discordapp.com/avatar-decoration-presets/${props.avatarDecoration}.${animateDecoration.value ? 'png' : 'webp'}`
+  return props.avatarDecoration
+    ? `https://cdn.discordapp.com/avatar-decoration-presets/${props.avatarDecoration}.${animateDecoration.value ? 'png' : 'webp'}`
+    : null
 })
 </script>
 

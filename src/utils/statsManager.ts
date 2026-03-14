@@ -194,10 +194,10 @@ export function calculateGuilds(
     guildsLocalesPie: [],
     addsAndRemoves: [],
     guildsSizeDistribution: [
-      { name: 'Less than 100', number: 0 },
-      { name: 'Between 100 and 500', number: 0 },
-      { name: 'Between 500 and 1500', number: 0 },
-      { name: 'More than 1500', number: 0 },
+      { name: 'Less than 100', count: 0 },
+      { name: 'Between 100 and 500', count: 0 },
+      { name: 'Between 500 and 1500', count: 0 },
+      { name: 'More than 1500', count: 0 },
     ],
     biggestGuildsRank: [],
     mostActiveGuildsRank: [],
@@ -217,25 +217,25 @@ export function calculateGuilds(
     const isLast = index === rawStats.length - 1
 
     if (isLast && stats.guildMembers) {
-      const little = { name: 'Less than 100', number: stats.guildMembers.little }
-      const medium = { name: 'Between 100 and 500', number: stats.guildMembers.medium }
-      const big = { name: 'Between 500 and 1500', number: stats.guildMembers.big }
-      const huge = { name: 'More than 1500', number: stats.guildMembers.huge }
+      const little = { name: 'Less than 100', count: stats.guildMembers.little }
+      const medium = { name: 'Between 100 and 500', count: stats.guildMembers.medium }
+      const big = { name: 'Between 500 and 1500', count: stats.guildMembers.big }
+      const huge = { name: 'More than 1500', count: stats.guildMembers.huge }
       chartsData.guildsSizeDistribution = [little, medium, big, huge]
     }
 
     if (isLast) {
       stats.guildLocales?.forEach((locale) => {
         const existingLocaleData = chartsData.guildsLocalesPie.find((x) => x.name === locale.locale)
-        if (existingLocaleData) (existingLocaleData.total as number) += locale.number
-        else chartsData.guildsLocalesPie.push({ name: locale.locale, total: locale.number })
+        if (existingLocaleData) (existingLocaleData.count as number) += locale.number
+        else chartsData.guildsLocalesPie.push({ name: locale.locale, count: locale.number })
       })
     }
 
     stats.guilds?.forEach((guild) => {
       const date = toBucket(stats.date, granularity)
       const existingBiggestGuild = chartsData.biggestGuildsRank.find((x) => x.id === guild.guildId)
-      if (!existingBiggestGuild || date > new Date(existingBiggestGuild.date)) {
+      if (!existingBiggestGuild || date > new Date(existingBiggestGuild.date!)) {
         chartsData.biggestGuildsRank = chartsData.biggestGuildsRank.filter(
           (x) => x.id !== guild.guildId,
         )
@@ -262,7 +262,7 @@ export function calculateGuilds(
     })
   })
 
-  const top5Locales = sortedLocales.slice(0, 5).map(([loc]) => loc)
+  const top3Locales = sortedLocales.slice(0, 3).map(([loc]) => loc)
 
   for (const date of generateBuckets(dateRange)) {
     const stats = rawStats.find((s) => isSameBucket(toBucket(s.date, granularity), date))
@@ -275,11 +275,11 @@ export function calculateGuilds(
     })
 
     const localeEntry: ChartData = { date }
-    for (const loc of top5Locales) {
+    for (const loc of top3Locales) {
       const localeData = stats?.guildLocales?.find((l) => l.locale === loc)
       localeEntry[loc] = localeData?.number ?? 0
     }
-    if (top5Locales.length > 0) chartsData.guildsLocalesEvolution.push(localeEntry)
+    if (top3Locales.length > 0) chartsData.guildsLocalesEvolution.push(localeEntry)
   }
 
   chartsData.mostActiveGuildsRank.sort((a, b) => b.count - a.count)

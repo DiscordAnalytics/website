@@ -4,12 +4,15 @@ import { VisDonut, VisSingleContainer } from '@unovis/vue'
 import type { ChartData, ChartTab } from '@/utils/types.ts'
 import { computed } from 'vue'
 import { Donut } from '@unovis/ts'
+import { useLocale } from '@/composables'
 
 const props = defineProps<{
   data: ChartData[]
   activeTab: string
   tabs: Omit<ChartTab, 'value'>[]
 }>()
+
+const { getLocaleName } = useLocale()
 
 const chartConfig = computed(() => {
   return props.data.reduce((config, data, index) => {
@@ -43,7 +46,7 @@ const chartConfig = computed(() => {
         index="count"
         :items="
           $props.data.map((item, i) => ({
-            name: item.name as string,
+            name: getLocaleName(item.name as string) ?? (item.name as string),
             color: `var(--chart-${i + 1})`,
             inactive: false,
           }))
@@ -55,7 +58,7 @@ const chartConfig = computed(() => {
     <ChartLegend
       :items="
         $props.data.map((item, i) => ({
-          name: item.name as string,
+          name: getLocaleName(item.name as string) ?? (item.name as string),
           color: `var(--chart-${i + 1})`,
         }))
       "

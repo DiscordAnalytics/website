@@ -38,6 +38,10 @@ const router = createRouter({
       path: '/dash/bots/:id/interactions',
       component: () => import('@/views/dash/bots/BotInteractions.vue'),
     },
+    {
+      path: '/dash/bots/:id/guilds',
+      component: () => import('@/views/dash/bots/BotGuilds.vue'),
+    },
   ],
 })
 
