@@ -113,10 +113,7 @@ const selectValue = ref('last30days')
 onMounted(() => {
   try {
     if (startQuery.value && endQuery.value) {
-      const parsedStart = parseDate(startQuery.value)
-      const parsedEnd = parseDate(endQuery.value)
-      console.log(parsedStart, parsedEnd)
-      statsRange.value = { start: parsedStart, end: parsedEnd }
+      statsRange.value = { start: parseDate(startQuery.value), end: parseDate(endQuery.value) }
     } else {
       statsRange.value = {
         start: today.subtract({ days: 30 }),
