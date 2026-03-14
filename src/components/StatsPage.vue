@@ -24,7 +24,9 @@ defineProps<{
         :title="chart.title"
         :description="chart.description"
         :tabs="
-          chart.tabs.map((tab) => ({ ...tab, value: chart.getValue(chart.data, tab.id) ?? 0 }))
+          chart.tabs
+            .map((tab) => ({ ...tab, value: chart.getValue(chart.data, tab.id) ?? 0 }))
+            .sort((a, b) => b.value - a.value)
         "
         :data="chart.data"
         :is-loading="$props.isLoading"
