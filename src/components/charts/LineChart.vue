@@ -29,7 +29,6 @@ const chartConfig = computed(() => {
         _active: e[props.activeTab as keyof typeof e],
       }))
     "
-    :margin="{ left: -24 }"
     :y-domain="[0, undefined]"
   >
     <VisLine
