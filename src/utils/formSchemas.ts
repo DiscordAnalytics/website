@@ -1,13 +1,8 @@
 import * as z from 'zod'
 
 function isValidSnowflake(id: string) {
-  try {
-    const value = BigInt(id)
-    Number((value >> 22n) % 6n)
-    return true
-  } catch {
-    return false
-  }
+  const snowflake = BigInt(id)
+  return snowflake > 0n && snowflake < 1n << 63n
 }
 
 export const addBotSchema = z.object({
