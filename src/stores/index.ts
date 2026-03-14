@@ -1,5 +1,6 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
+import type { DateRange } from 'reka-ui'
 import type {
   Achievement,
   BlogArticle,
@@ -24,6 +25,11 @@ export const useStore = defineStore('store', () => {
   const blogArticles = ref<Omit<BlogArticle, 'content'>[]>([])
 
   const theme = ref<Color>('zinc')
+
+  const statsRange = ref<DateRange>({
+    start: undefined,
+    end: undefined,
+  })
 
   function setTheme(newTheme: Color) {
     theme.value = newTheme
@@ -55,6 +61,7 @@ export const useStore = defineStore('store', () => {
     botEmailReports,
     botStats,
     blogArticles,
+    statsRange,
     theme,
     setTheme,
     clear,

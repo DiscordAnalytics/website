@@ -20,6 +20,8 @@
     "@internationalized/date": "^3.11.0",
     "@tailwindcss/vite": "^4.2.1",
     "@tsparticles/vue3": "^3.0.1",
+    "@unovis/ts": "^1.6.4",
+    "@unovis/vue": "^1.6.4",
     "@vee-validate/zod": "^4.15.1",
     "@vueuse/core": "^14.2.1",
     "@vueuse/integrations": "^14.2.1",

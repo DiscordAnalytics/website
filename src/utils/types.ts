@@ -1,4 +1,4 @@
-import type { FunctionalComponent } from 'vue'
+import type { Component, FunctionalComponent } from 'vue'
 
 export enum InteractionType {
   Unknown,
@@ -137,6 +137,28 @@ export interface RawVotes {
   count: number
 }
 
+export interface ChartData {
+  date: Date
+  [key: string]: number | string | Date
+}
+
+export interface ChartTab {
+  id: string
+  label: string
+  value: number
+}
+
+export interface ChartConfig {
+  title: string
+  description: string
+  data: (ChartData | Omit<ChartData, 'date'>)[]
+  tabs: Omit<ChartTab, 'value'>[]
+  component: Component
+  colSpan?: number
+  getValue: (data: (ChartData | Omit<ChartData, 'date'>)[], currentTab: string) => number
+  isEmpty: (data: (ChartData | Omit<ChartData, 'date'>)[], currentTab: string) => boolean
+}
+
 export interface FormattedStats {
   interactions: {
     allInteractionsEvolution: ChartData[]
@@ -145,6 +167,7 @@ export interface FormattedStats {
     mostUsedComponents: ChartData[]
     mostUsedModals: ChartData[]
     commandsTypesPie: Omit<ChartData, 'date'>[]
+    interactionsTypesPie: Omit<ChartData, 'date'>[]
   }
   guilds: {
     guildsEvolution: ChartData[]
@@ -370,7 +393,6 @@ export type Anchor = {
   children: Anchor[]
 }
 export type VotesProvider = 'topgg' | 'dblist' | 'botlistme' | 'discordplace' | 'discordscom'
-export type ChartData = { date: string; [key: string]: number | string }
 export type GoalType =
   | 'GuildCount'
   | 'InteractionAverageWeek'
