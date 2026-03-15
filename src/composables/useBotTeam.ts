@@ -2,7 +2,7 @@ import useAPI, { APIScope } from '@/utils/api'
 import { useStore } from '@/stores'
 import { computed } from 'vue'
 
-export default function useBotCustomEvents(botId: string) {
+export default function useBotTeam(botId: string) {
   const api = useAPI(APIScope.User)
   const store = useStore()
 
