@@ -312,13 +312,13 @@ export function calculateUsers(
     usersLocalesEvolution: [],
     usersLocalesPie: [],
     activityOverTheWeek: [
+      { date: new Date('1970-01-04'), Interactions: 0 }, // Sunday
       { date: new Date('1970-01-05'), Interactions: 0 }, // Monday
       { date: new Date('1970-01-06'), Interactions: 0 }, // Tuesday
       { date: new Date('1970-01-07'), Interactions: 0 }, // Wednesday
       { date: new Date('1970-01-08'), Interactions: 0 }, // Thursday
       { date: new Date('1970-01-09'), Interactions: 0 }, // Friday
       { date: new Date('1970-01-10'), Interactions: 0 }, // Saturday
-      { date: new Date('1970-01-11'), Interactions: 0 }, // Sunday
     ],
     usersTypesPie: [
       { name: 'Server Administrator', count: 0 },
@@ -341,7 +341,7 @@ export function calculateUsers(
   const sortedLocales = [...allLocales.entries()].sort((a, b) => b[1] - a[1])
 
   rawStats.forEach((stats, index) => {
-    const day = (new Date(stats.date).getDay() + 6) % 7
+    const day = new Date(stats.date).getDay()
     const isLast = index === rawStats.length - 1
 
     const totalInteractions =

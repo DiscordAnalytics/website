@@ -64,7 +64,7 @@ const tooltipLabel = computed(() => {
     "
   >
     <slot>
-      <div v-if="!nestLabel && tooltipLabel" class="font-medium">
+      <div v-if="!nestLabel && tooltipLabel" class="font-medium capitalize">
         {{ tooltipLabel }}
       </div>
       <div class="grid gap-1.5">
@@ -105,10 +105,10 @@ const tooltipLabel = computed(() => {
             "
           >
             <div class="grid gap-1.5">
-              <div v-if="nestLabel" class="font-medium">
+              <div v-if="nestLabel" class="font-medium capitalize">
                 {{ tooltipLabel }}
               </div>
-              <span class="text-muted-foreground">
+              <span class="text-muted-foreground capitalize">
                 {{ itemConfig?.label || value }}
               </span>
             </div>

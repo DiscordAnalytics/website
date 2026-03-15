@@ -61,14 +61,18 @@ export function UTCDateToLocalDateTime(date: string): Date | undefined {
   return d
 }
 
-export const df = new DateFormatter('en-US', {
+export const df = new DateFormatter(navigator.language, {
   dateStyle: 'medium',
 })
 
-export const dfWithHour = new DateFormatter('en-US', {
+export const dfWithHour = new DateFormatter(navigator.language, {
   hourCycle: 'h24',
   dateStyle: 'medium',
   timeStyle: 'medium',
+})
+
+export const dfWeekDay = new DateFormatter(navigator.language, {
+  weekday: 'long',
 })
 
 export const oneMonthAgo = new Date(new Date().setDate(new Date().getDate() - 30))

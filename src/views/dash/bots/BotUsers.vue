@@ -10,6 +10,8 @@ import type { ChartConfig, ChartData } from '@/utils/types.ts'
 import StatsPage from '@/components/StatsPage.vue'
 import { useI18n } from 'vue-i18n'
 import { BarChart, LineChart, PieChart } from '@/components/charts'
+import { getDayOfWeek, parseDate } from '@internationalized/date'
+import { dfWeekDay } from '@/utils/dateTime.ts'
 
 const botId = useRouteParams<string>('id')
 const { stats, fetch: fetchStats } = useBotStats(botId)
@@ -32,6 +34,9 @@ const defaultIsEmpty = (
   data: (ChartData | Omit<ChartData, 'date'>)[],
   currentTab: string,
 ): boolean => data.every((d) => ((d[currentTab] as number) ?? 0) === 0)
+
+const toWeekDay = (date: Date) =>
+  getDayOfWeek(parseDate(new Date(date).toISOString().slice(0, 10)), navigator.language)
 
 const charts = computed((): ChartConfig[] => [
   {
@@ -72,16 +77,21 @@ const charts = computed((): ChartConfig[] => [
   {
     title: t('pages.dash.stats.charts.users.activity'),
     description: ' ',
-    data: usersData.value?.activityOverTheWeek ?? [],
+    data: (usersData.value?.activityOverTheWeek ?? []).map((e) => ({
+      ...e,
+      _origDate: e.date,
+      date: toWeekDay(e.date),
+    })),
     tabs: [{ id: 'Interactions', label: 'Interactions' }],
     component: BarChart,
     getValue: (data, currentTab) =>
       data.reduce((sum, e) => sum + ((e[currentTab] as number) ?? 0), 0),
     isEmpty: defaultIsEmpty,
-    tickFormatter: (d) => {
-      const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thusday', 'Friday', 'Saturday']
-
-      return days[new Date(d).getDay()]!
+    tickFormatter: (d: number | Date) => {
+      const days = usersData.value?.activityOverTheWeek ?? []
+      const entry = days.find((e) => toWeekDay(e.date) === d)
+      if (!entry) return ''
+      return dfWeekDay.format(new Date(entry.date))
     },
   },
   {
