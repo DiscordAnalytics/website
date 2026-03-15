@@ -30,6 +30,19 @@
         "title": "Classement des serveurs les plus actifs",
         "interactions": "Nombre d'interactions"
       }
+    },
+    "users": {
+      "evolution": "Évolution des Utilisateurs",
+      "installsEvolution": "Évolution des User Installs",
+      "localesEvolution": "Évolution of langues des utilisateurs",
+      "localesPie": "Répartition des langues des utilisateurs",
+      "activity": "Répartition de l'activité sur une semaine",
+      "types": "Types d'utilisateurs"
+    },
+    "votes": {
+      "evolution": "Évolution des votes (tout service confondu)",
+      "pie": "Répartition par service",
+      "providerEvolution": "Évolution des votes sur {provider}"
     }
   }
 }
