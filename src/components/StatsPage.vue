@@ -16,6 +16,8 @@ defineProps<{
       <StatsRangeSelector />
     </template>
 
+    <slot name="alerts" />
+
     <main class="grid grid-cols-1 xl:grid-cols-2 gap-4 my-8">
       <ChartContainer
         v-for="chart in $props.charts"

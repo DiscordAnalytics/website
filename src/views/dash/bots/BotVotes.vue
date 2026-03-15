@@ -10,12 +10,24 @@ import type { ChartConfig, ChartData } from '@/utils/types.ts'
 import StatsPage from '@/components/StatsPage.vue'
 import { useI18n } from 'vue-i18n'
 import { LineChart, PieChart } from '@/components/charts'
+import {
+  Item,
+  ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemMedia,
+  ItemTitle,
+} from '@/components/ui/item'
+import { Button } from '@/components/ui/button'
+import { ExternalLinkIcon, InfoIcon, XIcon } from 'lucide-vue-next'
+import { useLocalStorage } from '@vueuse/core'
 
 const botId = useRouteParams<string>('id')
 const { stats, fetch: fetchStats } = useBotStats(botId)
 const { statsRange: a } = storeToRefs(useStore())
 const statsRange = a as Ref<DateRange>
 const { t } = useI18n()
+const maskedPopups = useLocalStorage<string[]>('maskedPopups', [])
 
 const votesData = computed(() =>
   stats.value && statsRange.value ? calculateVotes(stats.value.votes, statsRange.value) : null,
@@ -90,6 +102,15 @@ const charts = computed((): ChartConfig[] => [
   },
 ])
 
+const areAllChartEmpty = computed(() =>
+  charts.value.some((chart) =>
+    chart.isEmpty(
+      chart.data,
+      chart.tabs[0]?.id ?? Object.keys(chart.data[0] ?? {}).filter((k) => k !== 'date')[0]!,
+    ),
+  ),
+)
+
 watch(statsRange, async (value, oldValue) => {
   if (value.start !== oldValue.start || value.end !== oldValue.end) {
     isLoading.value = true
@@ -100,5 +121,33 @@ watch(statsRange, async (value, oldValue) => {
 </script>
 
 <template>
-  <StatsPage :charts="charts" :is-loading="isLoading" />
+  <StatsPage :charts="charts" :is-loading="isLoading">
+    <template v-if="areAllChartEmpty && !maskedPopups.includes('votesStatsWarning')" #alerts>
+      <Item
+        variant="muted"
+        class="mt-4 flex-col md:flex-row items-center text-center md:text-start"
+      >
+        <ItemMedia variant="icon" class="mx-auto">
+          <InfoIcon />
+        </ItemMedia>
+        <ItemContent class="items-center md:items-start">
+          <ItemTitle>{{ $t('pages.dash.stats.charts.votes.alert.title') }}</ItemTitle>
+          <ItemDescription>
+            {{ $t('pages.dash.stats.charts.votes.alert.description') }}
+          </ItemDescription>
+        </ItemContent>
+        <ItemActions>
+          <a href="/docs/get-started/votes-integration" target="_blank">
+            <Button size="sm" variant="outline">
+              {{ $t('pages.dash.stats.charts.votes.alert.button') }}
+              <ExternalLinkIcon />
+            </Button>
+          </a>
+          <Button size="icon-sm" variant="ghost" @click="maskedPopups.push('votesStatsWarning')">
+            <XIcon />
+          </Button>
+        </ItemActions>
+      </Item>
+    </template>
+  </StatsPage>
 </template>

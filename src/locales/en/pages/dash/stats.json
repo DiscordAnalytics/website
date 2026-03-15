@@ -35,12 +35,21 @@
       "localesEvolution": "Evolution of User Locales",
       "localesPie": "Distribution of User Locales",
       "activity": "Distribution of activity over the week",
-      "types": "Types of users"
+      "types": "Types of users",
+      "alert": {
+        "title": "Disclaimer",
+        "description": "To protect your privacy, we don't track individual users. This means that some charts show the total number of members across all guilds, which can result in duplicates and does not accurately reflect your bot's real active user count."
+      }
     },
     "votes": {
       "evolution": "Votes Evolution (all providers)",
       "pie": "Distribution per provider",
-      "providerEvolution": "Votes Evolution on {provider}"
+      "providerEvolution": "Votes Evolution on {provider}",
+      "alert": {
+        "title": "No data?",
+        "description": "That's normal, votes requires additional configuration.",
+        "button": "Read the docs"
+      }
     },
     "trendUp": "Trending up by {percentage}% on this period",
     "trendDown": "Trending down by {percentage}% on this period"

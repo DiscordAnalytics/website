@@ -37,12 +37,21 @@
       "localesEvolution": "Évolution of langues des utilisateurs",
       "localesPie": "Répartition des langues des utilisateurs",
       "activity": "Répartition de l'activité sur une semaine",
-      "types": "Types d'utilisateurs"
+      "types": "Types d'utilisateurs",
+      "alert": {
+        "title": "Avertissement",
+        "description": "Afin de protéger votre vie privée, nous ne suivons pas les utilisateurs individuellement. Cela signifie que certains graphiques indiquent le nombre total de membres de toutes les serveurs, ce qui peut entraîner des doublons et ne reflète pas le nombre réel d'utilisateurs actifs de votre bot."
+      }
     },
     "votes": {
       "evolution": "Évolution des votes (tout service confondu)",
       "pie": "Répartition par service",
-      "providerEvolution": "Évolution des votes sur {provider}"
+      "providerEvolution": "Évolution des votes sur {provider}",
+      "alert": {
+        "title": "No data?",
+        "description": "That's normal, votes requires additional configuration.",
+        "button": "Read the docs"
+      }
     }
   }
 }

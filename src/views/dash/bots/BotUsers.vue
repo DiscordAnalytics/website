@@ -12,6 +12,17 @@ import { useI18n } from 'vue-i18n'
 import { BarChart, LineChart, PieChart } from '@/components/charts'
 import { getDayOfWeek, parseDate } from '@internationalized/date'
 import { dfWeekDay } from '@/utils/dateTime.ts'
+import { InfoIcon, XIcon } from 'lucide-vue-next'
+import {
+  Item,
+  ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemMedia,
+  ItemTitle,
+} from '@/components/ui/item'
+import { Button } from '@/components/ui/button'
+import { useLocalStorage } from '@vueuse/core'
 
 const botId = useRouteParams<string>('id')
 const { stats, fetch: fetchStats } = useBotStats(botId)
@@ -19,6 +30,7 @@ const { statsRange: a } = storeToRefs(useStore())
 const statsRange = a as Ref<DateRange>
 const { t } = useI18n()
 const { getLocaleName } = useLocale()
+const maskedPopups = useLocalStorage<string[]>('maskedPopups', [])
 
 const usersData = computed(() =>
   stats.value && statsRange.value ? calculateUsers(stats.value.stats, statsRange.value) : null,
@@ -115,5 +127,27 @@ watch(statsRange, async (value, oldValue) => {
 </script>
 
 <template>
-  <StatsPage :charts="charts" :is-loading="isLoading" />
+  <StatsPage :charts="charts" :is-loading="isLoading">
+    <template v-if="!maskedPopups.includes('usersStatsWarning')" #alerts>
+      <Item
+        variant="muted"
+        class="mt-4 flex-col md:flex-row items-center text-center md:text-start"
+      >
+        <ItemMedia variant="icon" class="mx-auto">
+          <InfoIcon />
+        </ItemMedia>
+        <ItemContent class="items-center md:items-start">
+          <ItemTitle>{{ $t('pages.dash.stats.charts.users.alert.title') }}</ItemTitle>
+          <ItemDescription class="line-clamp-none">
+            {{ $t('pages.dash.stats.charts.users.alert.description') }}
+          </ItemDescription>
+        </ItemContent>
+        <ItemActions>
+          <Button size="icon-sm" variant="ghost" @click="maskedPopups.push('usersStatsWarning')">
+            <XIcon />
+          </Button>
+        </ItemActions>
+      </Item>
+    </template>
+  </StatsPage>
 </template>
