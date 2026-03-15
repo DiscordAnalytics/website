@@ -99,7 +99,7 @@ const tooltipLabel = computed(() => {
           <div
             :class="
               cn(
-                'flex flex-1 justify-between leading-none',
+                'flex flex-1 justify-between gap-1 leading-none',
                 nestLabel ? 'items-end' : 'items-center',
               )
             "
@@ -112,7 +112,7 @@ const tooltipLabel = computed(() => {
                 {{ itemConfig?.label || value }}
               </span>
             </div>
-            <span class="text-foreground font-mono font-medium tabular-nums">
+            <span class="text-foreground font-medium">
               {{ (value ?? 0).toLocaleString() }}
             </span>
           </div>
