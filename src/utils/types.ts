@@ -124,7 +124,7 @@ export interface RawStats {
 }
 
 export interface CustomEvent {
-  botId: string
+  defaultValue: number | null
   eventKey: string
   graphName: string
 }

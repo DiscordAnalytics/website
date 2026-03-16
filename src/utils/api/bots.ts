@@ -49,7 +49,7 @@ export default class BotsResource {
     return this.api.request('GET', `/bots/${botId}/events`)
   }
 
-  createEvent(botId: string, body: Omit<CustomEvent, 'botId'>): Promise<CustomEvent> {
+  createEvent(botId: string, body: CustomEvent): Promise<CustomEvent> {
     return this.api.request('POST', `/bots/${botId}/events`, body)
   }
 
