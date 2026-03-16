@@ -7,6 +7,11 @@ import type { ChartConfig } from '@/utils/types.ts'
 defineProps<{
   charts: ChartConfig[]
   isLoading: boolean
+  chartSettings?: boolean
+}>()
+
+defineEmits<{
+  (e: 'settings-clicked', chart: ChartConfig): void
 }>()
 </script>
 
@@ -18,7 +23,7 @@ defineProps<{
 
     <slot name="alerts" />
 
-    <main class="grid grid-cols-1 xl:grid-cols-2 gap-4 my-8">
+    <main v-if="$props.charts.length > 0" class="grid grid-cols-1 xl:grid-cols-2 gap-4 my-8">
       <ChartContainer
         v-for="chart in $props.charts"
         v-slot="{ activeTab }"
@@ -33,6 +38,8 @@ defineProps<{
         :data="chart.data"
         :is-loading="$props.isLoading"
         :class="chart.colSpan === 2 ? 'xl:col-span-2' : 'xl:col-span-1'"
+        :chart-settings="$props.chartSettings"
+        @settings-clicked="$emit('settings-clicked', chart)"
       >
         <LineChartSkeleton v-if="$props.isLoading" class="w-full" />
         <EmptyChart v-else-if="chart.isEmpty(chart.data, activeTab)" />
@@ -48,5 +55,6 @@ defineProps<{
 
       <slot />
     </main>
+    <slot v-else name="empty" />
   </BotDashLayout>
 </template>

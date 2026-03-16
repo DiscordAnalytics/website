@@ -225,5 +225,7 @@ watch(statsRange, (value) => {
         </SelectItem>
       </SelectContent>
     </Select>
+
+    <slot name="additional-actions" />
   </div>
 </template>

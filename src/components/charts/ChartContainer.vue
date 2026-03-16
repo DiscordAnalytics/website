@@ -3,6 +3,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { computed, ref, watch } from 'vue'
 import type { ChartConfig, ChartTab } from '@/utils/types.ts'
 import { Skeleton } from '@/components/ui/skeleton'
+import { EllipsisIcon } from 'lucide-vue-next'
+import { cn } from '@/lib/utils.ts'
 
 const props = defineProps<{
   title: string
@@ -10,6 +12,11 @@ const props = defineProps<{
   tabs: ChartTab[]
   data: ChartConfig['data']
   isLoading: boolean
+  chartSettings?: boolean
+}>()
+
+defineEmits<{
+  (e: 'settings-clicked'): void
 }>()
 
 const activeTab = ref<string>(props.tabs.length > 0 ? props.tabs[0]!.id : '')
@@ -34,7 +41,7 @@ const trend = computed<{ evolution: 'up' | 'down'; percentage: number } | undefi
 </script>
 
 <template>
-  <Card class="py-4 sm:py-0">
+  <Card class="py-4 sm:py-0 group overflow-clip">
     <CardHeader class="flex flex-col items-stretch border-b p-0! sm:flex-row min-h-25">
       <div class="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
         <CardTitle>{{ $props.title }}</CardTitle>
@@ -61,6 +68,21 @@ const trend = computed<{ evolution: 'up' | 'down'; percentage: number } | undefi
           <span v-else class="text-lg leading-none font-bold sm:text-3xl">
             {{ tab.value.toLocaleString() }}
           </span>
+        </button>
+        <button
+          v-if="$props.chartSettings"
+          :class="
+            cn(
+              'flex md:flex-1 flex-col justify-center gap-1 text-left cursor-pointer',
+              'transition-all sm:w-0 sm:group-hover:w-auto',
+              'border-t even:border-l sm:border-t-0 sm:even:border-l-0 sm:group-hover:border-t sm:group-hover:even:border-l sm:group-hover:border-l',
+              'px-6 py-4 sm:px-0 sm:py-0 sm:group-hover:px-8 sm:group-hover:py-6',
+              'hover:bg-muted',
+            )
+          "
+          @click="$emit('settings-clicked')"
+        >
+          <EllipsisIcon />
         </button>
       </div>
     </CardHeader>
