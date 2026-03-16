@@ -59,6 +59,7 @@ import { useI18n } from 'vue-i18n'
 import { useStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 import type { DateRange } from 'reka-ui'
+import { Badge } from '@/components/ui/badge'
 
 const route = useRoute()
 const currentBotId = useRouteParams<string>('id')
@@ -137,6 +138,7 @@ const sidebarItems = computed(() => [
         title: t('pages.dash.layout.sidebar.links.integrations'),
         icon: Webhook,
         to: '/dash/bots/:id/settings/integrations',
+        tag: 'NEW',
       },
       {
         title: t('pages.dash.layout.sidebar.links.dangerZone'),
@@ -267,6 +269,9 @@ watch(userBots, async () => {
                       <RouterLink v-if="item.to" :to="item.to.replace(/:id/g, currentBotId)">
                         <component v-if="item.icon" :is="item.icon" />
                         <span>{{ item.title }}</span>
+                        <Badge v-if="item.tag" class="rounded-full hover:bg-primary">
+                          {{ item.tag }}
+                        </Badge>
                       </RouterLink>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
