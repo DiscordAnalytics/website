@@ -8,7 +8,7 @@ import { storeToRefs } from 'pinia'
 import type { DateRange } from 'reka-ui'
 import { LineChart, PieChart } from '@/components/charts'
 import type { ChartConfig } from '@/utils/types.ts'
-import StatsPage from '@/components/StatsPage.vue'
+import StatsPage from '@/components/dash/StatsPage.vue'
 import { useI18n } from 'vue-i18n'
 
 const botId = useRouteParams<string>('id')

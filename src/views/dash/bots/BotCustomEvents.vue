@@ -6,7 +6,7 @@ import { useStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 import type { DateRange } from 'reka-ui'
 import type { ChartConfig, CustomEvent } from '@/utils/types.ts'
-import StatsPage from '@/components/StatsPage.vue'
+import StatsPage from '@/components/dash/StatsPage.vue'
 import { formatCustomEventsStats } from '@/utils/statsManager.ts'
 import {
   Empty,
@@ -186,7 +186,11 @@ watch(statsRange, async (value, oldValue) => {
           </EmptyDescription>
         </EmptyHeader>
         <EmptyContent>
-          <CreateCustomEventDialog @created="onEventCreated">
+          <CreateCustomEventDialog
+            v-model:open="createDialogOpen"
+            :is-loading="isLoading"
+            @created="onEventCreated"
+          >
             <Button>
               <PlusIcon />
               Create a custom event

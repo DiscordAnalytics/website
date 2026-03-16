@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import BotDashLayout from '@/components/layouts/BotDashLayout.vue'
-import StatsRangeSelector from '@/components/StatsRangeSelector.vue'
+import StatsRangeSelector from '@/components/dash/StatsRangeSelector.vue'
 import { ChartContainer, EmptyChart, LineChartSkeleton } from '@/components/charts'
 import type { ChartConfig } from '@/utils/types.ts'
 
