@@ -52,6 +52,48 @@
         "description": "That's normal, votes requires additional configuration.",
         "button": "Read the docs"
       }
+    },
+    "customEvents": {
+      "createTitle": "Créer un événement personnalisé",
+      "empty": {
+        "title": "Aucun événement personnalisé créé",
+        "description": "Aucun événement personnalisé disponible, créez-en un pour commencer."
+      },
+      "toasts": {
+        "created": "Événement personnalisé créé avec succès",
+        "updated": "Événement personnalisé mis à jour avec succès",
+        "deleted": "Événement personnalisé supprimé avec succès"
+      },
+      "create": {
+        "title": "Créer un événement personnalisé",
+        "description": "Les événements personnalisés vous permettent de créer des graphiques pour des fonctionnalités spécifiques à votre bot.",
+        "submitButton": "Créer l'événement"
+      },
+      "edit": {
+        "title": "Modifier l'événement personnalisé",
+        "description": "Modification de",
+        "deleteButton": "Supprimer l'événement",
+        "saveButton": "Enregistrer les modifications",
+        "deleteDialog": {
+          "title": "Supprimer cet événement ?",
+          "description": "Cela supprimera définitivement",
+          "descriptionSuffix": "ainsi que toutes les données associées. Cette action est irréversible.",
+          "cancel": "Annuler",
+          "confirm": "Oui, supprimer"
+        }
+      },
+      "fields": {
+        "eventKey": "Clé d'événement",
+        "eventKeyDescription": "La clé unique que vous utiliserez dans votre code pour déclencher l'événement.",
+        "chartTitle": "Titre du graphique",
+        "chartTitleDescription": "Le nom du graphique affiché sur le tableau de bord.",
+        "defaultMode": "Comportement de la valeur par défaut",
+        "defaultModeDescription": "Utilisé lorsqu'aucune donnée n'existe pour une heure donnée.",
+        "previousHour": "Utiliser la valeur de l'heure précédente",
+        "fixedValue": "Utiliser une valeur fixe",
+        "defaultValue": "Valeur par défaut",
+        "defaultValueDescription": "La valeur utilisée lorsqu'aucune donnée de l'heure précédente n'existe."
+      }
     }
   }
 }

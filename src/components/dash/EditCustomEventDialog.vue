@@ -66,9 +66,9 @@ watch(props, (value) => {
   <Dialog :open="props.open" @update:open="$emit('update:open', $event)">
     <DialogContent>
       <DialogHeader>
-        <DialogTitle>Edit custom event</DialogTitle>
+        <DialogTitle>{{ $t('pages.dash.stats.charts.customEvents.edit.title') }}</DialogTitle>
         <DialogDescription v-if="props.event">
-          Editing
+          {{ $t('pages.dash.stats.charts.customEvents.edit.description') }}
           <code class="bg-muted rounded px-1 py-0.5 text-xs font-mono">
             {{ props.event.eventKey }}
           </code>
@@ -79,7 +79,9 @@ watch(props, (value) => {
         <FieldGroup>
           <VeeField v-slot="{ field, errors }" name="graphName">
             <Field :data-invalid="!!errors.length">
-              <FieldLabel for="editChartTitleInput">Chart title</FieldLabel>
+              <FieldLabel for="editChartTitleInput">
+                {{ $t('pages.dash.stats.charts.customEvents.fields.chartTitle') }}
+              </FieldLabel>
               <Input
                 id="editChartTitleInput"
                 v-bind="field"
@@ -92,7 +94,7 @@ watch(props, (value) => {
               />
               <FieldError v-if="errors.length" :errors="errors.map((message) => ({ message }))" />
               <FieldDescription v-else>
-                The chart title displayed on the dashboard.
+                {{ $t('pages.dash.stats.charts.customEvents.fields.chartTitleDescription') }}
               </FieldDescription>
             </Field>
           </VeeField>
@@ -103,27 +105,33 @@ watch(props, (value) => {
                 <Button type="button" variant="destructive" :disabled="isLoading">
                   <Spinner v-if="isLoading" />
                   <Trash2Icon v-else class="size-4" />
-                  Delete event
+                  {{ $t('pages.dash.stats.charts.customEvents.edit.deleteButton') }}
                 </Button>
               </AlertDialogTrigger>
               <AlertDialogContent>
                 <AlertDialogHeader>
-                  <AlertDialogTitle>Delete this event?</AlertDialogTitle>
+                  <AlertDialogTitle>
+                    {{ $t('pages.dash.stats.charts.customEvents.edit.deleteDialog.title') }}
+                  </AlertDialogTitle>
                   <AlertDialogDescription>
-                    This will permanently delete
+                    {{ $t('pages.dash.stats.charts.customEvents.edit.deleteDialog.description') }}
                     <strong>{{ props.event?.graphName }}</strong>
-                    and all its associated data. This action cannot be undone.
+                    {{
+                      $t('pages.dash.stats.charts.customEvents.edit.deleteDialog.descriptionSuffix')
+                    }}
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogCancel>
+                    {{ $t('pages.dash.stats.charts.customEvents.edit.deleteDialog.cancel') }}
+                  </AlertDialogCancel>
                   <AlertDialogAction
                     class="bg-destructive text-white hover:bg-destructive/90"
                     :disabled="isLoading"
                     @click="onDelete"
                   >
                     <Spinner v-if="isLoading" />
-                    Yes, delete
+                    {{ $t('pages.dash.stats.charts.customEvents.edit.deleteDialog.confirm') }}
                   </AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>
@@ -131,7 +139,7 @@ watch(props, (value) => {
 
             <Button type="submit" form="editEventForm" :disabled="$props.isLoading">
               <Spinner v-if="$props.isLoading" />
-              Save changes
+              {{ $t('pages.dash.stats.charts.customEvents.edit.saveButton') }}
             </Button>
           </Field>
         </FieldGroup>

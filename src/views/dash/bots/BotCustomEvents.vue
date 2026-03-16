@@ -22,6 +22,9 @@ import { LineChart } from '@/components/charts'
 import CreateCustomEventDialog from '@/components/dash/CreateCustomEventDialog.vue'
 import EditCustomEventDialog from '@/components/dash/EditCustomEventDialog.vue'
 import { toast } from 'vue-sonner'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const botId = useRouteParams<string>('id')
 const { stats, fetch: fetchStats } = useBotStats(botId)
@@ -86,7 +89,7 @@ const onEventCreated = async (values: {
     defaultValue: values.defaultMode === 'fixed' ? values.defaultValue! : null,
   })
     .then(() => {
-      toast.success('Custom event created successfully.')
+      toast.success(t('pages.dash.stats.charts.customEvents.toasts.created'))
       createDialogOpen.value = false
       isLoading.value = false
     })
@@ -101,7 +104,7 @@ const onEventUpdated = async (eventKey: string, graphName: string) => {
   isLoading.value = true
   await updateCustomEvent(eventKey, graphName)
     .then(() => {
-      toast.success('Custom event updated successfully.')
+      toast.success(t('pages.dash.stats.charts.customEvents.toasts.updated'))
       editDialogOpen.value = false
       isLoading.value = false
     })
@@ -115,7 +118,7 @@ const onEventDeleted = async (eventKey: string) => {
   isLoading.value = true
   await deleteCustomEvent(eventKey)
     .then(() => {
-      toast.success('Custom event deleted successfully.')
+      toast.success(t('pages.dash.stats.charts.customEvents.toasts.deleted'))
       editDialogOpen.value = false
       isLoading.value = false
     })
@@ -168,7 +171,7 @@ watch(statsRange, async (value, oldValue) => {
             <EmptyMedia variant="icon">
               <PlusIcon />
             </EmptyMedia>
-            <EmptyTitle>Create a custom event</EmptyTitle>
+            <EmptyTitle>{{ $t('pages.dash.stats.charts.customEvents.createTitle') }}</EmptyTitle>
           </EmptyHeader>
         </Empty>
       </CreateCustomEventDialog>
@@ -180,9 +183,9 @@ watch(statsRange, async (value, oldValue) => {
           <EmptyMedia variant="icon">
             <FrownIcon />
           </EmptyMedia>
-          <EmptyTitle>No custom event created</EmptyTitle>
+          <EmptyTitle>{{ $t('pages.dash.stats.charts.customEvents.empty.title') }}</EmptyTitle>
           <EmptyDescription>
-            No custom events available, create one to get started.
+            {{ $t('pages.dash.stats.charts.customEvents.empty.description') }}
           </EmptyDescription>
         </EmptyHeader>
         <EmptyContent>
@@ -193,7 +196,7 @@ watch(statsRange, async (value, oldValue) => {
           >
             <Button>
               <PlusIcon />
-              Create a custom event
+              {{ $t('pages.dash.stats.charts.customEvents.createTitle') }}
             </Button>
           </CreateCustomEventDialog>
         </EmptyContent>

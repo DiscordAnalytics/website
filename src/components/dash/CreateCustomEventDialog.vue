@@ -69,9 +69,9 @@ watch(
     </DialogTrigger>
     <DialogContent>
       <DialogHeader>
-        <DialogTitle>Create custom event</DialogTitle>
+        <DialogTitle>{{ $t('pages.dash.stats.charts.customEvents.create.title') }}</DialogTitle>
         <DialogDescription>
-          Custom events allow you to create charts for specific features of your bot.
+          {{ $t('pages.dash.stats.charts.customEvents.create.description') }}
         </DialogDescription>
       </DialogHeader>
 
@@ -79,7 +79,9 @@ watch(
         <FieldGroup>
           <VeeField v-slot="{ field, errors }" name="eventKey">
             <Field :data-invalid="!!errors.length">
-              <FieldLabel for="eventKeyInput">Event Key</FieldLabel>
+              <FieldLabel for="eventKeyInput">
+                {{ $t('pages.dash.stats.charts.customEvents.fields.eventKey') }}
+              </FieldLabel>
               <Input
                 id="eventKeyInput"
                 v-bind="field"
@@ -91,14 +93,16 @@ watch(
               />
               <FieldError v-if="errors.length" :errors="errors.map((message) => ({ message }))" />
               <FieldDescription v-else>
-                The unique key you'll use in your code to seed the event.
+                {{ $t('pages.dash.stats.charts.customEvents.fields.eventKeyDescription') }}
               </FieldDescription>
             </Field>
           </VeeField>
 
           <VeeField v-slot="{ field, errors }" name="graphName">
             <Field :data-invalid="!!errors.length">
-              <FieldLabel for="chartTitleInput">Chart title</FieldLabel>
+              <FieldLabel for="chartTitleInput">
+                {{ $t('pages.dash.stats.charts.customEvents.fields.chartTitle') }}
+              </FieldLabel>
               <Input
                 id="chartTitleInput"
                 v-bind="field"
@@ -109,31 +113,37 @@ watch(
               />
               <FieldError v-if="errors.length" :errors="errors.map((message) => ({ message }))" />
               <FieldDescription v-else>
-                The chart name you'll see on the dashboard.
+                {{ $t('pages.dash.stats.charts.customEvents.fields.chartTitleDescription') }}
               </FieldDescription>
             </Field>
           </VeeField>
 
           <VeeField v-slot="{ field }" name="defaultMode">
             <Field>
-              <FieldLabel>Default value behavior</FieldLabel>
+              <FieldLabel>
+                {{ $t('pages.dash.stats.charts.customEvents.fields.defaultMode') }}
+              </FieldLabel>
               <RadioGroup v-bind="field" default-value="fixed" class="flex flex-col gap-2">
                 <Label class="flex items-center gap-2">
                   <RadioGroupItem value="previous_hour" />
-                  Use previous hour value
+                  {{ $t('pages.dash.stats.charts.customEvents.fields.previousHour') }}
                 </Label>
                 <Label class="flex items-center gap-2">
                   <RadioGroupItem value="fixed" />
-                  Use a fixed value
+                  {{ $t('pages.dash.stats.charts.customEvents.fields.fixedValue') }}
                 </Label>
               </RadioGroup>
-              <FieldDescription> Used when no data exists for a given hour. </FieldDescription>
+              <FieldDescription>
+                {{ $t('pages.dash.stats.charts.customEvents.fields.defaultModeDescription') }}
+              </FieldDescription>
             </Field>
           </VeeField>
 
           <VeeField v-slot="{ field, errors }" name="defaultValue">
             <Field :data-invalid="!!errors.length" v-if="form.values.defaultMode === 'fixed'">
-              <FieldLabel>Default value</FieldLabel>
+              <FieldLabel>
+                {{ $t('pages.dash.stats.charts.customEvents.fields.defaultValue') }}
+              </FieldLabel>
               <Input
                 type="number"
                 v-bind="field"
@@ -144,7 +154,7 @@ watch(
               />
               <FieldError v-if="errors.length" :errors="errors.map((message) => ({ message }))" />
               <FieldDescription v-else>
-                The value used when no previous hour data exists.
+                {{ $t('pages.dash.stats.charts.customEvents.fields.defaultValueDescription') }}
               </FieldDescription>
             </Field>
           </VeeField>
@@ -152,7 +162,7 @@ watch(
           <Field orientation="horizontal" class="flex justify-end">
             <Button type="submit" form="createEventForm" :disabled="isLoading">
               <Spinner v-if="isLoading" />
-              Create event
+              {{ $t('pages.dash.stats.charts.customEvents.create.submitButton') }}
             </Button>
           </Field>
         </FieldGroup>
