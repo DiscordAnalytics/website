@@ -10,7 +10,7 @@ import {
   StepperTitle,
   StepperTrigger,
 } from '@/components/ui/stepper'
-import { AlertTriangleIcon, Check, Clock, Code, IdCard } from 'lucide-vue-next'
+import { Check, Clock, Code, IdCard } from 'lucide-vue-next'
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import { addBotSchema } from '@/utils/formSchemas.ts'
@@ -26,15 +26,6 @@ import {
 import { useRouteQuery } from '@vueuse/router'
 import { toast } from 'vue-sonner'
 import fireworksParticlesOptions from '@/utils/particles/fireworks.ts'
-import {
-  Empty,
-  EmptyContent,
-  EmptyDescription,
-  EmptyHeader,
-  EmptyMedia,
-  EmptyTitle,
-} from '@/components/ui/empty'
-import { Button } from '@/components/ui/button'
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 import { cn } from '@/lib/utils.ts'
 import { useI18n } from 'vue-i18n'
@@ -101,10 +92,7 @@ const onSubmit = handleSubmit(async (values) => {
 
 <template>
   <PageLayout :footer="false">
-    <Card
-      v-if="userInfos && userInfos.botsLimit > ownedBots.length"
-      class="max-w-275 mx-auto w-full overflow-clip my-8"
-    >
+    <Card v-if="userInfos" class="max-w-275 mx-auto w-full overflow-clip my-8">
       <CardHeader>
         <Stepper
           :model-value="currentStep"
@@ -157,22 +145,6 @@ const onSubmit = handleSubmit(async (values) => {
         </Transition>
       </CardContent>
     </Card>
-    <Empty v-else-if="userInfos" class="h-full">
-      <EmptyHeader>
-        <EmptyMedia variant="icon">
-          <AlertTriangleIcon />
-        </EmptyMedia>
-        <EmptyTitle>{{ $t('pages.dash.onboarding.botLimitReached.title') }}</EmptyTitle>
-        <EmptyDescription>
-          {{ $t('pages.dash.onboarding.botLimitReached.description') }}
-        </EmptyDescription>
-        <EmptyContent>
-          <RouterLink to="/support">
-            <Button> {{ $t('pages.dash.onboarding.botLimitReached.joinSupport') }} </Button>
-          </RouterLink>
-        </EmptyContent>
-      </EmptyHeader>
-    </Empty>
   </PageLayout>
 
   <vue-particles

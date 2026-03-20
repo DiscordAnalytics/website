@@ -7,6 +7,15 @@ import { Spinner } from '@/components/ui/spinner'
 import { Field as VeeField } from 'vee-validate'
 import { useCurrentUser } from '@/composables'
 import { Label } from '@/components/ui/label'
+import { AlertTriangleIcon } from 'lucide-vue-next'
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from '@/components/ui/empty'
 
 defineProps<{
   loading: boolean
@@ -16,11 +25,11 @@ defineEmits<{
   (e: 'submit', event: SubmitEvent): void
 }>()
 
-const { ownedBots } = useCurrentUser()
+const { userInfos, ownedBots } = useCurrentUser()
 </script>
 
 <template>
-  <div>
+  <div v-if="userInfos && userInfos.botsLimit > ownedBots.length">
     <h1 v-if="ownedBots.length > 0" class="text-3xl font-black text-center my-4">
       {{ $t('pages.dash.onboarding.stepOne.addNewBot') }}
     </h1>
@@ -103,4 +112,20 @@ const { ownedBots } = useCurrentUser()
       </FieldGroup>
     </form>
   </div>
+  <Empty v-else-if="userInfos" class="h-full">
+    <EmptyHeader>
+      <EmptyMedia variant="icon">
+        <AlertTriangleIcon />
+      </EmptyMedia>
+      <EmptyTitle>{{ $t('pages.dash.onboarding.botLimitReached.title') }}</EmptyTitle>
+      <EmptyDescription>
+        {{ $t('pages.dash.onboarding.botLimitReached.description') }}
+      </EmptyDescription>
+      <EmptyContent>
+        <RouterLink to="/support">
+          <Button> {{ $t('pages.dash.onboarding.botLimitReached.joinSupport') }} </Button>
+        </RouterLink>
+      </EmptyContent>
+    </EmptyHeader>
+  </Empty>
 </template>
