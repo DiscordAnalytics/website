@@ -62,6 +62,16 @@ const router = createRouter({
       path: '/dash/bots/:id/achievements',
       component: () => import('@/views/dash/bots/BotAchievements.vue'),
     },
+    {
+      path: '/dash/bots/:id/settings',
+      redirect(to) {
+        return `/dash/bots/${to.params.id}/settings/general`
+      },
+    },
+    {
+      path: '/dash/bots/:id/settings/danger-zone',
+      component: () => import('@/views/dash/bots/settings/BotDangerZone.vue'),
+    },
   ],
 })
 
