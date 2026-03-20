@@ -221,7 +221,6 @@ export interface FormattedStats {
 
 export interface Achievement {
   id: string
-  editable: boolean
   achievedOn?: string
   objective: {
     type: GoalType
