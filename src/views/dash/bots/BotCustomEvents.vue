@@ -91,11 +91,9 @@ const onEventCreated = async (values: {
     .then(() => {
       toast.success(t('pages.dash.stats.charts.customEvents.toasts.created'))
       createDialogOpen.value = false
-      isLoading.value = false
     })
     .catch((e) => {
       toast.error(e.message)
-      isLoading.value = false
     })
   isLoading.value = false
 }
@@ -106,12 +104,11 @@ const onEventUpdated = async (eventKey: string, graphName: string) => {
     .then(() => {
       toast.success(t('pages.dash.stats.charts.customEvents.toasts.updated'))
       editDialogOpen.value = false
-      isLoading.value = false
     })
     .catch((e) => {
       toast.error(e.message)
-      isLoading.value = false
     })
+  isLoading.value = false
 }
 
 const onEventDeleted = async (eventKey: string) => {
