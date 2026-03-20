@@ -226,12 +226,12 @@ watch(userBots, async () => {
                         />
                         <div class="flex flex-col text-left text-sm gap-1">
                           <span class="truncate font-semibold">{{ bot.username }}</span>
-                          <div v-if="scanResults[currentBotId]" class="flex items-center gap-1">
+                          <div v-if="scanResults[bot.botId]" class="flex items-center gap-1">
                             <span
-                              :class="`h-2 w-2 rounded-full ${getScanTypeColor(scanResults[currentBotId]!.type)}`"
+                              :class="`h-2 w-2 rounded-full ${getScanTypeColor(scanResults[bot.botId]!.type)}`"
                             />
                             <span class="truncate text-xs">
-                              {{ scanResults[currentBotId]!.title }}
+                              {{ scanResults[bot.botId]!.title }}
                             </span>
                           </div>
                           <div v-else class="flex items-center gap-1">
