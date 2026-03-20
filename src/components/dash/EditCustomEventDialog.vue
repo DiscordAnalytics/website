@@ -55,9 +55,7 @@ function onDelete() {
 
 watch(props, (value) => {
   if (value.open) {
-    console.log(form.values)
     form.setValues({ graphName: value.event?.graphName })
-    console.log(form.values)
   }
 })
 </script>
