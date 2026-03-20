@@ -1,0 +1,33 @@
+{
+  "header": {
+    "title": "Community Store",
+    "description": "Discover and pick achievements crafted by the community."
+  },
+  "dropdown": {
+    "placeholder": "Filter by language",
+    "other": "Other"
+  },
+  "dialog": {
+    "trigger": {
+      "multiple_langs": "Multiple languages",
+      "dynamic_achievement": "Dynamic achievement",
+      "used_by": "Used by one bot | Used by {amount} bots"
+    },
+    "header": {
+      "title": {
+        "default": "Add this achievement to...",
+        "oops": "Oops o_O"
+      },
+      "description": {
+        "default": "Add this achievement to one of your bots.",
+        "oops": "You don't have any bots yet. Please add a bot first.",
+        "no_logged_in": "You need to be logged in to add this achievement to your bot!"
+      }
+    },
+    "your_bots": "Your bots",
+    "add": "Add",
+    "add_bot": "Add a new bot",
+    "login": "Login",
+    "selectPlaceholder": "Select the bot you want to add this achievement"
+  }
+}

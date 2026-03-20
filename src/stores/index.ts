@@ -23,6 +23,7 @@ export const useStore = defineStore('store', () => {
   const botEmailReports = ref<{ [botId: string]: StatsReport[] }>({})
   const botStats = ref<{ [botId: string]: { stats: RawStats[]; votes: RawVotes[] } }>({})
   const blogArticles = ref<Omit<BlogArticle, 'content'>[]>([])
+  const achievementsStore = ref<Achievement[]>([])
 
   const theme = ref<Color>('zinc')
 
@@ -61,6 +62,7 @@ export const useStore = defineStore('store', () => {
     botEmailReports,
     botStats,
     blogArticles,
+    achievementsStore,
     statsRange,
     theme,
     setTheme,

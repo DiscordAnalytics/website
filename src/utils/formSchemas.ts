@@ -68,3 +68,7 @@ export const editAchievementFormSchema = z.object({
     .min(10, 'The description of the achievement must be at least 10 characters long.'),
   sure: z.boolean().refine((bool) => bool === true, 'You need to check this!'),
 })
+
+export const copyAchievementFormSchema = z.object({
+  botId: z.string('You need to select a bot!'),
+})

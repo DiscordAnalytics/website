@@ -85,8 +85,9 @@ export default class BotsResource {
     return this.api.request('PATCH', `/bots/${botId}/settings`, { settings })
   }
 
-  getAchievements(botId: string): Promise<Achievement[]> {
-    return this.api.request('GET', `/bots/${botId}/achievements`)
+  getAchievements(botId?: string): Promise<Achievement[]> {
+    if (botId) return this.api.request('GET', `/bots/${botId}/achievements`)
+    else return this.api.request('GET', `/achievements`)
   }
 
   createAchievement(
