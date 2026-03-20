@@ -33,7 +33,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="relative rounded my-2 bg-muted">
+  <div class="relative rounded my-2 bg-muted dark:bg-[#24292e]">
     <Button
       variant="outline"
       size="icon-lg"
