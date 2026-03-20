@@ -54,6 +54,10 @@ const router = createRouter({
       path: '/dash/bots/:id/custom-events',
       component: () => import('@/views/dash/bots/BotCustomEvents.vue'),
     },
+    {
+      path: '/dash/bots/:id/achievements',
+      component: () => import('@/views/dash/bots/BotAchievements.vue'),
+    },
   ],
 })
 

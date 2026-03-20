@@ -1,8 +1,5 @@
 <script setup lang="ts">
 import type { DialogContentEmits, DialogContentProps } from 'reka-ui'
-import type { HTMLAttributes } from 'vue'
-import { reactiveOmit } from '@vueuse/core'
-import { X } from 'lucide-vue-next'
 import {
   DialogClose,
   DialogContent,
@@ -10,6 +7,9 @@ import {
   DialogPortal,
   useForwardPropsEmits,
 } from 'reka-ui'
+import type { HTMLAttributes } from 'vue'
+import { reactiveOmit } from '@vueuse/core'
+import { X } from 'lucide-vue-next'
 import { cn } from '@/lib/utils'
 
 const props = defineProps<DialogContentProps & { class?: HTMLAttributes['class'] }>()
@@ -52,6 +52,7 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits)
           class="absolute top-4 right-4 p-0.5 transition-colors rounded-md hover:bg-secondary"
         >
           <X class="w-4 h-4" />
+          <!-- eslint-disable-next-line @intlify/vue-i18n/no-raw-text -->
           <span class="sr-only">Close</span>
         </DialogClose>
       </DialogContent>

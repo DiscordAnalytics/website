@@ -1,4 +1,5 @@
 import * as z from 'zod'
+import type { BotAchievementType } from '@/utils/types.ts'
 
 function isValidSnowflake(id: string) {
   const snowflake = BigInt(id)
@@ -37,4 +38,33 @@ export const editCustomEventSchema = z.object({
   graphName: z
     .string('Please enter a valid graph name!')
     .min(3, 'The chart name must be at least 3 characters long.'),
+})
+
+export const createAchievementFormSchema = z.object({
+  title: z
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? 'Please enter a valid title!' : 'Not a string',
+    })
+    .min(5, 'The title of the achievement must be at least 5 characters long.'),
+  description: z
+    .string()
+    .min(10, 'The description of the achievement must be at least 10 characters long.'),
+  type: z.string().refine((str) => !!(str as BotAchievementType), 'Invalid achievement type!'),
+  objective: z.number().refine((num) => num > 0, 'The number must be greater than 0!'),
+})
+
+export const shareAchievementFormSchema = z.object({
+  lang: z.string(),
+  sure: z.boolean().refine((bool) => bool === true, 'You need to check this!'),
+})
+
+export const editAchievementFormSchema = z.object({
+  title: z
+    .string('Please enter a valid title!')
+    .min(5, 'The title of the achievement must be at least 5 characters long.'),
+  description: z
+    .string('Please enter a valid description!')
+    .min(10, 'The description of the achievement must be at least 10 characters long.'),
+  sure: z.boolean().refine((bool) => bool === true, 'You need to check this!'),
 })

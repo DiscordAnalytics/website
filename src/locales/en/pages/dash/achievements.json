@@ -1,0 +1,152 @@
+{
+  "toasts": {
+    "changes_requested": "You need to make changes!",
+    "updated": "Achievements updated.",
+    "deleted": "Achievement deleted.",
+    "published": "Achievement published to the store."
+  },
+  "dialogs": {
+    "share": {
+      "title": "Share this achievement to the community",
+      "description": "Before publishing this achievement, please select the appropriate language.",
+      "locales": {
+        "select": "Select a language",
+        "en": "English",
+        "fr": "French",
+        "tr": "Turkish",
+        "other": "Other"
+      },
+      "confirmation": {
+        "title": "Are you sure you want to continue?",
+        "description": "By continuing, you confirm that the content you are about to publish complies with our Terms of Service."
+      },
+      "publish": "Publish"
+    },
+    "edit": {
+      "title": "Edit an achievement...",
+      "fields": {
+        "title": "Title",
+        "description": "Description"
+      },
+      "confirmation": {
+        "title": "Are you sure you want to continue?",
+        "description": "This achievement has been published on the community store. Can you confirm that it still complies with our terms of use?"
+      },
+      "save": "Save"
+    },
+    "delete": {
+      "title": "Are you absolutely sure?",
+      "description": "You're about to delete this achievement. This action will delete the current progression and the achievement will be deleted from the Community Store (if it was published to it).",
+      "cancel": "Cancel",
+      "delete": "Delete"
+    },
+    "create": {
+      "title": "Create a new achievement...",
+      "description": "Create a new custom achievement.",
+      "success": {
+        "title": "You did it!",
+        "description": "You achievement has been created! Why not check out those of the community?"
+      },
+      "form": {
+        "title": "Title",
+        "description": "Description",
+        "condition": "Condition to validate this achievement",
+        "type": {
+          "placeholder": "Select a type",
+          "guilds": "Guilds",
+          "interactions_week": "Interactions over a week",
+          "french_percentage": "% of French-speaking users",
+          "users": "Users",
+          "votes_month": "Votes over a month"
+        }
+      },
+      "buttons": {
+        "explore": "Explore community achievements",
+        "submit": "Submit",
+        "not_now": "Not now"
+      },
+      "create": "Create Achievement"
+    }
+  },
+  "default_achievements": {
+    "1": {
+      "title": "#RoadToCertification",
+      "description": "Be on 75 servers."
+    },
+    "2": {
+      "title": "Get started with interactions",
+      "description": "Have an average of at least 10 interactions over the 7 days."
+    },
+    "3": {
+      "title": "French power 🥖",
+      "description": "Have at least 10% of French-speaking users."
+    },
+    "4": {
+      "title": "Medium bot",
+      "description": "Be on 300 servers."
+    },
+    "5": {
+      "title": "Old member",
+      "description": "Use Discord Analytics for at least a year."
+    },
+    "6": {
+      "title": "Diversified users",
+      "description": "Have users who speak at least 15 different languages."
+    },
+    "7": {
+      "title": "Big bot",
+      "description": "Be on 1k servers."
+    },
+    "8": {
+      "title": "In search of popularity",
+      "description": "Have an average of at least 1k interactions over the 7 days."
+    },
+    "9": {
+      "title": "Oh! Big servers",
+      "description": "Have at least 100k users."
+    },
+    "10": {
+      "title": "Big servers + {username} = ♥",
+      "description": "Have at least 1M users."
+    },
+    "11": {
+      "title": "Huge bot",
+      "description": "Be on 10k servers."
+    },
+    "12": {
+      "title": "Too popular for you",
+      "description": "Have an average of at least 20k interactions over the 7 days."
+    },
+    "13": {
+      "title": "Explosion of interactions",
+      "description": "Have an average of at least 50k interactions over the 7 days."
+    },
+    "14": {
+      "title": "Just a little for me",
+      "description": "Have at least 10k users."
+    },
+    "15": {
+      "title": "All the stats for me",
+      "description": "Finish Discord Analytics' configuration."
+    },
+    "16": {
+      "title": "Oh! That's nice",
+      "description": "Use Discord Analytics for at least a month."
+    },
+    "17": {
+      "title": "Bot on the move",
+      "description": "Be on 10 servers."
+    },
+    "18": {
+      "title": "Votes operation",
+      "description": "Have received at least 20 votes over the 30 days."
+    }
+  },
+  "percent": "{percent}%",
+  "achieved_on": "Achieved on: {date}",
+  "empty": {
+    "title": "No achievements",
+    "description": "No achievements available, create one to get started."
+  },
+  "loading": "Loading achievements..."
+}

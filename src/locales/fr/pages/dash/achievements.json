@@ -1,0 +1,152 @@
+{
+  "toasts": {
+    "changes_requested": "Vous devez faire des changements !",
+    "updated": "Succès mis à jour.",
+    "deleted": "Succès supprimé.",
+    "published": "Succès publié dans la boutique."
+  },
+  "dialogs": {
+    "share": {
+      "title": "Partagez ce succès avec la communauté",
+      "description": "Avant de publier ce succès, veuillez sélectionner la langue appropriée.",
+      "locales": {
+        "select": "Sélectionnez une langue",
+        "en": "Anglais",
+        "fr": "Français",
+        "tr": "Turc",
+        "other": "Autre"
+      },
+      "confirmation": {
+        "title": "Êtes-vous sûr de vouloir continuer ?",
+        "description": "En poursuivant, vous confirmez que le contenu que vous vous apprêtez à publier est conforme à nos Conditions d'utilisation."
+      },
+      "publish": "Publier"
+    },
+    "edit": {
+      "title": "Modifier un succès...",
+      "fields": {
+        "title": "Titre",
+        "description": "Description"
+      },
+      "confirmation": {
+        "title": "Êtes-vous sûr de vouloir continuer ?",
+        "description": "Ce succès a été publiée sur la boutique communautaire. Pouvez-vous confirmer qu'il est toujours conforme à nos conditions d'utilisation ?"
+      },
+      "save": "Enregistrer"
+    },
+    "delete": {
+      "title": "Êtes-vous certains ?",
+      "description": "Vous êtes sur le point de supprimer ce succès. Cette action supprimera la progression actuelle et le succès sera supprimé de la boutique communautaire (s'il y a été publié).",
+      "cancel": "Annuler",
+      "delete": "Supprimer"
+    },
+    "create": {
+      "title": "Créer un nouveau succès...",
+      "description": "Créez un nouveau succès personnalisé.",
+      "success": {
+        "title": "Vous l'avez fait !",
+        "description": "Votre succès a été créé ! Pourquoi ne pas consulter ceux de la communauté ?"
+      },
+      "form": {
+        "title": "Titre",
+        "description": "Description",
+        "condition": "Condition pour valider ce succès",
+        "type": {
+          "placeholder": "Sélectionnez un type",
+          "guilds": "Serveurs",
+          "interactions_week": "Interactions sur une semaine",
+          "french_percentage": "% d'utilisateurs francophones",
+          "users": "Utilisateurs",
+          "votes_month": "Votes sur un mois"
+        }
+      },
+      "buttons": {
+        "explore": "Explorez les succès de la communauté",
+        "submit": "Envoyer",
+        "not_now": "Pas maintenant"
+      },
+      "create": "Créer un succès"
+    }
+  },
+  "default_achievements": {
+    "1": {
+      "title": "#VersLaCertification",
+      "description": "Être sur 75 serveurs."
+    },
+    "2": {
+      "title": "Démarrer avec les interactions",
+      "description": "Avoir une moyenne de minimum 10 interactions sur les 7 derniers jours."
+    },
+    "3": {
+      "title": "Pouvoir français 🥖",
+      "description": "Avoir au minimum 10% d'utilisateurs parlant français."
+    },
+    "4": {
+      "title": "Bot moyen",
+      "description": "Être sur 300 serveurs."
+    },
+    "5": {
+      "title": "Ancien membre",
+      "description": "Utiliser Discord Analytics depuis au moins un an."
+    },
+    "6": {
+      "title": "Utilisateurs diversifiés",
+      "description": "Avoir des utilisateurs qui parlent au moins 15 langues différentes."
+    },
+    "7": {
+      "title": "Grand robot",
+      "description": "Être sur 1000 serveurs."
+    },
+    "8": {
+      "title": "En quête de la popularité",
+      "description": "Avoir une moyenne de minimum 1000 interactions sur les 7 derniers jours."
+    },
+    "9": {
+      "title": "Oh ! Des gros serveurs",
+      "description": "Avoir au moins 100 000 utilisateurs."
+    },
+    "10": {
+      "title": "Gros serveurs + {username} = ♥",
+      "description": "Avoir au moins un million d'utilisateurs."
+    },
+    "11": {
+      "title": "Énorme robot",
+      "description": "Être sur 10 000 serveurs."
+    },
+    "12": {
+      "title": "Trop populaire pour vous",
+      "description": "Avoir une moyenne d'au moins 20 000 interactions sur les 7 derniers jours."
+    },
+    "13": {
+      "title": "Explosion d'interactions",
+      "description": "Avoir une moyenne d'au moins 50 000 interactions sur les 7 derniers jours."
+    },
+    "14": {
+      "title": "Juste un peu pour moi",
+      "description": "Avoir au moins 10 000 utilisateurs."
+    },
+    "15": {
+      "title": "Toutes les stats pour moi",
+      "description": "Terminer la configuration de Discord Analytics."
+    },
+    "16": {
+      "title": "Oh ! Bien ça",
+      "description": "Utiliser Discord Analytics depuis au moins un mois."
+    },
+    "17": {
+      "title": "Robot sur le rythme",
+      "description": "Être sur 10 serveurs."
+    },
+    "18": {
+      "title": "Opération votes",
+      "description": "Avoir reçu au moins 20 votes au cours des 30 derniers jours."
+    }
+  },
+  "percent": "{percent}%",
+  "achieved_on": "Réalisé le : {date}",
+  "empty": {
+    "title": "Aucun succès",
+    "description": "Aucun succès n'est disponible, créez-en un pour commencer."
+  },
+  "loading": "Chargement des succès..."
+}
