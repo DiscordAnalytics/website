@@ -21,9 +21,11 @@ withDefaults(
       cn('max-w-425 mx-auto px-4 min-h-screen flex flex-col', $props.footer && 'justify-between')
     "
   >
-    <NavBar v-if="$props.navbar" />
+    <div>
+      <NavBar v-if="$props.navbar" />
 
-    <slot />
+      <slot />
+    </div>
 
     <Footer v-if="$props.footer" />
   </main>
