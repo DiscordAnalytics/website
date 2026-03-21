@@ -44,6 +44,11 @@ const sizeConfig = {
     avatar: 'h-20 w-20',
     decoration: 'h-26 w-26',
   },
+  '3xl': {
+    container: 'h-42 w-42',
+    avatar: 'h-32 w-32',
+    decoration: 'h-42 w-42',
+  },
 }
 
 const imageType = computed(() => (props.isGuildIcon ? 'icons' : 'avatars'))
