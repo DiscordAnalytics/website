@@ -2,8 +2,12 @@ import * as z from 'zod'
 import type { BotAchievementType } from '@/utils/types.ts'
 
 function isValidSnowflake(id: string) {
-  const snowflake = BigInt(id)
-  return snowflake > 0n && snowflake < 1n << 63n
+  try {
+    const snowflake = BigInt(id)
+    return snowflake > 0n && snowflake < 1n << 63n
+  } catch {
+    return false
+  }
 }
 
 export const addBotSchema = z.object({
