@@ -64,6 +64,7 @@ import { Badge } from '@/components/ui/badge'
 const route = useRoute()
 const currentBotId = useRouteParams<string>('id')
 const { bot: currentBot } = useBot(currentBotId)
+const { userInfos } = useCurrentUser()
 const { statsRange: a } = storeToRefs(useStore())
 const statsRange = a as Ref<DateRange>
 const { userBots } = useCurrentUser()
@@ -123,29 +124,38 @@ const sidebarItems = computed(() => [
   },
   {
     title: t('pages.dash.layout.sidebar.links.settings'),
-    children: [
-      {
-        title: t('pages.dash.layout.sidebar.links.general'),
-        icon: Settings,
-        to: '/dash/bots/:id/settings/general',
-      },
-      {
-        title: t('pages.dash.layout.sidebar.links.emailReports'),
-        icon: Mail,
-        to: '/dash/bots/:id/settings/reports',
-      },
-      {
-        title: t('pages.dash.layout.sidebar.links.votesConf'),
-        icon: Webhook,
-        to: '/dash/bots/:id/settings/votes-configuration',
-        tag: 'NEW',
-      },
-      {
-        title: t('pages.dash.layout.sidebar.links.dangerZone'),
-        icon: TriangleAlert,
-        to: '/dash/bots/:id/settings/danger-zone',
-      },
-    ],
+    children:
+      userInfos.value?.userId === currentBot.value?.ownerId
+        ? [
+            {
+              title: t('pages.dash.layout.sidebar.links.general'),
+              icon: Settings,
+              to: '/dash/bots/:id/settings/general',
+            },
+            {
+              title: t('pages.dash.layout.sidebar.links.emailReports'),
+              icon: Mail,
+              to: '/dash/bots/:id/settings/reports',
+            },
+            {
+              title: t('pages.dash.layout.sidebar.links.votesConf'),
+              icon: Webhook,
+              to: '/dash/bots/:id/settings/votes-configuration',
+              tag: 'NEW',
+            },
+            {
+              title: t('pages.dash.layout.sidebar.links.dangerZone'),
+              icon: TriangleAlert,
+              to: '/dash/bots/:id/settings/danger-zone',
+            },
+          ]
+        : [
+            {
+              title: t('pages.dash.layout.sidebar.links.emailReports'),
+              icon: Mail,
+              to: '/dash/bots/:id/settings/reports',
+            },
+          ],
   },
 ])
 
