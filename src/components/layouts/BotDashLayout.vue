@@ -135,9 +135,9 @@ const sidebarItems = computed(() => [
         to: '/dash/bots/:id/settings/reports',
       },
       {
-        title: t('pages.dash.layout.sidebar.links.integrations'),
+        title: t('pages.dash.layout.sidebar.links.votesConf'),
         icon: Webhook,
-        to: '/dash/bots/:id/settings/integrations',
+        to: '/dash/bots/:id/settings/votes-configuration',
         tag: 'NEW',
       },
       {
