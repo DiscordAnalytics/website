@@ -38,7 +38,7 @@ const botLibrary = ref<string>('discord.js')
 
 function copyToken() {
   copy(botToken.value)
-  toast.success(t('pages.dash.onboarding.stepTwo.getToken.tokenPlaceholder'))
+  toast.success(t('pages.dash.onboarding.stepTwo.getToken.tokenCopied'))
 }
 
 onMounted(() => {

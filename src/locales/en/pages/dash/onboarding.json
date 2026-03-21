@@ -41,7 +41,8 @@
       "heading": "1. Get your token",
       "description": "This token allows your bot to interact with our API.",
       "doNotShare": "DON'T SHARE IT WITH ANYBODY",
-      "tokenPlaceholder": "Your token"
+      "tokenPlaceholder": "Your token",
+      "tokenCopied": "Token copied to clipboard"
     },
     "integrate": {
       "heading": "2. Integrate into your code",
