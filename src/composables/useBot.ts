@@ -33,7 +33,7 @@ export default function useBot(botId: Ref<string>, scope: APIScope = APIScope.Us
 
   async function toggleAdvancedStats() {
     if (!bot.value) throw new Error('Bot not found')
-    await api.bots.updateSettings(botId.value, { advanced_stats: !bot.value.advancedStats })
+    await api.bots.updateSettings(botId.value, !bot.value.advancedStats)
 
     const botIndex = store.userBots.findIndex((b) => b.botId === botId.value)
     if (botIndex >= 0) store.userBots[botIndex]!.advancedStats = !bot.value.advancedStats

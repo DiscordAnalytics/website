@@ -78,8 +78,8 @@ export default class BotsResource {
     return this.api.request('DELETE', `/bots/${botId}/team`, { userId: teammateId })
   }
 
-  updateSettings(botId: string, settings: { advanced_stats: boolean }): Promise<void> {
-    return this.api.request('PATCH', `/bots/${botId}/settings`, { settings })
+  updateSettings(botId: string, advancedStats: boolean): Promise<void> {
+    return this.api.request('PATCH', `/bots/${botId}/settings`, { advancedStats })
   }
 
   getAchievements(botId?: string): Promise<Achievement[]> {
