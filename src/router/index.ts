@@ -21,6 +21,10 @@ const router = createRouter({
       component: () => import('@/views/blog/ArticlesReader.vue'),
     },
     {
+      path: '/invitation/:id',
+      component: () => import('@/views/TeamInvitationView.vue'),
+    },
+    {
       path: '/community/achievements',
       component: () => import('@/views/AchievementsStore.vue'),
     },
@@ -67,6 +71,10 @@ const router = createRouter({
       redirect(to) {
         return `/dash/bots/${to.params.id}/settings/general`
       },
+    },
+    {
+      path: '/dash/bots/:id/settings/general',
+      component: () => import('@/views/dash/bots/settings/BotGeneralSettings.vue'),
     },
     {
       path: '/dash/bots/:id/settings/danger-zone',

@@ -76,3 +76,7 @@ export const editAchievementFormSchema = z.object({
 export const copyAchievementFormSchema = z.object({
   botId: z.string('You need to select a bot!'),
 })
+
+export const addTeammateFormSchema = z.object({
+  userId: z.string().refine(isValidSnowflake, 'Invalid Discord ID'),
+})

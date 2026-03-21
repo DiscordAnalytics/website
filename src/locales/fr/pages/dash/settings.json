@@ -1,4 +1,53 @@
 {
+  "general": {
+    "token": {
+      "title": "Clé d'API du Bot",
+      "description": "Votre clé d'API permet à votre bot de communiquer avec notre API. NE LE PARTAGEZ AVEC PERSONNE !",
+      "showToken": "Afficher la clé",
+      "refreshButton": "Régénérer la clé",
+      "toast": "Le clé a été régénérée avec succès."
+    },
+    "team": {
+      "title": "Accès aux statistiques",
+      "description": "Choisissez qui peut voir les statistiques de {username}.",
+      "inviteButton": "Inviter un coéquipier",
+      "toast": {
+        "urlCopied": "URL copiée dans le presse-papiers"
+      },
+      "dialog": {
+        "title": "Inviter un coéquipier",
+        "description": "Invitez un nouveau coéquipier à accéder aux statistiques de {username}. Cet utilisateur ne pourra ni voir ni modifier les paramètres.",
+        "userIdLabel": "ID de l'utilisateur",
+        "submitButton": "Inviter le coéquipier"
+      },
+      "invited": {
+        "title": "Coéquipier invité",
+        "emailSent": "Nous avons envoyé un e-mail à {username}. L'invitation expirera dans 7 jours.",
+        "emailFailed": "Nous n'avons pas pu envoyer d'invitation à {userId}. Vous devrez envoyer le lien d'invitation vous-même.",
+        "copyLabel": "Copier",
+        "close": "Fermer"
+      },
+      "table": {
+        "user": "Utilisateur",
+        "actions": "Actions",
+        "pendingInvitation": "Invitation en attente",
+        "copyLink": "Copier le lien d'invitation"
+      },
+      "empty": {
+        "title": "Aucun coéquipier",
+        "description": "Personne à part vous n'a accès aux statistiques de {username}. Invitez un coéquipier pour commencer."
+      }
+    },
+    "advancedStats": {
+      "title": "Statistiques avancées",
+      "description": "Activer les statistiques avancées pour {username}. L'activation des statistiques avancées entraînera la collecte de données non anonymes sur les serveurs et/ou les utilisateurs de votre bot. CETTE ACTION EST IRRÉVERSIBLE !",
+      "toasts": {
+        "enabled": "Statistiques avancées activées avec succès",
+        "disabled": "Statistiques avancées désactivées avec succès",
+        "disabledDescription": "Les statistiques collectées à ce jour ne seront pas supprimées de notre base de données"
+      }
+    }
+  },
   "dangerZone": {
     "confirm": "Êtes-vous sûr ?",
     "cancel": "Annuler",

@@ -1,4 +1,53 @@
 {
+  "general": {
+    "token": {
+      "title": "Bot API Key",
+      "description": "Your API key allow your bot to communicate with our API. DON'T SHARE IT WITH ANYONE!",
+      "showToken": "Show key",
+      "refreshButton": "Refresh key",
+      "toast": "API Key refreshed successfully."
+    },
+    "team": {
+      "title": "Stats Access",
+      "description": "Choose who can see {username}'s stats.",
+      "inviteButton": "Invite a teammate",
+      "toast": {
+        "urlCopied": "URL copied to clipboard"
+      },
+      "dialog": {
+        "title": "Invite a teammate",
+        "description": "Invite a new teammate to access {username}'s stats. This user won't be able to see or update the settings.",
+        "userIdLabel": "User ID",
+        "submitButton": "Invite teammate"
+      },
+      "invited": {
+        "title": "Teammate invited",
+        "emailSent": "We sent an email to {username}. The invitation will expire in 7 days.",
+        "emailFailed": "We were not able to send an invitation to {userId}. You'll have to send the invitation link by yourself.",
+        "copyLabel": "Copy",
+        "close": "Close"
+      },
+      "table": {
+        "user": "User",
+        "actions": "Actions",
+        "pendingInvitation": "Invitation pending",
+        "copyLink": "Copy invitation link"
+      },
+      "empty": {
+        "title": "No teammate",
+        "description": "No one except you has access to {username}'s stats. Invite a teammate to get started."
+      }
+    },
+    "advancedStats": {
+      "title": "Advanced Stats",
+      "description": "Enable advanced stats on {username}. Activating advanced statistics will result in the collection of non-anonymous data about your bot's servers and/or users. THIS ACTION IS IRREVERSIBLE!",
+      "toasts": {
+        "enabled": "Advanced Stats successfully enabled",
+        "disabled": "Advanced stats successfully disabled",
+        "disabledDescription": "Stats collected to date won't be deleted from our database"
+      }
+    }
+  },
   "dangerZone": {
     "confirm": "Are you absolutely sure?",
     "cancel": "Cancel",

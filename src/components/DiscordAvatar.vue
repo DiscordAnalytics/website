@@ -9,7 +9,7 @@ interface Props {
   avatar?: string
   alt: string
   avatarDecoration?: string
-  size?: 'sm' | 'md' | 'lg' | 'xl'
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '3xl'
   animation?: 'window-focus' | 'hover' | 'disabled'
   isGuildIcon?: boolean
 }

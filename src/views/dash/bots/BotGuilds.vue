@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, type Ref, watch } from 'vue'
-import { useBotStats, useLocale } from '@/composables'
+import { useBot, useBotStats, useLocale } from '@/composables'
 import { useRouteParams } from '@vueuse/router'
 import { calculateGuilds } from '@/utils/statsManager.ts'
 import { useStore } from '@/stores'
@@ -14,6 +14,7 @@ import { TableHead, TableRow } from '@/components/ui/table'
 
 const botId = useRouteParams<string>('id')
 const { stats, fetch: fetchStats } = useBotStats(botId)
+const { bot } = useBot(botId)
 const { statsRange: a } = storeToRefs(useStore())
 const statsRange = a as Ref<DateRange>
 const { t } = useI18n()
@@ -99,6 +100,7 @@ watch(statsRange, async (value, oldValue) => {
 <template>
   <StatsPage :charts="charts" :is-loading="isLoading">
     <TableChart
+      v-if="bot && bot.advancedStats"
       :title="$t('pages.dash.stats.charts.guilds.biggestGuildsRank.title')"
       :is-loading="isLoading"
       :data="guildsData ? guildsData.biggestGuildsRank : []"
@@ -113,6 +115,7 @@ watch(statsRange, async (value, oldValue) => {
       </template>
     </TableChart>
     <TableChart
+      v-if="bot && bot.advancedStats"
       :title="$t('pages.dash.stats.charts.guilds.mostActiveGuildsRank.title')"
       :is-loading="isLoading"
       :data="guildsData ? guildsData.mostActiveGuildsRank : []"

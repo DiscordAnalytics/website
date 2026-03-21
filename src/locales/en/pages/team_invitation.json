@@ -1,0 +1,16 @@
+{
+  "toast": {
+    "accepted": "Invitation accepted!",
+    "declined": "Invitation declined!"
+  },
+  "title": "You have been invited to join {username}'s team",
+  "message": "{owner} invited you to access {bot}'s stats.",
+  "logged_out": "You must be logged in to accept or decline the invitation.",
+  "login": "Login",
+  "accept": "Accept",
+  "decline": "Decline",
+  "accepted": "You have accepted {username}'s invitation!",
+  "declined": "You have declined {username}'s invitation.",
+  "bot_dashboard": "Go to {bot}'s dashboard",
+  "dashboard": "Go to dashboard"
+}
