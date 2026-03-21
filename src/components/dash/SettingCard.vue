@@ -33,7 +33,7 @@ withDefaults(
       )
     "
   >
-    <div class="flex flex-row gap-4">
+    <div class="flex flex-row gap-4 w-full">
       <ItemMedia>
         <component
           :is="$props.icon"
