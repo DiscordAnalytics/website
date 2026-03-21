@@ -1,0 +1,23 @@
+{
+  "dangerZone": {
+    "confirm": "Are you absolutely sure?",
+    "cancel": "Cancel",
+    "resetAchievements": {
+      "title": "Reset Achievements",
+      "description": "Delete all current achievements and restore the default achievements. ALL CURRENT PROGRESS WILL BE LOST",
+      "button": "Reset achievements",
+      "toast": "Achievements reset successfully.",
+      "dialog": {
+        "description": "You are about to reset all achievements of {username} and their current progress. This action cannot be undone and will immediately take effect!"
+      }
+    },
+    "deleteBot": {
+      "title": "Delete bot",
+      "description": "Permanently delete {username} and all associated data.",
+      "button": "Delete bot",
+      "dialog": {
+        "description": "You are about to delete {username} and all associated data such as stats, votes and bot information. This action cannot be undone and will immediately take effect!"
+      }
+    }
+  }
+}

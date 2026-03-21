@@ -1,0 +1,23 @@
+{
+  "dangerZone": {
+    "confirm": "Êtes-vous sûr ?",
+    "cancel": "Annuler",
+    "resetAchievements": {
+      "title": "Réinitialiser les succès",
+      "description": "Supprimer tous les succès actuels et restaurer les succès par défaut. TOUTE LA PROGRESSION ACTUELLE SERA PERDUE",
+      "button": "Réinitialiser les succès",
+      "toast": "Les succès ont bien été réinitialisés",
+      "dialog": {
+        "description": "Vous vous apprêtez à réinitialiser les succès de {username} ainsi que la progression actuelle. Cette action est irréversible et prendra effet immédiatement !"
+      }
+    },
+    "deleteBot": {
+      "title": "Supprimer le bot",
+      "description": "Supprimer de manière définitive {username} ainsi que toutes les données qui lui sont associées.",
+      "button": "Supprimer le bot",
+      "dialog": {
+        "description": "Vous vous apprêtez à supprimer {username} ainsi que toutes les données qui lui sont associées telles que les statistiques, les votes et les informations de son compte. Cette action est irréversible et prendra effet immédiatement !"
+      }
+    }
+  }
+}

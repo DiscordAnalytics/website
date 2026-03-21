@@ -20,6 +20,9 @@ import { Spinner } from '@/components/ui/spinner'
 import { ref } from 'vue'
 import { toast } from 'vue-sonner'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const router = useRouter()
 const botId = useRouteParams<string>('id')
@@ -32,7 +35,7 @@ async function onAchievementsReset() {
   isLoading.value = true
   await resetAchievements()
     .then(async () => {
-      toast.success('Achievements reset successfully.')
+      toast.success(t('pages.dash.settings.dangerZone.resetAchievements.toast'))
     })
     .catch((err) => {
       toast.error(err.message)
@@ -57,26 +60,33 @@ async function onDelete() {
   <BotDashLayout>
     <main v-if="bot" class="grid grid-cols-1 gap-4 my-8">
       <SettingCard
-        title="Reset Achievements"
+        :title="$t('pages.dash.settings.dangerZone.resetAchievements.title')"
         :icon="TrophyIcon"
-        description="Delete all current achievements and restore the default achievements. ALL CURRENT PROGRESS WILL BE LOST"
+        :description="$t('pages.dash.settings.dangerZone.resetAchievements.description')"
       >
         <template #actions>
           <AlertDialog>
             <AlertDialogTrigger as-child>
-              <Button variant="outline" class="w-full md:w-fit"> Reset Achievements </Button>
+              <Button variant="outline" class="w-full md:w-fit">
+                {{ $t('pages.dash.settings.dangerZone.resetAchievements.button') }}
+              </Button>
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
-                <AlertDialogTitle> Are you absolutely sure? </AlertDialogTitle>
+                <AlertDialogTitle>
+                  {{ $t('pages.dash.settings.dangerZone.confirm') }}
+                </AlertDialogTitle>
                 <AlertDialogDescription>
-                  You are about to reset all achievements of {{ bot.username }} and their current
-                  progress. This action cannot be undone and will immediately take effect!
+                  {{
+                    $t('pages.dash.settings.dangerZone.resetAchievements.dialog.description', {
+                      username: bot.username,
+                    })
+                  }}
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
                 <AlertDialogCancel>
-                  {{ $t('pages.dash.stats.charts.customEvents.edit.deleteDialog.cancel') }}
+                  {{ $t('pages.dash.settings.dangerZone.cancel') }}
                 </AlertDialogCancel>
                 <AlertDialogAction
                   class="bg-destructive text-white hover:bg-destructive/90"
@@ -84,7 +94,7 @@ async function onDelete() {
                   @click="onAchievementsReset"
                 >
                   <Spinner v-if="isLoading" />
-                  Reset achievements
+                  {{ $t('pages.dash.settings.dangerZone.resetAchievements.button') }}
                 </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
@@ -93,28 +103,36 @@ async function onDelete() {
       </SettingCard>
 
       <SettingCard
-        title="Delete bot"
+        :title="$t('pages.dash.settings.dangerZone.deleteBot.title')"
         :icon="TrashIcon"
-        :description="`Permanently delete ${bot.username} and all associated data.`"
+        :description="
+          $t('pages.dash.settings.dangerZone.deleteBot.description', { username: bot.username })
+        "
         variant="destructive"
       >
         <template #actions>
           <AlertDialog>
             <AlertDialogTrigger as-child>
-              <Button variant="destructive" class="w-full md:w-fit"> Delete bot </Button>
+              <Button variant="destructive" class="w-full md:w-fit">
+                {{ $t('pages.dash.settings.dangerZone.deleteBot.button') }}
+              </Button>
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
-                <AlertDialogTitle> Are you absolutely sure? </AlertDialogTitle>
+                <AlertDialogTitle>
+                  {{ $t('pages.dash.settings.dangerZone.confirm') }}
+                </AlertDialogTitle>
                 <AlertDialogDescription>
-                  You are about to delete {{ bot.username }} and all associated data such as stats,
-                  votes and bot information. This action cannot be undone and will immediately take
-                  effect!
+                  {{
+                    $t('pages.dash.settings.dangerZone.deleteBot.dialog.description', {
+                      username: bot.username,
+                    })
+                  }}
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
                 <AlertDialogCancel>
-                  {{ $t('pages.dash.stats.charts.customEvents.edit.deleteDialog.cancel') }}
+                  {{ $t('pages.dash.settings.dangerZone.cancel') }}
                 </AlertDialogCancel>
                 <AlertDialogAction
                   class="bg-destructive text-white hover:bg-destructive/90"
@@ -122,7 +140,7 @@ async function onDelete() {
                   @click="onDelete"
                 >
                   <Spinner v-if="isLoading" />
-                  Delete
+                  {{ $t('pages.dash.settings.dangerZone.deleteBot.button') }}
                 </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
