@@ -9,6 +9,8 @@ import {
   ItemTitle,
 } from '@/components/ui/item'
 import { cn } from '@/lib/utils.ts'
+import { Button } from '@/components/ui/button'
+import { ExternalLinkIcon } from 'lucide-vue-next'
 
 withDefaults(
   defineProps<{
@@ -16,6 +18,7 @@ withDefaults(
     title: string
     description: string
     variant?: 'outline' | 'destructive'
+    learnMoreLink?: string
   }>(),
   {
     variant: 'outline',
@@ -41,8 +44,18 @@ withDefaults(
         />
       </ItemMedia>
       <ItemContent>
-        <ItemTitle class="text-xl">{{ $props.title }}</ItemTitle>
-        <ItemDescription class="line-clamp-none">{{ $props.description }}</ItemDescription>
+        <ItemTitle class="text-xl">
+          {{ $props.title }}
+        </ItemTitle>
+        <ItemDescription class="line-clamp-none">
+          {{ $props.description }}
+          <a v-if="$props.learnMoreLink" :href="$props.learnMoreLink" target="_blank">
+            <Button variant="link">
+              Learn more
+              <ExternalLinkIcon />
+            </Button>
+          </a>
+        </ItemDescription>
 
         <slot name="content" />
       </ItemContent>
