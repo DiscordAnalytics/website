@@ -61,24 +61,16 @@ export default class BotsResource {
     return this.api.request('DELETE', `/bots/${botId}/events/${event_key}`)
   }
 
-  getTeammates(botId: string): Promise<{ team: Teammate[] }> {
+  getTeammates(botId: string): Promise<Teammate[]> {
     return this.api.request('GET', `/bots/${botId}/team`)
   }
 
-  addTeammate(
-    botId: string,
-    teammateId: string,
-    sendMethod?: 'mail',
-  ): Promise<{ invitationId: string; message: string }> {
-    return this.api.request(
-      'POST',
-      `/bots/${botId}/team${sendMethod ? `send_method=${sendMethod}` : ''}`,
-      { userId: teammateId },
-    )
+  addTeammate(botId: string, teammateId: string): Promise<{ sent: boolean; details: Teammate }> {
+    return this.api.request('POST', `/bots/${botId}/team`, { userId: teammateId })
   }
 
   deleteTeammate(botId: string, teammateId: string): Promise<void> {
-    return this.api.request('POST', `/bots/${botId}/team`, { userId: teammateId })
+    return this.api.request('DELETE', `/bots/${botId}/team`, { userId: teammateId })
   }
 
   updateSettings(botId: string, settings: { advanced_stats: boolean }): Promise<void> {
