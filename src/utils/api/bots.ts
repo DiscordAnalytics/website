@@ -11,12 +11,17 @@ import type {
 import type { DateRange } from 'reka-ui'
 import { dateToUTCDateTime } from '@/utils/dateTime.ts'
 import InvitationsResource from '@/utils/api/invitations.ts'
+import VotesProviderResource from '@/utils/api/votes.ts'
 
 export default class BotsResource {
   constructor(private readonly api: APIClient) {}
 
   get invitations(): InvitationsResource {
     return new InvitationsResource(this.api)
+  }
+
+  get votes(): VotesProviderResource {
+    return new VotesProviderResource(this.api)
   }
 
   get(botId: string): Promise<Bot> {
