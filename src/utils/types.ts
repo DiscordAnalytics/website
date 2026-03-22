@@ -300,8 +300,8 @@ export interface AppMonetizationData {
 }
 
 export interface StatsReport {
-  bot_id: string
-  user_id: string
+  botId: string
+  userId: string
   frequency: 'weekly' | 'monthly'
 }
 

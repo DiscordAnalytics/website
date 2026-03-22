@@ -77,6 +77,10 @@ const router = createRouter({
       component: () => import('@/views/dash/bots/settings/BotGeneralSettings.vue'),
     },
     {
+      path: '/dash/bots/:id/settings/reports',
+      component: () => import('@/views/dash/bots/settings/BotReportsSettings.vue'),
+    },
+    {
       path: '/dash/bots/:id/settings/votes-configuration',
       component: () => import('@/views/dash/bots/settings/BotVotesSettings.vue'),
     },
