@@ -88,6 +88,10 @@ const router = createRouter({
       path: '/dash/bots/:id/settings/danger-zone',
       component: () => import('@/views/dash/bots/settings/BotDangerZone.vue'),
     },
+    {
+      path: '/dash/account',
+      component: () => import('@/views/dash/account/AccountInfos.vue'),
+    },
   ],
 })
 
