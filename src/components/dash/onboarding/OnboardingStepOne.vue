@@ -42,7 +42,7 @@ const { userInfos, ownedBots } = useCurrentUser()
         href="https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID"
         target="_blank"
       >
-        <Button variant="link"> {{ $t('pages.dash.onboarding.stepOne.whereToGetId') }} </Button>
+        <Button variant="link">{{ $t('pages.dash.onboarding.stepOne.whereToGetId') }}</Button>
       </a>
     </p>
     <form id="addBotForm" @submit="(e) => $emit('submit', e)" class="max-w-100 mx-auto mt-8">
@@ -123,7 +123,7 @@ const { userInfos, ownedBots } = useCurrentUser()
       </EmptyDescription>
       <EmptyContent>
         <RouterLink to="/support">
-          <Button> {{ $t('pages.dash.onboarding.botLimitReached.joinSupport') }} </Button>
+          <Button>{{ $t('pages.dash.onboarding.botLimitReached.joinSupport') }}</Button>
         </RouterLink>
       </EmptyContent>
     </EmptyHeader>

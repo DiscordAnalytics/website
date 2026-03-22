@@ -30,7 +30,7 @@ const { bot } = useBot(botId)
       </EmptyDescription>
       <EmptyContent>
         <RouterLink :to="`/dash/bots/${route.query.botId}`">
-          <Button> {{ $t('pages.dash.onboarding.stepFour.goToDashboard') }} </Button>
+          <Button>{{ $t('pages.dash.onboarding.stepFour.goToDashboard') }}</Button>
         </RouterLink>
       </EmptyContent>
     </EmptyHeader>

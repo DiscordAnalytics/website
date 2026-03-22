@@ -111,7 +111,8 @@ function handleCarrotClick() {
               class="h-9"
               @click="mode = 'auto'"
             >
-              <MonitorIcon class="h-4 w-4" />{{ $t('components.navbar.customize.theme.system') }}
+              <MonitorIcon class="h-4 w-4" />
+              {{ $t('components.navbar.customize.theme.system') }}
             </Button>
           </ButtonGroup>
         </div>

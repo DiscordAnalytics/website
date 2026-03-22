@@ -26,7 +26,7 @@ export default function useBotEmailReports(botId: Ref<string>) {
     await api.bots.deleteEmailReport(botId.value, frequency)
 
     const list = store.botEmailReports[botId.value] ?? []
-    const eventIndex = list.findIndex((r) => r.user_id === api.userId && r.frequency === frequency)
+    const eventIndex = list.findIndex((r) => r.userId === api.userId && r.frequency === frequency)
 
     if (eventIndex >= 0) list.splice(eventIndex, 1)
   }
