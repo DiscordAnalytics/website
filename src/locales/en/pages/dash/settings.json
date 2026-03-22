@@ -48,6 +48,42 @@
       }
     }
   },
+  "votes": {
+    "webhook": {
+      "title": "Votes Webhook",
+      "description": "Receive an alert when someone votes for {username}. The alert will be universal for all compatible sites you configure.",
+      "sendTest": "Send test",
+      "save": "Save"
+    },
+    "providers": {
+      "title": "Votes Providers",
+      "description": "Configure votes providers to receive votes data from them.",
+      "missing": {
+        "title": "Missing providers",
+        "description": "Your bot does not seems to be registered on the following votes providers. Please keep in mind that you have to register your bot on these websites in order to receive votes from them:"
+      }
+    },
+    "provider": {
+      "description": "Configure incoming votes from {provider}",
+      "tokenPlaceholder": "REALLY SECRET TOKEN",
+      "toast": {
+        "copied": "Token copied to clipboard",
+        "regenerated": "Token successfully regenerated."
+      },
+      "topgg": {
+        "installButton": "Install Integration",
+        "active": "Integration is active",
+        "manualConfig": "Manual configuration",
+        "manualConfigDialog": {
+          "title": "Manual configuration",
+          "description": "Paste the webhook secret provided by Top.gg in your bot's dashboard integrations page.",
+          "tokenLabel": "Webhook Secret",
+          "tokenDescription": "You can find this token on Top.gg under your bot's dashboard > \"Integrations & API\".",
+          "submitButton": "Save"
+        }
+      }
+    }
+  },
   "dangerZone": {
     "confirm": "Are you absolutely sure?",
     "cancel": "Cancel",

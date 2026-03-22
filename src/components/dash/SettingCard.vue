@@ -33,6 +33,7 @@ withDefaults(
       cn(
         'flex-col md:flex-row items-start md:items-center justify-between flex-nowrap',
         $props.variant === 'destructive' && 'border-destructive',
+        $attrs.class as string,
       )
     "
   >

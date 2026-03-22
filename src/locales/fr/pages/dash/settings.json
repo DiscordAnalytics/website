@@ -5,7 +5,7 @@
       "description": "Votre clé d'API permet à votre bot de communiquer avec notre API. NE LE PARTAGEZ AVEC PERSONNE !",
       "showToken": "Afficher la clé",
       "refreshButton": "Régénérer la clé",
-      "toast": "Le clé a été régénérée avec succès."
+      "toast": "La clé a été régénérée avec succès."
     },
     "team": {
       "title": "Accès aux statistiques",
@@ -45,6 +45,42 @@
         "enabled": "Statistiques avancées activées avec succès",
         "disabled": "Statistiques avancées désactivées avec succès",
         "disabledDescription": "Les statistiques collectées à ce jour ne seront pas supprimées de notre base de données"
+      }
+    }
+  },
+  "votes": {
+    "webhook": {
+      "title": "Webhook des votes",
+      "description": "Recevez une alerte lorsque quelqu'un vote pour {username}. L'alerte sera universelle pour tous les sites compatibles que vous configurez.",
+      "sendTest": "Envoyer un test",
+      "save": "Enregistrer"
+    },
+    "providers": {
+      "title": "Fournisseurs de votes",
+      "description": "Configurez les fournisseurs de votes pour recevoir leurs données de vote.",
+      "missing": {
+        "title": "Fournisseurs manquants",
+        "description": "Votre bot ne semble pas être enregistré sur les fournisseurs de votes suivants. Veuillez noter que vous devez enregistrer votre bot sur ces sites afin de recevoir leurs votes :"
+      }
+    },
+    "provider": {
+      "description": "Configurer les votes entrants de {provider}",
+      "tokenPlaceholder": "TOKEN TRÈS SECRET",
+      "toast": {
+        "copied": "Token copié dans le presse-papiers",
+        "regenerated": "Token régénéré avec succès."
+      },
+      "topgg": {
+        "installButton": "Installer l'intégration",
+        "active": "L'intégration est active",
+        "manualConfig": "Configuration manuelle",
+        "manualConfigDialog": {
+          "title": "Configuration manuelle",
+          "description": "Collez le secret du webhook fourni par Top.gg.",
+          "tokenLabel": "Secret du webhook",
+          "tokenDescription": "Vous pouvez trouver ce jeton sur Top.gg dans le tableau de bord de votre bot > \"Integrations & API\".",
+          "submitButton": "Enregistrer"
+        }
       }
     }
   },

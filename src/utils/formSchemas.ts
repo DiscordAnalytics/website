@@ -80,3 +80,10 @@ export const copyAchievementFormSchema = z.object({
 export const addTeammateFormSchema = z.object({
   userId: z.string().refine(isValidSnowflake, 'Invalid Discord ID'),
 })
+
+export const topggTokenUpdateFormSchema = z.object({
+  webhookSecret: z
+    .string()
+    .optional()
+    .refine((value) => !value || new RegExp(/whs_\w/g).test(value), 'Invalid webhook secret!'),
+})
