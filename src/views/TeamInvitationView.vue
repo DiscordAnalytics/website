@@ -137,7 +137,7 @@ onBeforeMount(async () => {
         <EmptyMedia variant="icon">
           <FrownIcon />
         </EmptyMedia>
-        <EmptyTitle>An error occured!</EmptyTitle>
+        <EmptyTitle>{{ $t('pages.team_invitation.error') }}</EmptyTitle>
         <EmptyDescription>{{ error }}</EmptyDescription>
       </EmptyHeader>
     </Empty>

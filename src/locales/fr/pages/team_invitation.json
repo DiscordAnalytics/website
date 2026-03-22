@@ -1,0 +1,17 @@
+{
+  "toast": {
+    "accepted": "Invitation acceptée !",
+    "declined": "Invitation refusée !"
+  },
+  "title": "Vous avez été invité(e) à rejoindre l'équipe de {username}",
+  "message": "{owner} vous a invité(e) à accéder aux statistiques de {bot}",
+  "logged_out": "Vous devez êtres connecté(e) pour accepter ou refuser l'invitation.",
+  "login": "Se Connecter",
+  "accept": "Accepter",
+  "decline": "Refuser",
+  "accepted": "Vous avez accepté l'invitation de {username}",
+  "declined": "Vous avez refusé l'invitation de {username}",
+  "bot_dashboard": "Aller aux stats de {bot}",
+  "dashboard": "Aller au tableau de bord",
+  "error": "Une erreur est survenue !"
+}
