@@ -42,7 +42,7 @@ const { handleSubmit } = useForm({
 const route = useRoute()
 const botId = useRouteQuery<string | null>('botId')
 const { add: addBot } = useAddBot()
-const { userInfos, ownedBots } = useCurrentUser()
+const { userInfos } = useCurrentUser()
 const breakpoints = useBreakpoints(breakpointsTailwind)
 
 const largerThanMd = breakpoints.greater('md')
