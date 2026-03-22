@@ -4,9 +4,30 @@ import type { VotesProvider } from '@/utils/types.ts'
 export default class VotesProviderResource {
   constructor(readonly api: APIClient) {}
 
-  update(botId: string, provider: VotesProvider, token: string): Promise<void> {
-    //return this.api.request('PATCH', `/bots/${botId}/providers/${provider}`, { token })
-    // TODO: Implement vote providers
-    throw new Error('Not implemented')
+  update(botId: string, provider: VotesProvider, webhookSecret: string): Promise<void> {
+    return this.api.request(
+      'POST',
+      `/integrations/${provider}`,
+      provider === 'topgg'
+        ? {
+            data: {
+              project: {
+                platform: 'discord',
+                platform_id: botId,
+                type: 'bot',
+              },
+              user: {
+                platform_id: this.api.userId,
+              },
+              webhook_secret: webhookSecret,
+            },
+            type: 'integration.create',
+          }
+        : {
+            botId,
+            userId: this.api.userId!,
+            webhookSecret,
+          },
+    )
   }
 }
