@@ -48,7 +48,8 @@
   "account": {
     "links": {
       "dashboard": "Dashboard",
-      "admin": "Admin Panel"
+      "admin": "Admin Panel",
+      "account": "Account Settings"
     },
     "login": "Login",
     "logout": "Logout"

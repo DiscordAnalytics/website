@@ -48,7 +48,8 @@
   "account": {
     "links": {
       "dashboard": "Tableau de bord",
-      "admin": "Panneau d'administration"
+      "admin": "Panneau d'administration",
+      "account": "Paramètres du compte"
     },
     "login": "Connexion",
     "logout": "Déconnexion"
