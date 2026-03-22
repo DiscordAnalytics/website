@@ -12,6 +12,7 @@ export default function useCurrentUser() {
   const userInfos = computed(() => store.userInfos)
   const userBots = computed(() => store.userBots)
   const ownedBots = computed(() => store.userBots.filter((bot) => bot.ownerId === api.userId))
+  const notOwnedBots = computed(() => store.userBots.filter((bot) => bot.ownerId !== api.userId))
 
   async function fetch() {
     if (!api.userId) throw new Error('Not Authenticated')
@@ -29,5 +30,5 @@ export default function useCurrentUser() {
     }
   }
 
-  return { userInfos, userBots, ownedBots, fetch, logout }
+  return { userInfos, userBots, ownedBots, notOwnedBots, fetch, logout }
 }

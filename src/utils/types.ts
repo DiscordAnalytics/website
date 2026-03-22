@@ -67,6 +67,9 @@ export interface Bot {
   team: string[]
   lastPush?: string
   advancedStats: boolean
+  goalsLimit: number
+  customEventsLimit: number
+  teammatesLimit: number
   webhooksConfig: {
     webhookUrl?: string
   } & {

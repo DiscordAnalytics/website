@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import SidebarLayout from '@/components/layouts/SidebarLayout.vue'
 import { computed } from 'vue'
-import { Bell, CreditCard, IdCard, MonitorSmartphone, TriangleAlert } from 'lucide-vue-next'
+import { Bell, IdCard, MonitorSmartphone, TriangleAlert } from 'lucide-vue-next'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 
 const sidebarItems = computed(() => [
@@ -9,7 +9,7 @@ const sidebarItems = computed(() => [
     title: 'Account',
     children: [
       {
-        title: 'Account Informations',
+        title: 'Your Account',
         icon: IdCard,
         to: `/dash/account`,
       },
@@ -17,11 +17,6 @@ const sidebarItems = computed(() => [
         title: 'Invitations',
         icon: Bell,
         to: `/dash/account/invitations`,
-      },
-      {
-        title: 'Usage',
-        icon: CreditCard,
-        to: `/dash/account/usage`,
       },
     ],
   },
