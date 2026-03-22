@@ -15,10 +15,12 @@ const webhookUrl = ref<string>(bot.value?.webhooksConfig.webhookUrl ?? '')
 const isLoading = ref<boolean>(false)
 
 function sendTest() {
+  // TODO: Implement vote webhooks
   throw new Error('Not implemented')
 }
 
 function update() {
+  // TODO: Implement vote webhooks
   throw new Error('Not implemented')
 }
 </script>

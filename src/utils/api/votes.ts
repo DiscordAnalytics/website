@@ -6,6 +6,7 @@ export default class VotesProviderResource {
 
   update(botId: string, provider: VotesProvider, token: string): Promise<void> {
     //return this.api.request('PATCH', `/bots/${botId}/providers/${provider}`, { token })
+    // TODO: Implement vote providers
     throw new Error('Not implemented')
   }
 }
