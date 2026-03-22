@@ -78,27 +78,27 @@ const sidebarItems = computed(() => [
       {
         title: t('pages.dash.layout.sidebar.links.interactions'),
         icon: Pointer,
-        to: `/dash/bots/${currentBotId}/interactions${statsRangeQuery.value}`,
+        to: `/dash/bots/${currentBotId.value}/interactions${statsRangeQuery.value}`,
       },
       {
         title: t('pages.dash.layout.sidebar.links.guilds'),
         icon: Server,
-        to: `/dash/bots/${currentBotId}/guilds${statsRangeQuery.value}`,
+        to: `/dash/bots/${currentBotId.value}/guilds${statsRangeQuery.value}`,
       },
       {
         title: t('pages.dash.layout.sidebar.links.users'),
         icon: Users,
-        to: `/dash/bots/${currentBotId}/users${statsRangeQuery.value}`,
+        to: `/dash/bots/${currentBotId.value}/users${statsRangeQuery.value}`,
       },
       {
         title: t('pages.dash.layout.sidebar.links.votes'),
         icon: Vote,
-        to: `/dash/bots/${currentBotId}/votes`,
+        to: `/dash/bots/${currentBotId.value}/votes`,
       },
       {
         title: t('pages.dash.layout.sidebar.links.customEvents'),
         icon: ChartNoAxesColumn,
-        to: `/dash/bots/${currentBotId}/custom-events${statsRangeQuery.value}`,
+        to: `/dash/bots/${currentBotId.value}/custom-events${statsRangeQuery.value}`,
       },
     ],
   },
@@ -108,7 +108,7 @@ const sidebarItems = computed(() => [
       {
         title: t('pages.dash.layout.sidebar.links.myAchievements'),
         icon: Trophy,
-        to: `/dash/bots/${currentBotId}/achievements`,
+        to: `/dash/bots/${currentBotId.value}/achievements`,
       },
       {
         title: t('pages.dash.layout.sidebar.links.communityStore'),
@@ -125,30 +125,30 @@ const sidebarItems = computed(() => [
             {
               title: t('pages.dash.layout.sidebar.links.general'),
               icon: Settings,
-              to: `/dash/bots/${currentBotId}/settings/general`,
+              to: `/dash/bots/${currentBotId.value}/settings/general`,
             },
             {
               title: t('pages.dash.layout.sidebar.links.emailReports'),
               icon: Mail,
-              to: `/dash/bots/${currentBotId}/settings/reports`,
+              to: `/dash/bots/${currentBotId.value}/settings/reports`,
             },
             {
               title: t('pages.dash.layout.sidebar.links.votesConf'),
               icon: Webhook,
-              to: `/dash/bots/${currentBotId}/settings/votes-configuration`,
+              to: `/dash/bots/${currentBotId.value}/settings/votes-configuration`,
               tag: 'NEW',
             },
             {
               title: t('pages.dash.layout.sidebar.links.dangerZone'),
               icon: TriangleAlert,
-              to: `/dash/bots/${currentBotId}/settings/danger-zone`,
+              to: `/dash/bots/${currentBotId.value}/settings/danger-zone`,
             },
           ]
         : [
             {
               title: t('pages.dash.layout.sidebar.links.emailReports'),
               icon: Mail,
-              to: `/dash/bots/${currentBotId}/settings/reports`,
+              to: `/dash/bots/${currentBotId.value}/settings/reports`,
             },
           ],
   },
@@ -258,32 +258,36 @@ watch(userBots, async () => {
     </template>
 
     <template #inset>
-      <header class="flex md:items-center justify-between">
+      <header
+        class="flex md:items-center justify-between sticky top-0 bg-background w-full z-50 p-4"
+      >
         <SidebarTrigger />
         <slot name="header" />
       </header>
-      <slot
-        v-if="
-          (currentBot.framework && currentBot.language && currentBot.lastPush) ||
-          route.path.includes('/settings')
-        "
-      />
-      <Empty v-else class="h-full">
-        <EmptyHeader>
-          <EmptyMedia variant="icon">
-            <TriangleAlert />
-          </EmptyMedia>
-          <EmptyTitle>{{ $t('pages.dash.layout.notConfigured.title') }}</EmptyTitle>
-          <EmptyDescription>
-            {{ $t('pages.dash.layout.notConfigured.description') }}
-          </EmptyDescription>
-        </EmptyHeader>
-        <EmptyContent>
-          <RouterLink :to="`/dash/onboarding?botId=${currentBotId}`">
-            <Button>{{ $t('pages.dash.layout.notConfigured.button') }}</Button>
-          </RouterLink>
-        </EmptyContent>
-      </Empty>
+      <main class="px-4">
+        <slot
+          v-if="
+            (currentBot.framework && currentBot.language && currentBot.lastPush) ||
+            route.path.includes('/settings')
+          "
+        />
+        <Empty v-else class="h-full">
+          <EmptyHeader>
+            <EmptyMedia variant="icon">
+              <TriangleAlert />
+            </EmptyMedia>
+            <EmptyTitle>{{ $t('pages.dash.layout.notConfigured.title') }}</EmptyTitle>
+            <EmptyDescription>
+              {{ $t('pages.dash.layout.notConfigured.description') }}
+            </EmptyDescription>
+          </EmptyHeader>
+          <EmptyContent>
+            <RouterLink :to="`/dash/onboarding?botId=${currentBotId}`">
+              <Button>{{ $t('pages.dash.layout.notConfigured.button') }}</Button>
+            </RouterLink>
+          </EmptyContent>
+        </Empty>
+      </main>
     </template>
   </SidebarLayout>
 </template>

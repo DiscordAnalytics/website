@@ -46,11 +46,15 @@ const sidebarItems = computed(() => [
 <template>
   <SidebarLayout :items="sidebarItems">
     <template #inset>
-      <header class="flex md:items-center justify-between">
+      <header
+        class="flex md:items-center justify-between sticky top-0 bg-background w-full z-50 p-4"
+      >
         <SidebarTrigger />
         <slot name="header" />
       </header>
-      <slot />
+      <main class="px-4">
+        <slot />
+      </main>
     </template>
   </SidebarLayout>
 </template>

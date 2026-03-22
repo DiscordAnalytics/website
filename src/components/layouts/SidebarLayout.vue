@@ -51,7 +51,7 @@ defineProps<{
             </SidebarGroup>
           </SidebarContent>
         </Sidebar>
-        <SidebarInset class="p-4 max-h-[calc(100vh-6.25rem)] overflow-y-scroll pb-16">
+        <SidebarInset class="max-h-[calc(100vh-6.25rem)] overflow-y-scroll pb-16">
           <slot name="inset" />
         </SidebarInset>
       </SidebarProvider>
