@@ -52,7 +52,7 @@ withDefaults(
           {{ $props.description }}
           <a v-if="$props.learnMoreLink" :href="$props.learnMoreLink" target="_blank">
             <Button variant="link">
-              Learn more
+              {{ $t('pages.dash.settings.learn_more') }}
               <ExternalLinkIcon />
             </Button>
           </a>
