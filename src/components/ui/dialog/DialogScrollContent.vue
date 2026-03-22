@@ -52,8 +52,7 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits)
           class="absolute top-4 right-4 p-0.5 transition-colors rounded-md hover:bg-secondary"
         >
           <X class="w-4 h-4" />
-          <!-- eslint-disable-next-line @intlify/vue-i18n/no-raw-text -->
-          <span class="sr-only">Close</span>
+          <span class="sr-only">{{ $t('pages.dash.settings.general.team.invited.close') }}</span>
         </DialogClose>
       </DialogContent>
     </DialogOverlay>
