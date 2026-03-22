@@ -3,33 +3,36 @@ import SidebarLayout from '@/components/layouts/SidebarLayout.vue'
 import { computed } from 'vue'
 import { Bell, IdCard, MonitorSmartphone, TriangleAlert } from 'lucide-vue-next'
 import { SidebarTrigger } from '@/components/ui/sidebar'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const sidebarItems = computed(() => [
   {
-    title: 'Account',
+    title: t('pages.dash.account.layout.sidebar.account'),
     children: [
       {
-        title: 'Your Account',
+        title: t('pages.dash.account.layout.sidebar.yourAccount'),
         icon: IdCard,
         to: `/dash/account`,
       },
       {
-        title: 'Invitations',
+        title: t('pages.dash.account.layout.sidebar.invitations'),
         icon: Bell,
         to: `/dash/account/invitations`,
       },
     ],
   },
   {
-    title: 'Security',
+    title: t('pages.dash.account.layout.sidebar.security'),
     children: [
       {
-        title: 'Sessions',
+        title: t('pages.dash.account.layout.sidebar.sessions'),
         icon: MonitorSmartphone,
         to: `/dash/account/sessions`,
       },
       {
-        title: 'Danger Zone',
+        title: t('pages.dash.account.layout.sidebar.dangerZone'),
         icon: TriangleAlert,
         to: `/dash/account/danger-zone`,
       },

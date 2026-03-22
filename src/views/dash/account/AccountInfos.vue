@@ -59,11 +59,11 @@ onMounted(async () => {
         </CardHeader>
         <CardContent class="flex items-center flex-row lg:flex-col gap-4 flex-1 mt-4">
           <Field class="flex-1">
-            <FieldLabel for="joinedAt">Joined At</FieldLabel>
+            <FieldLabel for="joinedAt">{{ $t('pages.dash.account.infos.joinedAt') }}</FieldLabel>
             <Input id="joinedAt" :model-value="df.format(new Date(userInfos.joinedAt))" readonly />
           </Field>
           <Field class="flex-1">
-            <FieldLabel for="createdAt">Created At</FieldLabel>
+            <FieldLabel for="createdAt">{{ $t('pages.dash.account.infos.createdAt') }}</FieldLabel>
             <Input
               id="createdAt"
               :model-value="df.format(new Date(userInfos.createdAt))"
@@ -74,17 +74,19 @@ onMounted(async () => {
       </Card>
 
       <header class="m-8">
-        <h1 class="text-4xl font-bold mb-2">Account Usage</h1>
+        <h1 class="text-4xl font-bold mb-2">{{ $t('pages.dash.account.infos.usage.title') }}</h1>
       </header>
 
       <Card>
         <CardHeader>
-          <CardTitle class="text-lg">Global Usage</CardTitle>
+          <CardTitle class="text-lg">
+            {{ $t('pages.dash.account.infos.usage.globalUsage') }}
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <Field>
             <div class="flex items-center gap-4 justify-between">
-              <FieldLabel>Bots</FieldLabel>
+              <FieldLabel>{{ $t('pages.dash.account.infos.usage.bots') }}</FieldLabel>
               <FieldLabel>{{ ownedBots.length }}/{{ userInfos.botsLimit }}</FieldLabel>
             </div>
             <Progress :model-value="(ownedBots.length * 100) / userInfos.botsLimit" />
@@ -95,8 +97,12 @@ onMounted(async () => {
       <div v-for="(bots, i) in [ownedBots, notOwnedBots]" :key="i">
         <Card v-if="bots.length > 0">
           <CardHeader>
-            <CardTitle v-if="i" class="text-lg">Bots you have access to</CardTitle>
-            <CardTitle v-else class="text-lg">Per Bots Usage</CardTitle>
+            <CardTitle v-if="i" class="text-lg">
+              {{ $t('pages.dash.account.infos.usage.sharedWithMe') }}
+            </CardTitle>
+            <CardTitle v-else class="text-lg">
+              {{ $t('pages.dash.account.infos.usage.myBots') }}
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div
@@ -111,24 +117,24 @@ onMounted(async () => {
               <div class="flex flex-col lg:flex-row gap-8">
                 <Field>
                   <div class="flex items-center gap-4 justify-between">
-                    <FieldLabel>Goals</FieldLabel>
+                    <FieldLabel>{{ $t('pages.dash.account.infos.usage.goals') }}</FieldLabel>
                     <FieldLabel>{{ goalsCount[bot.botId] ?? 0 }}/{{ bot.goalsLimit }}</FieldLabel>
                   </div>
                   <Progress :model-value="((goalsCount[bot.botId] ?? 0) * 100) / bot.goalsLimit" />
                 </Field>
                 <Field>
                   <div class="flex items-center gap-4 justify-between">
-                    <FieldLabel>Teammates</FieldLabel>
+                    <FieldLabel>{{ $t('pages.dash.account.infos.usage.teammates') }}</FieldLabel>
                     <FieldLabel>{{ bot.team.length }}/{{ bot.teammatesLimit }}</FieldLabel>
                   </div>
                   <Progress :model-value="(bot.team.length * 100) / bot.teammatesLimit" />
                 </Field>
                 <Field>
                   <div class="flex items-center gap-4 justify-between">
-                    <FieldLabel>Custom Events</FieldLabel>
-                    <FieldLabel
-                      >{{ eventsCount[bot.botId] ?? 0 }}/{{ bot.customEventsLimit }}</FieldLabel
-                    >
+                    <FieldLabel>{{ $t('pages.dash.account.infos.usage.customEvents') }}</FieldLabel>
+                    <FieldLabel>
+                      {{ eventsCount[bot.botId] ?? 0 }}/{{ bot.customEventsLimit }}
+                    </FieldLabel>
                   </div>
                   <Progress
                     :model-value="((eventsCount[bot.botId] ?? 0) * 100) / bot.customEventsLimit"

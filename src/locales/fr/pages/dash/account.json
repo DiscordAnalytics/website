@@ -1,0 +1,26 @@
+{
+  "layout": {
+    "sidebar": {
+      "account": "Compte",
+      "yourAccount": "Mon Compte",
+      "invitations": "Invitations",
+      "security": "Sécurité",
+      "sessions": "Sessions",
+      "dangerZone": "Zone Dangereuse"
+    }
+  },
+  "infos": {
+    "joinedAt": "A rejoint le",
+    "createdAt": "Compte créé le",
+    "usage": {
+      "title": "Utilisation du compte",
+      "globalUsage": "Utilisation globale",
+      "bots": "Bots",
+      "myBots": "Mes bots",
+      "sharedWithMe": "Partagés avec moi",
+      "goals": "Objectifs",
+      "teammates": "Coéquipiers",
+      "customEvents": "Évènements personnalisés"
+    }
+  }
+}
