@@ -66,8 +66,15 @@ export interface Bot {
   version?: string
   team: string[]
   lastPush?: string
-  votesWebhookUrl?: string
   advancedStats: boolean
+  webhooksConfig: {
+    webhookUrl?: string
+  } & {
+    [provider: string]: {
+      connectionId?: string
+      webhookSecret?: string
+    }
+  }
 }
 
 export type Color = 'zinc' | 'orange' | 'red' | 'blue' | 'green'

@@ -44,7 +44,7 @@ export default function useBot(botId: Ref<string>, scope: APIScope = APIScope.Us
     await api.bots.updateVotesWebhook(botId.value, webhookUrl)
 
     const botIndex = store.userBots.findIndex((b) => b.botId === botId.value)
-    if (botIndex >= 0) store.userBots[botIndex]!.votesWebhookUrl = webhookUrl
+    if (botIndex >= 0) store.userBots[botIndex]!.webhooksConfig.webhookUrl = webhookUrl
   }
 
   return { bot, fetch, remove, regenToken, getToken, toggleAdvancedStats, updateVotesWebhook }
