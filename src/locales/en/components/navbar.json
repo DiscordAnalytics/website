@@ -1,5 +1,6 @@
 {
   "carroted": "You've been carrotted",
+  "uncarroted": "You've been uncarrotted",
   "links": {
     "documentation": {
       "trigger": "Documentation",

@@ -1,5 +1,6 @@
 {
   "carroted": "Tu as été carotté 🥕",
+  "uncarroted": "Tu as été décarotté",
   "links": {
     "documentation": {
       "trigger": "Documentation",
