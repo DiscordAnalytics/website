@@ -21,7 +21,7 @@ const router = createRouter({
       component: () => import('@/views/blog/ArticlesReader.vue'),
     },
     {
-      path: '/invitation/:id',
+      path: '/invitations/:id',
       component: () => import('@/views/TeamInvitationView.vue'),
     },
     {
