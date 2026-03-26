@@ -30,4 +30,8 @@ export default class VotesProviderResource {
           },
     )
   }
+
+  test(botId: string): Promise<void> {
+    return this.api.request('POST', `/webhooks/test`, { botId })
+  }
 }

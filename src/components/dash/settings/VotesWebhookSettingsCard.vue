@@ -7,21 +7,34 @@ import { useBot } from '@/composables'
 import { useRouteParams } from '@vueuse/router'
 import { ref } from 'vue'
 import { Input } from '@/components/ui/input'
+import { toast } from 'vue-sonner'
 
 const botId = useRouteParams<string>('id')
-const { bot } = useBot(botId)
+const { bot, updateVotesWebhook, testVotesWebhook } = useBot(botId)
 
 const webhookUrl = ref<string>(bot.value?.webhooksConfig.webhookUrl ?? '')
 const isLoading = ref<boolean>(false)
 
-function sendTest() {
-  // TODO: Implement vote webhooks
-  throw new Error('Not implemented')
+async function sendTest() {
+  isLoading.value = true
+  await testVotesWebhook()
+    .then(() => {
+      toast.success('Votes webhook updated successfully.')
+    })
+    .catch((err) => toast.error(err.message))
+  isLoading.value = false
+  toast.success('Test webhook sent successfully.')
 }
 
-function update() {
-  // TODO: Implement vote webhooks
-  throw new Error('Not implemented')
+async function update() {
+  isLoading.value = true
+  if ((bot.value?.webhooksConfig.webhookUrl ?? '') !== webhookUrl.value)
+    await updateVotesWebhook(webhookUrl.value)
+      .then(() => {
+        toast.success('Votes webhook updated successfully.')
+      })
+      .catch((err) => toast.error(err.message))
+  isLoading.value = false
 }
 </script>
 

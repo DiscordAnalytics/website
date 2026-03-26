@@ -129,6 +129,6 @@ export default class BotsResource {
   }
 
   updateVotesWebhook(botId: string, webhookUrl: string): Promise<void> {
-    return this.api.request('PATCH', `/bots/${botId}/votes/webhooks`, { webhookUrl })
+    return this.api.request('PATCH', `/bots/${botId}/settings`, { webhookUrl })
   }
 }
