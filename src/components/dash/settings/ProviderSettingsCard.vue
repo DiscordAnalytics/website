@@ -168,6 +168,7 @@ const onManualConfigSubmit = manualConfigForm.handleSubmit(async (values) => {
         <InputGroup class="my-2 w-full">
           <InputGroupInput
             :default-value="providerConfig?.webhookSecret"
+            :value="providerConfig?.webhookSecret"
             :placeholder="$t('pages.dash.settings.votes.provider.tokenPlaceholder')"
             :disabled="isLoading"
             readonly
