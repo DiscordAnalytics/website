@@ -1,0 +1,98 @@
+<script setup lang="ts">
+import AccountDashLayout from '@/components/layouts/AccountDashLayout.vue'
+import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty'
+import { CheckIcon, FrownIcon, XIcon } from 'lucide-vue-next'
+import { useTeamInvitations } from '@/composables'
+import { onMounted, ref } from 'vue'
+import DiscordAvatar from '@/components/DiscordAvatar.vue'
+import { Spinner } from '@/components/ui/spinner'
+import { Item, ItemActions, ItemHeader } from '@/components/ui/item'
+import { Button } from '@/components/ui/button'
+import { toast } from 'vue-sonner'
+import { useI18n } from 'vue-i18n'
+
+const { invitations, fetch: fetchInvitations, accept, reject } = useTeamInvitations()
+const i18n = useI18n()
+
+const isLoading = ref<boolean>(false)
+
+async function acceptInvitation(invitationId: string) {
+  isLoading.value = true
+  await accept(invitationId)
+    .then(async () => {
+      toast.success(i18n.t('pages.dash.account.invitations.toast.accepted'))
+    })
+    .catch((err) => toast.error(err.message))
+  isLoading.value = false
+}
+
+async function rejectInvitation(invitationId: string) {
+  isLoading.value = true
+  await reject(invitationId)
+    .then(() => {
+      toast.success(i18n.t('pages.dash.account.invitations.toast.rejected'))
+    })
+    .catch((err) => toast.error(err.message))
+  isLoading.value = false
+}
+
+onMounted(async () => {
+  isLoading.value = true
+  await fetchInvitations()
+  isLoading.value = false
+})
+</script>
+
+<template>
+  <AccountDashLayout>
+    <main v-if="invitations.length > 0" class="grid grid-cols-1 gap-4 my-8">
+      <Item
+        v-for="invitation in invitations"
+        :key="invitation.invitation.invitationId"
+        variant="outline"
+        class="flex-col md:flex-row items-start md:items-center justify-between flex-nowrap"
+      >
+        <ItemHeader class="justify-start">
+          <DiscordAvatar
+            :id="invitation.invitation.botId"
+            :alt="invitation.botUsername"
+            :avatar="invitation.botAvatar"
+          />
+          <h1 class="text-2xl font-semibold">{{ invitation.botUsername }}</h1>
+        </ItemHeader>
+        <ItemActions>
+          <Button size="icon" @click="acceptInvitation(invitation.invitation.invitationId)">
+            <Spinner v-if="isLoading" />
+            <CheckIcon v-else />
+          </Button>
+          <Button
+            variant="destructive"
+            size="icon"
+            @click="rejectInvitation(invitation.invitation.invitationId)"
+          >
+            <Spinner v-if="isLoading" />
+            <XIcon v-else />
+          </Button>
+        </ItemActions>
+      </Item>
+    </main>
+    <Empty v-else-if="isLoading" class="h-full">
+      <EmptyHeader>
+        <EmptyMedia variant="icon">
+          <Spinner />
+        </EmptyMedia>
+      </EmptyHeader>
+    </Empty>
+    <Empty v-else class="h-full">
+      <EmptyHeader>
+        <EmptyMedia variant="icon">
+          <FrownIcon />
+        </EmptyMedia>
+        <EmptyTitle>{{ $t('pages.dash.account.invitations.empty.title') }}</EmptyTitle>
+        <EmptyDescription>
+          {{ $t('pages.dash.account.invitations.empty.description') }}
+        </EmptyDescription>
+      </EmptyHeader>
+    </Empty>
+  </AccountDashLayout>
+</template>

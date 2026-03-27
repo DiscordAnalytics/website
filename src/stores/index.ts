@@ -10,6 +10,7 @@ import type {
   RawStats,
   RawVotes,
   StatsReport,
+  TeamInvitationData,
   Teammate,
   User,
 } from '@/utils/types.ts'
@@ -24,6 +25,7 @@ export const useStore = defineStore('store', () => {
   const botStats = ref<{ [botId: string]: { stats: RawStats[]; votes: RawVotes[] } }>({})
   const blogArticles = ref<Omit<BlogArticle, 'content'>[]>([])
   const achievementsStore = ref<Achievement[]>([])
+  const teamInvitations = ref<TeamInvitationData[]>([])
 
   const theme = ref<Color>('zinc')
 
@@ -63,6 +65,7 @@ export const useStore = defineStore('store', () => {
     botStats,
     blogArticles,
     achievementsStore,
+    teamInvitations,
     statsRange,
     theme,
     setTheme,

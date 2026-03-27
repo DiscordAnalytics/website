@@ -22,5 +22,15 @@
       "teammates": "Teammates",
       "customEvents": "Custom Events"
     }
+  },
+  "invitations": {
+    "toast": {
+      "accepted": "Invitation accepted!",
+      "declined": "Invitation declined!"
+    },
+    "empty": {
+      "title": "No pending invitations",
+      "description": "You don't have any pending team invitation."
+    }
   }
 }

@@ -5,7 +5,7 @@ export default class InvitationsResource {
   constructor(private readonly api: APIClient) {}
 
   get(): Promise<TeamInvitationData[]> {
-    return this.api.request('GET', `/invitations`)
+    return this.api.request('GET', `/users/${this.api.userId}/invitations`)
   }
 
   getInvitation(invitationId: string): Promise<TeamInvitationData> {
