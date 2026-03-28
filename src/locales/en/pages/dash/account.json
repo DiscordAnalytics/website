@@ -32,5 +32,21 @@
       "title": "No pending invitations",
       "description": "You don't have any pending team invitation."
     }
+  },
+  "sessions": {
+    "current": "Current session",
+    "others": "Other sessions",
+    "revokeAll": "Revoke all sessions",
+    "createdAt": "Created at:",
+    "lastUsedAt": "Last used at:",
+    "never": "Never",
+    "toasts": {
+      "revokedAll": "Successfully revoked all sessions.",
+      "revoked": "Session successfully revoked."
+    },
+    "empty": {
+      "title": "No sessions",
+      "description": "As strange as it sounds, you don't have any active sessions"
+    }
   }
 }

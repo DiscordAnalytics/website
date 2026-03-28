@@ -7,6 +7,7 @@ import type {
   Bot,
   Color,
   CustomEvent,
+  OAuthSession,
   RawStats,
   RawVotes,
   StatsReport,
@@ -18,6 +19,7 @@ import type {
 export const useStore = defineStore('store', () => {
   const userInfos = ref<User | null>(null)
   const userBots = ref<Bot[]>([])
+  const userSessions = ref<OAuthSession[]>([])
   const botAchievements = ref<{ [botId: string]: Achievement[] }>({})
   const botCustomEvents = ref<{ [botId: string]: CustomEvent[] }>({})
   const botTeams = ref<{ [botId: string]: Teammate[] }>({})
@@ -48,16 +50,21 @@ export const useStore = defineStore('store', () => {
   function clear() {
     userInfos.value = null
     userBots.value = []
+    userSessions.value = []
     botAchievements.value = {}
     botCustomEvents.value = {}
     botTeams.value = {}
     botEmailReports.value = {}
     botStats.value = {}
+    blogArticles.value = []
+    achievementsStore.value = []
+    teamInvitations.value = []
   }
 
   return {
     userInfos,
     userBots,
+    userSessions,
     botAchievements,
     botCustomEvents,
     botTeams,

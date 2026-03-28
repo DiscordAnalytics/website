@@ -325,6 +325,16 @@ export interface OAuthConfig {
   scopes: string[]
 }
 
+export interface OAuthSession {
+  active: boolean
+  current: boolean
+  createdAt: string
+  ipAddress?: string
+  lastUsedAt: string
+  sessionId: string
+  userAgent?: string
+}
+
 export interface SidebarItem {
   title: string
   icon?: FunctionalComponent

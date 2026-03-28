@@ -97,6 +97,10 @@ const router = createRouter({
       component: () => import('@/views/dash/account/AccountInvitations.vue'),
     },
     {
+      path: '/dash/account/sessions',
+      component: () => import('@/views/dash/account/AccountSessions.vue'),
+    },
+    {
       path: '/:catchAll(.*)*',
       name: 'NotFound',
       component: () => import('@/views/Error404.vue'),
