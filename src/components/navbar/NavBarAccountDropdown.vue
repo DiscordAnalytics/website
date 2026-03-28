@@ -58,7 +58,7 @@ const { userInfos, logout } = useCurrentUser()
           <span>{{ $t('components.navbar.account.links.dashboard') }}</span>
         </DropdownMenuItem>
       </RouterLink>
-      <RouterLink v-if="userInfos.admin" to="/admin">
+      <RouterLink v-if="userInfos.admin" to="/dash/admin">
         <DropdownMenuItem class="cursor-pointer">
           <ShieldIcon class="mr-2 h-4 w-4" />
           <span>{{ $t('components.navbar.account.links.admin') }}</span>
