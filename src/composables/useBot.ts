@@ -47,5 +47,19 @@ export default function useBot(botId: Ref<string>, scope: APIScope = APIScope.Us
     if (botIndex >= 0) store.userBots[botIndex]!.webhooksConfig.webhookUrl = webhookUrl
   }
 
-  return { bot, fetch, remove, regenToken, getToken, toggleAdvancedStats, updateVotesWebhook }
+  async function testVotesWebhook() {
+    if (!api.userId) throw new Error('Not authenticated')
+    await api.bots.votes.test(botId.value)
+  }
+
+  return {
+    bot,
+    fetch,
+    remove,
+    regenToken,
+    getToken,
+    toggleAdvancedStats,
+    updateVotesWebhook,
+    testVotesWebhook,
+  }
 }
