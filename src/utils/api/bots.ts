@@ -120,12 +120,26 @@ export default class BotsResource {
     return this.api.request('GET', `/bots/${botId}/reports`)
   }
 
-  createEmailReport(botId: string, frequency: 'weekly' | 'monthly'): Promise<StatsReport> {
-    return this.api.request('POST', `/bots/${botId}/reports`, { frequency })
+  createEmailReport(
+    botId: string,
+    frequency: 'weekly' | 'monthly',
+    userId?: string,
+  ): Promise<StatsReport> {
+    return this.api.request('POST', `/bots/${botId}/reports`, {
+      frequency,
+      userId: userId ?? this.api.userId!,
+    })
   }
 
-  deleteEmailReport(botId: string, frequency: 'weekly' | 'monthly'): Promise<void> {
-    return this.api.request('DELETE', `/bots/${botId}/reports`, { frequency })
+  deleteEmailReport(
+    botId: string,
+    frequency: 'weekly' | 'monthly',
+    userId?: string,
+  ): Promise<void> {
+    return this.api.request('DELETE', `/bots/${botId}/reports`, {
+      frequency,
+      userId: userId ?? this.api.userId!,
+    })
   }
 
   updateVotesWebhook(botId: string, webhookUrl: string): Promise<void> {
