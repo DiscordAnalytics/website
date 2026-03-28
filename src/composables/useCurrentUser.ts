@@ -2,6 +2,7 @@ import useAPI, { APIScope } from '@/utils/api'
 import { useStore } from '@/stores'
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import useOAuthSessions from '@/composables/useOAuthSessions.ts'
 
 export default function useCurrentUser() {
   const api = useAPI(APIScope.User)
@@ -22,12 +23,16 @@ export default function useCurrentUser() {
   }
 
   async function logout() {
+    const { sessions, fetch: fetchSessions, revokeSession } = useOAuthSessions()
+    if (sessions.value.length === 0) await fetchSessions()
+    const session = sessions.value.find((s) => s.current && s.active)
+    if (session) await revokeSession(session.sessionId)
     api.clearTokens()
     store.clear()
 
-    if (route.path.startsWith('/dash') || route.path.startsWith('/auth')) {
-      await router.push('/')
-    }
+    setTimeout(async () => {
+      if (route.path.startsWith('/dash') || route.path.startsWith('/auth')) await router.push('/')
+    }, 500)
   }
 
   return { userInfos, userBots, ownedBots, notOwnedBots, fetch, logout }
