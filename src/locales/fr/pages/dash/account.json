@@ -48,5 +48,20 @@
       "title": "Aucune session",
       "description": "Aussi étrange que cela puisse paraître, vous n'avez aucune session active"
     }
+  },
+  "dangerZone": {
+    "title": "Supprimer mon compte",
+    "description": "Supprimer définitivement votre compte et toutes les données associées.",
+    "dialog": {
+      "title": "Supprimer définitivement votre compte et toutes les données associées.",
+      "intro": "Supprimer votre compte entrainera :",
+      "bullets": {
+        "bots": "La suppression de tous vos bots",
+        "stats": "La suppression de toutes les statistiques que vous avez collectées jusqu'ici",
+        "data": "Supprimer toutes les données associées à vous de nos serveurs"
+      },
+      "irreversible": "Cette action est irreversible. Une fois supprimée, aucune donnée ne pourra être récupérée.",
+      "logs": "Des journaux d'activité peuvent être gardé pendant 14 jours avant d'être définitivement supprimés."
+    }
   }
 }

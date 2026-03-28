@@ -48,5 +48,20 @@
       "title": "No sessions",
       "description": "As strange as it sounds, you don't have any active sessions"
     }
+  },
+  "dangerZone": {
+    "title": "Delete my account",
+    "description": "Permanently delete your account and all associated data.",
+    "dialog": {
+      "title": "Permanently delete your account and all associated data.",
+      "intro": "Deleting your account will permanently:",
+      "bullets": {
+        "bots": "Delete all your bots",
+        "stats": "Delete all statistics you collected until now",
+        "data": "Delete all data related to you from our servers"
+      },
+      "irreversible": "This action is irreversible. Once deleted, no data can be recovered.",
+      "logs": "Activity logs may be retained for up to 14 days before being permanently deleted."
+    }
   }
 }

@@ -22,11 +22,13 @@ export default function useCurrentUser() {
     store.userBots = [...ownedBots, ...teamBots]
   }
 
-  async function logout() {
-    const { sessions, fetch: fetchSessions, revokeSession } = useOAuthSessions()
-    if (sessions.value.length === 0) await fetchSessions()
-    const session = sessions.value.find((s) => s.current && s.active)
-    if (session) await revokeSession(session.sessionId)
+  async function logout(revoke: boolean = true) {
+    if (revoke) {
+      const { sessions, fetch: fetchSessions, revokeSession } = useOAuthSessions()
+      if (sessions.value.length === 0) await fetchSessions()
+      const session = sessions.value.find((s) => s.current && s.active)
+      if (session) await revokeSession(session.sessionId)
+    }
     api.clearTokens()
     store.clear()
 
@@ -35,5 +37,11 @@ export default function useCurrentUser() {
     }, 500)
   }
 
-  return { userInfos, userBots, ownedBots, notOwnedBots, fetch, logout }
+  async function remove() {
+    if (!api.userId) throw new Error('Not Authenticated')
+    await api.users.remove(api.userId)
+    await logout(false)
+  }
+
+  return { userInfos, userBots, ownedBots, notOwnedBots, fetch, logout, remove }
 }

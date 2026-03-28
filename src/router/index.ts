@@ -101,6 +101,10 @@ const router = createRouter({
       component: () => import('@/views/dash/account/AccountSessions.vue'),
     },
     {
+      path: '/dash/account/danger-zone',
+      component: () => import('@/views/dash/account/AccountDangerZone.vue'),
+    },
+    {
       path: '/:catchAll(.*)*',
       name: 'NotFound',
       component: () => import('@/views/Error404.vue'),
