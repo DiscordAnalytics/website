@@ -9,7 +9,7 @@ export default function useTeamInvitations() {
   const invitations = computed(() => store.teamInvitations ?? [])
 
   async function fetch() {
-    store.teamInvitations = await api.bots.invitations.get()
+    store.teamInvitations = await api.bots.invitations.getAll()
   }
 
   async function accept(invitationId: string) {

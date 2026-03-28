@@ -11,7 +11,7 @@ export default function useTeamInvitation(
   const invitation = ref<TeamInvitationData | null>(null)
 
   async function fetch() {
-    invitation.value = await api.bots.invitations.getInvitation(invitationId.value)
+    invitation.value = await api.bots.invitations.get(invitationId.value)
   }
 
   return { invitation, fetch }
