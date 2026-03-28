@@ -14,15 +14,5 @@ export default function useTeamInvitation(
     invitation.value = await api.bots.invitations.getInvitation(invitationId.value)
   }
 
-  async function accept() {
-    if (!api.userId || scope === APIScope.Guest) throw new Error('Not authenticated')
-    await api.bots.invitations.answer(invitationId.value, true)
-  }
-
-  async function reject() {
-    if (!api.userId || scope === APIScope.Guest) throw new Error('Not authenticated')
-    await api.bots.invitations.answer(invitationId.value, false)
-  }
-
-  return { invitation, fetch, accept, reject }
+  return { invitation, fetch }
 }
