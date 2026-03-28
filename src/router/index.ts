@@ -21,7 +21,7 @@ const router = createRouter({
       component: () => import('@/views/blog/ArticlesReader.vue'),
     },
     {
-      path: '/invitation/:id',
+      path: '/invitations/:id',
       component: () => import('@/views/TeamInvitationView.vue'),
     },
     {
@@ -87,6 +87,27 @@ const router = createRouter({
     {
       path: '/dash/bots/:id/settings/danger-zone',
       component: () => import('@/views/dash/bots/settings/BotDangerZone.vue'),
+    },
+    {
+      path: '/dash/account',
+      component: () => import('@/views/dash/account/AccountInfos.vue'),
+    },
+    {
+      path: '/dash/account/invitations',
+      component: () => import('@/views/dash/account/AccountInvitations.vue'),
+    },
+    {
+      path: '/dash/account/sessions',
+      component: () => import('@/views/dash/account/AccountSessions.vue'),
+    },
+    {
+      path: '/dash/account/danger-zone',
+      component: () => import('@/views/dash/account/AccountDangerZone.vue'),
+    },
+    {
+      path: '/:catchAll(.*)*',
+      name: 'NotFound',
+      component: () => import('@/views/Error404.vue'),
     },
   ],
 })

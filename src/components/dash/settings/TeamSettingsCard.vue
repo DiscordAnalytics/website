@@ -92,7 +92,7 @@ const onSubmit = form.handleSubmit(async (values) => {
 })
 
 function getInvitationURL(invitationId: string): string {
-  return `${window.location.origin}/invitation/${invitationId}`
+  return `${window.location.origin}/invitations/${invitationId}`
 }
 
 function copyInvitationURL(invitationId: string) {
@@ -209,7 +209,7 @@ onMounted(async () => {
                 <InputGroup class="my-2 w-full">
                   <InputGroupInput
                     :value="getInvitationURL(addedTeammate.details.invitationId!)"
-                    placeholder="https://discordanalytics.xyz/invitation/XXXXXX-XXXXXX-XXXXXX-XXXXXX"
+                    placeholder="https://discordanalytics.xyz/invitations/XXXXXX-XXXXXX-XXXXXX-XXXXXX"
                     :disabled="isLoading"
                     readonly
                   />

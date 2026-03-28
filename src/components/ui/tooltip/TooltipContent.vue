@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { TooltipContentEmits, TooltipContentProps } from 'reka-ui'
+import { TooltipContent, TooltipPortal, useForwardPropsEmits } from 'reka-ui'
 import type { HTMLAttributes } from 'vue'
 import { reactiveOmit } from '@vueuse/core'
-import { TooltipContent, TooltipPortal, useForwardPropsEmits } from 'reka-ui'
 import { cn } from '@/lib/utils'
 
 defineOptions({
@@ -13,6 +13,17 @@ const props = withDefaults(
   defineProps<TooltipContentProps & { class?: HTMLAttributes['class'] }>(),
   {
     sideOffset: 4,
+    align: 'center',
+    alignOffset: -5,
+    arrowPadding: 1,
+    avoidCollisions: true,
+    collisionBoundary: null,
+    collisionPadding: 5,
+    hideWhenDetached: true,
+    side: 'top',
+    sticky: undefined,
+    positionStrategy: 'absolute',
+    updatePositionStrategy: 'optimized',
   },
 )
 

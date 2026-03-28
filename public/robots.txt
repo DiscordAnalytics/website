@@ -1,6 +1,6 @@
 User-agent: *
 Disallow: /dash
 Disallow: /auth/linked
-Disallow: /invitation
+Disallow: /invitations
 
 Sitemap: https://discordanalytics.xyz/sitemap.xml

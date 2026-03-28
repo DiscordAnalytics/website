@@ -14,4 +14,8 @@ export default class UsersResource {
   getBots(userId: string): Promise<{ ownedBots: Bot[]; teamBots: Bot[] }> {
     return this.api.request('GET', `/users/${userId}/bots`)
   }
+
+  remove(userId: string): Promise<void> {
+    return this.api.request('DELETE', `/users/${userId}`)
+  }
 }

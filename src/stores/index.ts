@@ -7,9 +7,11 @@ import type {
   Bot,
   Color,
   CustomEvent,
+  OAuthSession,
   RawStats,
   RawVotes,
   StatsReport,
+  TeamInvitationData,
   Teammate,
   User,
 } from '@/utils/types.ts'
@@ -17,6 +19,7 @@ import type {
 export const useStore = defineStore('store', () => {
   const userInfos = ref<User | null>(null)
   const userBots = ref<Bot[]>([])
+  const userSessions = ref<OAuthSession[]>([])
   const botAchievements = ref<{ [botId: string]: Achievement[] }>({})
   const botCustomEvents = ref<{ [botId: string]: CustomEvent[] }>({})
   const botTeams = ref<{ [botId: string]: Teammate[] }>({})
@@ -24,6 +27,7 @@ export const useStore = defineStore('store', () => {
   const botStats = ref<{ [botId: string]: { stats: RawStats[]; votes: RawVotes[] } }>({})
   const blogArticles = ref<Omit<BlogArticle, 'content'>[]>([])
   const achievementsStore = ref<Achievement[]>([])
+  const teamInvitations = ref<TeamInvitationData[]>([])
 
   const theme = ref<Color>('zinc')
 
@@ -46,16 +50,21 @@ export const useStore = defineStore('store', () => {
   function clear() {
     userInfos.value = null
     userBots.value = []
+    userSessions.value = []
     botAchievements.value = {}
     botCustomEvents.value = {}
     botTeams.value = {}
     botEmailReports.value = {}
     botStats.value = {}
+    blogArticles.value = []
+    achievementsStore.value = []
+    teamInvitations.value = []
   }
 
   return {
     userInfos,
     userBots,
+    userSessions,
     botAchievements,
     botCustomEvents,
     botTeams,
@@ -63,6 +72,7 @@ export const useStore = defineStore('store', () => {
     botStats,
     blogArticles,
     achievementsStore,
+    teamInvitations,
     statsRange,
     theme,
     setTheme,

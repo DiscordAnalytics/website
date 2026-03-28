@@ -1,0 +1,67 @@
+{
+  "layout": {
+    "sidebar": {
+      "account": "Compte",
+      "yourAccount": "Mon Compte",
+      "invitations": "Invitations",
+      "security": "Sécurité",
+      "sessions": "Sessions",
+      "dangerZone": "Zone Dangereuse"
+    }
+  },
+  "infos": {
+    "joinedAt": "A rejoint le",
+    "createdAt": "Compte créé le",
+    "usage": {
+      "title": "Utilisation du compte",
+      "globalUsage": "Utilisation globale",
+      "bots": "Bots",
+      "myBots": "Mes bots",
+      "sharedWithMe": "Partagés avec moi",
+      "goals": "Objectifs",
+      "teammates": "Coéquipiers",
+      "customEvents": "Évènements personnalisés"
+    }
+  },
+  "invitations": {
+    "toast": {
+      "accepted": "Invitation acceptée!",
+      "declined": "Invitation refusée!"
+    },
+    "empty": {
+      "title": "Aucune invitation en attente",
+      "description": "Vous n'avez aucune invitation à rejoindre un équipe en attente."
+    }
+  },
+  "sessions": {
+    "current": "Session en cours",
+    "others": "Autres sessions",
+    "revokeAll": "Révoquer toutes les sessions",
+    "createdAt": "Création :",
+    "lastUsedAt": "Dernière utilisation :",
+    "never": "Jamais",
+    "toasts": {
+      "revokedAll": "Toutes les sessions ont bien été révoquées.",
+      "revoked": "Session révoquée avec succès."
+    },
+    "empty": {
+      "title": "Aucune session",
+      "description": "Aussi étrange que cela puisse paraître, vous n'avez aucune session active"
+    }
+  },
+  "dangerZone": {
+    "title": "Supprimer mon compte",
+    "description": "Supprimer définitivement votre compte et toutes les données associées.",
+    "dialog": {
+      "title": "Supprimer définitivement votre compte et toutes les données associées.",
+      "intro": "Supprimer votre compte entrainera :",
+      "bullets": {
+        "bots": "La suppression de tous vos bots",
+        "stats": "La suppression de toutes les statistiques que vous avez collectées jusqu'ici",
+        "data": "Supprimer toutes les données associées à vous de nos serveurs"
+      },
+      "irreversible": "Cette action est irreversible. Une fois supprimée, aucune donnée ne pourra être récupérée.",
+      "logs": "Des journaux d'activité peuvent être gardé pendant 14 jours avant d'être définitivement supprimés."
+    }
+  }
+}

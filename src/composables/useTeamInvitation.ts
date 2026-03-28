@@ -11,18 +11,8 @@ export default function useTeamInvitation(
   const invitation = ref<TeamInvitationData | null>(null)
 
   async function fetch() {
-    invitation.value = await api.bots.invitations.fetch(invitationId.value)
+    invitation.value = await api.bots.invitations.get(invitationId.value)
   }
 
-  async function accept() {
-    if (!api.userId || scope === APIScope.Guest) throw new Error('Not authenticated')
-    await api.bots.invitations.answer(invitationId.value, true)
-  }
-
-  async function reject() {
-    if (!api.userId || scope === APIScope.Guest) throw new Error('Not authenticated')
-    await api.bots.invitations.answer(invitationId.value, false)
-  }
-
-  return { invitation, fetch, accept, reject }
+  return { invitation, fetch }
 }

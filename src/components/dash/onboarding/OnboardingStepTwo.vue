@@ -106,16 +106,16 @@ onMounted(() => {
               <SelectLabel>
                 {{ $t('pages.dash.onboarding.stepTwo.integrate.groupJavaScript') }}
               </SelectLabel>
-              <SelectItem value="discord.js"> Discord.js </SelectItem>
-              <SelectItem value="oceanic"> Oceanic.js </SelectItem>
-              <SelectItem value="eris"> Eris </SelectItem>
+              <SelectItem value="discord.js">Discord.js</SelectItem>
+              <SelectItem value="oceanic">Oceanic.js</SelectItem>
+              <SelectItem value="eris">Eris</SelectItem>
             </SelectGroup>
 
             <SelectGroup>
               <SelectLabel>
                 {{ $t('pages.dash.onboarding.stepTwo.integrate.groupPython') }}
               </SelectLabel>
-              <SelectItem value="discord.py"> Discord.py </SelectItem>
+              <SelectItem value="discord.py">Discord.py</SelectItem>
             </SelectGroup>
           </SelectContent>
           <!-- eslint-enable @intlify/vue-i18n/no-raw-text -->

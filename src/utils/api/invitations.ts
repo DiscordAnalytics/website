@@ -4,7 +4,11 @@ import type { TeamInvitationData } from '@/utils/types.ts'
 export default class InvitationsResource {
   constructor(private readonly api: APIClient) {}
 
-  fetch(invitationId: string): Promise<TeamInvitationData> {
+  getAll(): Promise<TeamInvitationData[]> {
+    return this.api.request('GET', `/users/${this.api.userId}/invitations`)
+  }
+
+  get(invitationId: string): Promise<TeamInvitationData> {
     return this.api.request('GET', `/invitations/${invitationId}`)
   }
 

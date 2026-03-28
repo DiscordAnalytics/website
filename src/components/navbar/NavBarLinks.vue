@@ -16,9 +16,9 @@ import { BookOpenIcon } from 'lucide-vue-next'
   <NavigationMenu class="flex">
     <NavigationMenuList class="flex-wrap">
       <NavigationMenuItem>
-        <NavigationMenuTrigger>{{
-          $t('components.navbar.links.documentation.trigger')
-        }}</NavigationMenuTrigger>
+        <NavigationMenuTrigger>
+          {{ $t('components.navbar.links.documentation.trigger') }}
+        </NavigationMenuTrigger>
         <NavigationMenuContent>
           <ul class="grid gap-3 p-6 md:w-fit lg:grid-cols-[minmax(0,.75fr)_minmax(0,1fr)]">
             <li class="row-span-3">

@@ -105,5 +105,17 @@
         "description": "You are about to delete {username} and all associated data such as stats, votes and bot information. This action cannot be undone and will immediately take effect!"
       }
     }
+  },
+  "reports": {
+    "subscribe": "Subscribe",
+    "unsubscribe": "Unsubscribe",
+    "weekly": {
+      "title": "Weekly Reports",
+      "description": "Stats reports each week in your mailbox"
+    },
+    "monthly": {
+      "title": "Monthly Reports",
+      "description": "Stats reports each month in your mailbox"
+    }
   }
 }

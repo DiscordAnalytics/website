@@ -35,7 +35,12 @@ export default defineConfigWithVueTs(
   {
     rules: {
       'vue/multi-word-component-names': 'off',
-      '@intlify/vue-i18n/no-raw-text': 'error',
+      '@intlify/vue-i18n/no-raw-text': [
+        'error',
+        {
+          ignorePattern: '^[/|•·\\-–—]$',
+        },
+      ],
       '@intlify/vue-i18n/no-missing-keys': 'off',
       '@intlify/vue-i18n/no-unused-keys': 'off',
       '@intlify/vue-i18n/key-format-style': 'off',

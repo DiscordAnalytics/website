@@ -67,6 +67,9 @@ export interface Bot {
   team: string[]
   lastPush?: string
   advancedStats: boolean
+  goalsLimit: number
+  customEventsLimit: number
+  teammatesLimit: number
   webhooksConfig: {
     webhookUrl?: string
   } & {
@@ -320,6 +323,16 @@ export interface AuthTokens {
 export interface OAuthConfig {
   clientId: string
   scopes: string[]
+}
+
+export interface OAuthSession {
+  active: boolean
+  current: boolean
+  createdAt: string
+  ipAddress?: string
+  lastUsedAt: string
+  sessionId: string
+  userAgent?: string
 }
 
 export interface SidebarItem {

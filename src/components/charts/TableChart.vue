@@ -46,7 +46,7 @@ defineProps<{
             <DiscordAvatar :id="guild.id" :avatar="guild.icon" :alt="guild.name" is-guild-icon />
             {{ guild.name }}
           </TableCell>
-          <TableCell> {{ guild.count.toLocaleString() }} </TableCell>
+          <TableCell>{{ guild.count.toLocaleString() }}</TableCell>
         </TableRow>
       </TableBody>
     </Table>

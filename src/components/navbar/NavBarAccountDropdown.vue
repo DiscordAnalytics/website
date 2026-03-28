@@ -9,7 +9,13 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import DiscordAvatar from '@/components/DiscordAvatar.vue'
-import { ChartLineIcon, ChevronsUpDownIcon, LogOutIcon, ShieldIcon } from 'lucide-vue-next'
+import {
+  ChartLineIcon,
+  ChevronsUpDownIcon,
+  LogOutIcon,
+  ShieldIcon,
+  UserIcon,
+} from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
 
 defineProps<{
@@ -52,13 +58,19 @@ const { userInfos, logout } = useCurrentUser()
           <span>{{ $t('components.navbar.account.links.dashboard') }}</span>
         </DropdownMenuItem>
       </RouterLink>
-      <RouterLink to="/admin">
+      <RouterLink v-if="userInfos.admin" to="/admin">
         <DropdownMenuItem class="cursor-pointer">
           <ShieldIcon class="mr-2 h-4 w-4" />
           <span>{{ $t('components.navbar.account.links.admin') }}</span>
         </DropdownMenuItem>
       </RouterLink>
       <DropdownMenuSeparator />
+      <RouterLink to="/dash/account">
+        <DropdownMenuItem class="cursor-pointer">
+          <UserIcon class="mr-2 h-4 w-4" />
+          <span>{{ $t('components.navbar.account.links.account') }}</span>
+        </DropdownMenuItem>
+      </RouterLink>
       <DropdownMenuItem class="cursor-pointer" @click="logout()">
         <LogOutIcon class="mr-2 h-4 w-4" />
         <span>{{ $t('components.navbar.account.logout') }}</span>
