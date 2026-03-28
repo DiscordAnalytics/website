@@ -22,5 +22,31 @@
       "teammates": "Coéquipiers",
       "customEvents": "Évènements personnalisés"
     }
+  },
+  "invitations": {
+    "toast": {
+      "accepted": "Invitation acceptée!",
+      "declined": "Invitation refusée!"
+    },
+    "empty": {
+      "title": "Aucune invitation en attente",
+      "description": "Vous n'avez aucune invitation à rejoindre un équipe en attente."
+    }
+  },
+  "sessions": {
+    "current": "Session en cours",
+    "others": "Autres sessions",
+    "revokeAll": "Révoquer toutes les sessions",
+    "createdAt": "Création :",
+    "lastUsedAt": "Dernière utilisation :",
+    "never": "Jamais",
+    "toasts": {
+      "revokedAll": "Toutes les sessions ont bien été révoquées.",
+      "revoked": "Session révoquée avec succès."
+    },
+    "empty": {
+      "title": "Aucune session",
+      "description": "Aussi étrange que cela puisse paraître, vous n'avez aucune session active"
+    }
   }
 }
