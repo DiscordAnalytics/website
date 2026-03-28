@@ -45,9 +45,9 @@ onMounted(async () => {
   <BotDashLayout>
     <main class="grid grid-cols-1 gap-4 my-8">
       <SettingCard
-        title="Weekly Reports"
+        :title="$t('pages.dash.settings.reports.weekly.title')"
         :icon="CalendarRangeIcon"
-        description="Stats reports each week in your mailbox"
+        :description="$t('pages.dash.settings.reports.weekly.description')"
       >
         <template #actions>
           <Button
@@ -57,7 +57,7 @@ onMounted(async () => {
             @click="onSubscribe('weekly')"
           >
             <Spinner v-if="isLoading" />
-            Subscribe
+            {{ $t('pages.dash.settings.reports.subscribe') }}
           </Button>
           <Button
             v-else
@@ -66,15 +66,15 @@ onMounted(async () => {
             @click="onUnsubscribe('weekly')"
           >
             <Spinner v-if="isLoading" />
-            Unsubscribe
+            {{ $t('pages.dash.settings.reports.unsubscribe') }}
           </Button>
         </template>
       </SettingCard>
 
       <SettingCard
-        title="Monthly Reports"
+        :title="$t('pages.dash.settings.reports.monthly.title')"
         :icon="Calendar1Icon"
-        description="Stats reports each month in your mailbox"
+        :description="$t('pages.dash.settings.reports.monthly.description')"
       >
         <template #actions>
           <Button
@@ -84,7 +84,7 @@ onMounted(async () => {
             @click="onSubscribe('monthly')"
           >
             <Spinner v-if="isLoading" />
-            Subscribe
+            {{ $t('pages.dash.settings.reports.subscribe') }}
           </Button>
           <Button
             v-else
@@ -93,7 +93,7 @@ onMounted(async () => {
             @click="onUnsubscribe('monthly')"
           >
             <Spinner v-if="isLoading" />
-            Unsubscribe
+            {{ $t('pages.dash.settings.reports.unsubscribe') }}
           </Button>
         </template>
       </SettingCard>

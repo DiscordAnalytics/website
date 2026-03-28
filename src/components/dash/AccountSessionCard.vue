@@ -1,12 +1,5 @@
 <script setup lang="ts">
-import {
-  Item,
-  ItemActions,
-  ItemContent,
-  ItemDescription,
-  ItemMedia,
-  ItemTitle,
-} from '@/components/ui/item'
+import { Item, ItemActions, ItemContent, ItemDescription, ItemMedia, ItemTitle } from '@/components/ui/item'
 import { Button } from '@/components/ui/button'
 import { XIcon } from 'lucide-vue-next'
 import { Spinner } from '@/components/ui/spinner'
@@ -64,6 +57,7 @@ const osName = computed(() => {
             <CustomIcon v-if="os" :icon="os" class="h-8! w-8!" />
           </ItemMedia>
         </TooltipTrigger>
+        <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
         <TooltipContent v-if="os === 'linux'">I use arch btw</TooltipContent>
         <TooltipContent v-else-if="os === 'windows'">Windows sucks bro</TooltipContent>
         <TooltipContent v-else-if="os === 'macos'">
@@ -71,6 +65,7 @@ const osName = computed(() => {
         </TooltipContent>
         <TooltipContent v-else-if="os === 'ios'">Powered by Apple Intelligence</TooltipContent>
         <TooltipContent v-else-if="os === 'android'">rooted, obviously</TooltipContent>
+        <!-- eslint-enable @intlify/vue-i18n/no-raw-text -->
       </Tooltip>
     </TooltipProvider>
     <ItemContent>
