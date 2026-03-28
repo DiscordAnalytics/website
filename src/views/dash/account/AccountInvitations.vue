@@ -6,7 +6,7 @@ import { useTeamInvitations } from '@/composables'
 import { onMounted, ref } from 'vue'
 import DiscordAvatar from '@/components/DiscordAvatar.vue'
 import { Spinner } from '@/components/ui/spinner'
-import { Item, ItemActions, ItemHeader } from '@/components/ui/item'
+import { Item, ItemActions, ItemContent, ItemMedia, ItemTitle } from '@/components/ui/item'
 import { Button } from '@/components/ui/button'
 import { toast } from 'vue-sonner'
 import { useI18n } from 'vue-i18n'
@@ -52,14 +52,16 @@ onMounted(async () => {
         variant="outline"
         class="flex-col md:flex-row items-start md:items-center justify-between flex-nowrap"
       >
-        <ItemHeader class="justify-start">
+        <ItemMedia>
           <DiscordAvatar
             :id="invitation.invitation.botId"
             :alt="invitation.botUsername"
             :avatar="invitation.botAvatar"
           />
-          <h1 class="text-2xl font-semibold">{{ invitation.botUsername }}</h1>
-        </ItemHeader>
+        </ItemMedia>
+        <ItemContent>
+          <ItemTitle>{{ invitation.botUsername }}</ItemTitle>
+        </ItemContent>
         <ItemActions>
           <Button size="icon" @click="acceptInvitation(invitation.invitation.invitationId)">
             <Spinner v-if="isLoading" />
