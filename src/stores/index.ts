@@ -29,6 +29,8 @@ export const useStore = defineStore('store', () => {
   const achievementsStore = ref<Achievement[]>([])
   const teamInvitations = ref<TeamInvitationData[]>([])
 
+  const allUsers = ref<User[]>([])
+
   const theme = ref<Color>('zinc')
 
   const statsRange = ref<DateRange>({
@@ -59,6 +61,7 @@ export const useStore = defineStore('store', () => {
     blogArticles.value = []
     achievementsStore.value = []
     teamInvitations.value = []
+    allUsers.value = []
   }
 
   return {
@@ -73,6 +76,9 @@ export const useStore = defineStore('store', () => {
     blogArticles,
     achievementsStore,
     teamInvitations,
+
+    allUsers,
+
     statsRange,
     theme,
     setTheme,

@@ -1,4 +1,5 @@
 import type { Component, FunctionalComponent } from 'vue'
+import type { Table } from '@tanstack/vue-table'
 
 export enum InteractionType {
   Unknown,
@@ -47,7 +48,7 @@ export interface User {
   username: string
   avatar?: string
   avatarDecoration?: string
-  banned: boolean
+  suspended: boolean
   joinedAt: string
   createdAt: string
   botsLimit: number
@@ -341,6 +342,12 @@ export interface SidebarItem {
   to?: string
   children?: SidebarItem[]
   tag?: string
+}
+
+export interface DataTableAction<TData> {
+  title: string
+  onSelect: (rowSelection: { [index: string]: boolean }, table: Table<TData>) => void
+  destructive?: boolean
 }
 
 export const searchBotParams: SearchParam[] = [

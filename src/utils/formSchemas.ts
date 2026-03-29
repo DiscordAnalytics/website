@@ -87,3 +87,13 @@ export const topggTokenUpdateFormSchema = z.object({
     .optional()
     .refine((value) => !value || new RegExp(/whs_\w/g).test(value), 'Invalid webhook secret!'),
 })
+
+export const adminUpdateBotsLimitFormSchema = z.object({
+  limit: z.number('Please enter a limit').min(0, 'The limit must be at least 1.'),
+  sure: z.boolean().refine((bool) => bool === true, 'You must check this!'),
+})
+
+export const adminAskForReasonFormSchema = z.object({
+  reason: z.string('Please enter a reason').min(5, 'Reason must be at least 5 characters long.'),
+  sure: z.boolean().refine((bool) => bool === true, 'You must check this!'),
+})
