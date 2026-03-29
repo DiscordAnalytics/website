@@ -1,0 +1,54 @@
+{
+  "searchPlaceholder": "Rechercher parmis les utilisateurs...",
+  "table": {
+    "selectAll": "Sélectionner tout",
+    "selectRow": "Sélectionner la ligne",
+    "user": "Utilisateur",
+    "joinedAt": "Rejoin le",
+    "createdAt": "Compte créé le",
+    "admin": "Administrateur",
+    "suspended": "Suspendu"
+  },
+  "actions": {
+    "editLimits": "Modifier les limites",
+    "suspend": "Suspendre",
+    "delete": "Supprimer"
+  },
+  "empty": {
+    "title": "Aucun utilisateur",
+    "description": "AUcun utilisateur pour les filtres sélectionnés"
+  },
+  "fields": {
+    "reason": {
+      "label": "Raison",
+      "placeholder": "L'utilisateur n'a pas respecté les Conditions Générales d'Utilisation"
+    },
+    "botsLimit": {
+      "label": "Limite de bots"
+    },
+    "sure": {
+      "label": "Êtes vous sûr ?",
+      "description": "Veuillez confirmer que vous savez ce que vous faites, et que cette action prendra effet immédiatement.",
+      "descriptionIrreversible": "Veuillez confirmer que vous savez ce que vous faites, et que cette action prendra effet immédiatement et sera irréversible."
+    }
+  },
+  "editLimits": {
+    "title": "Modification de {username}... | Modification de {count} utilisateurs...",
+    "description": "Vous pouvez modifier ici les limites de {username}. | Vous pouvez modifier ici les limites des utilisateurs sélectionnés.",
+    "submit": "Modifier les limites",
+    "toast": "Les limites ont bien été modifiées pour les utilisateurs sélectionnés."
+  },
+  "suspend": {
+    "title": "Suspension de {username}... | Suspension de {count} utilisateurs...",
+    "description": "Vous vous apprêtez à suspendre {username}, ce qui signifie qu'il ne pourra plus utiliser Discord Analytics jusqu'à ce que la suspension soit annulée (cela inclue aussi les bots lui appartenant). | Vous vous apprêtez à suspendre les utilisateurs sélectionnés, ce qui signifie qu'ils ne pourront plus utiliser Discord Analytics jusqu'à ce que la suspension soit annulée (cela inclue aussi les bots leur appartenant).",
+    "submit": "Suspension de {username} | Suspension les utilisateurs",
+    "toast": "Les utilisateurs sélectionnés ont bien été suspendus."
+  },
+  "delete": {
+    "title": "Suppression de {username}... | Suppression de {count} utilisateurs...",
+    "description": "Vous vous apprêtez à supprimer {username}, ce qui signifie que son compte et toutes les données qui lui sont associées seront définitivement supprimées de la base de données. | Vous vous apprêtez à supprimer les utilisateurs sélectionnés, ce qui signifie que leurs comptes et toutes les données qui leur sont associées seront définitivement supprimées de la base de données.",
+    "cancel": "Annuler",
+    "submit": "Supprimer {username} | Supprimer les utilisateurs",
+    "toast": "Les utilisateurs sélectionnés ont bien été supprimés."
+  }
+}

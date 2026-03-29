@@ -16,6 +16,9 @@ import EditUsersLimitsDialog from '@/components/dash/admin/EditUsersLimitsDialog
 import SuspendUsersDialog from '@/components/dash/admin/SuspendUsersDialog.vue'
 import { Badge } from '@/components/ui/badge'
 import DeleteUsersDialog from '@/components/dash/admin/DeleteUsersDialog.vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const router = useRouter()
 const { users, fetch: fetchUsers } = useUsers()
@@ -37,13 +40,13 @@ const columns = computed<ColumnDef<User>[]>(() => [
       h(Checkbox, {
         modelValue: table.getIsAllPageRowsSelected(),
         'onUpdate:modelValue': (value: boolean) => table.toggleAllPageRowsSelected(value),
-        ariaLabel: 'Select all',
+        ariaLabel: t('pages.dash.admin.users.table.selectAll'),
       }),
     cell: ({ row }) =>
       h(Checkbox, {
         modelValue: row.getIsSelected(),
         'onUpdate:modelValue': (value: boolean) => row.toggleSelected(value),
-        ariaLabel: 'Select row',
+        ariaLabel: t('pages.dash.admin.users.table.selectRow'),
       }),
   },
   {
@@ -55,7 +58,7 @@ const columns = computed<ColumnDef<User>[]>(() => [
           variant: 'ghost',
           onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
         },
-        () => ['User', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })],
+        () => [t('pages.dash.admin.users.table.user'), h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })],
       )
     },
     cell: ({ row }) => {
@@ -69,8 +72,10 @@ const columns = computed<ColumnDef<User>[]>(() => [
           size: 'sm',
         }),
         h('span', [user.username]),
-        user.admin ? h(Badge, ['Admin']) : undefined,
-        user.suspended ? h(Badge, { variant: 'destructive' }, ['Suspended']) : undefined,
+        user.admin ? h(Badge, [t('pages.dash.admin.users.table.admin')]) : undefined,
+        user.suspended
+          ? h(Badge, { variant: 'destructive' }, [t('pages.dash.admin.users.table.suspended')])
+          : undefined,
       ])
     },
   },
@@ -83,7 +88,10 @@ const columns = computed<ColumnDef<User>[]>(() => [
           variant: 'ghost',
           onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
         },
-        () => ['Joined At', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })],
+        () => [
+          t('pages.dash.admin.users.table.joinedAt'),
+          h(ArrowUpDown, { class: 'ml-2 h-4 w-4' }),
+        ],
       )
     },
     cell: ({ row }) => h('div', df.format(new Date(row.getValue('joinedAt')))),
@@ -97,7 +105,10 @@ const columns = computed<ColumnDef<User>[]>(() => [
           variant: 'ghost',
           onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
         },
-        () => ['Created At', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })],
+        () => [
+          t('pages.dash.admin.users.table.createdAt'),
+          h(ArrowUpDown, { class: 'ml-2 h-4 w-4' }),
+        ],
       )
     },
     cell: ({ row }) => h('div', {}, df.format(new Date(row.getValue('createdAt')))),
@@ -118,7 +129,7 @@ const actions = computed<
   }>[]
 >(() => [
   {
-    title: 'Edit limits',
+    title: t('pages.dash.admin.users.actions.editLimits'),
     onSelect(rowSelection, table) {
       selectedUsers.value = []
       for (const [index, value] of Object.entries(rowSelection)) {
@@ -128,7 +139,7 @@ const actions = computed<
     },
   },
   {
-    title: 'Suspend',
+    title: t('pages.dash.admin.users.actions.suspend'),
     onSelect(rowSelection, table) {
       selectedUsers.value = []
       for (const [index, value] of Object.entries(rowSelection)) {
@@ -138,7 +149,7 @@ const actions = computed<
     },
   },
   {
-    title: 'Delete',
+    title: t('pages.dash.admin.users.actions.delete'),
     onSelect(rowSelection, table) {
       selectedUsers.value = []
       for (const [index, value] of Object.entries(rowSelection)) {
@@ -182,7 +193,7 @@ onMounted(async () => {
         :columns="columns"
         :data="users"
         :column-visibility="{ userId: false }"
-        search-placeholder="Search in users..."
+        :search-placeholder="$t('pages.dash.admin.users.searchPlaceholder')"
         :actions="actions"
         @row-click="(row) => router.push(`/dash/admin/users/${row.original.userId}`)"
       >
@@ -191,8 +202,10 @@ onMounted(async () => {
             <EmptyMedia variant="icon">
               <FrownIcon />
             </EmptyMedia>
-            <EmptyTitle>No users</EmptyTitle>
-            <EmptyDescription>No users found for the selected filters</EmptyDescription>
+            <EmptyTitle>{{ $t('pages.dash.admin.users.empty.title') }}</EmptyTitle>
+            <EmptyDescription>
+              {{ $t('pages.dash.admin.users.empty.description') }}
+            </EmptyDescription>
           </EmptyHeader>
         </template>
       </DataTable>

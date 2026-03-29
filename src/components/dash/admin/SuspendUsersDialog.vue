@@ -1,13 +1,7 @@
 <script setup lang="ts">
 import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Label } from '@/components/ui/label'
 import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field'
 import { Button } from '@/components/ui/button'
@@ -19,6 +13,9 @@ import { toast } from 'vue-sonner'
 import { ref } from 'vue'
 import type { User } from '@/utils/types.ts'
 import { useUsers } from '@/composables'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const props = defineProps<{
   users: User[]
@@ -42,7 +39,7 @@ const onSubmit = form.handleSubmit(async (values) => {
     for (const user of props.users) {
       await suspendUser(user.userId, values.reason)
     }
-    toast.success('The selected users have been successfully suspended.')
+    toast.success(t('pages.dash.admin.users.suspend.toast'))
   } catch (e: any) {
     toast.error(e.message)
   }
@@ -55,10 +52,24 @@ const onSubmit = form.handleSubmit(async (values) => {
   <Dialog :open="props.open" @update:open="$emit('update:open', $event)">
     <DialogContent>
       <DialogHeader>
-        <DialogTitle>Suspend {{ $props.users.length }} users...</DialogTitle>
+        <DialogTitle>
+          {{
+            $t('pages.dash.admin.users.suspend.title', $props.users.length, {
+              named: {
+                username: $props.users[0]?.username,
+                count: $props.users.length,
+              },
+            })
+          }}
+        </DialogTitle>
         <DialogDescription>
-          You're about to suspended the selected users which means they won't be able to use Discord
-          Analytics until the suspension is revoked (this also includes users' bots).
+          {{
+            $t('pages.dash.admin.users.suspend.description', $props.users.length, {
+              named: {
+                username: $props.users[0]?.username,
+              },
+            })
+          }}
         </DialogDescription>
       </DialogHeader>
 
@@ -66,11 +77,13 @@ const onSubmit = form.handleSubmit(async (values) => {
         <FieldGroup>
           <VeeField v-slot="{ field, errors }" name="reason">
             <Field :data-invalid="!!errors.length">
-              <FieldLabel for="reasonInput">Reason</FieldLabel>
+              <FieldLabel for="reasonInput">
+                {{ $t('pages.dash.admin.users.fields.reason.label') }}
+              </FieldLabel>
               <Input
                 id="reasonInput"
                 v-bind="field"
-                placeholder="The user did not respect our Terms of Service"
+                :placeholder="$t('pages.dash.admin.users.fields.reason.placeholder')"
                 autofocus
                 :aria-invalid="!!errors.length"
                 :disabled="isLoading"
@@ -94,10 +107,11 @@ const onSubmit = form.handleSubmit(async (values) => {
                   "
                 />
                 <div class="grid gap-1.5 font-normal">
-                  <p class="text-sm leading-none font-medium">Are you sure?</p>
+                  <p class="text-sm leading-none font-medium">
+                    {{ $t('pages.dash.admin.users.fields.sure.label') }}
+                  </p>
                   <p class="text-muted-foreground text-sm">
-                    Please confirm that you know what you're doing and that the action will be
-                    immediate.
+                    {{ $t('pages.dash.admin.users.fields.sure.description') }}
                   </p>
                 </div>
               </Label>
@@ -108,7 +122,13 @@ const onSubmit = form.handleSubmit(async (values) => {
           <Field>
             <Button type="submit" form="suspendUsersForm" :disabled="isLoading" class="w-full">
               <Spinner v-if="isLoading" />
-              {{ $t('pages.dash.onboarding.stepOne.submit') }}
+              {{
+                $t('pages.dash.admin.users.suspend.submit', $props.users.length, {
+                  named: {
+                    username: $props.users[0]?.username,
+                  },
+                })
+              }}
             </Button>
           </Field>
         </FieldGroup>
