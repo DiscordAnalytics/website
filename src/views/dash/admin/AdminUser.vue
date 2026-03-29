@@ -40,9 +40,7 @@ const columns = computed<ColumnDef<Bot, any>[]>(() => [
   },
   {
     accessorKey: 'username',
-    header: ({ column }) => {
-      return h('span', ['Bot'])
-    },
+    header: () => h('span', [t('pages.dash.admin.users.user.bots.table.bot')]),
     cell: ({ row }) => {
       const bot = accessibleBots.value.find((bot) => bot.botId === row.getValue('botId'))!
 
@@ -57,22 +55,20 @@ const columns = computed<ColumnDef<Bot, any>[]>(() => [
         bot.suspended
           ? h(Badge, { variant: 'destructive' }, [t('pages.dash.admin.users.table.suspended')])
           : undefined,
-        bot.team.includes(userInfos.value?.userId ?? '') ? h(Badge, ['Team member']) : undefined,
+        bot.team.includes(userInfos.value?.userId ?? '')
+          ? h(Badge, [t('pages.dash.admin.users.user.bots.table.teamMember')])
+          : undefined,
       ])
     },
   },
   {
     accessorKey: 'watchedSince',
-    header: () => {
-      return h('span', ['Watched Since'])
-    },
+    header: () => h('span', [t('pages.dash.admin.users.user.bots.table.watchedSince')]),
     cell: ({ row }) => h('div', df.format(new Date(row.getValue('watchedSince')))),
   },
   {
     accessorKey: 'lastPush',
-    header: () => {
-      return h('span', ['Last stats push'])
-    },
+    header: () => h('span', [t('pages.dash.admin.users.user.bots.table.lastPush')]),
     cell: ({ row }) => h('div', df.format(new Date(row.getValue('lastPush')))),
   },
 ])
@@ -110,7 +106,7 @@ onMounted(async () => {
     <div v-if="userInfos" class="grid grid-cols-2 gap-4">
       <Card>
         <CardHeader>
-          <CardTitle>Identity</CardTitle>
+          <CardTitle>{{ $t('pages.dash.admin.users.user.identity.title') }}</CardTitle>
         </CardHeader>
         <CardContent class="flex items-center flex-col gap-4 flex-1">
           <DiscordAvatar
@@ -137,7 +133,7 @@ onMounted(async () => {
       </Card>
       <Card>
         <CardHeader>
-          <CardTitle>Bots</CardTitle>
+          <CardTitle>{{ $t('pages.dash.admin.users.user.bots.title') }}</CardTitle>
         </CardHeader>
         <CardContent>
           <div class="container mx-auto">
@@ -155,8 +151,10 @@ onMounted(async () => {
                   <EmptyMedia variant="icon">
                     <FrownIcon />
                   </EmptyMedia>
-                  <EmptyTitle>Not bots</EmptyTitle>
-                  <EmptyDescription>This user does not have access to any bots</EmptyDescription>
+                  <EmptyTitle>{{ $t('pages.dash.admin.users.user.bots.empty.title') }}</EmptyTitle>
+                  <EmptyDescription>
+                    {{ $t('pages.dash.admin.users.user.bots.empty.description') }}
+                  </EmptyDescription>
                 </EmptyHeader>
               </template>
             </DataTable>
@@ -165,7 +163,7 @@ onMounted(async () => {
       </Card>
       <Card>
         <CardHeader>
-          <CardTitle class="text-lg">Usage</CardTitle>
+          <CardTitle class="text-lg">{{ $t('pages.dash.account.infos.usage.title') }}</CardTitle>
         </CardHeader>
         <CardContent>
           <Field>
@@ -179,13 +177,19 @@ onMounted(async () => {
       </Card>
       <Card>
         <CardHeader>
-          <CardTitle>Actions</CardTitle>
+          <CardTitle>{{ $t('pages.dash.admin.users.user.actions.title') }}</CardTitle>
         </CardHeader>
         <CardContent>
           <div class="flex items-center gap-2 py-4 justify-center">
-            <Button variant="secondary" @click="isEditLimitsModalOpen = true">Edit limits</Button>
-            <Button variant="secondary" @click="isSuspendModalOpen = true">Suspend</Button>
-            <Button variant="destructive" @click="isDeleteModalOpen = true">Delete</Button>
+            <Button variant="secondary" @click="isEditLimitsModalOpen = true">
+              {{ $t('pages.dash.admin.users.actions.editLimits') }}
+            </Button>
+            <Button variant="secondary" @click="isSuspendModalOpen = true">
+              {{ $t('pages.dash.admin.users.actions.suspend') }}
+            </Button>
+            <Button variant="destructive" @click="isDeleteModalOpen = true">
+              {{ $t('pages.dash.admin.users.actions.delete') }}
+            </Button>
           </div>
         </CardContent>
       </Card>

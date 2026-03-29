@@ -50,5 +50,26 @@
     "cancel": "Cancel",
     "submit": "Delete {username} | Delete users",
     "toast": "The selected users have been successfully deleted."
+  },
+  "user": {
+    "identity": {
+      "title": "Identity"
+    },
+    "bots": {
+      "title": "Bots",
+      "table": {
+        "bot": "Bot",
+        "teamMember": "Team member",
+        "watchedSince": "Watched Since",
+        "lastPush": "Last stats push"
+      },
+      "empty": {
+        "title": "No bots",
+        "description": "This user does not have access to any bots"
+      }
+    },
+    "actions": {
+      "title": "Actions"
+    }
   }
 }
