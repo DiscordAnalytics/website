@@ -31,5 +31,12 @@ export default function useUsers() {
     else store.allUsers.push(updated)
   }
 
-  return { users, fetch, updateLimits, suspend }
+  async function remove(userId: string) {
+    if (!api.userId) throw new Error('Not authenticated')
+    await api.users.remove(userId)
+
+    store.allUsers = store.allUsers.filter((user) => user.userId !== userId)
+  }
+
+  return { users, fetch, updateLimits, suspend, remove }
 }

@@ -97,3 +97,7 @@ export const adminAskForReasonFormSchema = z.object({
   reason: z.string('Please enter a reason').min(5, 'Reason must be at least 5 characters long.'),
   sure: z.boolean().refine((bool) => bool === true, 'You must check this!'),
 })
+
+export const askForConfirmationFormSchema = z.object({
+  sure: z.boolean().refine((bool) => bool === true, 'You must check this!'),
+})
