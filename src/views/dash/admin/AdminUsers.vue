@@ -39,13 +39,13 @@ const columns = computed<ColumnDef<User>[]>(() => [
     header: ({ table }) =>
       h(Checkbox, {
         modelValue: table.getIsAllPageRowsSelected(),
-        'onUpdate:modelValue': (value: boolean) => table.toggleAllPageRowsSelected(value),
+        'onUpdate:model-value': (value: boolean) => table.toggleAllPageRowsSelected(value),
         ariaLabel: t('pages.dash.admin.users.table.selectAll'),
       }),
     cell: ({ row }) =>
       h(Checkbox, {
         modelValue: row.getIsSelected(),
-        'onUpdate:modelValue': (value: boolean) => row.toggleSelected(value),
+        'onUpdate:model-value': (value: boolean) => row.toggleSelected(value),
         ariaLabel: t('pages.dash.admin.users.table.selectRow'),
       }),
   },
