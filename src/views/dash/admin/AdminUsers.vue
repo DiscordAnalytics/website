@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="TData, TValue">
+<script setup lang="ts">
 import AdminDashLayout from '@/components/layouts/AdminDashLayout.vue'
 import { useUsers } from '@/composables'
 import { computed, h, onMounted, ref } from 'vue'
@@ -29,7 +29,7 @@ const isSuspendModalOpen = ref<boolean>(false)
 const isDeleteModalOpen = ref<boolean>(false)
 const selectedUsers = ref<User[]>([])
 
-const columns = computed<ColumnDef<User>[]>(() => [
+const columns = computed<ColumnDef<User, any>[]>(() => [
   {
     accessorKey: 'userId',
     id: 'userId',
@@ -115,19 +115,7 @@ const columns = computed<ColumnDef<User>[]>(() => [
   },
 ])
 
-const actions = computed<
-  DataTableAction<{
-    userId: string
-    username: string
-    avatar?: string | undefined
-    avatarDecoration?: string | undefined
-    suspended: boolean
-    joinedAt: string
-    createdAt: string
-    botsLimit: number
-    admin: boolean
-  }>[]
->(() => [
+const actions = computed<DataTableAction<User>[]>(() => [
   {
     title: t('pages.dash.admin.users.actions.editLimits'),
     onSelect(rowSelection, table) {

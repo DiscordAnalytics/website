@@ -7,7 +7,7 @@ export default function useAddBot(scope: APIScope = APIScope.User) {
 
   async function add(botId: string) {
     const res = await api.bots.add(botId, api.userId ?? '')
-    store.userBots.push(res)
+    store.userBots[api.userId!]!.push(res)
   }
 
   return { add }

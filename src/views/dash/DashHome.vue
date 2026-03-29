@@ -8,7 +8,7 @@ import { Spinner } from '@/components/ui/spinner'
 import { onMounted } from 'vue'
 
 const router = useRouter()
-const { userBots } = useCurrentUser()
+const { accessibleBots: userBots } = useCurrentUser()
 const lastSeenBot = useLocalStorage('lastSeenBot', userBots.value[0] ? userBots.value[0] : '')
 
 function redirect() {

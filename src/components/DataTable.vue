@@ -43,11 +43,16 @@ import { Button } from '@/components/ui/button'
 import { ChevronsUpDownIcon } from 'lucide-vue-next'
 import type { DataTableAction } from '@/utils/types.ts'
 
+//type TData = Record<string, any>
+//type TValue = any
+
 const props = defineProps<{
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
   columnVisibility: Record<string, boolean>
-  searchPlaceholder: string
+  noHeader?: boolean
+  searchPlaceholder?: string
+  noPagination?: boolean
   actions: DataTableAction<TData>[]
 }>()
 
@@ -96,7 +101,7 @@ const table = useVueTable({
 
 <template>
   <div>
-    <div class="flex items-center gap-2 mb-4">
+    <div v-if="!$props.noHeader" class="flex items-center gap-2 mb-4">
       <Input
         :placeholder="$props.searchPlaceholder"
         class="w-full"
@@ -191,7 +196,7 @@ const table = useVueTable({
       </Table>
     </div>
 
-    <div class="flex items-center gap-4 mt-4 flex-col">
+    <div v-if="!$props.noPagination" class="flex items-center gap-4 mt-4 flex-col">
       <Pagination
         v-slot="{ page }"
         :total="table.getFilteredRowModel().rows.length"

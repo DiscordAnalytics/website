@@ -1,24 +1,36 @@
 import useAPI, { APIScope } from '@/utils/api'
 import { useStore } from '@/stores'
-import { computed, type Ref } from 'vue'
+import { computed, ref, type Ref } from 'vue'
 
-export default function useBot(botId: Ref<string>, scope: APIScope = APIScope.User) {
+export default function useBot(
+  botId: Ref<string>,
+  ownerId: Ref<string | null> = ref(null),
+  scope: APIScope = APIScope.User,
+) {
   const api = useAPI(scope)
   const store = useStore()
+  if (!ownerId.value) ownerId = ref(api.userId)
 
-  const bot = computed(() => store.userBots.find((bot) => bot.botId === botId.value))
+  const bot = computed(() =>
+    ownerId.value
+      ? (store.userBots[ownerId.value]?.find((bot) => bot.botId === botId.value) ?? null)
+      : null,
+  )
 
   async function fetch() {
-    const index = store.userBots.findIndex((bot) => bot.botId === botId.value)
+    const index =
+      store.userBots[ownerId.value!]?.findIndex((bot) => bot.botId === botId.value) ?? -1
     const updated = await api.bots.get(botId.value)
 
-    if (index !== -1) store.userBots[index] = updated
-    else store.userBots.push(updated)
+    if (index !== -1) store.userBots[ownerId.value!]![index] = updated
+    else store.userBots[ownerId.value!]!.push(updated)
   }
 
   async function remove() {
     await api.bots.deleteBot(botId.value)
-    store.userBots = store.userBots.filter((bot) => bot.botId !== botId.value)
+    store.userBots[ownerId.value!]! = store.userBots[ownerId.value!]!.filter(
+      (bot) => bot.botId !== botId.value,
+    )
   }
 
   async function regenToken() {
@@ -35,16 +47,18 @@ export default function useBot(botId: Ref<string>, scope: APIScope = APIScope.Us
     if (!bot.value) throw new Error('Bot not found')
     await api.bots.updateSettings(botId.value, !bot.value.advancedStats)
 
-    const botIndex = store.userBots.findIndex((b) => b.botId === botId.value)
-    if (botIndex >= 0) store.userBots[botIndex]!.advancedStats = !bot.value.advancedStats
+    const botIndex = store.userBots[ownerId.value!]!.findIndex((b) => b.botId === botId.value)
+    if (botIndex >= 0)
+      store.userBots[ownerId.value!]![botIndex]!.advancedStats = !bot.value.advancedStats
   }
 
   async function updateVotesWebhook(webhookUrl: string) {
     if (!bot.value) throw new Error('Bot not found')
     await api.bots.updateVotesWebhook(botId.value, webhookUrl)
 
-    const botIndex = store.userBots.findIndex((b) => b.botId === botId.value)
-    if (botIndex >= 0) store.userBots[botIndex]!.webhooksConfig.webhookUrl = webhookUrl
+    const botIndex = store.userBots[ownerId.value!]!.findIndex((b) => b.botId === botId.value)
+    if (botIndex >= 0)
+      store.userBots[ownerId.value!]![botIndex]!.webhooksConfig.webhookUrl = webhookUrl
   }
 
   async function testVotesWebhook() {

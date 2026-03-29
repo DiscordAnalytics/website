@@ -11,7 +11,7 @@ import { onMounted, ref } from 'vue'
 import { Empty, EmptyHeader, EmptyMedia } from '@/components/ui/empty'
 import { Spinner } from '@/components/ui/spinner'
 
-const { userInfos, ownedBots, notOwnedBots, userBots } = useCurrentUser()
+const { userInfos, ownedBots, notOwnedBots, accessibleBots: userBots } = useCurrentUser()
 
 const goalsCount = ref<{ [botId: string]: number }>({})
 const eventsCount = ref<{ [botId: string]: number }>({})

@@ -11,7 +11,7 @@ export default class UsersResource {
   }
 
   get(userId: string): Promise<User> {
-    if (userId !== this.api.userId && this.api.scope !== APIScope.User)
+    if (userId !== this.api.userId && this.api.scope !== APIScope.Admin)
       throw new APIError(401, 'Unauthorized')
 
     return this.api.request('GET', `/users/${userId}`)

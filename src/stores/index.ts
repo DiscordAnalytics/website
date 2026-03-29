@@ -18,7 +18,7 @@ import type {
 
 export const useStore = defineStore('store', () => {
   const userInfos = ref<User | null>(null)
-  const userBots = ref<Bot[]>([])
+  const userBots = ref<{ [userId: string]: Bot[] }>({})
   const userSessions = ref<OAuthSession[]>([])
   const botAchievements = ref<{ [botId: string]: Achievement[] }>({})
   const botCustomEvents = ref<{ [botId: string]: CustomEvent[] }>({})
@@ -51,7 +51,7 @@ export const useStore = defineStore('store', () => {
 
   function clear() {
     userInfos.value = null
-    userBots.value = []
+    userBots.value = {}
     userSessions.value = []
     botAchievements.value = {}
     botCustomEvents.value = {}
