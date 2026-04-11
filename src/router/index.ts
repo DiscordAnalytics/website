@@ -127,6 +127,10 @@ const router = createRouter({
       component: () => import('@/views/dash/admin/AdminBot.vue'),
     },
     {
+      path: '/dash/admin/achievements',
+      component: () => import('@/views/dash/admin/AdminAchievements.vue'),
+    },
+    {
       path: '/:catchAll(.*)*',
       name: 'NotFound',
       component: () => import('@/views/Error404.vue'),

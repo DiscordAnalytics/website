@@ -232,6 +232,7 @@ export interface FormattedStats {
 
 export interface Achievement {
   id: string
+  botId?: string
   achievedOn?: string
   objective: {
     type: GoalType
