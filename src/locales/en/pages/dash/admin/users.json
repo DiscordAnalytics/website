@@ -12,6 +12,7 @@
   "actions": {
     "editLimits": "Edit limits",
     "suspend": "Suspend",
+    "unsuspend": "Unsuspend",
     "delete": "Delete"
   },
   "empty": {

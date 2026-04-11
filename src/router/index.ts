@@ -119,6 +119,14 @@ const router = createRouter({
       component: () => import('@/views/dash/admin/AdminUser.vue'),
     },
     {
+      path: '/dash/admin/bots',
+      component: () => import('@/views/dash/admin/AdminBots.vue'),
+    },
+    {
+      path: '/dash/admin/bots/:id',
+      component: () => import('@/views/dash/admin/AdminBot.vue'),
+    },
+    {
       path: '/:catchAll(.*)*',
       name: 'NotFound',
       component: () => import('@/views/Error404.vue'),

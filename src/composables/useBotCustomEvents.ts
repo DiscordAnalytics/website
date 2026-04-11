@@ -3,8 +3,8 @@ import { useStore } from '@/stores'
 import { computed, type Ref } from 'vue'
 import type { CustomEvent } from '@/utils/types.ts'
 
-export default function useBotCustomEvents(botId: Ref<string>) {
-  const api = useAPI(APIScope.User)
+export default function useBotCustomEvents(botId: Ref<string>, scope: APIScope = APIScope.User) {
+  const api = useAPI(scope)
   const store = useStore()
 
   const events = computed(() => store.botCustomEvents[botId.value] ?? [])

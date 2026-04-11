@@ -1,0 +1,70 @@
+{
+  "searchPlaceholder": "Search in bots...",
+  "table": {
+    "selectAll": "Select all",
+    "selectRow": "Select row",
+    "bot": "Bot",
+    "watchedSince": "Watched Since",
+    "lastPush": "Last Push",
+    "suspended": "Suspended"
+  },
+  "actions": {
+    "editLimits": "Edit limits",
+    "suspend": "Suspend",
+    "unsuspend": "Unsuspend",
+    "delete": "Delete"
+  },
+  "bot": {
+    "identity": {
+      "title": "Identity",
+      "watchedSince": "Watched Since",
+      "lastPush": "Last Stats Push"
+    },
+    "limits": {
+      "title": "Limits"
+    }
+  },
+  "empty": {
+    "title": "No bots",
+    "description": "No bots found for the selected filters"
+  },
+  "fields": {
+    "reason": {
+      "label": "Reason",
+      "placeholder": "The bot did not respect our Terms of Service"
+    },
+    "goalsLimit": {
+      "label": "Goals limit"
+    },
+    "customEventsLimit": {
+      "label": "Custom Events limit"
+    },
+    "teammatesLimit": {
+      "label": "Teammates limit"
+    },
+    "sure": {
+      "label": "Are you sure?",
+      "description": "Please confirm that you know what you're doing and that the action will be immediate.",
+      "descriptionIrreversible": "Please confirm that you know what you're doing and that the action will be immediate and irreversible."
+    }
+  },
+  "editLimits": {
+    "title": "Editing {username}... | Editing {count} bots...",
+    "description": "You can update here the limits of {username}. | You can update here the limits of the selected bots.",
+    "submit": "Update limits",
+    "toast": "Limits successfully updated for the selected bots."
+  },
+  "suspend": {
+    "title": "Suspending {username}... | Suspending {count} bots...",
+    "description": "You're about to suspend {username} which means it won't be able to send stats and its dashboard will be unavailable for the owner and the teammates. | You're about to suspend the selected bots which means they won't be able to send stats and their dashboards will be unavailable for the owners and the teammates.",
+    "submit": "Suspend {username} | Suspend bots",
+    "toast": "The selected bots have been successfully suspended."
+  },
+  "delete": {
+    "title": "Delete {username}... | Delete {count} bots...",
+    "description": "You're about to delete {username} which means all associated data will be permanently deleted from the database. | You're about to delete the selected bots which means all associated data will be permanently deleted from the database.",
+    "cancel": "Cancel",
+    "submit": "Delete {username} | Delete bots",
+    "toast": "The selected bots have been successfully deleted."
+  }
+}

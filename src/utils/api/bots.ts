@@ -1,4 +1,4 @@
-import { type APIClient } from '@/utils/api/index.ts'
+import { type APIClient, APIError, APIScope } from '@/utils/api/index.ts'
 import type {
   Achievement,
   Bot,
@@ -28,8 +28,35 @@ export default class BotsResource {
     return this.api.request('GET', `/bots/${botId}`)
   }
 
+  getAll(): Promise<Bot[]> {
+    if (this.api.scope !== APIScope.Admin) throw new APIError(401, 'Unauthorized')
+
+    return this.api.request('GET', `/bots`)
+  }
+
+  updateLimits(
+    botId: string,
+    goalsLimit: number,
+    customEventsLimit: number,
+    teammatesLimit: number,
+  ): Promise<Bot> {
+    return this.api.request('PATCH', `/bots/${botId}/settings`, {
+      goalsLimit,
+      customEventsLimit,
+      teammatesLimit,
+    })
+  }
+
   add(botId: string, ownerId: string): Promise<Bot> {
     return this.api.request('POST', `/bots/${botId}`, { userId: ownerId })
+  }
+
+  suspend(userId: string, reason: string): Promise<void> {
+    return this.api.request('POST', `/bots/${userId}/suspend`, { reason })
+  }
+
+  unsuspend(userId: string): Promise<void> {
+    return this.api.request('DELETE', `/bots/${userId}/suspend`)
   }
 
   getStats(botId: string, range: DateRange): Promise<{ stats: RawStats[]; votes: RawVotes[] }> {

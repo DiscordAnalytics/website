@@ -4,8 +4,8 @@ import { computed, type Ref } from 'vue'
 import type { Achievement } from '@/utils/types.ts'
 import { goal2Percent } from '@/utils/statsManager.ts'
 
-export default function useBotAchievements(botId: Ref<string>) {
-  const api = useAPI(APIScope.User)
+export default function useBotAchievements(botId: Ref<string>, scope: APIScope = APIScope.User) {
+  const api = useAPI(scope)
   const store = useStore()
 
   const achievements = computed(

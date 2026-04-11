@@ -22,11 +22,18 @@ import { Progress } from '@/components/ui/progress'
 import DataTable from '@/components/DataTable.vue'
 import { FrownIcon } from 'lucide-vue-next'
 import { EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty'
+import { Spinner } from '@/components/ui/spinner'
 
 const { t } = useI18n()
 const router = useRouter()
 const userId = useRouteParams<string>('id')
-const { userInfos, ownedBots, fetch: fetchUser, accessibleBots } = useUser(APIScope.Admin, userId)
+const {
+  userInfos,
+  ownedBots,
+  fetch: fetchUser,
+  accessibleBots,
+  unsuspend: unsuspendUser,
+} = useUser(APIScope.Admin, userId)
 
 const isLoading = ref<boolean>(false)
 const isEditLimitsModalOpen = ref<boolean>(false)
@@ -72,6 +79,12 @@ const columns = computed<ColumnDef<Bot, any>[]>(() => [
     cell: ({ row }) => h('div', df.format(new Date(row.getValue('lastPush')))),
   },
 ])
+
+async function onUserUnsuspend() {
+  isLoading.value = true
+  await unsuspendUser()
+  isLoading.value = false
+}
 
 onMounted(async () => {
   isLoading.value = true
@@ -184,8 +197,16 @@ onMounted(async () => {
             <Button variant="secondary" @click="isEditLimitsModalOpen = true">
               {{ $t('pages.dash.admin.users.actions.editLimits') }}
             </Button>
-            <Button variant="secondary" @click="isSuspendModalOpen = true">
+            <Button
+              v-if="!userInfos.suspended"
+              variant="secondary"
+              @click="isSuspendModalOpen = true"
+            >
               {{ $t('pages.dash.admin.users.actions.suspend') }}
+            </Button>
+            <Button v-else variant="secondary" :disabled="isLoading" @click="onUserUnsuspend">
+              <Spinner v-if="isLoading" />
+              {{ $t('pages.dash.admin.users.actions.unsuspend') }}
             </Button>
             <Button variant="destructive" @click="isDeleteModalOpen = true">
               {{ $t('pages.dash.admin.users.actions.delete') }}

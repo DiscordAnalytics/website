@@ -1,36 +1,24 @@
 import useAPI, { APIScope } from '@/utils/api'
 import { useStore } from '@/stores'
-import { computed, ref, type Ref } from 'vue'
+import { computed, type Ref } from 'vue'
 
-export default function useBot(
-  botId: Ref<string>,
-  ownerId: Ref<string | null> = ref(null),
-  scope: APIScope = APIScope.User,
-) {
+export default function useBot(botId: Ref<string>, scope: APIScope = APIScope.User) {
   const api = useAPI(scope)
   const store = useStore()
-  if (!ownerId.value) ownerId = ref(api.userId)
 
-  const bot = computed(() =>
-    ownerId.value
-      ? (store.userBots[ownerId.value]?.find((bot) => bot.botId === botId.value) ?? null)
-      : null,
-  )
+  const bot = computed(() => store.bots[botId.value] ?? null)
 
   async function fetch() {
-    const index =
-      store.userBots[ownerId.value!]?.findIndex((bot) => bot.botId === botId.value) ?? -1
-    const updated = await api.bots.get(botId.value)
-
-    if (index !== -1) store.userBots[ownerId.value!]![index] = updated
-    else store.userBots[ownerId.value!]!.push(updated)
+    store.bots[botId.value] = await api.bots.get(botId.value)
   }
 
   async function remove() {
+    const ownerId = store.bots[botId.value]?.ownerId
     await api.bots.deleteBot(botId.value)
-    store.userBots[ownerId.value!]! = store.userBots[ownerId.value!]!.filter(
-      (bot) => bot.botId !== botId.value,
-    )
+    delete store.bots[botId.value]
+    if (ownerId && store.userBotIds[ownerId]) {
+      store.userBotIds[ownerId] = store.userBotIds[ownerId]!.filter((id) => id !== botId.value)
+    }
   }
 
   async function regenToken() {
@@ -46,24 +34,25 @@ export default function useBot(
   async function toggleAdvancedStats() {
     if (!bot.value) throw new Error('Bot not found')
     await api.bots.updateSettings(botId.value, !bot.value.advancedStats)
-
-    const botIndex = store.userBots[ownerId.value!]!.findIndex((b) => b.botId === botId.value)
-    if (botIndex >= 0)
-      store.userBots[ownerId.value!]![botIndex]!.advancedStats = !bot.value.advancedStats
+    store.bots[botId.value]!.advancedStats = !bot.value.advancedStats
   }
 
   async function updateVotesWebhook(webhookUrl: string) {
     if (!bot.value) throw new Error('Bot not found')
     await api.bots.updateVotesWebhook(botId.value, webhookUrl)
-
-    const botIndex = store.userBots[ownerId.value!]!.findIndex((b) => b.botId === botId.value)
-    if (botIndex >= 0)
-      store.userBots[ownerId.value!]![botIndex]!.webhooksConfig.webhookUrl = webhookUrl
+    store.bots[botId.value]!.webhooksConfig.webhookUrl = webhookUrl
   }
 
   async function testVotesWebhook() {
     if (!api.userId) throw new Error('Not authenticated')
     await api.bots.votes.test(botId.value)
+  }
+
+  async function unsuspend() {
+    if (!api.userId) throw new Error('Not authenticated')
+    await api.bots.unsuspend(botId.value)
+
+    store.bots[botId.value]!.suspended = false
   }
 
   return {
@@ -75,5 +64,6 @@ export default function useBot(
     toggleAdvancedStats,
     updateVotesWebhook,
     testVotesWebhook,
+    unsuspend,
   }
 }

@@ -25,10 +25,9 @@ export default function useUsers() {
   async function suspend(userId: string, reason: string) {
     if (!api.userId) throw new Error('Not authenticated')
     const index = store.allUsers.findIndex((user) => user.userId === userId)
-    const updated = await api.users.suspend(userId, reason)
+    await api.users.suspend(userId, reason)
 
-    if (index !== -1) store.allUsers[index] = updated
-    else store.allUsers.push(updated)
+    if (index !== -1) store.allUsers[index]!.suspended = true
   }
 
   async function remove(userId: string) {

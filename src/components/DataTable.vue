@@ -43,9 +43,6 @@ import { Button } from '@/components/ui/button'
 import { ChevronsUpDownIcon } from 'lucide-vue-next'
 import type { DataTableAction } from '@/utils/types.ts'
 
-//type TData = Record<string, any>
-//type TValue = any
-
 const props = defineProps<{
   columns: ColumnDef<TData, TValue>[]
   data: TData[]

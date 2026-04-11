@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import { Item, ItemActions, ItemContent, ItemDescription, ItemMedia, ItemTitle } from '@/components/ui/item'
+import {
+  Item,
+  ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemMedia,
+  ItemTitle,
+} from '@/components/ui/item'
 import { Button } from '@/components/ui/button'
 import { XIcon } from 'lucide-vue-next'
 import { Spinner } from '@/components/ui/spinner'

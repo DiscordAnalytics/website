@@ -1,6 +1,7 @@
 export { default as useAddBot } from './useAddBot'
 export { default as useBlogArticles } from './useBlogArticles'
 export { default as useBot } from './useBot'
+export { default as useBots } from './useBots'
 export { default as useBotAchievements } from './useBotAchievements'
 export { default as useBotCustomEvents } from './useBotCustomEvents'
 export { default as useBotEmailReports } from './useBotEmailReports'

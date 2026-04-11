@@ -14,17 +14,17 @@ import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
 import { Field as VeeField, useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
-import { adminUpdateUserLimitsFormSchema } from '@/utils/formSchemas.ts'
+import { adminAskForReasonFormSchema } from '@/utils/formSchemas.ts'
 import { toast } from 'vue-sonner'
-import { ref, watch } from 'vue'
-import type { User } from '@/utils/types.ts'
-import { useUsers } from '@/composables'
+import { ref } from 'vue'
+import type { Bot } from '@/utils/types.ts'
+import { useBots } from '@/composables'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 
 const props = defineProps<{
-  users: User[]
+  bots: Bot[]
   open: boolean
 }>()
 
@@ -32,9 +32,9 @@ const emit = defineEmits<{
   (e: 'update:open', value: boolean): void
 }>()
 
-const { updateLimits: updateUserLimits } = useUsers()
+const { suspend: suspendBot } = useBots()
 const form = useForm({
-  validationSchema: toTypedSchema(adminUpdateUserLimitsFormSchema),
+  validationSchema: toTypedSchema(adminAskForReasonFormSchema),
 })
 
 const isLoading = ref<boolean>(false)
@@ -42,23 +42,16 @@ const isLoading = ref<boolean>(false)
 const onSubmit = form.handleSubmit(async (values) => {
   isLoading.value = true
   try {
-    for (const user of props.users) {
-      await updateUserLimits(user.userId, values.limit)
+    for (const bot of props.bots) {
+      await suspendBot(bot.botId, values.reason)
     }
-    toast.success(t('pages.dash.admin.users.editLimits.toast'))
+    toast.success(t('pages.dash.admin.bots.suspend.toast'))
   } catch (e: any) {
     toast.error(e.message)
   }
   isLoading.value = false
   emit('update:open', false)
 })
-
-watch(
-  () => props.users,
-  (value) => {
-    form.setValues({ limit: value.length === 1 ? value[0]?.botsLimit : 3 })
-  },
-)
 </script>
 
 <template>
@@ -67,33 +60,36 @@ watch(
       <DialogHeader>
         <DialogTitle>
           {{
-            $t('pages.dash.admin.users.editLimits.title', $props.users.length, {
-              named: { count: $props.users.length, username: $props.users[0]?.username },
+            $t('pages.dash.admin.bots.suspend.title', $props.bots.length, {
+              named: {
+                username: $props.bots[0]?.username,
+                count: $props.bots.length,
+              },
             })
           }}
         </DialogTitle>
         <DialogDescription>
           {{
-            $t('pages.dash.admin.users.editLimits.description', $props.users.length, {
-              named: { username: $props.users[0]?.username },
+            $t('pages.dash.admin.bots.suspend.description', $props.bots.length, {
+              named: {
+                username: $props.bots[0]?.username,
+              },
             })
           }}
         </DialogDescription>
       </DialogHeader>
 
-      <form id="updateBotsLimitForm" @submit="onSubmit">
+      <form id="suspendBotsForm" @submit="onSubmit">
         <FieldGroup>
-          <VeeField v-slot="{ field, errors }" name="limit">
+          <VeeField v-slot="{ field, errors }" name="reason">
             <Field :data-invalid="!!errors.length">
-              <FieldLabel for="limitInput">
-                {{ $t('pages.dash.admin.users.fields.botsLimit.label') }}
+              <FieldLabel for="reasonInput">
+                {{ $t('pages.dash.admin.bots.fields.reason.label') }}
               </FieldLabel>
               <Input
-                id="limitInput"
+                id="reasonInput"
                 v-bind="field"
-                :default-value="$props.users.length === 1 ? $props.users[0]?.botsLimit : 3"
-                placeholder="5"
-                type="number"
+                :placeholder="$t('pages.dash.admin.bots.fields.reason.placeholder')"
                 autofocus
                 :aria-invalid="!!errors.length"
                 :disabled="isLoading"
@@ -118,10 +114,10 @@ watch(
                 />
                 <div class="grid gap-1.5 font-normal">
                   <p class="text-sm leading-none font-medium">
-                    {{ $t('pages.dash.admin.users.fields.sure.label') }}
+                    {{ $t('pages.dash.admin.bots.fields.sure.label') }}
                   </p>
                   <p class="text-muted-foreground text-sm">
-                    {{ $t('pages.dash.admin.users.fields.sure.description') }}
+                    {{ $t('pages.dash.admin.bots.fields.sure.description') }}
                   </p>
                 </div>
               </Label>
@@ -130,9 +126,15 @@ watch(
           </VeeField>
 
           <Field>
-            <Button type="submit" form="updateBotsLimitForm" :disabled="isLoading" class="w-full">
+            <Button type="submit" form="suspendBotsForm" :disabled="isLoading" class="w-full">
               <Spinner v-if="isLoading" />
-              {{ $t('pages.dash.admin.users.editLimits.submit') }}
+              {{
+                $t('pages.dash.admin.bots.suspend.submit', $props.bots.length, {
+                  named: {
+                    username: $props.bots[0]?.username,
+                  },
+                })
+              }}
             </Button>
           </Field>
         </FieldGroup>

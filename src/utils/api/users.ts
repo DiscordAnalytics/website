@@ -29,7 +29,11 @@ export default class UsersResource {
     return this.api.request('PATCH', `/users/${userId}`, { botsLimit })
   }
 
-  suspend(userId: string, reason: string): Promise<User> {
+  suspend(userId: string, reason: string) {
     return this.api.request('POST', `/users/${userId}/suspend`, { reason })
+  }
+
+  unsuspend(userId: string) {
+    return this.api.request('DELETE', `/users/${userId}/suspend`)
   }
 }

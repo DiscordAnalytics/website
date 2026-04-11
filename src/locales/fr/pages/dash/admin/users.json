@@ -12,11 +12,12 @@
   "actions": {
     "editLimits": "Modifier les limites",
     "suspend": "Suspendre",
+    "unsuspend": "Retirer la suspension",
     "delete": "Supprimer"
   },
   "empty": {
     "title": "Aucun utilisateur",
-    "description": "AUcun utilisateur pour les filtres sélectionnés"
+    "description": "Aucun utilisateur pour les filtres sélectionnés"
   },
   "fields": {
     "reason": {
@@ -50,5 +51,26 @@
     "cancel": "Annuler",
     "submit": "Supprimer {username} | Supprimer les utilisateurs",
     "toast": "Les utilisateurs sélectionnés ont bien été supprimés."
+  },
+  "user": {
+    "identity": {
+      "title": "Identité"
+    },
+    "bots": {
+      "title": "Bots",
+      "table": {
+        "bot": "Bot",
+        "teamMember": "Membre de l'équipe",
+        "watchedSince": "Surveillé depuis le",
+        "lastPush": "Dernière statistique"
+      },
+      "empty": {
+        "title": "Aucun bot",
+        "description": "Cet utilisateur n'a accès à aucun bot"
+      }
+    },
+    "actions": {
+      "title": "Actions"
+    }
   }
 }
