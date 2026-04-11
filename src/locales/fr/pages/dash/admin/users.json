@@ -7,7 +7,11 @@
     "joinedAt": "Rejoin le",
     "createdAt": "Compte créé le",
     "admin": "Administrateur",
-    "suspended": "Suspendu"
+    "suspended": "Suspendu",
+    "actions": "Actions",
+    "rows": "lignes",
+    "pageSize": "Taille des pages",
+    "pageProgression": "Page {currentPage} sur {pagesCount}"
   },
   "actions": {
     "editLimits": "Modifier les limites",

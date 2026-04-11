@@ -107,7 +107,7 @@ const table = useVueTable({
       <DropdownMenu v-if="Object.keys(rowSelection).length">
         <DropdownMenuTrigger as-child>
           <Button variant="outline" class="w-48 justify-between">
-            Actions
+            {{ $t('pages.dash.admin.users.table.actions') }}
             <ChevronsUpDownIcon />
           </Button>
         </DropdownMenuTrigger>
@@ -125,13 +125,16 @@ const table = useVueTable({
       <DropdownMenu>
         <DropdownMenuTrigger as-child>
           <Button variant="outline" class="w-48 justify-between">
-            {{ table.getState().pagination.pageSize }} rows
+            {{ table.getState().pagination.pageSize }}
+            {{ $t('pages.dash.admin.users.table.rows') }}
             <ChevronsUpDownIcon class="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </DropdownMenuTrigger>
 
         <DropdownMenuContent align="end" class="w-(--reka-dropdown-menu-trigger-width)">
-          <DropdownMenuLabel>Page size</DropdownMenuLabel>
+          <DropdownMenuLabel>
+            {{ $t('pages.dash.admin.users.table.pageSize') }}
+          </DropdownMenuLabel>
           <DropdownMenuSeparator />
 
           <DropdownMenuCheckboxItem
@@ -144,7 +147,8 @@ const table = useVueTable({
               }
             "
           >
-            {{ size }} rows
+            {{ size }}
+            {{ $t('pages.dash.admin.users.table.rows') }}
           </DropdownMenuCheckboxItem>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -221,7 +225,12 @@ const table = useVueTable({
       </Pagination>
 
       <div class="flex items-center text-xs text-muted-foreground whitespace-nowrap">
-        Page {{ table.getState().pagination.pageIndex + 1 }} of {{ table.getPageCount() }}
+        {{
+          $t('pages.dash.admin.users.table.pageProgression', {
+            currentPage: table.getState().pagination.pageIndex + 1,
+            pagesCount: table.getPageCount(),
+          })
+        }}
       </div>
     </div>
   </div>

@@ -1,0 +1,144 @@
+{
+  "addBot": {
+    "botId": {
+      "required": "Please enter a bot ID",
+      "invalid_type": "Expected a string value",
+      "invalid_snowflake": "Invalid Discord ID"
+    },
+    "acceptTos": {
+      "required": "Please check this box to accept the conditions",
+      "invalid_type": "Expected a boolean value",
+      "must_be_true": "You must accept the conditions to continue"
+    }
+  },
+  "createCustomEvent": {
+    "eventKey": {
+      "required": "Please enter an event key",
+      "invalid_type": "Expected a string value",
+      "too_short": "The event key must be at least 3 characters long"
+    },
+    "graphName": {
+      "required": "Please enter a graph name",
+      "invalid_type": "Expected a string value",
+      "too_short": "The chart name must be at least 3 characters long"
+    },
+    "defaultValue": {
+      "invalid_type": "Please enter a valid number",
+      "required_for_fixed": "A default value is required when using fixed mode"
+    }
+  },
+  "editCustomEvent": {
+    "graphName": {
+      "required": "Please enter a graph name",
+      "invalid_type": "Expected a string value",
+      "too_short": "The chart name must be at least 3 characters long"
+    }
+  },
+  "createAchievement": {
+    "title": {
+      "required": "Please enter a title",
+      "invalid_type": "Expected a string value",
+      "too_short": "The title must be at least 5 characters long"
+    },
+    "description": {
+      "required": "Please enter a description",
+      "invalid_type": "Expected a string value",
+      "too_short": "The description must be at least 10 characters long"
+    },
+    "type": {
+      "invalid": "Invalid achievement type"
+    },
+    "objective": {
+      "not_positive": "The objective must be greater than 0"
+    }
+  },
+  "shareAchievement": {
+    "sure": {
+      "required": "Please check this box to confirm",
+      "invalid_type": "Expected a boolean value",
+      "must_be_true": "You need to confirm by checking this box"
+    }
+  },
+  "editAchievement": {
+    "title": {
+      "required": "Please enter a title",
+      "invalid_type": "Expected a string value",
+      "too_short": "The title must be at least 5 characters long"
+    },
+    "description": {
+      "required": "Please enter a description",
+      "invalid_type": "Expected a string value",
+      "too_short": "The description must be at least 10 characters long"
+    },
+    "sure": {
+      "required": "Please check this box to confirm",
+      "invalid_type": "Expected a boolean value",
+      "must_be_true": "You need to confirm by checking this box"
+    }
+  },
+  "copyAchievement": {
+    "botId": {
+      "required": "You need to select a bot",
+      "invalid_type": "You need to select a bot"
+    }
+  },
+  "addTeammate": {
+    "userId": {
+      "invalid_snowflake": "Invalid Discord ID"
+    }
+  },
+  "topggTokenUpdate": {
+    "webhookSecret": {
+      "invalid_format": "Invalid webhook secret format — expected format: whs_..."
+    }
+  },
+  "adminUpdateUserLimits": {
+    "limit": {
+      "invalid_type": "Please enter a limit",
+      "too_small": "The limit must be at least 0"
+    },
+    "sure": {
+      "required": "Please check this box to confirm",
+      "invalid_type": "Expected a boolean value",
+      "must_be_true": "You must confirm by checking this box"
+    }
+  },
+  "adminUpdateBotLimits": {
+    "goalsLimit": {
+      "invalid_type": "Please enter a goals limit",
+      "too_small": "The goals limit must be at least 0"
+    },
+    "customEventsLimit": {
+      "invalid_type": "Please enter a custom events limit",
+      "too_small": "The custom events limit must be at least 0"
+    },
+    "teammatesLimit": {
+      "invalid_type": "Please enter a teammates limit",
+      "too_small": "The teammates limit must be at least 0"
+    },
+    "sure": {
+      "required": "Please check this box to confirm",
+      "invalid_type": "Expected a boolean value",
+      "must_be_true": "You must confirm by checking this box"
+    }
+  },
+  "adminAskForReason": {
+    "reason": {
+      "required": "Please enter a reason",
+      "invalid_type": "Expected a string value",
+      "too_short": "The reason must be at least 5 characters long"
+    },
+    "sure": {
+      "required": "Please check this box to confirm",
+      "invalid_type": "Expected a boolean value",
+      "must_be_true": "You must confirm by checking this box"
+    }
+  },
+  "askForConfirmation": {
+    "sure": {
+      "required": "Please check this box to confirm",
+      "invalid_type": "Expected a boolean value",
+      "must_be_true": "You must confirm by checking this box"
+    }
+  }
+}

@@ -7,7 +7,11 @@
     "joinedAt": "Joined At",
     "createdAt": "Created At",
     "admin": "Admin",
-    "suspended": "Suspended"
+    "suspended": "Suspended",
+    "actions": "Actions",
+    "rows": "rows",
+    "pageSize": "Page Size",
+    "pageProgression": "Page {currentPage} of {pagesCount}"
   },
   "actions": {
     "editLimits": "Edit limits",
