@@ -1,8 +1,12 @@
 import * as z from 'zod'
 import type { BotAchievementType } from '@/utils/types.ts'
-import { useI18n } from 'vue-i18n'
+import { i18n } from '@/main.ts'
 
-const { t } = useI18n()
+function t(key: string) {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
+  return i18n.global.t(`components.formSchemas.${key}`)
+}
 
 function isValidSnowflake(id: string) {
   try {
