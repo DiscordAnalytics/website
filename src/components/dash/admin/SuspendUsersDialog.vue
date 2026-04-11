@@ -42,9 +42,7 @@ const isLoading = ref<boolean>(false)
 const onSubmit = form.handleSubmit(async (values) => {
   isLoading.value = true
   try {
-    for (const user of props.users) {
-      await suspendUser(user.userId, values.reason)
-    }
+    await Promise.all(props.users.map((user) => suspendUser(user.userId, values.reason)))
     toast.success(t('pages.dash.admin.users.suspend.toast'))
   } catch (e: any) {
     toast.error(e.message)

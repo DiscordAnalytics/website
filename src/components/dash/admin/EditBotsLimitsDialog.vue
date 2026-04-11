@@ -42,14 +42,16 @@ const isLoading = ref<boolean>(false)
 const onSubmit = form.handleSubmit(async (values) => {
   isLoading.value = true
   try {
-    for (const bot of props.bots) {
-      await updateBotLimits(
-        bot.botId,
-        values.goalsLimit,
-        values.customEventsLimit,
-        values.teammatesLimit,
-      )
-    }
+    await Promise.all(
+      props.bots.map((bot) =>
+        updateBotLimits(
+          bot.botId,
+          values.goalsLimit,
+          values.customEventsLimit,
+          values.teammatesLimit,
+        ),
+      ),
+    )
     toast.success(t('pages.dash.admin.bots.editLimits.toast'))
   } catch (e: any) {
     toast.error(e.message)

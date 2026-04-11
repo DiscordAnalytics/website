@@ -42,9 +42,7 @@ const isLoading = ref<boolean>(false)
 const onSubmit = form.handleSubmit(async (values) => {
   isLoading.value = true
   try {
-    for (const user of props.users) {
-      await updateUserLimits(user.userId, values.limit)
-    }
+    await Promise.all(props.users.map((user) => updateUserLimits(user.userId, values.limit)))
     toast.success(t('pages.dash.admin.users.editLimits.toast'))
   } catch (e: any) {
     toast.error(e.message)

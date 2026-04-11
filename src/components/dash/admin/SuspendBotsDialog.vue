@@ -42,9 +42,7 @@ const isLoading = ref<boolean>(false)
 const onSubmit = form.handleSubmit(async (values) => {
   isLoading.value = true
   try {
-    for (const bot of props.bots) {
-      await suspendBot(bot.botId, values.reason)
-    }
+    await Promise.all(props.bots.map((bot) => suspendBot(bot.botId, values.reason)))
     toast.success(t('pages.dash.admin.bots.suspend.toast'))
   } catch (e: any) {
     toast.error(e.message)

@@ -33,9 +33,7 @@ const isLoading = ref<boolean>(false)
 async function onSubmit() {
   isLoading.value = true
   try {
-    for (const user of props.users) {
-      await deleteUser(user.userId)
-    }
+    await Promise.all(props.users.map((user) => deleteUser(user.userId)))
     toast.success(t('pages.dash.admin.users.delete.toast'))
   } catch (e: any) {
     toast.error(e.message)
