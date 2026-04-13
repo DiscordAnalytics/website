@@ -14,7 +14,10 @@
     "lint:eslint": "eslint . --fix --cache",
     "format": "prettier --write --experimental-cli src/",
     "locales:check": "node sync_locales.js --check",
-    "locales:sync": "node sync_locales.js"
+    "locales:sync": "node sync_locales.js",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
     "@internationalized/date": "^3.11.0",
@@ -60,6 +63,8 @@
     "prettier": "3.8.1",
     "typescript": "~5.9.3",
     "vite": "^7.3.1",
+    "vitepress": "2.0.0-alpha.15",
+    "vitepress-plugin-tabs": "^0.7.3",
     "vite-plugin-vue-devtools": "^8.0.6",
     "vue-tsc": "^3.2.4"
   },
