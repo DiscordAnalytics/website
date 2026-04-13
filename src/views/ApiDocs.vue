@@ -12,7 +12,7 @@ const apiSpecs = config.apiBaseUrl + '/openapi.json'
 
 <template>
   <main class="max-h-screen h-svh overflow-y-clip">
-    <NavBar />
+    <NavBar class="max-w-425 mx-auto px-4" />
     <Separator />
     <ApiReference
       :configuration="{
