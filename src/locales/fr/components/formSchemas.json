@@ -140,5 +140,29 @@
       "invalid_type": "Une valeur booléenne est attendue",
       "must_be_true": "Vous devez confirmer en cochant cette case"
     }
+  },
+  "adminBlogEditor": {
+    "title": {
+      "required": "Veuillez entrer un titre",
+      "invalid_type": "Une chaîne de caractères est attendue",
+      "too_short": "Le titre doit comporter au moins 10 caractères"
+    },
+    "description": {
+      "required": "Veuillez entrer une description",
+      "invalid_type": "Une chaîne de caractères est attendue",
+      "too_short": "La description doit comporter au moins 20 caractères"
+    },
+    "cover": {
+      "invalid_type": "Une chaîne de caractères est attendue",
+      "invalid_url": "URL invalide"
+    },
+    "tags": {
+      "too_short": "Le tag doit comporter au moins 3 caractères"
+    },
+    "content": {
+      "required": "Veuillez entrer le contenu",
+      "invalid_type": "Une chaîne de caractères est attendue",
+      "too_short": "Le contenu doit comporter au moins 100 caractères"
+    }
   }
 }

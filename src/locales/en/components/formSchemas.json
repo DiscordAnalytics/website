@@ -140,5 +140,29 @@
       "invalid_type": "Expected a boolean value",
       "must_be_true": "You must confirm by checking this box"
     }
+  },
+  "adminBlogEditor": {
+    "title": {
+      "required": "Please enter a title",
+      "invalid_type": "Expected a string value",
+      "too_short": "The title must be at least 10 characters long"
+    },
+    "description": {
+      "required": "Please enter a description",
+      "invalid_type": "Expected a string value",
+      "too_short": "The description must be at least 20 characters long"
+    },
+    "cover": {
+      "invalid_type": "Expected a string value",
+      "invalid_url": "Invalid URL"
+    },
+    "tags": {
+      "too_short": "The tag must be at least 3 characters long"
+    },
+    "content": {
+      "required": "Please enter the content",
+      "invalid_type": "Expected a string value",
+      "too_short": "The content must be at least 100 characters long"
+    }
   }
 }

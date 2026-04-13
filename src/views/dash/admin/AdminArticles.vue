@@ -1,25 +1,26 @@
 <script setup lang="ts">
-import PageLayout from '@/components/layouts/PageLayout.vue'
-import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group'
-import { FilterIcon, NewspaperIcon, SearchIcon } from 'lucide-vue-next'
+import AdminDashLayout from '@/components/layouts/AdminDashLayout.vue'
+import { Button } from '@/components/ui/button'
+import { FilterIcon, NewspaperIcon, PlusIcon, SearchIcon } from 'lucide-vue-next'
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
-import { Button } from '@/components/ui/button'
-import { useBlogArticles } from '@/composables'
-import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty'
-import { computed, onBeforeMount, ref } from 'vue'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
-import { AspectRatio } from '@/components/ui/aspect-ratio'
+import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty'
+import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group'
 import { Skeleton } from '@/components/ui/skeleton'
+import { AspectRatio } from '@/components/ui/aspect-ratio'
+import { useBlogArticles } from '@/composables'
+import { computed, onBeforeMount, ref } from 'vue'
+import { APIScope } from '@/utils/api'
 import BlogArticleCard from '@/components/BlogArticleCard.vue'
 
-const { articles, tags, fetch: fetchArticles } = useBlogArticles()
+const { articles, tags, fetch: fetchArticles } = useBlogArticles(APIScope.Admin)
 
 const selectedTags = ref<string[]>([])
 const searchQuery = ref<string>('')
@@ -58,36 +59,45 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-  <PageLayout>
-    <header class="w-full flex items-center justify-end my-8 flex-nowrap gap-2">
-      <InputGroup class="max-w-full md:max-w-96">
-        <InputGroupInput :placeholder="$t('pages.blog.header.search')" v-model="searchQuery" />
-        <InputGroupAddon>
-          <SearchIcon />
-        </InputGroupAddon>
-      </InputGroup>
+  <AdminDashLayout>
+    <template #header>
+      <div class="w-full flex items-center justify-end flex-nowrap gap-2">
+        <InputGroup class="max-w-full md:max-w-96">
+          <InputGroupInput :placeholder="$t('pages.blog.header.search')" v-model="searchQuery" />
+          <InputGroupAddon>
+            <SearchIcon />
+          </InputGroupAddon>
+        </InputGroup>
 
-      <DropdownMenu v-if="tags.length > 0">
-        <DropdownMenuTrigger as-child>
-          <Button variant="outline" size="icon">
-            <FilterIcon />
+        <DropdownMenu v-if="tags.length > 0">
+          <DropdownMenuTrigger as-child>
+            <Button variant="outline" size="icon">
+              <FilterIcon />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent class="w-56">
+            <DropdownMenuLabel>{{ $t('pages.blog.header.dropdown') }}</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuCheckboxItem
+              v-for="tag in tags"
+              :key="tag"
+              :model-value="selectedTags.includes(tag)"
+              @update:model-value="(checked: boolean) => toggleTag(tag, checked)"
+              class="cursor-pointer"
+            >
+              {{ tag }}
+            </DropdownMenuCheckboxItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+
+        <RouterLink to="/dash/admin/blog/new">
+          <Button variant="outline">
+            <PlusIcon />
+            {{ $t('pages.dash.admin.blog.addArticle') }}
           </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent class="w-56">
-          <DropdownMenuLabel>{{ $t('pages.blog.header.dropdown') }}</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuCheckboxItem
-            v-for="tag in tags"
-            :key="tag"
-            :model-value="selectedTags.includes(tag)"
-            @update:model-value="(checked: boolean) => toggleTag(tag, checked)"
-            class="cursor-pointer"
-          >
-            {{ tag }}
-          </DropdownMenuCheckboxItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </header>
+        </RouterLink>
+      </div>
+    </template>
 
     <div
       v-if="isLoading"
@@ -130,5 +140,5 @@ onBeforeMount(async () => {
         <EmptyDescription>{{ $t('pages.blog.no_results.description') }}</EmptyDescription>
       </EmptyHeader>
     </Empty>
-  </PageLayout>
+  </AdminDashLayout>
 </template>

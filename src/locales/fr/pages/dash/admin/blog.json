@@ -1,0 +1,37 @@
+{
+  "addArticle": "Ajouter un article",
+  "fields": {
+    "cover": {
+      "label": "URL de la couverture"
+    },
+    "title": {
+      "label": "Titre",
+      "placeholder": "Super Article"
+    },
+    "description": {
+      "label": "Description",
+      "placeholder": "Ce super article parle de..."
+    },
+    "tags": {
+      "label": "Tags",
+      "placeholder": "Tags..."
+    },
+    "content": {
+      "label": "Contenu",
+      "placeholder": "Ce super article..."
+    }
+  },
+  "cover": {
+    "alt": "Couverture de l'article"
+  },
+  "actions": {
+    "delete": "Supprimer",
+    "publish": "Publier",
+    "save": "Enregistrer"
+  },
+  "toast": {
+    "updated": "Article mis à jour avec succès",
+    "published": "Article publié avec succès",
+    "deleted": "Article supprimé avec succès"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "addArticle": "Add article",
+  "fields": {
+    "cover": {
+      "label": "Cover URL"
+    },
+    "title": {
+      "label": "Title",
+      "placeholder": "Awesome Article"
+    },
+    "description": {
+      "label": "Description",
+      "placeholder": "This awesome article is about..."
+    },
+    "tags": {
+      "label": "Tags",
+      "placeholder": "Tags..."
+    },
+    "content": {
+      "label": "Content",
+      "placeholder": "This awesome article..."
+    }
+  },
+  "cover": {
+    "alt": "Article Cover"
+  },
+  "actions": {
+    "delete": "Delete",
+    "publish": "Publish",
+    "save": "Save"
+  },
+  "toast": {
+    "updated": "Article successfully updated",
+    "published": "Article successfully published",
+    "deleted": "Article successfully deleted"
+  }
+}

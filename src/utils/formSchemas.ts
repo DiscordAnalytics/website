@@ -195,3 +195,43 @@ export const adminAskForReasonFormSchema = z.object({
     .min(5, { error: t('adminAskForReason.reason.too_short') }),
   sure: boolField('adminAskForReason.sure'),
 })
+
+export const adminBlogEditorFormSchema = z.object({
+  title: z
+    .string({
+      error: (issue) => {
+        if (issue.input === undefined) return t('adminBlogEditor.title.required')
+        else return t('adminBlogEditor.title.invalid_type')
+      },
+    })
+    .min(10, { error: t('adminBlogEditor.title.too_short') }),
+  description: z
+    .string({
+      error: (issue) => {
+        if (issue.input === undefined) return t('adminBlogEditor.description.required')
+        else return t('adminBlogEditor.description.invalid_type')
+      },
+    })
+    .min(20, { error: t('adminBlogEditor.description.too_short') }),
+  cover: z.optional(
+    z
+      .url({
+        protocol: /^https?$/,
+        error: (issue) => {
+          if (issue.code === 'invalid_type') return t('adminBlogEditor.cover.invalid_type')
+          else if (issue.code === 'invalid_format' && issue.input !== '')
+            return t('adminBlogEditor.cover.invalid_url')
+        },
+      })
+      .or(z.literal('')),
+  ),
+  tags: z.array(z.string().min(3, { error: t('adminBlogEditor.tags.too_short') })),
+  content: z
+    .string({
+      error: (issue) => {
+        if (issue.input === undefined) return t('adminBlogEditor.content.required')
+        else return t('adminBlogEditor.content.invalid_type')
+      },
+    })
+    .min(100, { error: t('adminBlogEditor.content.too_short') }),
+})
