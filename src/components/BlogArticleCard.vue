@@ -42,7 +42,7 @@ const articleUrl = computed(() =>
         </AspectRatio>
         <CardTitle class="px-4 pt-4">
           {{ article.title }}
-          <Badge v-if="article.isDraft" class="ml-2">DRAFT</Badge>
+          <Badge v-if="article.isDraft" class="ml-2">{{ $t('pages.dash.admin.blog.draft') }}</Badge>
         </CardTitle>
         <CardDescription class="px-4 pb-2">{{ article.description }}</CardDescription>
       </CardHeader>

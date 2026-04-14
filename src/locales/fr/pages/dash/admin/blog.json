@@ -1,5 +1,6 @@
 {
   "addArticle": "Ajouter un article",
+  "draft": "BROUILLON",
   "fields": {
     "cover": {
       "label": "URL de la couverture"

@@ -1,5 +1,6 @@
 {
   "addArticle": "Add article",
+  "draft": "DRAFT",
   "fields": {
     "cover": {
       "label": "Cover URL"
