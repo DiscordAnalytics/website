@@ -2,14 +2,18 @@ import useAPI, { APIScope } from '@/utils/api'
 import { computed } from 'vue'
 import { useStore } from '@/stores'
 
-export default function useTeamInvitations() {
-  const api = useAPI(APIScope.User)
+export default function useTeamInvitations(scope: APIScope = APIScope.User) {
+  const api = useAPI(scope)
   const store = useStore()
 
   const invitations = computed(() => store.teamInvitations ?? [])
 
   async function fetch() {
-    store.teamInvitations = await api.bots.invitations.getAll()
+    if (api.scope === APIScope.Admin)
+      store.teamInvitations = await api.bots.invitations
+        .getAll()
+        .then((invites) => invites.filter((invite) => !invite.invitation.accepted))
+    else store.teamInvitations = await api.bots.invitations.getAllForCurrentUser()
   }
 
   async function accept(invitationId: string) {

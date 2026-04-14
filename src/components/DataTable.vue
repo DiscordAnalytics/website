@@ -152,6 +152,8 @@ const table = useVueTable({
           </DropdownMenuCheckboxItem>
         </DropdownMenuContent>
       </DropdownMenu>
+
+      <slot name="header" />
     </div>
 
     <div class="border rounded-md">

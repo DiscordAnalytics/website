@@ -1,0 +1,30 @@
+{
+  "sender": "Sender",
+  "recipient": "Recipient",
+  "expiration": "Expiration",
+  "table": {
+    "selectAll": "Select all",
+    "selectRow": "Select row"
+  },
+  "empty": {
+    "title": "No invitations",
+    "description": "No invitation found for the selected filters"
+  },
+  "searchPlaceholder": "Search in invitations...",
+  "createButton": "Create invitation",
+  "actions": {
+    "markAsAccepted": "Mark as accepted",
+    "markAsRejected": "Mark as rejected"
+  },
+  "answer": {
+    "titleAccept": "Accepting {username}... | Accepting {count} invitations...",
+    "titleReject": "Rejecting {username}... | Rejecting {count} invitations...",
+    "descriptionAccept": "You're about to accept {username}'s invitation which means they will be able to access the team workspace. | You're about to accept the selected invitations which means the users will be able to access the team workspace.",
+    "descriptionReject": "You're about to reject {username}'s invitation which means they will not be able to access the team workspace. | You're about to reject the selected invitations which means the users will not be able to access the team workspace.",
+    "cancel": "Cancel",
+    "submitAccept": "Accept {username}'s invitation | Accept invitations",
+    "submitReject": "Reject {username}'s invitation | Reject invitations",
+    "toastAccept": "Invitations accepted successfully.",
+    "toastReject": "Invitations rejected successfully."
+  }
+}

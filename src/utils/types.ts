@@ -286,7 +286,9 @@ export interface TeamInvitationData {
   botAvatar?: string
   botUsername: string
   ownerAvatar?: string
-  ownerUsername: string
+  ownerUsername?: string
+  userAvatar?: string
+  userUsername?: string
 }
 
 export interface AppMonetizationData {

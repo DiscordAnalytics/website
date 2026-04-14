@@ -235,3 +235,18 @@ export const adminBlogEditorFormSchema = z.object({
     })
     .min(100, { error: t('adminBlogEditor.content.too_short') }),
 })
+
+export const adminCreateInvitationFormSchema = z.object({
+  botId: z
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? t('addBot.botId.required') : t('addBot.botId.invalid_type'),
+    })
+    .refine(isValidSnowflake, { error: t('addBot.botId.invalid_snowflake') }),
+  userId: z
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? 'Recipient user ID is required' : 'Invalid recipient user ID',
+    })
+    .refine(isValidSnowflake, { error: t('addBot.botId.invalid_snowflake') }),
+})

@@ -127,6 +127,10 @@ const router = createRouter({
       component: () => import('@/views/dash/admin/AdminBot.vue'),
     },
     {
+      path: '/dash/admin/invitations',
+      component: () => import('@/views/dash/admin/AdminInvitations.vue'),
+    },
+    {
       path: '/dash/admin/blog',
       component: () => import('@/views/dash/admin/AdminArticles.vue'),
     },
