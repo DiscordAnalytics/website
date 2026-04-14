@@ -16,9 +16,8 @@ import { Field as VeeField, useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import { adminAskForReasonFormSchema } from '@/utils/formSchemas.ts'
 import { toast } from 'vue-sonner'
-import { ref } from 'vue'
 import type { Bot } from '@/utils/types.ts'
-import { useBots } from '@/composables'
+import { useBots, useLoading } from '@/composables'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
@@ -36,18 +35,17 @@ const { suspend: suspendBot } = useBots()
 const form = useForm({
   validationSchema: toTypedSchema(adminAskForReasonFormSchema),
 })
-
-const isLoading = ref<boolean>(false)
+const { isLoading, withLoading } = useLoading()
 
 const onSubmit = form.handleSubmit(async (values) => {
-  isLoading.value = true
-  try {
-    await Promise.all(props.bots.map((bot) => suspendBot(bot.botId, values.reason)))
-    toast.success(t('pages.dash.admin.bots.suspend.toast'))
-  } catch (e: any) {
-    toast.error(e.message)
-  }
-  isLoading.value = false
+  await withLoading(async () => {
+    try {
+      await Promise.all(props.bots.map((bot) => suspendBot(bot.botId, values.reason)))
+      toast.success(t('pages.dash.admin.bots.suspend.toast'))
+    } catch (e: any) {
+      toast.error(e.message)
+    }
+  })
   emit('update:open', false)
 })
 </script>

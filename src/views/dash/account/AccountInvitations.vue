@@ -2,8 +2,8 @@
 import AccountDashLayout from '@/components/layouts/AccountDashLayout.vue'
 import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty'
 import { CheckIcon, FrownIcon, XIcon } from 'lucide-vue-next'
-import { useTeamInvitations } from '@/composables'
-import { onMounted, ref } from 'vue'
+import { useLoading, useTeamInvitations } from '@/composables'
+import { onMounted } from 'vue'
 import DiscordAvatar from '@/components/DiscordAvatar.vue'
 import { Spinner } from '@/components/ui/spinner'
 import { Item, ItemActions, ItemContent, ItemMedia, ItemTitle } from '@/components/ui/item'
@@ -13,33 +13,32 @@ import { useI18n } from 'vue-i18n'
 
 const { invitations, fetch: fetchInvitations, accept, reject } = useTeamInvitations()
 const i18n = useI18n()
-
-const isLoading = ref<boolean>(false)
+const { isLoading, withLoading } = useLoading()
 
 async function acceptInvitation(invitationId: string) {
-  isLoading.value = true
-  await accept(invitationId)
-    .then(async () => {
-      toast.success(i18n.t('pages.dash.account.invitations.toast.accepted'))
-    })
-    .catch((err) => toast.error(err.message))
-  isLoading.value = false
+  await withLoading(async () => {
+    await accept(invitationId)
+      .then(async () => {
+        toast.success(i18n.t('pages.dash.account.invitations.toast.accepted'))
+      })
+      .catch((err) => toast.error(err.message))
+  })
 }
 
 async function rejectInvitation(invitationId: string) {
-  isLoading.value = true
-  await reject(invitationId)
-    .then(() => {
-      toast.success(i18n.t('pages.dash.account.invitations.toast.rejected'))
-    })
-    .catch((err) => toast.error(err.message))
-  isLoading.value = false
+  await withLoading(async () => {
+    await reject(invitationId)
+      .then(() => {
+        toast.success(i18n.t('pages.dash.account.invitations.toast.rejected'))
+      })
+      .catch((err) => toast.error(err.message))
+  })
 }
 
 onMounted(async () => {
-  isLoading.value = true
-  await fetchInvitations()
-  isLoading.value = false
+  await withLoading(async () => {
+    await fetchInvitations()
+  })
 })
 </script>
 

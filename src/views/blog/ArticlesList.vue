@@ -11,7 +11,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Button } from '@/components/ui/button'
-import { useBlogArticles } from '@/composables'
+import { useBlogArticles, useLoading } from '@/composables'
 import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty'
 import { computed, onBeforeMount, ref } from 'vue'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
@@ -23,7 +23,7 @@ const { articles, tags, fetch: fetchArticles } = useBlogArticles()
 
 const selectedTags = ref<string[]>([])
 const searchQuery = ref<string>('')
-const isLoading = ref<boolean>(false)
+const { isLoading, withLoading } = useLoading()
 const filteredArticles = computed(() => {
   return articles.value
     .filter(
@@ -51,9 +51,9 @@ function toggleTag(tag: string, checked: boolean) {
 }
 
 onBeforeMount(async () => {
-  isLoading.value = true
-  if (articles.value.length === 0) await fetchArticles()
-  isLoading.value = false
+  await withLoading(async () => {
+    if (articles.value.length === 0) await fetchArticles()
+  })
 })
 </script>
 

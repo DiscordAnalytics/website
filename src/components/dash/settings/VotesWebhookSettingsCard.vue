@@ -3,7 +3,7 @@ import { WebhookIcon } from 'lucide-vue-next'
 import SettingCard from '@/components/dash/SettingCard.vue'
 import { Spinner } from '@/components/ui/spinner'
 import { Button } from '@/components/ui/button'
-import { useBot } from '@/composables'
+import { useBot, useLoading } from '@/composables'
 import { useRouteParams } from '@vueuse/router'
 import { ref } from 'vue'
 import { Input } from '@/components/ui/input'
@@ -11,30 +11,30 @@ import { toast } from 'vue-sonner'
 
 const botId = useRouteParams<string>('id')
 const { bot, updateVotesWebhook, testVotesWebhook } = useBot(botId)
+const { isLoading, withLoading } = useLoading()
 
 const webhookUrl = ref<string>(bot.value?.webhooksConfig.webhookUrl ?? '')
-const isLoading = ref<boolean>(false)
 
 async function sendTest() {
-  isLoading.value = true
-  await testVotesWebhook()
-    .then(() => {
-      toast.success('Votes webhook updated successfully.')
-    })
-    .catch((err) => toast.error(err.message))
-  isLoading.value = false
-  toast.success('Test webhook sent successfully.')
-}
-
-async function update() {
-  isLoading.value = true
-  if ((bot.value?.webhooksConfig.webhookUrl ?? '') !== webhookUrl.value)
-    await updateVotesWebhook(webhookUrl.value)
+  await withLoading(async () => {
+    await testVotesWebhook()
       .then(() => {
         toast.success('Votes webhook updated successfully.')
       })
       .catch((err) => toast.error(err.message))
-  isLoading.value = false
+  })
+  toast.success('Test webhook sent successfully.')
+}
+
+async function update() {
+  await withLoading(async () => {
+    if ((bot.value?.webhooksConfig.webhookUrl ?? '') !== webhookUrl.value)
+      await updateVotesWebhook(webhookUrl.value)
+        .then(() => {
+          toast.success('Votes webhook updated successfully.')
+        })
+        .catch((err) => toast.error(err.message))
+  })
 }
 </script>
 

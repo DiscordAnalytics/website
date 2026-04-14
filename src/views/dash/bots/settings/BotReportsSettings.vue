@@ -4,8 +4,8 @@ import SettingCard from '@/components/dash/SettingCard.vue'
 import { Calendar1Icon, CalendarRangeIcon } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
 import { useRouteParams } from '@vueuse/router'
-import { useBotEmailReports, useCurrentUser } from '@/composables'
-import { onMounted, ref } from 'vue'
+import { useBotEmailReports, useCurrentUser, useLoading } from '@/composables'
+import { onMounted } from 'vue'
 import { Spinner } from '@/components/ui/spinner'
 import { toast } from 'vue-sonner'
 
@@ -17,26 +17,25 @@ const {
   remove: removeReport,
 } = useBotEmailReports(botId)
 const { userInfos } = useCurrentUser()
-
-const isLoading = ref<boolean>(false)
+const { isLoading, withLoading } = useLoading()
 
 async function onSubscribe(frequency: 'weekly' | 'monthly') {
-  isLoading.value = true
-  await createReport(frequency).catch((err) => toast.error(err.message))
-  isLoading.value = false
+  await withLoading(async () => {
+    await createReport(frequency).catch((err) => toast.error(err.message))
+  })
 }
 
 async function onUnsubscribe(frequency: 'weekly' | 'monthly') {
-  isLoading.value = true
-  await removeReport(frequency).catch((err) => toast.error(err.message))
-  isLoading.value = false
+  await withLoading(async () => {
+    await removeReport(frequency).catch((err) => toast.error(err.message))
+  })
 }
 
 onMounted(async () => {
   if (reports.value.length === 0) {
-    isLoading.value = true
-    await fetchReports()
-    isLoading.value = false
+    await withLoading(async () => {
+      await fetchReports()
+    })
   }
 })
 </script>

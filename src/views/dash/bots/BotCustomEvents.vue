@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, type Ref, watch } from 'vue'
-import { useBotCustomEvents, useBotStats } from '@/composables'
+import { useBotCustomEvents, useBotStats, useLoading } from '@/composables'
 import { useRouteParams } from '@vueuse/router'
 import { useStore } from '@/stores'
 import { storeToRefs } from 'pinia'
@@ -37,8 +37,8 @@ const {
   update: updateCustomEvent,
   remove: deleteCustomEvent,
 } = useBotCustomEvents(botId)
+const { isLoading, withLoading } = useLoading()
 
-const isLoading = ref(false)
 const editDialogOpen = ref(false)
 const createDialogOpen = ref(false)
 const editingEvent = ref<CustomEvent | null>(null)
@@ -82,62 +82,60 @@ const onEventCreated = async (values: {
   defaultMode: 'previous_hour' | 'fixed'
   defaultValue?: number | null
 }) => {
-  isLoading.value = true
-  await createCustomEvent({
-    eventKey: values.eventKey,
-    graphName: values.graphName,
-    defaultValue: values.defaultMode === 'fixed' ? values.defaultValue! : null,
+  await withLoading(async () => {
+    await createCustomEvent({
+      eventKey: values.eventKey,
+      graphName: values.graphName,
+      defaultValue: values.defaultMode === 'fixed' ? values.defaultValue! : null,
+    })
+      .then(() => {
+        toast.success(t('pages.dash.stats.charts.customEvents.toasts.created'))
+        createDialogOpen.value = false
+      })
+      .catch((e) => {
+        toast.error(e.message)
+      })
   })
-    .then(() => {
-      toast.success(t('pages.dash.stats.charts.customEvents.toasts.created'))
-      createDialogOpen.value = false
-    })
-    .catch((e) => {
-      toast.error(e.message)
-    })
-  isLoading.value = false
 }
 
 const onEventUpdated = async (eventKey: string, graphName: string) => {
-  isLoading.value = true
-  await updateCustomEvent(eventKey, graphName)
-    .then(() => {
-      toast.success(t('pages.dash.stats.charts.customEvents.toasts.updated'))
-      editDialogOpen.value = false
-    })
-    .catch((e) => {
-      toast.error(e.message)
-    })
-  isLoading.value = false
+  await withLoading(async () => {
+    await updateCustomEvent(eventKey, graphName)
+      .then(() => {
+        toast.success(t('pages.dash.stats.charts.customEvents.toasts.updated'))
+        editDialogOpen.value = false
+      })
+      .catch((e) => {
+        toast.error(e.message)
+      })
+  })
 }
 
 const onEventDeleted = async (eventKey: string) => {
-  isLoading.value = true
-  await deleteCustomEvent(eventKey)
-    .then(() => {
-      toast.success(t('pages.dash.stats.charts.customEvents.toasts.deleted'))
-      editDialogOpen.value = false
-      isLoading.value = false
-    })
-    .catch((e) => {
-      toast.error(e.message)
-      isLoading.value = false
-    })
+  await withLoading(async () => {
+    await deleteCustomEvent(eventKey)
+      .then(() => {
+        toast.success(t('pages.dash.stats.charts.customEvents.toasts.deleted'))
+        editDialogOpen.value = false
+      })
+      .catch((e) => {
+        toast.error(e.message)
+      })
+  })
   editDialogOpen.value = false
-  isLoading.value = false
 }
 
 onMounted(async () => {
-  isLoading.value = true
-  await fetchEvents()
-  isLoading.value = false
+  await withLoading(async () => {
+    await fetchEvents()
+  })
 })
 
 watch(statsRange, async (value, oldValue) => {
   if (value.start !== oldValue.start || value.end !== oldValue.end) {
-    isLoading.value = true
-    await fetchStats(value)
-    isLoading.value = false
+    await withLoading(async () => {
+      await fetchStats(value)
+    })
   }
 })
 </script>

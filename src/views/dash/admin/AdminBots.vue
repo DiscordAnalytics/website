@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import AdminDashLayout from '@/components/layouts/AdminDashLayout.vue'
-import { useBots } from '@/composables'
+import { useBots, useLoading } from '@/composables'
 import { computed, h, onMounted, ref } from 'vue'
 import type { Bot, DataTableAction } from '@/utils/types.ts'
 import type { ColumnDef } from '@tanstack/vue-table'
@@ -17,13 +17,14 @@ import { useI18n } from 'vue-i18n'
 import EditBotsLimitsDialog from '@/components/dash/admin/EditBotsLimitsDialog.vue'
 import SuspendBotsDialog from '@/components/dash/admin/SuspendBotsDialog.vue'
 import DeleteBotsDialog from '@/components/dash/admin/DeleteBotsDialog.vue'
+import { Spinner } from '@/components/ui/spinner'
 
 const { t } = useI18n()
 
 const router = useRouter()
 const { bots, fetch: fetchBots } = useBots()
 
-const isLoading = ref<boolean>(false)
+const { isLoading, withLoading } = useLoading()
 const isEditLimitsModalOpen = ref<boolean>(false)
 const isSuspendModalOpen = ref<boolean>(false)
 const isDeleteModalOpen = ref<boolean>(false)
@@ -149,9 +150,9 @@ const actions = computed<DataTableAction<Bot>[]>(() => [
 ])
 
 onMounted(async () => {
-  isLoading.value = true
-  await fetchBots()
-  isLoading.value = false
+  await withLoading(async () => {
+    await fetchBots()
+  })
 })
 </script>
 
@@ -185,12 +186,17 @@ onMounted(async () => {
         @row-click="(row) => router.push(`/dash/admin/bots/${row.original.botId}`)"
       >
         <template #empty>
-          <EmptyHeader>
+          <EmptyHeader v-if="!isLoading">
             <EmptyMedia variant="icon">
               <FrownIcon />
             </EmptyMedia>
             <EmptyTitle>{{ $t('pages.dash.admin.bots.empty.title') }}</EmptyTitle>
             <EmptyDescription>{{ $t('pages.dash.admin.bots.empty.description') }}</EmptyDescription>
+          </EmptyHeader>
+          <EmptyHeader v-else>
+            <EmptyMedia variant="icon">
+              <Spinner />
+            </EmptyMedia>
           </EmptyHeader>
         </template>
       </DataTable>

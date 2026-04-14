@@ -2,7 +2,7 @@
 import SettingCard from '@/components/dash/SettingCard.vue'
 import { ZapIcon } from 'lucide-vue-next'
 import { useRouteParams } from '@vueuse/router'
-import { useBot } from '@/composables'
+import { useBot, useLoading } from '@/composables'
 import { ref, watch } from 'vue'
 import { Switch } from '@/components/ui/switch'
 import { toast } from 'vue-sonner'
@@ -12,23 +12,23 @@ const { t } = useI18n()
 
 const botId = useRouteParams<string>('id')
 const { bot, toggleAdvancedStats } = useBot(botId)
+const { isLoading, withLoading } = useLoading()
 
-const isLoading = ref<boolean>(false)
 const advancedStats = ref<boolean>(bot.value?.advancedStats ?? false)
 
 watch(advancedStats, async () => {
-  isLoading.value = true
-  await toggleAdvancedStats()
-    .then(() => {
-      if (advancedStats.value)
-        toast.success(t('pages.dash.settings.general.advancedStats.toasts.enabled'))
-      else
-        toast.success(t('pages.dash.settings.general.advancedStats.toasts.disabled'), {
-          description: t('pages.dash.settings.general.advancedStats.toasts.disabledDescription'),
-        })
-    })
-    .catch((err) => toast.error(err.message))
-  isLoading.value = false
+  await withLoading(async () => {
+    await toggleAdvancedStats()
+      .then(() => {
+        if (advancedStats.value)
+          toast.success(t('pages.dash.settings.general.advancedStats.toasts.enabled'))
+        else
+          toast.success(t('pages.dash.settings.general.advancedStats.toasts.disabled'), {
+            description: t('pages.dash.settings.general.advancedStats.toasts.disabledDescription'),
+          })
+      })
+      .catch((err) => toast.error(err.message))
+  })
 })
 </script>
 

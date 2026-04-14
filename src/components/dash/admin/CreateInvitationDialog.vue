@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Spinner } from '@/components/ui/spinner'
 import { ref } from 'vue'
+import { useBotTeam, useLoading } from '@/composables'
 import {
   Dialog,
   DialogContent,
@@ -15,7 +16,6 @@ import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field
 import { Field as VeeField, useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import { adminCreateInvitationFormSchema } from '@/utils/formSchemas.ts'
-import { useBotTeam } from '@/composables'
 import { toast } from 'vue-sonner'
 import { useI18n } from 'vue-i18n'
 
@@ -25,24 +25,24 @@ const emit = defineEmits<{
   (e: 'created'): void
 }>()
 
+const { isLoading, withLoading } = useLoading()
 const form = useForm({
   validationSchema: toTypedSchema(adminCreateInvitationFormSchema),
 })
 
-const isLoading = ref<boolean>(false)
 const isOpen = ref<boolean>(false)
 
 const onSubmit = form.handleSubmit(async (values) => {
-  isLoading.value = true
-  const { add } = useBotTeam(ref(values.botId))
-  await add(values.userId)
-    .then(() => {
-      toast.success(t('pages.dash.admin.invitations.create.toast'))
-      isOpen.value = false
-      emit('created')
-    })
-    .catch((e) => toast.error(e.message))
-  isLoading.value = false
+  await withLoading(async () => {
+    const { add } = useBotTeam(ref(values.botId))
+    await add(values.userId)
+      .then(() => {
+        toast.success(t('pages.dash.admin.invitations.create.toast'))
+        isOpen.value = false
+        emit('created')
+      })
+      .catch((e) => toast.error(e.message))
+  })
 })
 </script>
 

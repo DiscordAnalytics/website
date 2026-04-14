@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { Spinner } from '@/components/ui/spinner'
 import { toast } from 'vue-sonner'
-import { ref } from 'vue'
 import type { Bot } from '@/utils/types.ts'
-import { useBots } from '@/composables'
+import { useBots, useLoading } from '@/composables'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -21,25 +20,23 @@ const props = defineProps<{
   open: boolean
 }>()
 
-const emit = defineEmits<{
+defineEmits<{
   (e: 'update:open', value: boolean): void
 }>()
 
 const { t } = useI18n()
 const { remove: deleteBot } = useBots()
-
-const isLoading = ref<boolean>(false)
+const { isLoading, withLoading } = useLoading()
 
 async function onSubmit() {
-  isLoading.value = true
-  try {
-    await Promise.all(props.bots.map((bot) => deleteBot(bot.botId)))
-    toast.success(t('pages.dash.admin.bots.delete.toast'))
-  } catch (e: any) {
-    toast.error(e.message)
-  }
-  isLoading.value = false
-  emit('update:open', false)
+  await withLoading(async () => {
+    try {
+      await Promise.all(props.bots.map((bot) => deleteBot(bot.botId)))
+      toast.success(t('pages.dash.admin.bots.delete.toast'))
+    } catch (e: any) {
+      toast.error(e.message)
+    }
+  })
 }
 </script>
 

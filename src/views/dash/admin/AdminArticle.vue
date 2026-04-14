@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import AdminDashLayout from '@/components/layouts/AdminDashLayout.vue'
-import { useBlogArticles } from '@/composables'
+import { useBlogArticles, useLoading } from '@/composables'
 import { onBeforeMount, ref } from 'vue'
 import { useRouteParams } from '@vueuse/router'
 import ThemedImg from '@/components/ThemedImg.vue'
@@ -44,53 +44,53 @@ const form = useForm({
   validationSchema: toTypedSchema(adminBlogEditorFormSchema),
 })
 
-const isLoading = ref<boolean>(false)
+const { isLoading, withLoading } = useLoading()
 const article = ref<BlogArticle | null>(null)
 
 const onSave = form.handleSubmit(async (values) => {
-  isLoading.value = true
-  await updateArticle(articleId.value, values)
-    .then((res) => {
-      article.value = res
-      form.setValues({
-        ...res,
+  await withLoading(async () => {
+    await updateArticle(articleId.value, values)
+      .then((res) => {
+        article.value = res
+        form.setValues({
+          ...res,
+        })
+        toast.success(t('pages.dash.admin.blog.toast.updated'))
       })
-      toast.success(t('pages.dash.admin.blog.toast.updated'))
-    })
-    .catch((err) => toast.error(err.message))
-  isLoading.value = false
+      .catch((err) => toast.error(err.message))
+  })
 })
 
 async function onPublish() {
-  isLoading.value = true
-  await publishArticle(articleId.value)
-    .then(() => {
-      article.value!.isDraft = false
-      toast.success(t('pages.dash.admin.blog.toast.published'))
-    })
-    .catch((err) => toast.error(err.message))
-  isLoading.value = false
+  await withLoading(async () => {
+    await publishArticle(articleId.value)
+      .then(() => {
+        article.value!.isDraft = false
+        toast.success(t('pages.dash.admin.blog.toast.published'))
+      })
+      .catch((err) => toast.error(err.message))
+  })
 }
 
 async function onDelete() {
-  isLoading.value = true
-  await deleteArticle(articleId.value)
-    .then(() => {
-      toast.success(t('pages.dash.admin.blog.toast.deleted'))
-      router.push('/dash/admin/blog')
-    })
-    .catch((err) => toast.error(err.message))
-  isLoading.value = false
+  await withLoading(async () => {
+    await deleteArticle(articleId.value)
+      .then(() => {
+        toast.success(t('pages.dash.admin.blog.toast.deleted'))
+        router.push('/dash/admin/blog')
+      })
+      .catch((err) => toast.error(err.message))
+  })
 }
 
 onBeforeMount(async () => {
   if (articleId.value !== 'new') {
-    isLoading.value = true
-    article.value = await getArticle(articleId.value)
-    form.setValues({
-      ...article.value,
+    await withLoading(async () => {
+      article.value = await getArticle(articleId.value)
+      form.setValues({
+        ...article.value,
+      })
     })
-    isLoading.value = false
   }
 })
 </script>

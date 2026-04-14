@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import AdminDashLayout from '@/components/layouts/AdminDashLayout.vue'
-import { useUser } from '@/composables'
+import { useLoading, useUser } from '@/composables'
 import { computed, h, onMounted, ref } from 'vue'
 import EditUsersLimitsDialog from '@/components/dash/admin/EditUsersLimitsDialog.vue'
 import SuspendUsersDialog from '@/components/dash/admin/SuspendUsersDialog.vue'
@@ -35,7 +35,7 @@ const {
   unsuspend: unsuspendUser,
 } = useUser(APIScope.Admin, userId)
 
-const isLoading = ref<boolean>(false)
+const { isLoading, withLoading } = useLoading()
 const isEditLimitsModalOpen = ref<boolean>(false)
 const isSuspendModalOpen = ref<boolean>(false)
 const isDeleteModalOpen = ref<boolean>(false)
@@ -81,15 +81,15 @@ const columns = computed<ColumnDef<Bot, any>[]>(() => [
 ])
 
 async function onUserUnsuspend() {
-  isLoading.value = true
-  await unsuspendUser()
-  isLoading.value = false
+  await withLoading(async () => {
+    await unsuspendUser()
+  })
 }
 
 onMounted(async () => {
-  isLoading.value = true
-  if (!userInfos.value) await fetchUser()
-  isLoading.value = false
+  await withLoading(async () => {
+    if (!userInfos.value) await fetchUser()
+  })
 })
 </script>
 

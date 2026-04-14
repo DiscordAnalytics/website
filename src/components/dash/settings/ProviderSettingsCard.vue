@@ -14,7 +14,7 @@ import { Button } from '@/components/ui/button'
 import type { VotesProvider } from '@/utils/types.ts'
 import { useClipboard } from '@vueuse/core'
 import { toast } from 'vue-sonner'
-import { useBotVotesProvider } from '@/composables'
+import { useBotVotesProvider, useLoading } from '@/composables'
 import { useRouteParams } from '@vueuse/router'
 import { useI18n } from 'vue-i18n'
 import {
@@ -41,8 +41,8 @@ const props = defineProps<{
 const { copy, isSupported: isCopySupported } = useClipboard()
 const botId = useRouteParams<string>('id')
 const { config: providerConfig, update: updateProvider } = useBotVotesProvider(botId, props.id)
+const { isLoading, withLoading } = useLoading()
 
-const isLoading = ref<boolean>(false)
 const showToken = ref<boolean>(false)
 const manualConfigOpen = ref<boolean>(false)
 
@@ -64,14 +64,14 @@ function generateWebhookSecret() {
 }
 
 async function updateToken(token: string = generateWebhookSecret()) {
-  isLoading.value = true
-  await updateProvider(token)
-    .then(() => {
-      toast.success(t('pages.dash.settings.votes.provider.toast.regenerated'))
-      manualConfigOpen.value = false
-    })
-    .catch((err) => toast.error(err.message))
-  isLoading.value = false
+  await withLoading(async () => {
+    await updateProvider(token)
+      .then(() => {
+        toast.success(t('pages.dash.settings.votes.provider.toast.regenerated'))
+        manualConfigOpen.value = false
+      })
+      .catch((err) => toast.error(err.message))
+  })
 }
 
 const onManualConfigSubmit = manualConfigForm.handleSubmit(async (values) => {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group'
 import { Spinner } from '@/components/ui/spinner'
-import { useBot } from '@/composables'
+import { useBot, useLoading } from '@/composables'
 import { onMounted, ref } from 'vue'
 import { Button } from '@/components/ui/button'
 import { CopyIcon, ExternalLinkIcon, TriangleAlertIcon } from 'lucide-vue-next'
@@ -31,8 +31,8 @@ const botId = useRouteQuery<string>('botId', '')
 const { copy, isSupported: isCopySupported } = useClipboard()
 const { getToken } = useBot(botId)
 const { t } = useI18n()
+const { isLoading, withLoading } = useLoading()
 
-const isLoading = ref<boolean>(false)
 const botToken = ref<string>('')
 const botLibrary = ref<string>('discord.js')
 
@@ -42,10 +42,10 @@ function copyToken() {
 }
 
 onMounted(() => {
-  isLoading.value = true
   setTimeout(async () => {
-    botToken.value = (await getToken()).token
-    isLoading.value = false
+    await withLoading(async () => {
+      botToken.value = (await getToken()).token
+    })
   }, 100)
 })
 </script>

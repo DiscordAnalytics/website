@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import BotDashLayout from '@/components/layouts/BotDashLayout.vue'
 import { useRouteParams } from '@vueuse/router'
-import { useBot, useBotAchievements } from '@/composables'
+import { useBot, useBotAchievements, useLoading } from '@/composables'
 import { onMounted, ref } from 'vue'
 import { goal2Percent } from '@/utils/statsManager.ts'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -44,8 +44,8 @@ const {
 } = useBotAchievements(botId)
 const { bot } = useBot(botId)
 const { t } = useI18n()
+const { isLoading, withLoading } = useLoading()
 
-const isLoading = ref<boolean>(false)
 const createDialogOpen = ref<boolean>(false)
 const isAchievementCreated = ref<boolean>(false)
 const shareDialogOpen = ref<boolean>(false)
@@ -59,69 +59,69 @@ const onAchievementCreated = async (values: {
   type: string
   objective: number
 }) => {
-  isLoading.value = true
-  await createAchievement({
-    title: values.title,
-    description: values.description,
-    objective: {
-      type: values.type as GoalType,
-      value: values.objective,
-    },
+  await withLoading(async () => {
+    await createAchievement({
+      title: values.title,
+      description: values.description,
+      objective: {
+        type: values.type as GoalType,
+        value: values.objective,
+      },
+    })
+      .then(() => {
+        toast.success(t('pages.dash.achievements.toasts.created'))
+        createDialogOpen.value = false
+        isAchievementCreated.value = true
+      })
+      .catch((e) => {
+        toast.error(e.message)
+      })
   })
-    .then(() => {
-      toast.success(t('pages.dash.achievements.toasts.created'))
-      createDialogOpen.value = false
-      isAchievementCreated.value = true
-    })
-    .catch((e) => {
-      toast.error(e.message)
-    })
-  isLoading.value = false
 }
 
 async function onAchievementShared(lang: string) {
-  isLoading.value = true
-  await editAchievement({ lang, id: editingAchievement.value!.id, shared: true })
-    .then(() => {
-      toast.success(t('pages.dash.achievements.toasts.published'))
-      shareDialogOpen.value = false
-    })
-    .catch((e) => {
-      toast.error(e.message)
-    })
-  isLoading.value = false
+  await withLoading(async () => {
+    await editAchievement({ lang, id: editingAchievement.value!.id, shared: true })
+      .then(() => {
+        toast.success(t('pages.dash.achievements.toasts.published'))
+        shareDialogOpen.value = false
+      })
+      .catch((e) => {
+        toast.error(e.message)
+      })
+  })
 }
 
 async function onAchievementUpdated(values: { title: string; description: string }) {
-  isLoading.value = true
-  await editAchievement({ ...values, id: editingAchievement.value!.id })
-    .then(() => {
-      toast.success(t('pages.dash.achievements.toasts.updated'))
-      editDialogOpen.value = false
-    })
-    .catch((e) => {
-      toast.error(e.message)
-    })
-  isLoading.value = false
+  await withLoading(async () => {
+    await editAchievement({ ...values, id: editingAchievement.value!.id })
+      .then(() => {
+        toast.success(t('pages.dash.achievements.toasts.updated'))
+        editDialogOpen.value = false
+      })
+      .catch((e) => {
+        toast.error(e.message)
+      })
+  })
 }
 
 async function onAchievementDeleted() {
-  isLoading.value = true
-  await deleteAchievement(editingAchievement.value!.id)
-    .then(() => {
-      toast.success(t('pages.dash.achievements.toasts.deleted'))
-      deleteDialogOpen.value = false
-    })
-    .catch((e) => {
-      toast.error(e.message)
-    })
-  isLoading.value = false
+  await withLoading(async () => {
+    await deleteAchievement(editingAchievement.value!.id)
+      .then(() => {
+        toast.success(t('pages.dash.achievements.toasts.deleted'))
+        deleteDialogOpen.value = false
+      })
+      .catch((e) => {
+        toast.error(e.message)
+      })
+  })
 }
 
 onMounted(async () => {
-  isLoading.value = true
-  await fetchAchievements()
-  isLoading.value = false
+  await withLoading(async () => {
+    await fetchAchievements()
+  })
 })
 </script>
 

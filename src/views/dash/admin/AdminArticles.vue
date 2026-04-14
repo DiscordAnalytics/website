@@ -15,7 +15,7 @@ import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/
 import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group'
 import { Skeleton } from '@/components/ui/skeleton'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
-import { useBlogArticles } from '@/composables'
+import { useBlogArticles, useLoading } from '@/composables'
 import { computed, onBeforeMount, ref } from 'vue'
 import { APIScope } from '@/utils/api'
 import BlogArticleCard from '@/components/BlogArticleCard.vue'
@@ -24,7 +24,7 @@ const { articles, tags, fetch: fetchArticles } = useBlogArticles(APIScope.Admin)
 
 const selectedTags = ref<string[]>([])
 const searchQuery = ref<string>('')
-const isLoading = ref<boolean>(false)
+const { isLoading, withLoading } = useLoading()
 const filteredArticles = computed(() => {
   return articles.value
     .filter(
@@ -52,9 +52,9 @@ function toggleTag(tag: string, checked: boolean) {
 }
 
 onBeforeMount(async () => {
-  isLoading.value = true
-  if (articles.value.length === 0) await fetchArticles()
-  isLoading.value = false
+  await withLoading(async () => {
+    if (articles.value.length === 0) await fetchArticles()
+  })
 })
 </script>
 

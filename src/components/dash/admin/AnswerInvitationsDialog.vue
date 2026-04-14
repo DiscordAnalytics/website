@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { Spinner } from '@/components/ui/spinner'
 import { toast } from 'vue-sonner'
-import { ref } from 'vue'
 import type { TeamInvitationData } from '@/utils/types.ts'
-import { useTeamInvitations } from '@/composables'
+import { useLoading, useTeamInvitations } from '@/composables'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -23,33 +22,31 @@ const props = defineProps<{
   accept: boolean
 }>()
 
-const emit = defineEmits<{
+defineEmits<{
   (e: 'update:open', value: boolean): void
 }>()
 
 const { t } = useI18n()
 const { accept: acceptInvitation, reject: rejectInvitation } = useTeamInvitations(APIScope.Admin)
-
-const isLoading = ref<boolean>(false)
+const { isLoading, withLoading } = useLoading()
 
 async function onSubmit() {
-  isLoading.value = true
-  try {
-    await Promise.all(
-      props.invitations.map((invite) =>
-        props.accept
-          ? acceptInvitation(invite.invitation.invitationId)
-          : rejectInvitation(invite.invitation.invitationId),
-      ),
-    )
-    toast.success(
-      t(`pages.dash.admin.invitations.answer.toast${props.accept ? 'Accept' : 'Reject'}`),
-    )
-  } catch (e: any) {
-    toast.error(e.message)
-  }
-  isLoading.value = false
-  emit('update:open', false)
+  await withLoading(async () => {
+    try {
+      await Promise.all(
+        props.invitations.map((invite) =>
+          props.accept
+            ? acceptInvitation(invite.invitation.invitationId)
+            : rejectInvitation(invite.invitation.invitationId),
+        ),
+      )
+      toast.success(
+        t(`pages.dash.admin.invitations.answer.toast${props.accept ? 'Accept' : 'Reject'}`),
+      )
+    } catch (e: any) {
+      toast.error(e.message)
+    }
+  })
 }
 </script>
 
@@ -93,11 +90,15 @@ async function onSubmit() {
         <AlertDialogAction variant="destructive" :disabled="isLoading" @click="onSubmit">
           <Spinner v-if="isLoading" />
           {{
-            $t(`pages.dash.admin.invitations.answer.submit${$props.accept ? 'Accept' : 'Reject'}`, {
-              named: {
-                username: $props.invitations[0]?.userUsername,
+            $t(
+              `pages.dash.admin.invitations.answer.submit${$props.accept ? 'Accept' : 'Reject'}`,
+              $props.invitations.length,
+              {
+                named: {
+                  username: $props.invitations[0]?.userUsername,
+                },
               },
-            })
+            )
           }}
         </AlertDialogAction>
       </AlertDialogFooter>

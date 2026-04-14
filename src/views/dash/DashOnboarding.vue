@@ -16,7 +16,7 @@ import { useForm } from 'vee-validate'
 import { addBotSchema } from '@/utils/formSchemas.ts'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { useAddBot, useCurrentUser } from '@/composables'
+import { useAddBot, useCurrentUser, useLoading } from '@/composables'
 import {
   OnboardingStepFour,
   OnboardingStepOne,
@@ -44,9 +44,9 @@ const botId = useRouteQuery<string | null>('botId')
 const { add: addBot } = useAddBot()
 const { userInfos } = useCurrentUser()
 const breakpoints = useBreakpoints(breakpointsTailwind)
+const { isLoading, withLoading } = useLoading()
 
 const largerThanMd = breakpoints.greater('md')
-const isLoading = ref<boolean>(false)
 const currentStep = ref(route.query.botId ? 2 : 1)
 
 const steps = [
@@ -77,16 +77,16 @@ const steps = [
 ]
 
 const onSubmit = handleSubmit(async (values) => {
-  isLoading.value = true
-  await addBot(values.botId)
-    .then(() => {
-      currentStep.value = 2
-      botId.value = values.botId
-    })
-    .catch((err) => {
-      toast.error(err.message)
-    })
-  isLoading.value = false
+  await withLoading(async () => {
+    await addBot(values.botId)
+      .then(() => {
+        currentStep.value = 2
+        botId.value = values.botId
+      })
+      .catch((err) => {
+        toast.error(err.message)
+      })
+  })
 })
 </script>
 

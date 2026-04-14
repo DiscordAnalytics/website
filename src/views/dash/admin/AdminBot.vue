@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import AdminDashLayout from '@/components/layouts/AdminDashLayout.vue'
-import { useBot, useBotAchievements, useBotCustomEvents, useUser } from '@/composables'
+import { useBot, useBotAchievements, useBotCustomEvents, useLoading, useUser } from '@/composables'
 import { computed, onMounted, ref } from 'vue'
 import EditBotsLimitsDialog from '@/components/dash/admin/EditBotsLimitsDialog.vue'
 import SuspendBotsDialog from '@/components/dash/admin/SuspendBotsDialog.vue'
@@ -24,24 +24,24 @@ const { achievements, fetch: fetchAchievements } = useBotAchievements(botId, API
 const ownerId = computed(() => bot.value?.ownerId ?? null)
 const { userInfos: ownerInfos, fetch: fetchBotOwner } = useUser(APIScope.Admin, ownerId)
 
-const isLoading = ref<boolean>(false)
+const { isLoading, withLoading } = useLoading()
 const isEditLimitsModalOpen = ref<boolean>(false)
 const isSuspendModalOpen = ref<boolean>(false)
 const isDeleteModalOpen = ref<boolean>(false)
 
 async function onBotUnsuspend() {
-  isLoading.value = true
-  await unsuspendBot()
-  isLoading.value = false
+  await withLoading(async () => {
+    await unsuspendBot()
+  })
 }
 
 onMounted(async () => {
-  isLoading.value = true
-  if (!bot.value) await fetchBot()
-  await fetchCustomEvents()
-  await fetchAchievements()
-  await fetchBotOwner()
-  isLoading.value = false
+  await withLoading(async () => {
+    if (!bot.value) await fetchBot()
+    await fetchCustomEvents()
+    await fetchAchievements()
+    await fetchBotOwner()
+  })
 })
 </script>
 

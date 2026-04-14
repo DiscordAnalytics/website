@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted } from 'vue'
 import { Button } from '@/components/ui/button'
 import { useRouteParams } from '@vueuse/router'
-import { useCurrentUser, useTeamInvitation } from '@/composables'
+import { useCurrentUser, useLoading, useTeamInvitation } from '@/composables'
 import PageLayout from '@/components/layouts/PageLayout.vue'
 import DiscordAvatar from '@/components/DiscordAvatar.vue'
 import { useRouter } from 'vue-router'
@@ -12,15 +12,14 @@ const router = useRouter()
 const invitationId = useRouteParams<string>('id')
 const { userInfos } = useCurrentUser()
 const { invitation, fetch: fetchInvitation } = useTeamInvitation(invitationId)
-
-const isLoading = ref<boolean>(false)
+const { isLoading, withLoading } = useLoading()
 
 onMounted(async () => {
   if (userInfos.value) await router.push('/dash/account/invitations')
   else {
-    isLoading.value = true
-    await fetchInvitation()
-    isLoading.value = false
+    await withLoading(async () => {
+      await fetchInvitation()
+    })
     if (!invitation.value) await router.push({ name: 'NotFound' })
   }
 })

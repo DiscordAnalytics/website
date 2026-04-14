@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, ref, type Ref, watch } from 'vue'
-import { useBotStats } from '@/composables'
+import { computed, type Ref, watch } from 'vue'
+import { useBotStats, useLoading } from '@/composables'
 import { useRouteParams } from '@vueuse/router'
 import { calculateVotes } from '@/utils/statsManager.ts'
 import { useStore } from '@/stores'
@@ -32,7 +32,7 @@ const maskedPopups = useLocalStorage<string[]>('maskedPopups', [])
 const votesData = computed(() =>
   stats.value && statsRange.value ? calculateVotes(stats.value.votes, statsRange.value) : null,
 )
-const isLoading = ref<boolean>(false)
+const { isLoading, withLoading } = useLoading()
 
 const defaultGetValue = (data: (ChartData | Omit<ChartData, 'date'>)[]): number =>
   data.reduce((sum, e) => sum + (e.Votes as number), 0)
@@ -113,9 +113,9 @@ const areAllChartEmpty = computed(() =>
 
 watch(statsRange, async (value, oldValue) => {
   if (value.start !== oldValue.start || value.end !== oldValue.end) {
-    isLoading.value = true
-    await fetchStats(value)
-    isLoading.value = false
+    await withLoading(async () => {
+      await fetchStats(value)
+    })
   }
 })
 </script>

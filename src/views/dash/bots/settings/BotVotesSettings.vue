@@ -4,15 +4,16 @@ import { VotesWebhookSettingsCard } from '@/components/dash/settings'
 import ProviderSettingsCard from '@/components/dash/settings/ProviderSettingsCard.vue'
 import { computed, onMounted, ref } from 'vue'
 import { useRouteParams } from '@vueuse/router'
+import { useLoading } from '@/composables'
 import type { VotesProvider } from '@/utils/types.ts'
 import { Item, ItemContent, ItemDescription, ItemMedia, ItemTitle } from '@/components/ui/item'
 import { ExternalLinkIcon, TriangleAlertIcon } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
 
 const botId = useRouteParams<string>('id')
+const { isLoading, withLoading } = useLoading()
 
 const providerAvailability = ref<VotesProvider[]>([])
-const isLoading = ref<boolean>(false)
 
 const isNormalProviderApiAvailable = async (res: Response) => {
   if (res.status === 200) {
@@ -69,20 +70,20 @@ const providers = computed<{
 }))
 
 onMounted(async () => {
-  isLoading.value = true
-  for (const provider of Object.keys(providers.value)) {
-    const res = await fetch(
-      `https://proxy.discordanalytics.xyz/get?url=${encodeURIComponent(providers.value[provider]!.botPage)}`,
-      {
-        method: 'GET',
-        cache: 'force-cache',
-      },
-    )
+  await withLoading(async () => {
+    for (const provider of Object.keys(providers.value)) {
+      const res = await fetch(
+        `https://proxy.discordanalytics.xyz/get?url=${encodeURIComponent(providers.value[provider]!.botPage)}`,
+        {
+          method: 'GET',
+          cache: 'force-cache',
+        },
+      )
 
-    if (await providers.value[provider]!.isAvailable(res))
-      providerAvailability.value.push(provider as VotesProvider)
-  }
-  isLoading.value = false
+      if (await providers.value[provider]!.isAvailable(res))
+        providerAvailability.value.push(provider as VotesProvider)
+    }
+  })
 })
 </script>
 

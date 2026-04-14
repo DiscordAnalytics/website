@@ -16,9 +16,9 @@ import { Field as VeeField, useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import { adminUpdateUserLimitsFormSchema } from '@/utils/formSchemas.ts'
 import { toast } from 'vue-sonner'
-import { ref, watch } from 'vue'
+import { watch } from 'vue'
 import type { User } from '@/utils/types.ts'
-import { useUsers } from '@/composables'
+import { useLoading, useUsers } from '@/composables'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
@@ -28,7 +28,7 @@ const props = defineProps<{
   open: boolean
 }>()
 
-const emit = defineEmits<{
+defineEmits<{
   (e: 'update:open', value: boolean): void
 }>()
 
@@ -36,19 +36,17 @@ const { updateLimits: updateUserLimits } = useUsers()
 const form = useForm({
   validationSchema: toTypedSchema(adminUpdateUserLimitsFormSchema),
 })
-
-const isLoading = ref<boolean>(false)
+const { isLoading, withLoading } = useLoading()
 
 const onSubmit = form.handleSubmit(async (values) => {
-  isLoading.value = true
-  try {
-    await Promise.all(props.users.map((user) => updateUserLimits(user.userId, values.limit)))
-    toast.success(t('pages.dash.admin.users.editLimits.toast'))
-  } catch (e: any) {
-    toast.error(e.message)
-  }
-  isLoading.value = false
-  emit('update:open', false)
+  await withLoading(async () => {
+    try {
+      await Promise.all(props.users.map((user) => updateUserLimits(user.userId, values.limit)))
+      toast.success(t('pages.dash.admin.users.editLimits.toast'))
+    } catch (e: any) {
+      toast.error(e.message)
+    }
+  })
 })
 
 watch(
