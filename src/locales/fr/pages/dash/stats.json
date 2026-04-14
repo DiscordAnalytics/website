@@ -1,0 +1,99 @@
+{
+  "charts": {
+    "empty": {
+      "title": "Graphique vide",
+      "description": "Aucune donnée dans ce graphique pour la durée sélectionnée"
+    },
+    "interactions": {
+      "evolution": "Évolution des interactions",
+      "mostUsed": "Interactions les plus utilisées",
+      "typesPie": "Interactions les plus utilisées par type",
+      "mostUsedCommands": "Most Used commands",
+      "commandsTypesPie": "Most Used commands by type",
+      "mostUsedComponents": "Most Used components",
+      "mostUsedModals": "Most Used modals"
+    },
+    "trendUp": "En hausse de {percentage}% sur cette période",
+    "trendDown": "En baisse de {percentage}% sur cette période",
+    "guilds": {
+      "evolution": "Évolution des serveurs",
+      "localesEvolution": "Évolution des langues des serveurs",
+      "localesPie": "Répartition des langues des serveurs",
+      "sizePie": "Répartition des serveurs par taille",
+      "addsAndRemoves": "Ajouts et suppressions",
+      "biggestGuildsRank": {
+        "title": "Classement des plus grands serveurs",
+        "guild": "Serveur",
+        "members": "Nombre de membres"
+      },
+      "mostActiveGuildsRank": {
+        "title": "Classement des serveurs les plus actifs",
+        "interactions": "Nombre d'interactions"
+      }
+    },
+    "users": {
+      "evolution": "Évolution des Utilisateurs",
+      "installsEvolution": "Évolution des User Installs",
+      "localesEvolution": "Évolution of langues des utilisateurs",
+      "localesPie": "Répartition des langues des utilisateurs",
+      "activity": "Répartition de l'activité sur une semaine",
+      "types": "Types d'utilisateurs",
+      "alert": {
+        "title": "Avertissement",
+        "description": "Afin de protéger votre vie privée, nous ne suivons pas les utilisateurs individuellement. Cela signifie que certains graphiques indiquent le nombre total de membres de toutes les serveurs, ce qui peut entraîner des doublons et ne reflète pas le nombre réel d'utilisateurs actifs de votre bot."
+      }
+    },
+    "votes": {
+      "evolution": "Évolution des votes (tout service confondu)",
+      "pie": "Répartition par service",
+      "providerEvolution": "Évolution des votes sur {provider}",
+      "alert": {
+        "title": "No data?",
+        "description": "That's normal, votes requires additional configuration.",
+        "button": "Read the docs"
+      }
+    },
+    "customEvents": {
+      "createTitle": "Créer un événement personnalisé",
+      "empty": {
+        "title": "Aucun événement personnalisé créé",
+        "description": "Aucun événement personnalisé disponible, créez-en un pour commencer."
+      },
+      "toasts": {
+        "created": "Événement personnalisé créé avec succès",
+        "updated": "Événement personnalisé mis à jour avec succès",
+        "deleted": "Événement personnalisé supprimé avec succès"
+      },
+      "create": {
+        "title": "Créer un événement personnalisé",
+        "description": "Les événements personnalisés vous permettent de créer des graphiques pour des fonctionnalités spécifiques à votre bot.",
+        "submitButton": "Créer l'événement"
+      },
+      "edit": {
+        "title": "Modifier l'événement personnalisé",
+        "description": "Modification de",
+        "deleteButton": "Supprimer l'événement",
+        "saveButton": "Enregistrer les modifications",
+        "deleteDialog": {
+          "title": "Supprimer cet événement ?",
+          "description": "Cela supprimera définitivement",
+          "descriptionSuffix": "ainsi que toutes les données associées. Cette action est irréversible.",
+          "cancel": "Annuler",
+          "confirm": "Oui, supprimer"
+        }
+      },
+      "fields": {
+        "eventKey": "Clé d'événement",
+        "eventKeyDescription": "La clé unique que vous utiliserez dans votre code pour déclencher l'événement.",
+        "chartTitle": "Titre du graphique",
+        "chartTitleDescription": "Le nom du graphique affiché sur le tableau de bord.",
+        "defaultMode": "Comportement de la valeur par défaut",
+        "defaultModeDescription": "Utilisé lorsqu'aucune donnée n'existe pour une heure donnée.",
+        "previousHour": "Utiliser la valeur de l'heure précédente",
+        "fixedValue": "Utiliser une valeur fixe",
+        "defaultValue": "Valeur par défaut",
+        "defaultValueDescription": "La valeur utilisée lorsqu'aucune donnée de l'heure précédente n'existe."
+      }
+    }
+  }
+}

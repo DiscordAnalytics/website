@@ -9,8 +9,9 @@ interface Props {
   avatar?: string
   alt: string
   avatarDecoration?: string
-  size?: 'sm' | 'md' | 'lg' | 'xl'
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '3xl'
   animation?: 'window-focus' | 'hover' | 'disabled'
+  isGuildIcon?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -43,15 +44,23 @@ const sizeConfig = {
     avatar: 'h-20 w-20',
     decoration: 'h-26 w-26',
   },
+  '3xl': {
+    container: 'h-42 w-42',
+    avatar: 'h-32 w-32',
+    decoration: 'h-42 w-42',
+  },
 }
+
+const imageType = computed(() => (props.isGuildIcon ? 'icons' : 'avatars'))
 
 const avatarFallbackUrl = computed(
   () => `https://cdn.discordapp.com/embed/avatars/${Number((BigInt(props.id) >> 22n) % 6n)}.png`,
 )
 
 const avatarUrl = computed(() => {
-  if (props.avatar) return `https://cdn.discordapp.com/avatars/${props.id}/${props.avatar}.webp`
-  else return avatarFallbackUrl.value
+  return props.avatar
+    ? `https://cdn.discordapp.com/${imageType.value}/${props.id}/${props.avatar}.webp`
+    : avatarFallbackUrl.value
 })
 
 const animateDecoration = computed(() => {
@@ -61,14 +70,20 @@ const animateDecoration = computed(() => {
 })
 
 const avatarDecorationUrl = computed(() => {
-  if (!props.avatarDecoration) return null
-  return `https://cdn.discordapp.com/avatar-decoration-presets/${props.avatarDecoration}.${animateDecoration.value ? 'png' : 'webp'}`
+  return props.avatarDecoration
+    ? `https://cdn.discordapp.com/avatar-decoration-presets/${props.avatarDecoration}.${animateDecoration.value ? 'png' : 'webp'}`
+    : null
 })
 </script>
 
 <template>
   <div
-    :class="cn('relative inline-flex items-center justify-center', sizeConfig[size].container)"
+    :class="
+      cn(
+        'relative inline-flex items-center justify-center',
+        avatarDecorationUrl ? sizeConfig[size].container : sizeConfig[size].avatar,
+      )
+    "
     ref="avatarBox"
   >
     <img

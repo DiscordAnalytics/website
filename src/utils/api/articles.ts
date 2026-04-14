@@ -11,4 +11,16 @@ export default class ArticlesResource {
   getArticle(articleId: string): Promise<BlogArticle> {
     return this.api.request('GET', `/articles/${articleId}`)
   }
+
+  update(articleId: string, body: Partial<BlogArticle>): Promise<BlogArticle> {
+    return this.api.request('PATCH', `/articles/${articleId}`, body)
+  }
+
+  publish(articleId: string): Promise<BlogArticle> {
+    return this.api.request('POST', `/articles/${articleId}`)
+  }
+
+  remove(articleId: string): Promise<void> {
+    return this.api.request('DELETE', `/articles/${articleId}`)
+  }
 }

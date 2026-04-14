@@ -1,0 +1,33 @@
+{
+  "header": {
+    "title": "Succès de la communauté",
+    "description": "Découvrez et copiez des succès créés par la communauté."
+  },
+  "dropdown": {
+    "placeholder": "Filtrer par langue",
+    "other": "Autre"
+  },
+  "dialog": {
+    "trigger": {
+      "multiple_langs": "Plusieurs langues",
+      "dynamic_achievement": "Succès dynamique",
+      "used_by": "Utilisé par un bot | Utilisé par {amount} bots"
+    },
+    "header": {
+      "title": {
+        "default": "Ajouter ce succès à...",
+        "oops": "Oups o_O"
+      },
+      "description": {
+        "default": "Ajoutez ce succès à l'un de vos bots.",
+        "oops": "Vous n'avez pas encore de bot. Veuillez d'abord ajouter un bot.",
+        "no_logged_in": "Vous devez être connecté pour ajouter ce succès à votre bot !"
+      }
+    },
+    "your_bots": "Vos bots",
+    "add": "Ajouter",
+    "add_bot": "Ajouter un nouveau bot",
+    "login": "Se connecter",
+    "selectPlaceholder": "Sélectionnez le bot auquel vous souhaitez ajouter ce succès"
+  }
+}

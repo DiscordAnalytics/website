@@ -1,43 +1,69 @@
 import useAPI, { APIScope } from '@/utils/api'
 import { useStore } from '@/stores'
-import { computed } from 'vue'
+import { computed, type Ref } from 'vue'
 
-export default function useBot(botId: string, scope: APIScope = APIScope.User) {
+export default function useBot(botId: Ref<string>, scope: APIScope = APIScope.User) {
   const api = useAPI(scope)
   const store = useStore()
 
-  const bot = computed(() => store.userBots.find((bot) => bot.botId === botId))
+  const bot = computed(() => store.bots[botId.value] ?? null)
+
+  async function fetch() {
+    store.bots[botId.value] = await api.bots.get(botId.value)
+  }
 
   async function remove() {
-    await api.bots.deleteBot(botId)
-    store.userBots = store.userBots.filter((bot) => bot.botId !== botId)
+    const ownerId = store.bots[botId.value]?.ownerId
+    await api.bots.deleteBot(botId.value)
+    delete store.bots[botId.value]
+    if (ownerId && store.userBotIds[ownerId]) {
+      store.userBotIds[ownerId] = store.userBotIds[ownerId]!.filter((id) => id !== botId.value)
+    }
   }
 
   async function regenToken() {
     if (!bot.value) throw new Error('Bot not found')
-    return api.bots.regenToken(botId)
+    return api.bots.regenToken(botId.value)
   }
 
   async function getToken() {
     if (!bot.value) throw new Error('Bot not found')
-    return api.bots.getToken(botId)
+    return api.bots.getToken(botId.value)
   }
 
   async function toggleAdvancedStats() {
     if (!bot.value) throw new Error('Bot not found')
-    await api.bots.updateSettings(botId, { advanced_stats: !bot.value.advancedStats })
-
-    const botIndex = store.userBots.findIndex((b) => b.botId === botId)
-    if (botIndex >= 0) store.userBots[botIndex]!.advancedStats = !bot.value.advancedStats
+    await api.bots.updateSettings(botId.value, !bot.value.advancedStats)
+    store.bots[botId.value]!.advancedStats = !bot.value.advancedStats
   }
 
   async function updateVotesWebhook(webhookUrl: string) {
     if (!bot.value) throw new Error('Bot not found')
-    await api.bots.updateVotesWebhook(botId, webhookUrl)
-
-    const botIndex = store.userBots.findIndex((b) => b.botId === botId)
-    if (botIndex >= 0) store.userBots[botIndex]!.votesWebhookUrl = webhookUrl
+    await api.bots.updateVotesWebhook(botId.value, webhookUrl)
+    store.bots[botId.value]!.webhooksConfig.webhookUrl = webhookUrl
   }
 
-  return { bot, remove, regenToken, getToken, toggleAdvancedStats, updateVotesWebhook }
+  async function testVotesWebhook() {
+    if (!api.userId) throw new Error('Not authenticated')
+    await api.bots.votes.test(botId.value)
+  }
+
+  async function unsuspend() {
+    if (!api.userId) throw new Error('Not authenticated')
+    await api.bots.unsuspend(botId.value)
+
+    store.bots[botId.value]!.suspended = false
+  }
+
+  return {
+    bot,
+    fetch,
+    remove,
+    regenToken,
+    getToken,
+    toggleAdvancedStats,
+    updateVotesWebhook,
+    testVotesWebhook,
+    unsuspend,
+  }
 }

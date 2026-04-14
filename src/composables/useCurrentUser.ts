@@ -1,31 +1,9 @@
 import useAPI, { APIScope } from '@/utils/api'
-import { useStore } from '@/stores'
-import { computed } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useUser } from '@/composables/index.ts'
+import { ref } from 'vue'
 
 export default function useCurrentUser() {
   const api = useAPI(APIScope.User)
-  const store = useStore()
-  const router = useRouter()
-  const route = useRoute()
 
-  const userInfos = computed(() => store.userInfos)
-
-  async function fetch() {
-    if (!api.userId) throw new Error('Not Authenticated')
-    store.userInfos = await api.users.get(api.userId)
-    const { ownedBots, inBotTeam } = await api.users.getBots(api.userId)
-    store.userBots = [...ownedBots, ...inBotTeam]
-  }
-
-  async function logout() {
-    api.clearTokens()
-    store.clear()
-
-    if (route.path.startsWith('/dash') || route.path.startsWith('/auth')) {
-      await router.push('/')
-    }
-  }
-
-  return { fetch, userInfos, logout }
+  return useUser(APIScope.User, ref(api.userId))
 }

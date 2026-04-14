@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { NavBar } from '@/components/navbar'
 import Footer from '@/components/Footer.vue'
+import { cn } from '@/lib/utils.ts'
 
 withDefaults(
   defineProps<{
@@ -15,10 +16,16 @@ withDefaults(
 </script>
 
 <template>
-  <main class="max-w-425 mx-auto px-4 min-h-screen flex flex-col justify-between">
-    <NavBar v-if="$props.navbar" />
+  <main
+    :class="
+      cn('max-w-425 mx-auto px-4 min-h-screen flex flex-col', $props.footer && 'justify-between')
+    "
+  >
+    <div>
+      <NavBar v-if="$props.navbar" />
 
-    <slot />
+      <slot />
+    </div>
 
     <Footer v-if="$props.footer" />
   </main>

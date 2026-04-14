@@ -1,0 +1,168 @@
+{
+  "addBot": {
+    "botId": {
+      "required": "Veuillez entrer un identifiant de bot",
+      "invalid_type": "Une chaîne de caractères est attendue",
+      "invalid_snowflake": "Identifiant Discord invalide"
+    },
+    "acceptTos": {
+      "required": "Veuillez cocher cette case pour accepter les conditions",
+      "invalid_type": "Une valeur booléenne est attendue",
+      "must_be_true": "Vous devez accepter les conditions pour continuer"
+    }
+  },
+  "createCustomEvent": {
+    "eventKey": {
+      "required": "Veuillez entrer une clé d'événement",
+      "invalid_type": "Une chaîne de caractères est attendue",
+      "too_short": "La clé d'événement doit comporter au moins 3 caractères"
+    },
+    "graphName": {
+      "required": "Veuillez entrer un nom de graphique",
+      "invalid_type": "Une chaîne de caractères est attendue",
+      "too_short": "Le nom du graphique doit comporter au moins 3 caractères"
+    },
+    "defaultValue": {
+      "invalid_type": "Veuillez entrer un nombre valide",
+      "required_for_fixed": "Une valeur par défaut est requise en mode fixe"
+    }
+  },
+  "editCustomEvent": {
+    "graphName": {
+      "required": "Veuillez entrer un nom de graphique",
+      "invalid_type": "Une chaîne de caractères est attendue",
+      "too_short": "Le nom du graphique doit comporter au moins 3 caractères"
+    }
+  },
+  "createAchievement": {
+    "title": {
+      "required": "Veuillez entrer un titre",
+      "invalid_type": "Une chaîne de caractères est attendue",
+      "too_short": "Le titre doit comporter au moins 5 caractères"
+    },
+    "description": {
+      "required": "Veuillez entrer une description",
+      "invalid_type": "Une chaîne de caractères est attendue",
+      "too_short": "La description doit comporter au moins 10 caractères"
+    },
+    "type": {
+      "invalid": "Type d'achievement invalide"
+    },
+    "objective": {
+      "not_positive": "L'objectif doit être supérieur à 0"
+    }
+  },
+  "shareAchievement": {
+    "sure": {
+      "required": "Veuillez cocher cette case pour confirmer",
+      "invalid_type": "Une valeur booléenne est attendue",
+      "must_be_true": "Vous devez confirmer en cochant cette case"
+    }
+  },
+  "editAchievement": {
+    "title": {
+      "required": "Veuillez entrer un titre",
+      "invalid_type": "Une chaîne de caractères est attendue",
+      "too_short": "Le titre doit comporter au moins 5 caractères"
+    },
+    "description": {
+      "required": "Veuillez entrer une description",
+      "invalid_type": "Une chaîne de caractères est attendue",
+      "too_short": "La description doit comporter au moins 10 caractères"
+    },
+    "sure": {
+      "required": "Veuillez cocher cette case pour confirmer",
+      "invalid_type": "Une valeur booléenne est attendue",
+      "must_be_true": "Vous devez confirmer en cochant cette case"
+    }
+  },
+  "copyAchievement": {
+    "botId": {
+      "required": "Vous devez sélectionner un bot",
+      "invalid_type": "Vous devez sélectionner un bot"
+    }
+  },
+  "addTeammate": {
+    "userId": {
+      "invalid_snowflake": "Identifiant Discord invalide"
+    }
+  },
+  "topggTokenUpdate": {
+    "webhookSecret": {
+      "invalid_format": "Format du secret webhook invalide — format attendu : whs_..."
+    }
+  },
+  "adminUpdateUserLimits": {
+    "limit": {
+      "invalid_type": "Veuillez entrer une limite",
+      "too_small": "La limite doit être d'au moins 0"
+    },
+    "sure": {
+      "required": "Veuillez cocher cette case pour confirmer",
+      "invalid_type": "Une valeur booléenne est attendue",
+      "must_be_true": "Vous devez confirmer en cochant cette case"
+    }
+  },
+  "adminUpdateBotLimits": {
+    "goalsLimit": {
+      "invalid_type": "Veuillez entrer une limite d'objectifs",
+      "too_small": "La limite d'objectifs doit être d'au moins 0"
+    },
+    "customEventsLimit": {
+      "invalid_type": "Veuillez entrer une limite d'événements personnalisés",
+      "too_small": "La limite d'événements personnalisés doit être d'au moins 0"
+    },
+    "teammatesLimit": {
+      "invalid_type": "Veuillez entrer une limite de coéquipiers",
+      "too_small": "La limite de coéquipiers doit être d'au moins 0"
+    },
+    "sure": {
+      "required": "Veuillez cocher cette case pour confirmer",
+      "invalid_type": "Une valeur booléenne est attendue",
+      "must_be_true": "Vous devez confirmer en cochant cette case"
+    }
+  },
+  "adminAskForReason": {
+    "reason": {
+      "required": "Veuillez entrer une raison",
+      "invalid_type": "Une chaîne de caractères est attendue",
+      "too_short": "La raison doit comporter au moins 5 caractères"
+    },
+    "sure": {
+      "required": "Veuillez cocher cette case pour confirmer",
+      "invalid_type": "Une valeur booléenne est attendue",
+      "must_be_true": "Vous devez confirmer en cochant cette case"
+    }
+  },
+  "askForConfirmation": {
+    "sure": {
+      "required": "Veuillez cocher cette case pour confirmer",
+      "invalid_type": "Une valeur booléenne est attendue",
+      "must_be_true": "Vous devez confirmer en cochant cette case"
+    }
+  },
+  "adminBlogEditor": {
+    "title": {
+      "required": "Veuillez entrer un titre",
+      "invalid_type": "Une chaîne de caractères est attendue",
+      "too_short": "Le titre doit comporter au moins 10 caractères"
+    },
+    "description": {
+      "required": "Veuillez entrer une description",
+      "invalid_type": "Une chaîne de caractères est attendue",
+      "too_short": "La description doit comporter au moins 20 caractères"
+    },
+    "cover": {
+      "invalid_type": "Une chaîne de caractères est attendue",
+      "invalid_url": "URL invalide"
+    },
+    "tags": {
+      "too_short": "Le tag doit comporter au moins 3 caractères"
+    },
+    "content": {
+      "required": "Veuillez entrer le contenu",
+      "invalid_type": "Une chaîne de caractères est attendue",
+      "too_short": "Le contenu doit comporter au moins 100 caractères"
+    }
+  }
+}

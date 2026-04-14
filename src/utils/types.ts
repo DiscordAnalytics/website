@@ -1,3 +1,6 @@
+import type { Component, FunctionalComponent } from 'vue'
+import type { Table } from '@tanstack/vue-table'
+
 export enum InteractionType {
   Unknown,
   Ping,
@@ -45,7 +48,7 @@ export interface User {
   username: string
   avatar?: string
   avatarDecoration?: string
-  banned: boolean
+  suspended: boolean
   joinedAt: string
   createdAt: string
   botsLimit: number
@@ -64,18 +67,25 @@ export interface Bot {
   version?: string
   team: string[]
   lastPush?: string
-  votesWebhookUrl?: string
   advancedStats: boolean
+  goalsLimit: number
+  customEventsLimit: number
+  teammatesLimit: number
+  webhooksConfig: {
+    webhookUrl?: string
+  } & {
+    [provider: string]: {
+      connectionId?: string
+      webhookSecret?: string
+    }
+  }
 }
 
 export type Color = 'zinc' | 'orange' | 'red' | 'blue' | 'green'
 
 export interface BotScanResult {
   title: string
-  message: string
-  link?: string
   type: 'info' | 'warn' | 'error'
-  botId: string
 }
 
 export interface RawStats {
@@ -125,7 +135,7 @@ export interface RawStats {
 }
 
 export interface CustomEvent {
-  botId: string
+  defaultValue: number | null
   eventKey: string
   graphName: string
 }
@@ -138,6 +148,29 @@ export interface RawVotes {
   count: number
 }
 
+export interface ChartData {
+  date: Date
+  [key: string]: number | string | Date
+}
+
+export interface ChartTab {
+  id: string
+  label: string
+  value: number
+}
+
+export interface ChartConfig {
+  title: string
+  description?: string
+  data: (ChartData | Omit<ChartData, 'date'>)[]
+  tabs: Omit<ChartTab, 'value'>[]
+  component: Component
+  colSpan?: number
+  getValue: (data: (ChartData | Omit<ChartData, 'date'>)[], currentTab: string) => number
+  isEmpty: (data: (ChartData | Omit<ChartData, 'date'>)[], currentTab: string) => boolean
+  tickFormatter?: (d: number | Date) => string
+}
+
 export interface FormattedStats {
   interactions: {
     allInteractionsEvolution: ChartData[]
@@ -146,6 +179,7 @@ export interface FormattedStats {
     mostUsedComponents: ChartData[]
     mostUsedModals: ChartData[]
     commandsTypesPie: Omit<ChartData, 'date'>[]
+    interactionsTypesPie: Omit<ChartData, 'date'>[]
   }
   guilds: {
     guildsEvolution: ChartData[]
@@ -154,7 +188,7 @@ export interface FormattedStats {
     addsAndRemoves: ChartData[]
     guildsSizeDistribution: Omit<ChartData, 'date'>[]
     biggestGuildsRank: {
-      date: string
+      date?: string
       icon?: string
       name: string
       id: string
@@ -198,7 +232,7 @@ export interface FormattedStats {
 
 export interface Achievement {
   id: string
-  editable: boolean
+  botId?: string
   achievedOn?: string
   objective: {
     type: GoalType
@@ -252,7 +286,9 @@ export interface TeamInvitationData {
   botAvatar?: string
   botUsername: string
   ownerAvatar?: string
-  ownerUsername: string
+  ownerUsername?: string
+  userAvatar?: string
+  userUsername?: string
 }
 
 export interface AppMonetizationData {
@@ -271,8 +307,8 @@ export interface AppMonetizationData {
 }
 
 export interface StatsReport {
-  bot_id: string
-  user_id: string
+  botId: string
+  userId: string
   frequency: 'weekly' | 'monthly'
 }
 
@@ -291,6 +327,30 @@ export interface AuthTokens {
 export interface OAuthConfig {
   clientId: string
   scopes: string[]
+}
+
+export interface OAuthSession {
+  active: boolean
+  current: boolean
+  createdAt: string
+  ipAddress?: string
+  lastUsedAt: string
+  sessionId: string
+  userAgent?: string
+}
+
+export interface SidebarItem {
+  title: string
+  icon?: FunctionalComponent
+  to?: string
+  children?: SidebarItem[]
+  tag?: string
+}
+
+export interface DataTableAction<TData> {
+  title: string
+  onSelect: (rowSelection: { [index: string]: boolean }, table: Table<TData>) => void
+  destructive?: boolean
 }
 
 export const searchBotParams: SearchParam[] = [
@@ -363,7 +423,6 @@ export type Anchor = {
   children: Anchor[]
 }
 export type VotesProvider = 'topgg' | 'dblist' | 'botlistme' | 'discordplace' | 'discordscom'
-export type ChartData = { date: string; [key: string]: number | string }
 export type GoalType =
   | 'GuildCount'
   | 'InteractionAverageWeek'

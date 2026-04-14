@@ -1,0 +1,8 @@
+{
+  "title": "404",
+  "description": "The requested page does not exist.",
+  "lost": {
+    "solo": "You are currently the only person lost in Discord Analytics.",
+    "multiple": "There are currently {count} people lost in Discord Analytics."
+  }
+}

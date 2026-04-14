@@ -1,0 +1,38 @@
+{
+  "sender": "Expéditeur",
+  "recipient": "Destinataire",
+  "expiration": "Expiration",
+  "table": {
+    "selectAll": "Sélectionner tout",
+    "selectRow": "Sélectionner la ligne"
+  },
+  "empty": {
+    "title": "Aucune invitation",
+    "description": "Aucune invitation pour les filtres sélectionnés"
+  },
+  "searchPlaceholder": "Rechercher parmis les invitations...",
+  "createButton": "Créer une invitation",
+  "actions": {
+    "markAsAccepted": "Marquer comme acceptée",
+    "markAsRejected": "Marquer comme rejetée"
+  },
+  "answer": {
+    "titleAccept": "Acceptation de {username}... | Acceptation de {count} invitations...",
+    "titleReject": "Rejet de {username}... | Rejet de {count} invitations...",
+    "descriptionAccept": "Vous vous apprêtez à accepter l'invitation de {username}, ce qui signifie qu'il pourra accéder à l'espace de travail de l'équipe. | Vous vous apprêtez à accepter les invitations sélectionnées, ce qui signifie que les utilisateurs pourront accéder à l'espace de travail de l'équipe.",
+    "descriptionReject": "Vous vous apprêtez à rejeter l'invitation de {username}, ce qui signifie qu'il ne pourra pas accéder à l'espace de travail de l'équipe. | Vous vous apprêtez à rejeter les invitations sélectionnées, ce qui signifie que les utilisateurs ne pourront pas accéder à l'espace de travail de l'équipe.",
+    "cancel": "Annuler",
+    "submitAccept": "Accepter l'invitation de {username} | Accepter les invitations",
+    "submitReject": "Rejeter l'invitation de {username} | Rejeter les invitations",
+    "toastAccept": "Invitations acceptées avec succès.",
+    "toastReject": "Invitations rejetées avec succès."
+  },
+  "create": {
+    "title": "Création d'une invitation",
+    "description": "Créer une invitation pour un bot et un utilisateur donnés.",
+    "botIdLabel": "ID du bot",
+    "userIdLabel": "ID de l'utilisateur",
+    "submit": "Créer une invitation",
+    "toast": "Invitation créée"
+  }
+}
