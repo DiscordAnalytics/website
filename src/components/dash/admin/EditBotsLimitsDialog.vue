@@ -16,9 +16,9 @@ import { Field as VeeField, useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import { adminUpdateBotLimitsFormSchema } from '@/utils/formSchemas.ts'
 import { toast } from 'vue-sonner'
-import { ref, watch } from 'vue'
+import { watch } from 'vue'
 import type { Bot } from '@/utils/types.ts'
-import { useBots } from '@/composables'
+import { useBots, useLoading } from '@/composables'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
@@ -28,7 +28,7 @@ const props = defineProps<{
   open: boolean
 }>()
 
-const emit = defineEmits<{
+defineEmits<{
   (e: 'update:open', value: boolean): void
 }>()
 
@@ -36,28 +36,26 @@ const { updateLimits: updateBotLimits } = useBots()
 const form = useForm({
   validationSchema: toTypedSchema(adminUpdateBotLimitsFormSchema),
 })
-
-const isLoading = ref<boolean>(false)
+const { isLoading, withLoading } = useLoading()
 
 const onSubmit = form.handleSubmit(async (values) => {
-  isLoading.value = true
-  try {
-    await Promise.all(
-      props.bots.map((bot) =>
-        updateBotLimits(
-          bot.botId,
-          values.goalsLimit,
-          values.customEventsLimit,
-          values.teammatesLimit,
+  await withLoading(async () => {
+    try {
+      await Promise.all(
+        props.bots.map((bot) =>
+          updateBotLimits(
+            bot.botId,
+            values.goalsLimit,
+            values.customEventsLimit,
+            values.teammatesLimit,
+          ),
         ),
-      ),
-    )
-    toast.success(t('pages.dash.admin.bots.editLimits.toast'))
-  } catch (e: any) {
-    toast.error(e.message)
-  }
-  isLoading.value = false
-  emit('update:open', false)
+      )
+      toast.success(t('pages.dash.admin.bots.editLimits.toast'))
+    } catch (e: any) {
+      toast.error(e.message)
+    }
+  })
 })
 
 watch(

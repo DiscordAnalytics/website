@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, ref, type Ref, watch } from 'vue'
-import { useBotStats, useLocale } from '@/composables'
+import { computed, type Ref, watch } from 'vue'
+import { useBotStats, useLoading, useLocale } from '@/composables'
 import { useRouteParams } from '@vueuse/router'
 import { calculateUsers } from '@/utils/statsManager.ts'
 import { useStore } from '@/stores'
@@ -31,11 +31,11 @@ const statsRange = a as Ref<DateRange>
 const { t } = useI18n()
 const { getLocaleName } = useLocale()
 const maskedPopups = useLocalStorage<string[]>('maskedPopups', [])
+const { isLoading, withLoading } = useLoading()
 
 const usersData = computed(() =>
   stats.value && statsRange.value ? calculateUsers(stats.value.stats, statsRange.value) : null,
 )
-const isLoading = ref<boolean>(false)
 
 const defaultGetValue = (
   data: (ChartData | Omit<ChartData, 'date'>)[],
@@ -119,9 +119,9 @@ const charts = computed((): ChartConfig[] => [
 
 watch(statsRange, async (value, oldValue) => {
   if (value.start !== oldValue.start || value.end !== oldValue.end) {
-    isLoading.value = true
-    await fetchStats(value)
-    isLoading.value = false
+    await withLoading(async () => {
+      await fetchStats(value)
+    })
   }
 })
 </script>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import AdminDashLayout from '@/components/layouts/AdminDashLayout.vue'
-import { useUsers } from '@/composables'
+import { useLoading, useUsers } from '@/composables'
 import { computed, h, onMounted, ref } from 'vue'
 import type { DataTableAction, User } from '@/utils/types.ts'
 import type { ColumnDef } from '@tanstack/vue-table'
@@ -17,13 +17,14 @@ import SuspendUsersDialog from '@/components/dash/admin/SuspendUsersDialog.vue'
 import { Badge } from '@/components/ui/badge'
 import DeleteUsersDialog from '@/components/dash/admin/DeleteUsersDialog.vue'
 import { useI18n } from 'vue-i18n'
+import { Spinner } from '@/components/ui/spinner'
 
 const { t } = useI18n()
 
 const router = useRouter()
 const { users, fetch: fetchUsers } = useUsers()
 
-const isLoading = ref<boolean>(false)
+const { isLoading, withLoading } = useLoading()
 const isEditLimitsModalOpen = ref<boolean>(false)
 const isSuspendModalOpen = ref<boolean>(false)
 const isDeleteModalOpen = ref<boolean>(false)
@@ -150,9 +151,9 @@ const actions = computed<DataTableAction<User>[]>(() => [
 ])
 
 onMounted(async () => {
-  isLoading.value = true
-  await fetchUsers()
-  isLoading.value = false
+  await withLoading(async () => {
+    await fetchUsers()
+  })
 })
 </script>
 
@@ -186,7 +187,7 @@ onMounted(async () => {
         @row-click="(row) => router.push(`/dash/admin/users/${row.original.userId}`)"
       >
         <template #empty>
-          <EmptyHeader>
+          <EmptyHeader v-if="!isLoading">
             <EmptyMedia variant="icon">
               <FrownIcon />
             </EmptyMedia>
@@ -194,6 +195,11 @@ onMounted(async () => {
             <EmptyDescription>
               {{ $t('pages.dash.admin.users.empty.description') }}
             </EmptyDescription>
+          </EmptyHeader>
+          <EmptyHeader v-else>
+            <EmptyMedia variant="icon">
+              <Spinner />
+            </EmptyMedia>
           </EmptyHeader>
         </template>
       </DataTable>

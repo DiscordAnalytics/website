@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, ref, type Ref, watch } from 'vue'
-import { useBot, useBotStats, useLocale } from '@/composables'
+import { computed, type Ref, watch } from 'vue'
+import { useBot, useBotStats, useLoading, useLocale } from '@/composables'
 import { useRouteParams } from '@vueuse/router'
 import { calculateGuilds } from '@/utils/statsManager.ts'
 import { useStore } from '@/stores'
@@ -19,11 +19,11 @@ const { statsRange: a } = storeToRefs(useStore())
 const statsRange = a as Ref<DateRange>
 const { t } = useI18n()
 const { getLocaleName } = useLocale()
+const { isLoading, withLoading } = useLoading()
 
 const guildsData = computed(() =>
   stats.value && statsRange.value ? calculateGuilds(stats.value.stats, statsRange.value) : null,
 )
-const isLoading = ref<boolean>(false)
 
 const defaultGetValue = (
   data: (ChartData | Omit<ChartData, 'date'>)[],
@@ -90,9 +90,9 @@ const charts = computed((): ChartConfig[] => [
 
 watch(statsRange, async (value, oldValue) => {
   if (value.start !== oldValue.start || value.end !== oldValue.end) {
-    isLoading.value = true
-    await fetchStats(value)
-    isLoading.value = false
+    await withLoading(async () => {
+      await fetchStats(value)
+    })
   }
 })
 </script>

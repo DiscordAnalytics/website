@@ -10,7 +10,7 @@ import { Spinner } from '@/components/ui/spinner'
 import { CopyIcon, EyeIcon, EyeOffIcon, KeyIcon, RefreshCwIcon } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
 import { useRouteParams } from '@vueuse/router'
-import { useBot } from '@/composables'
+import { useBot, useLoading } from '@/composables'
 import { useClipboard } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
 import { onMounted, ref } from 'vue'
@@ -20,8 +20,8 @@ const botId = useRouteParams<string>('id')
 const { getToken: getBotToken, regenToken: regenBotToken } = useBot(botId)
 const { copy, isSupported: isCopySupported } = useClipboard()
 const { t } = useI18n()
+const { isLoading, withLoading } = useLoading()
 
-const isLoading = ref<boolean>(false)
 const botToken = ref<string>('')
 const showBotToken = ref<boolean>(false)
 
@@ -31,24 +31,23 @@ function copyToken() {
 }
 
 async function onTokenRefresh() {
-  isLoading.value = true
-  await regenBotToken()
-    .then(async () => {
-      botToken.value = (await getBotToken()).token
-      toast.success(t('pages.dash.settings.general.token.toast'))
-      isLoading.value = false
-    })
-    .catch((err) => {
-      toast.error(err.message)
-      isLoading.value = false
-    })
+  await withLoading(async () => {
+    await regenBotToken()
+      .then(async () => {
+        botToken.value = (await getBotToken()).token
+        toast.success(t('pages.dash.settings.general.token.toast'))
+      })
+      .catch((err) => {
+        toast.error(err.message)
+      })
+  })
 }
 
 onMounted(() => {
-  isLoading.value = true
   setTimeout(async () => {
-    botToken.value = (await getBotToken()).token
-    isLoading.value = false
+    await withLoading(async () => {
+      botToken.value = (await getBotToken()).token
+    })
   }, 100)
 })
 </script>

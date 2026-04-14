@@ -23,7 +23,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
-import { useCurrentUser } from '@/composables'
+import { useCurrentUser, useLoading } from '@/composables'
 import DiscordAvatar from '@/components/DiscordAvatar.vue'
 import { Field as VeeField, useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
@@ -45,7 +45,7 @@ const { achievements, fetch: fetchAchievements, copy: copyAchievement } = useAch
 const { userInfos, ownedBots: userBots } = useCurrentUser()
 const i18n = useI18n()
 
-const isLoading = ref<boolean>(false)
+const { isLoading, withLoading } = useLoading()
 const langFilter = ref<string | null>(null)
 const selectedAchievement = ref<Achievement | null>(null)
 const isCopyModelOpen = ref<boolean>(false)
@@ -60,23 +60,23 @@ const form = useForm({
 })
 
 const onSubmit = form.handleSubmit(async (values) => {
-  isLoading.value = true
-  await copyAchievement(values.botId, selectedAchievement.value!.id)
-    .then(() => {
-      toast.success('Achievement successfully copied!')
-      isCopyModelOpen.value = false
-    })
-    .catch((err) => {
-      toast.error(err.message)
-    })
-  isLoading.value = false
+  await withLoading(async () => {
+    await copyAchievement(values.botId, selectedAchievement.value!.id)
+      .then(() => {
+        toast.success('Achievement successfully copied!')
+        isCopyModelOpen.value = false
+      })
+      .catch((err) => {
+        toast.error(err.message)
+      })
+  })
 })
 
 onMounted(async () => {
   if (achievements.value.length === 0) {
-    isLoading.value = true
-    await fetchAchievements()
-    isLoading.value = false
+    await withLoading(async () => {
+      await fetchAchievements()
+    })
   }
 })
 </script>

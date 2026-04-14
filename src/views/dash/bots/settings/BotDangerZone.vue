@@ -4,7 +4,7 @@ import SettingCard from '@/components/dash/SettingCard.vue'
 import { TrashIcon, TrophyIcon } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
 import { useRouteParams } from '@vueuse/router'
-import { useBot, useBotAchievements } from '@/composables'
+import { useBot, useBotAchievements, useLoading } from '@/composables'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -17,7 +17,6 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 import { Spinner } from '@/components/ui/spinner'
-import { ref } from 'vue'
 import { toast } from 'vue-sonner'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
@@ -28,31 +27,30 @@ const router = useRouter()
 const botId = useRouteParams<string>('id')
 const { bot, remove: deleteBot } = useBot(botId)
 const { reset: resetAchievements } = useBotAchievements(botId)
-
-const isLoading = ref<boolean>(false)
+const { isLoading, withLoading } = useLoading()
 
 async function onAchievementsReset() {
-  isLoading.value = true
-  await resetAchievements()
-    .then(async () => {
-      toast.success(t('pages.dash.settings.dangerZone.resetAchievements.toast'))
-    })
-    .catch((err) => {
-      toast.error(err.message)
-    })
-  isLoading.value = false
+  await withLoading(async () => {
+    await resetAchievements()
+      .then(async () => {
+        toast.success(t('pages.dash.settings.dangerZone.resetAchievements.toast'))
+      })
+      .catch((err) => {
+        toast.error(err.message)
+      })
+  })
 }
 
 async function onDelete() {
-  isLoading.value = true
-  await deleteBot()
-    .then(async () => {
-      await router.push('/dash')
-    })
-    .catch((err) => {
-      toast.error(err.message)
-    })
-  isLoading.value = false
+  await withLoading(async () => {
+    await deleteBot()
+      .then(async () => {
+        await router.push('/dash')
+      })
+      .catch((err) => {
+        toast.error(err.message)
+      })
+  })
 }
 </script>
 

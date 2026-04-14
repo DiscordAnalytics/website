@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import AdminDashLayout from '@/components/layouts/AdminDashLayout.vue'
-import { useTeamInvitations } from '@/composables'
+import { useLoading, useTeamInvitations } from '@/composables'
 import { computed, h, onMounted, ref } from 'vue'
 import type { DataTableAction, TeamInvitationData } from '@/utils/types.ts'
 import type { ColumnDef } from '@tanstack/vue-table'
@@ -15,12 +15,12 @@ import { useI18n } from 'vue-i18n'
 import { APIScope } from '@/utils/api'
 import AnswerInvitationsDialog from '@/components/dash/admin/AnswerInvitationsDialog.vue'
 import CreateInvitationDialog from '@/components/dash/admin/CreateInvitationDialog.vue'
+import { Spinner } from '@/components/ui/spinner'
 
 const { t } = useI18n()
-
 const { invitations, fetch: fetchInvitations } = useTeamInvitations(APIScope.Admin)
+const { isLoading, withLoading } = useLoading()
 
-const isLoading = ref<boolean>(false)
 const isAnswerModalOpen = ref<boolean>(false)
 const isAccepting = ref<boolean>(false)
 const selectedInvitations = ref<TeamInvitationData[]>([])
@@ -142,9 +142,9 @@ const actions = computed<DataTableAction<TeamInvitationData>[]>(() => [
 ])
 
 onMounted(async () => {
-  isLoading.value = true
-  await fetchInvitations()
-  isLoading.value = false
+  await withLoading(async () => {
+    await fetchInvitations()
+  })
 })
 </script>
 
@@ -166,14 +166,19 @@ onMounted(async () => {
         :actions="actions"
       >
         <template #empty>
-          <EmptyHeader>
+          <EmptyHeader v-if="!isLoading">
             <EmptyMedia variant="icon">
               <FrownIcon />
             </EmptyMedia>
-            <EmptyTitle>{{ t('pages.dash.admin.invitations.empty.title') }}</EmptyTitle>
+            <EmptyTitle>{{ $t('pages.dash.admin.invitations.empty.title') }}</EmptyTitle>
             <EmptyDescription>
-              {{ t('pages.dash.admin.invitations.empty.description') }}
+              {{ $t('pages.dash.admin.invitations.empty.description') }}
             </EmptyDescription>
+          </EmptyHeader>
+          <EmptyHeader v-else>
+            <EmptyMedia variant="icon">
+              <Spinner />
+            </EmptyMedia>
           </EmptyHeader>
         </template>
 

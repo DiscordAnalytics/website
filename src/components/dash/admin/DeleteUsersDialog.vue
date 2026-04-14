@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { Spinner } from '@/components/ui/spinner'
 import { toast } from 'vue-sonner'
-import { ref } from 'vue'
 import type { User } from '@/utils/types.ts'
-import { useUsers } from '@/composables'
+import { useLoading, useUsers } from '@/composables'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -21,25 +20,23 @@ const props = defineProps<{
   open: boolean
 }>()
 
-const emit = defineEmits<{
+defineEmits<{
   (e: 'update:open', value: boolean): void
 }>()
 
 const { t } = useI18n()
 const { remove: deleteUser } = useUsers()
-
-const isLoading = ref<boolean>(false)
+const { isLoading, withLoading } = useLoading()
 
 async function onSubmit() {
-  isLoading.value = true
-  try {
-    await Promise.all(props.users.map((user) => deleteUser(user.userId)))
-    toast.success(t('pages.dash.admin.users.delete.toast'))
-  } catch (e: any) {
-    toast.error(e.message)
-  }
-  isLoading.value = false
-  emit('update:open', false)
+  await withLoading(async () => {
+    try {
+      await Promise.all(props.users.map((user) => deleteUser(user.userId)))
+      toast.success(t('pages.dash.admin.users.delete.toast'))
+    } catch (e: any) {
+      toast.error(e.message)
+    }
+  })
 }
 </script>
 

@@ -11,7 +11,7 @@ import {
 } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
 import { useRouteParams } from '@vueuse/router'
-import { useBot, useBotTeam } from '@/composables'
+import { useBot, useBotTeam, useLoading } from '@/composables'
 import { onMounted, ref } from 'vue'
 import {
   Table,
@@ -66,7 +66,7 @@ const { bot } = useBot(botId)
 const { team, fetch: fetchTeam, add: addTeammate, remove: removeTeammate } = useBotTeam(botId)
 const { copy, isSupported: isCopySupported } = useClipboard()
 
-const isLoading = ref<boolean>(false)
+const { isLoading, withLoading } = useLoading()
 const addedTeammate = ref<{ sent: boolean; details: Teammate } | null>(null)
 
 const form = useForm({
@@ -74,21 +74,21 @@ const form = useForm({
 })
 
 async function onTeammateDelete(userId: string) {
-  isLoading.value = true
-  await removeTeammate(userId)
-  isLoading.value = false
+  await withLoading(async () => {
+    await removeTeammate(userId)
+  })
 }
 
 const onSubmit = form.handleSubmit(async (values) => {
-  isLoading.value = true
-  await addTeammate(values.userId)
-    .then((res) => {
-      addedTeammate.value = res
-    })
-    .catch((err) => {
-      toast.error(err.message)
-    })
-  isLoading.value = false
+  await withLoading(async () => {
+    await addTeammate(values.userId)
+      .then((res) => {
+        addedTeammate.value = res
+      })
+      .catch((err) => {
+        toast.error(err.message)
+      })
+  })
 })
 
 function getInvitationURL(invitationId: string): string {
@@ -102,9 +102,9 @@ function copyInvitationURL(invitationId: string) {
 }
 
 onMounted(async () => {
-  isLoading.value = true
-  await fetchTeam()
-  isLoading.value = false
+  await withLoading(async () => {
+    await fetchTeam()
+  })
 })
 </script>
 

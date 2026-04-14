@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
+import { useLoading } from '@/composables'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { FrownIcon, PencilIcon, SparklesIcon, TrashIcon } from 'lucide-vue-next'
 import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty'
@@ -19,60 +20,60 @@ import { selectLocale } from '@/utils/functions.ts'
 const { achievements, fetch: fetchAchievements } = useAchievementsStore(APIScope.Admin)
 const store = useStore()
 const { t } = useI18n()
+const { isLoading, withLoading } = useLoading()
 
-const isLoading = ref<boolean>(false)
 const editDialogOpen = ref<boolean>(false)
 const deleteDialogOpen = ref<boolean>(false)
 const editingAchievement = ref<Achievement | null>(null)
 
 async function onAchievementUpdated(values: { title: string; description: string }) {
-  isLoading.value = true
-  const { update: editAchievement } = useBotAchievements(
-    ref(editingAchievement.value!.botId!),
-    APIScope.Admin,
-  )
-  await editAchievement({ ...values, id: editingAchievement.value!.id })
-    .then(() => {
-      const achievement = { ...editingAchievement.value!, ...values }
-      const index = store.achievementsStore.findIndex(
-        (achv) => achv.id === editingAchievement.value!.id,
-      )
-      if (index >= 0) store.achievementsStore[index] = achievement
-      else store.achievementsStore.push(achievement)
-      toast.success(t('pages.dash.achievements.toasts.updated'))
-      editDialogOpen.value = false
-    })
-    .catch((e) => {
-      toast.error(e.message)
-    })
-  isLoading.value = false
+  await withLoading(async () => {
+    const { update: editAchievement } = useBotAchievements(
+      ref(editingAchievement.value!.botId!),
+      APIScope.Admin,
+    )
+    await editAchievement({ ...values, id: editingAchievement.value!.id })
+      .then(() => {
+        const achievement = { ...editingAchievement.value!, ...values }
+        const index = store.achievementsStore.findIndex(
+          (achv) => achv.id === editingAchievement.value!.id,
+        )
+        if (index >= 0) store.achievementsStore[index] = achievement
+        else store.achievementsStore.push(achievement)
+        toast.success(t('pages.dash.achievements.toasts.updated'))
+        editDialogOpen.value = false
+      })
+      .catch((e) => {
+        toast.error(e.message)
+      })
+  })
 }
 
 async function onAchievementUnpublished() {
-  isLoading.value = true
-  const { update: editAchievement } = useBotAchievements(
-    ref(editingAchievement.value!.botId!),
-    APIScope.Admin,
-  )
-  await editAchievement({ id: editingAchievement.value!.id, shared: false })
-    .then(() => {
-      const index = store.achievementsStore.findIndex(
-        (achv) => achv.id === editingAchievement.value!.id,
-      )
-      if (index >= 0) store.achievementsStore.splice(index, 1)
-      toast.success(t('pages.dash.achievements.toasts.deleted'))
-      deleteDialogOpen.value = false
-    })
-    .catch((e) => {
-      toast.error(e.message)
-    })
-  isLoading.value = false
+  await withLoading(async () => {
+    const { update: editAchievement } = useBotAchievements(
+      ref(editingAchievement.value!.botId!),
+      APIScope.Admin,
+    )
+    await editAchievement({ id: editingAchievement.value!.id, shared: false })
+      .then(() => {
+        const index = store.achievementsStore.findIndex(
+          (achv) => achv.id === editingAchievement.value!.id,
+        )
+        if (index >= 0) store.achievementsStore.splice(index, 1)
+        toast.success(t('pages.dash.achievements.toasts.deleted'))
+        deleteDialogOpen.value = false
+      })
+      .catch((e) => {
+        toast.error(e.message)
+      })
+  })
 }
 
 onMounted(async () => {
-  isLoading.value = true
-  await fetchAchievements()
-  isLoading.value = false
+  await withLoading(async () => {
+    await fetchAchievements()
+  })
 })
 </script>
 

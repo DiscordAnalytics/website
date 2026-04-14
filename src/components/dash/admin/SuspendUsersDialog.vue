@@ -16,9 +16,8 @@ import { Field as VeeField, useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import { adminAskForReasonFormSchema } from '@/utils/formSchemas.ts'
 import { toast } from 'vue-sonner'
-import { ref } from 'vue'
 import type { User } from '@/utils/types.ts'
-import { useUsers } from '@/composables'
+import { useLoading, useUsers } from '@/composables'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
@@ -36,18 +35,17 @@ const { suspend: suspendUser } = useUsers()
 const form = useForm({
   validationSchema: toTypedSchema(adminAskForReasonFormSchema),
 })
-
-const isLoading = ref<boolean>(false)
+const { isLoading, withLoading } = useLoading()
 
 const onSubmit = form.handleSubmit(async (values) => {
-  isLoading.value = true
-  try {
-    await Promise.all(props.users.map((user) => suspendUser(user.userId, values.reason)))
-    toast.success(t('pages.dash.admin.users.suspend.toast'))
-  } catch (e: any) {
-    toast.error(e.message)
-  }
-  isLoading.value = false
+  await withLoading(async () => {
+    try {
+      await Promise.all(props.users.map((user) => suspendUser(user.userId, values.reason)))
+      toast.success(t('pages.dash.admin.users.suspend.toast'))
+    } catch (e: any) {
+      toast.error(e.message)
+    }
+  })
   emit('update:open', false)
 })
 </script>
