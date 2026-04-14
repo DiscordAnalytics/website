@@ -12,7 +12,7 @@ import {
   SelectItem,
   SelectLabel,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from '@/components/ui/select'
 import CodeBlock from '@/components/CodeBlock.vue'
 import * as codeExamples from '@/utils/codeExamples'
