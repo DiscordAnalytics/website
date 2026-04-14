@@ -3,7 +3,12 @@ import { h, ref } from 'vue'
 import CustomIcon from '@/components/CustomIcon.vue'
 import SettingCard from '@/components/dash/SettingCard.vue'
 import { CircleCheckIcon, CopyIcon, EyeIcon, EyeOffIcon, RefreshCwIcon } from 'lucide-vue-next'
-import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from '@/components/ui/input-group'
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+} from '@/components/ui/input-group'
 import { Spinner } from '@/components/ui/spinner'
 import { Button } from '@/components/ui/button'
 import type { VotesProvider } from '@/utils/types.ts'
@@ -18,7 +23,7 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger
+  DialogTrigger,
 } from '@/components/ui/dialog'
 import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field'
 import { Field as VeeField, useForm } from 'vee-validate'
