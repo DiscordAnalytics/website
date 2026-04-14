@@ -42,7 +42,9 @@ async function onSubmit() {
           : rejectInvitation(invite.invitation.invitationId),
       ),
     )
-    const toastKey = props.accept ? 'pages.dash.admin.invitations.answer.toastAccept' : 'pages.dash.admin.invitations.answer.toastReject'
+    const toastKey = props.accept
+      ? 'pages.dash.admin.invitations.answer.toastAccept'
+      : 'pages.dash.admin.invitations.answer.toastReject'
     toast.success(t(toastKey))
   } catch (e: any) {
     toast.error(e.message)
@@ -58,20 +60,32 @@ async function onSubmit() {
       <AlertDialogHeader>
         <AlertDialogTitle>
           {{
-            $t($props.accept ? 'pages.dash.admin.invitations.answer.titleAccept' : 'pages.dash.admin.invitations.answer.titleReject', $props.invitations.length, {
-              named: {
-                username: $props.invitations[0]?.userUsername,
+            $t(
+              $props.accept
+                ? 'pages.dash.admin.invitations.answer.titleAccept'
+                : 'pages.dash.admin.invitations.answer.titleReject',
+              $props.invitations.length,
+              {
+                named: {
+                  username: $props.invitations[0]?.userUsername,
+                },
               },
-            })
+            )
           }}
         </AlertDialogTitle>
         <AlertDialogDescription>
           {{
-            $t($props.accept ? 'pages.dash.admin.invitations.answer.descriptionAccept' : 'pages.dash.admin.invitations.answer.descriptionReject', $props.invitations.length, {
-              named: {
-                username: $props.invitations[0]?.userUsername,
+            $t(
+              $props.accept
+                ? 'pages.dash.admin.invitations.answer.descriptionAccept'
+                : 'pages.dash.admin.invitations.answer.descriptionReject',
+              $props.invitations.length,
+              {
+                named: {
+                  username: $props.invitations[0]?.userUsername,
+                },
               },
-            })
+            )
           }}
         </AlertDialogDescription>
       </AlertDialogHeader>
@@ -84,11 +98,17 @@ async function onSubmit() {
         <AlertDialogAction variant="destructive" :disabled="isLoading" @click="onSubmit">
           <Spinner v-if="isLoading" />
           {{
-            $t($props.accept ? 'pages.dash.admin.invitations.answer.submitAccept' : 'pages.dash.admin.invitations.answer.submitReject', $props.invitations.length, {
-              named: {
-                username: $props.invitations[0]?.userUsername,
+            $t(
+              $props.accept
+                ? 'pages.dash.admin.invitations.answer.submitAccept'
+                : 'pages.dash.admin.invitations.answer.submitReject',
+              $props.invitations.length,
+              {
+                named: {
+                  username: $props.invitations[0]?.userUsername,
+                },
               },
-            })
+            )
           }}
         </AlertDialogAction>
       </AlertDialogFooter>

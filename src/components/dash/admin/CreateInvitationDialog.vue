@@ -17,6 +17,9 @@ import { toTypedSchema } from '@vee-validate/zod'
 import { adminCreateInvitationFormSchema } from '@/utils/formSchemas.ts'
 import { useBotTeam } from '@/composables'
 import { toast } from 'vue-sonner'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const emit = defineEmits<{
   (e: 'created'): void
@@ -34,7 +37,7 @@ const onSubmit = form.handleSubmit(async (values) => {
   const { add } = useBotTeam(ref(values.botId))
   await add(values.userId)
     .then(() => {
-      toast.success('Invitation created')
+      toast.success(t('pages.dash.admin.invitations.create.toast'))
       isOpen.value = false
       emit('created')
     })
@@ -51,9 +54,9 @@ const onSubmit = form.handleSubmit(async (values) => {
 
     <DialogContent>
       <DialogHeader>
-        <DialogTitle>Creating an invitation</DialogTitle>
+        <DialogTitle>{{ t('pages.dash.admin.invitations.create.title') }}</DialogTitle>
         <DialogDescription>
-          Create an invitation for a given bot and a given user.
+          {{ t('pages.dash.admin.invitations.create.description') }}
         </DialogDescription>
       </DialogHeader>
 
@@ -61,7 +64,9 @@ const onSubmit = form.handleSubmit(async (values) => {
         <FieldGroup>
           <VeeField v-slot="{ field, errors }" name="botId">
             <Field :data-invalid="!!errors.length">
-              <FieldLabel for="botIdInput">Bot ID</FieldLabel>
+              <FieldLabel for="botIdInput">
+                {{ t('pages.dash.admin.invitations.create.botIdLabel') }}
+              </FieldLabel>
               <Input
                 id="botIdInput"
                 v-bind="field"
@@ -77,7 +82,9 @@ const onSubmit = form.handleSubmit(async (values) => {
 
           <VeeField v-slot="{ field, errors }" name="userId">
             <Field :data-invalid="!!errors.length">
-              <FieldLabel for="userIdInput">User ID</FieldLabel>
+              <FieldLabel for="userIdInput">
+                {{ t('pages.dash.admin.invitations.create.userIdLabel') }}
+              </FieldLabel>
               <Input
                 id="userIdInput"
                 v-bind="field"
@@ -94,7 +101,7 @@ const onSubmit = form.handleSubmit(async (values) => {
           <Field orientation="horizontal" class="flex justify-end">
             <Button type="submit" form="createInvitationForm" :disabled="isLoading">
               <Spinner v-if="isLoading" />
-              Create invitation
+              {{ t('pages.dash.admin.invitations.create.submit') }}
             </Button>
           </Field>
         </FieldGroup>

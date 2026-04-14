@@ -7,7 +7,6 @@ import type { ColumnDef } from '@tanstack/vue-table'
 import { Button } from '@/components/ui/button'
 import { ArrowUpDown, FrownIcon, PlusIcon } from 'lucide-vue-next'
 import { df } from '@/utils/dateTime.ts'
-import { useRouter } from 'vue-router'
 import DiscordAvatar from '@/components/DiscordAvatar.vue'
 import DataTable from '@/components/DataTable.vue'
 import { Checkbox } from '@/components/ui/checkbox'
@@ -19,7 +18,6 @@ import CreateInvitationDialog from '@/components/dash/admin/CreateInvitationDial
 
 const { t } = useI18n()
 
-const router = useRouter()
 const { invitations, fetch: fetchInvitations } = useTeamInvitations(APIScope.Admin)
 
 const isLoading = ref<boolean>(false)

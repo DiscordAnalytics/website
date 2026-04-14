@@ -106,7 +106,7 @@ const router = createRouter({
     },
     {
       path: '/dash/admin',
-      redirect(to) {
+      redirect() {
         return `/dash/admin/users`
       },
     },

@@ -26,5 +26,13 @@
     "submitReject": "Reject {username}'s invitation | Reject invitations",
     "toastAccept": "Invitations accepted successfully.",
     "toastReject": "Invitations rejected successfully."
+  },
+  "create": {
+    "title": "Creating an invitation",
+    "description": "Create an invitation for a given bot and a given user.",
+    "botIdLabel": "Bot ID",
+    "userIdLabel": "User ID",
+    "submit": "Create invitation",
+    "toast": "Invitation created"
   }
 }
