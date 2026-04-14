@@ -59,10 +59,14 @@ onMounted(() => {
   posthog.init(posthogProjectToken, {
     api_host: posthogApiHost,
     ui_host: 'https://eu.posthog.com',
-    autocapture: true,
     capture_pageview: true,
+    capture_pageleave: true,
     persistence: 'localStorage+cookie',
     opt_out_capturing_by_default: true,
+    before_send: (event) => {
+      if (!event || window.location.host.includes('localhost')) return null
+      else return event
+    },
   })
 
   if (analyticsConsent) {
