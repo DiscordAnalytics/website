@@ -1,5 +1,12 @@
 import * as z from 'zod'
 import type { BotAchievementType } from '@/utils/types.ts'
+import { i18n } from '@/main.ts'
+
+function t(key: string) {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
+  return i18n.global.t(`components.formSchemas.${key}`)
+}
 
 function isValidSnowflake(id: string) {
   try {
@@ -10,21 +17,49 @@ function isValidSnowflake(id: string) {
   }
 }
 
+function boolField(prefix: string) {
+  return z
+    .boolean({
+      error: (issue) =>
+        issue.input === undefined ? t(`${prefix}.required`) : t(`${prefix}.invalid_type`),
+    })
+    .refine((value) => value === true, { error: t(`${prefix}.must_be_true`) })
+}
+
 export const addBotSchema = z.object({
-  botId: z.string('Expected string value').refine(isValidSnowflake, 'Invalid Discord ID'),
-  acceptTos: z.boolean().refine((value) => value === true, 'You must accept the conditions'),
+  botId: z
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? t('addBot.botId.required') : t('addBot.botId.invalid_type'),
+    })
+    .refine(isValidSnowflake, { error: t('addBot.botId.invalid_snowflake') }),
+  acceptTos: boolField('addBot.acceptTos'),
 })
 
 export const createCustomEventSchema = z
   .object({
     eventKey: z
-      .string('Please enter a valid event key!')
-      .min(3, 'The event key must be at least 3 characters long.'),
+      .string({
+        error: (issue) => {
+          if (issue.input === undefined) return t('createCustomEvent.eventKey.required')
+          else return t('createCustomEvent.eventKey.invalid_type')
+        },
+      })
+      .min(3, { error: t('createCustomEvent.eventKey.too_short') }),
     graphName: z
-      .string('Please enter a valid graph name!')
-      .min(3, 'The chart name must be at least 3 characters long.'),
+      .string({
+        error: (issue) => {
+          if (issue.input === undefined) return t('createCustomEvent.graphName.required')
+          else return t('createCustomEvent.graphName.invalid_type')
+        },
+      })
+      .min(3, { error: t('createCustomEvent.graphName.too_short') }),
     defaultMode: z.enum(['previous_hour', 'fixed']),
-    defaultValue: z.int32('Please enter a valid number!').optional(),
+    defaultValue: z
+      .int32({
+        error: () => t('createCustomEvent.defaultValue.invalid_type'),
+      })
+      .optional(),
   })
   .refine(
     (data) =>
@@ -33,57 +68,185 @@ export const createCustomEventSchema = z
         data.defaultValue !== undefined &&
         data.defaultValue !== null),
     {
-      message: 'A default value is required when using a fixed value.',
+      error: t('createCustomEvent.defaultValue.required_for_fixed'),
       path: ['defaultValue'],
     },
   )
 
 export const editCustomEventSchema = z.object({
   graphName: z
-    .string('Please enter a valid graph name!')
-    .min(3, 'The chart name must be at least 3 characters long.'),
+    .string({
+      error: (issue) => {
+        if (issue.input === undefined) return t('editCustomEvent.graphName.required')
+        else return t('editCustomEvent.graphName.invalid_type')
+      },
+    })
+    .min(3, { error: t('editCustomEvent.graphName.too_short') }),
 })
 
 export const createAchievementFormSchema = z.object({
   title: z
     .string({
-      error: (issue) =>
-        issue.input === undefined ? 'Please enter a valid title!' : 'Not a string',
+      error: (issue) => {
+        if (issue.input === undefined) return t('createAchievement.title.required')
+        else return t('createAchievement.title.invalid_type')
+      },
     })
-    .min(5, 'The title of the achievement must be at least 5 characters long.'),
+    .min(5, { error: t('createAchievement.title.too_short') }),
   description: z
-    .string()
-    .min(10, 'The description of the achievement must be at least 10 characters long.'),
-  type: z.string().refine((str) => !!(str as BotAchievementType), 'Invalid achievement type!'),
-  objective: z.number().refine((num) => num > 0, 'The number must be greater than 0!'),
+    .string({
+      error: (issue) => {
+        if (issue.input === undefined) return t('createAchievement.description.required')
+        else return t('createAchievement.description.invalid_type')
+      },
+    })
+    .min(10, { error: t('createAchievement.description.too_short') }),
+  type: z.string().refine((str) => !!(str as BotAchievementType), {
+    message: t('createAchievement.type.invalid'),
+  }),
+  objective: z
+    .number()
+    .refine((num) => num > 0, { message: t('createAchievement.objective.not_positive') }),
 })
 
 export const shareAchievementFormSchema = z.object({
   lang: z.string(),
-  sure: z.boolean().refine((bool) => bool === true, 'You need to check this!'),
+  sure: boolField('shareAchievement.sure'),
 })
 
 export const editAchievementFormSchema = z.object({
   title: z
-    .string('Please enter a valid title!')
-    .min(5, 'The title of the achievement must be at least 5 characters long.'),
+    .string({
+      error: (issue) => {
+        if (issue.input === undefined) return t('editAchievement.title.required')
+        else return t('editAchievement.title.invalid_type')
+      },
+    })
+    .min(5, { error: t('editAchievement.description.too_short') }),
   description: z
-    .string('Please enter a valid description!')
-    .min(10, 'The description of the achievement must be at least 10 characters long.'),
-  sure: z.boolean().refine((bool) => bool === true, 'You need to check this!'),
+    .string({
+      error: (issue) => {
+        if (issue.input === undefined) return t('editAchievement.description.required')
+        else return t('editAchievement.description.invalid_type')
+      },
+    })
+    .min(10, { error: t('editAchievement.description.too_short') }),
+  sure: boolField('editAchievement.sure'),
 })
 
 export const copyAchievementFormSchema = z.object({
-  botId: z.string('You need to select a bot!'),
+  botId: z.string({
+    error: (issue) =>
+      issue.input === undefined
+        ? t('copyAchievement.botId.required')
+        : t('copyAchievement.botId.invalid_type'),
+  }),
 })
 
 export const addTeammateFormSchema = z.object({
-  userId: z.string().refine(isValidSnowflake, 'Invalid Discord ID'),
+  userId: z.string().refine(isValidSnowflake, { error: t('addTeammate.userId.invalid_snowflake') }),
 })
 
 export const topggTokenUpdateFormSchema = z.object({
   webhookSecret: z
     .string()
     .optional()
-    .refine((value) => !value || new RegExp(/whs_\w/g).test(value), 'Invalid webhook secret!'),
+    .refine((value) => !value || new RegExp(/whs_\w/g).test(value), {
+      error: t('topggTokenUpdate.webhookSecret.invalid_format'),
+    }),
+})
+
+export const adminUpdateUserLimitsFormSchema = z.object({
+  limit: z
+    .number({
+      error: t('adminUpdateUserLimits.limit.invalid_type'),
+    })
+    .min(0, { error: t('adminUpdateUserLimits.limit.invalid_type') }),
+  sure: boolField('adminUpdateUserLimits.sure'),
+})
+
+export const adminUpdateBotLimitsFormSchema = z.object({
+  goalsLimit: z
+    .number({
+      error: t('adminUpdateBotLimits.goalsLimit.invalid_type'),
+    })
+    .min(0, { error: t('adminUpdateBotLimits.goalsLimit.invalid_type') }),
+  customEventsLimit: z
+    .number({
+      error: t('adminUpdateBotLimits.customEventsLimit.invalid_type'),
+    })
+    .min(0, { error: t('adminUpdateBotLimits.customEventsLimit.invalid_type') }),
+  teammatesLimit: z
+    .number({
+      error: t('adminUpdateBotLimits.teammatesLimit.invalid_type'),
+    })
+    .min(0, { error: t('adminUpdateBotLimits.teammatesLimit.too_small') }),
+  sure: boolField('adminUpdateBotLimits.sure'),
+})
+
+export const adminAskForReasonFormSchema = z.object({
+  reason: z
+    .string({
+      error: (issue) => {
+        if (issue.input === undefined) return t('adminAskForReason.reason.required')
+        else return t('adminAskForReason.reason.invalid_type')
+      },
+    })
+    .min(5, { error: t('adminAskForReason.reason.too_short') }),
+  sure: boolField('adminAskForReason.sure'),
+})
+
+export const adminBlogEditorFormSchema = z.object({
+  title: z
+    .string({
+      error: (issue) => {
+        if (issue.input === undefined) return t('adminBlogEditor.title.required')
+        else return t('adminBlogEditor.title.invalid_type')
+      },
+    })
+    .min(10, { error: t('adminBlogEditor.title.too_short') }),
+  description: z
+    .string({
+      error: (issue) => {
+        if (issue.input === undefined) return t('adminBlogEditor.description.required')
+        else return t('adminBlogEditor.description.invalid_type')
+      },
+    })
+    .min(20, { error: t('adminBlogEditor.description.too_short') }),
+  cover: z.optional(
+    z
+      .url({
+        protocol: /^https?$/,
+        error: (issue) => {
+          if (issue.code === 'invalid_type') return t('adminBlogEditor.cover.invalid_type')
+          else if (issue.code === 'invalid_format' && issue.input !== '')
+            return t('adminBlogEditor.cover.invalid_url')
+        },
+      })
+      .or(z.literal('')),
+  ),
+  tags: z.array(z.string().min(3, { error: t('adminBlogEditor.tags.too_short') })),
+  content: z
+    .string({
+      error: (issue) => {
+        if (issue.input === undefined) return t('adminBlogEditor.content.required')
+        else return t('adminBlogEditor.content.invalid_type')
+      },
+    })
+    .min(100, { error: t('adminBlogEditor.content.too_short') }),
+})
+
+export const adminCreateInvitationFormSchema = z.object({
+  botId: z
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? t('addBot.botId.required') : t('addBot.botId.invalid_type'),
+    })
+    .refine(isValidSnowflake, { error: t('addBot.botId.invalid_snowflake') }),
+  userId: z
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? 'Recipient user ID is required' : 'Invalid recipient user ID',
+    })
+    .refine(isValidSnowflake, { error: t('addBot.botId.invalid_snowflake') }),
 })

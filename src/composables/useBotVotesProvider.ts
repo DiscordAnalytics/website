@@ -10,16 +10,15 @@ export default function useBotVotesProvider(botId: Ref<string>, provider: VotesP
   const config = computed<{
     connectionId?: string
     webhookSecret?: string
-  } | null>(
-    () => store.userBots.find((bot) => bot.botId === botId.value)?.webhooksConfig[provider] ?? null,
-  )
+  } | null>(() => store.bots[botId.value]?.webhooksConfig[provider] ?? null)
 
   async function update(token: string) {
     if (!api.userId) throw new Error('Not authenticated')
     await api.bots.votes.update(botId.value, provider, token)
 
-    const botIndex = store.userBots.findIndex((b) => b.botId === botId.value)
-    if (botIndex >= 0) store.userBots[botIndex]!.webhooksConfig[provider]!.webhookSecret = token
+    if (store.bots[botId.value]?.webhooksConfig[provider]) {
+      store.bots[botId.value]!.webhooksConfig[provider]!.webhookSecret = token
+    }
   }
 
   return { config, update }

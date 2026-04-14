@@ -3,8 +3,8 @@ import { useStore } from '@/stores'
 import { computed, ref } from 'vue'
 import { useBotAchievements } from '@/composables'
 
-export default function useAchievementsStore() {
-  const api = useAPI(APIScope.User)
+export default function useAchievementsStore(scope: APIScope = APIScope.User) {
+  const api = useAPI(scope)
   const store = useStore()
 
   const achievements = computed(() => store.achievementsStore ?? [])

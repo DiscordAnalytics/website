@@ -19,6 +19,7 @@
   "dependencies": {
     "@internationalized/date": "^3.11.0",
     "@tailwindcss/vite": "^4.2.1",
+    "@tanstack/vue-table": "^8.21.3",
     "@tsparticles/vue3": "^3.0.1",
     "@unovis/ts": "^1.6.4",
     "@unovis/vue": "^1.6.4",

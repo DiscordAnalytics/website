@@ -289,7 +289,7 @@ onMounted(async () => {
             </TableCell>
           </TableRow>
         </TableBody>
-        <TableEmpty v-else class="hover:bg-background">
+        <TableEmpty v-else class="hover:bg-background" :colspan="2">
           <EmptyHeader>
             <EmptyMedia variant="icon">
               <LockIcon />

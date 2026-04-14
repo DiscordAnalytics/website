@@ -1,0 +1,80 @@
+{
+  "searchPlaceholder": "Search in users...",
+  "table": {
+    "selectAll": "Select all",
+    "selectRow": "Select row",
+    "user": "User",
+    "joinedAt": "Joined At",
+    "createdAt": "Created At",
+    "admin": "Admin",
+    "suspended": "Suspended",
+    "actions": "Actions",
+    "rows": "rows",
+    "pageSize": "Page Size",
+    "pageProgression": "Page {currentPage} of {pagesCount}"
+  },
+  "actions": {
+    "editLimits": "Edit limits",
+    "suspend": "Suspend",
+    "unsuspend": "Unsuspend",
+    "delete": "Delete"
+  },
+  "empty": {
+    "title": "No users",
+    "description": "No users found for the selected filters"
+  },
+  "fields": {
+    "reason": {
+      "label": "Reason",
+      "placeholder": "The user did not respect our Terms of Service"
+    },
+    "botsLimit": {
+      "label": "Bots limit"
+    },
+    "sure": {
+      "label": "Are you sure?",
+      "description": "Please confirm that you know what you're doing and that the action will be immediate.",
+      "descriptionIrreversible": "Please confirm that you know what you're doing and that the action will be immediate and irreversible."
+    }
+  },
+  "editLimits": {
+    "title": "Editing {username}... | Editing {count} users...",
+    "description": "You can update here the limits of {username}. | You can update here the limits of the selected users.",
+    "submit": "Update limits",
+    "toast": "Limits successfully updated for the selected users."
+  },
+  "suspend": {
+    "title": "Suspending {username}... | Suspending {count} users...",
+    "description": "You're about to suspend {username} which means he/she won't be able to use Discord Analytics until the suspension is revoked (this also includes his/her bots). | You're about to suspend the selected users which means they won't be able to use Discord Analytics until the suspension is revoked (this also includes users' bots).",
+    "submit": "Suspend {username} | Suspend users",
+    "toast": "The selected users have been successfully suspended."
+  },
+  "delete": {
+    "title": "Delete {username}... | Delete {count} users...",
+    "description": "You're about to delete {username} which means its account and all associated data will be permanently deleted from the database. | You're about to delete the selected users which means their account and all associated data will be permanently deleted from the database.",
+    "cancel": "Cancel",
+    "submit": "Delete {username} | Delete users",
+    "toast": "The selected users have been successfully deleted."
+  },
+  "user": {
+    "identity": {
+      "title": "Identity"
+    },
+    "bots": {
+      "title": "Bots",
+      "table": {
+        "bot": "Bot",
+        "teamMember": "Team member",
+        "watchedSince": "Watched Since",
+        "lastPush": "Last stats push"
+      },
+      "empty": {
+        "title": "No bots",
+        "description": "This user does not have access to any bots"
+      }
+    },
+    "actions": {
+      "title": "Actions"
+    }
+  }
+}

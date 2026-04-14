@@ -58,7 +58,7 @@ const { bot: currentBot } = useBot(currentBotId)
 const { userInfos } = useCurrentUser()
 const { statsRange: a } = storeToRefs(useStore())
 const statsRange = a as Ref<DateRange>
-const { userBots } = useCurrentUser()
+const { accessibleBots: userBots } = useCurrentUser()
 const { t } = useI18n()
 const breakpoints = useBreakpoints(breakpointsTailwind)
 

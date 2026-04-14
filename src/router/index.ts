@@ -105,6 +105,44 @@ const router = createRouter({
       component: () => import('@/views/dash/account/AccountDangerZone.vue'),
     },
     {
+      path: '/dash/admin',
+      redirect() {
+        return `/dash/admin/users`
+      },
+    },
+    {
+      path: '/dash/admin/users',
+      component: () => import('@/views/dash/admin/AdminUsers.vue'),
+    },
+    {
+      path: '/dash/admin/users/:id',
+      component: () => import('@/views/dash/admin/AdminUser.vue'),
+    },
+    {
+      path: '/dash/admin/bots',
+      component: () => import('@/views/dash/admin/AdminBots.vue'),
+    },
+    {
+      path: '/dash/admin/bots/:id',
+      component: () => import('@/views/dash/admin/AdminBot.vue'),
+    },
+    {
+      path: '/dash/admin/invitations',
+      component: () => import('@/views/dash/admin/AdminInvitations.vue'),
+    },
+    {
+      path: '/dash/admin/blog',
+      component: () => import('@/views/dash/admin/AdminArticles.vue'),
+    },
+    {
+      path: '/dash/admin/blog/:tag',
+      component: () => import('@/views/dash/admin/AdminArticle.vue'),
+    },
+    {
+      path: '/dash/admin/achievements',
+      component: () => import('@/views/dash/admin/AdminAchievements.vue'),
+    },
+    {
       path: '/:catchAll(.*)*',
       name: 'NotFound',
       component: () => import('@/views/Error404.vue'),
@@ -114,13 +152,14 @@ const router = createRouter({
 
 router.beforeEach(async (to) => {
   const { userInfos, fetch: fetchUser } = useCurrentUser()
-  if ((to.path.startsWith('/dash') || to.path.startsWith('/admin')) && !userInfos.value) {
+  if (to.path.startsWith('/dash') && !userInfos.value) {
     try {
       await fetchUser()
     } catch {
       return `/auth?redirect=${encodeURI(to.fullPath)}`
     }
   }
+  if (to.path.startsWith('/dash/admin') && !userInfos.value?.admin) return '/dash'
 })
 
 export default router
