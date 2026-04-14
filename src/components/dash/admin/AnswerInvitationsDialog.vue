@@ -42,10 +42,9 @@ async function onSubmit() {
           : rejectInvitation(invite.invitation.invitationId),
       ),
     )
-    const toastKey = props.accept
-      ? 'pages.dash.admin.invitations.answer.toastAccept'
-      : 'pages.dash.admin.invitations.answer.toastReject'
-    toast.success(t(toastKey))
+    toast.success(
+      t(`pages.dash.admin.invitations.answer.toast${props.accept ? 'Accept' : 'Reject'}`),
+    )
   } catch (e: any) {
     toast.error(e.message)
   }
@@ -61,9 +60,7 @@ async function onSubmit() {
         <AlertDialogTitle>
           {{
             $t(
-              $props.accept
-                ? 'pages.dash.admin.invitations.answer.titleAccept'
-                : 'pages.dash.admin.invitations.answer.titleReject',
+              `pages.dash.admin.invitations.answer.title${$props.accept ? 'Accept' : 'Reject'}`,
               $props.invitations.length,
               {
                 named: {
@@ -76,9 +73,7 @@ async function onSubmit() {
         <AlertDialogDescription>
           {{
             $t(
-              $props.accept
-                ? 'pages.dash.admin.invitations.answer.descriptionAccept'
-                : 'pages.dash.admin.invitations.answer.descriptionReject',
+              `pages.dash.admin.invitations.answer.description${$props.accept ? 'Accept' : 'Reject'}`,
               $props.invitations.length,
               {
                 named: {
@@ -98,17 +93,11 @@ async function onSubmit() {
         <AlertDialogAction variant="destructive" :disabled="isLoading" @click="onSubmit">
           <Spinner v-if="isLoading" />
           {{
-            $t(
-              $props.accept
-                ? 'pages.dash.admin.invitations.answer.submitAccept'
-                : 'pages.dash.admin.invitations.answer.submitReject',
-              $props.invitations.length,
-              {
-                named: {
-                  username: $props.invitations[0]?.userUsername,
-                },
+            $t(`pages.dash.admin.invitations.answer.submit${$props.accept ? 'Accept' : 'Reject'}`, {
+              named: {
+                username: $props.invitations[0]?.userUsername,
               },
-            )
+            })
           }}
         </AlertDialogAction>
       </AlertDialogFooter>
