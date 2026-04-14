@@ -1,3 +1,3 @@
 window.CONFIG = {
-  apiBaseUrl: 'http://localhost:3001',
+  apiBaseUrl: '/api',
 }
