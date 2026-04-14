@@ -3,7 +3,7 @@ import { onBeforeMount, ref } from 'vue'
 import { AlertCircleIcon, PlusIcon } from 'lucide-vue-next'
 import { useRoute, useRouter } from 'vue-router'
 import { Button } from '@/components/ui/button'
-import { useAuthToken, useOAuth } from '@/composables'
+import { useAnalytics, useAuthToken, useOAuth } from '@/composables'
 import ThemedImg from '@/components/ThemedImg.vue'
 import CustomIcon from '@/components/CustomIcon.vue'
 import { useI18n } from 'vue-i18n'
@@ -16,6 +16,7 @@ const router = useRouter()
 const route = useRoute()
 const { config: oauthConfig, fetch: fetchOAuthConfig } = useOAuth()
 const { setTokens } = useAuthToken()
+const { identify } = useAnalytics()
 
 const authErrors = {
   access_denied: i18n.t('pages.auth.errors.access_denied'),
@@ -69,6 +70,7 @@ onBeforeMount(async () => {
       refreshToken,
       userId: id,
     })
+    identify(id, { app_locale: i18n.locale.value })
 
     setTimeout(() => {
       const redirectAfterLogin = localStorage.getItem('redirectAfterLogin')

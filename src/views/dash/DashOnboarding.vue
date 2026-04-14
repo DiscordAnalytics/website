@@ -16,7 +16,7 @@ import { useForm } from 'vee-validate'
 import { addBotSchema } from '@/utils/formSchemas.ts'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { useAddBot, useCurrentUser, useLoading } from '@/composables'
+import { useAddBot, useAnalytics, useCurrentUser, useLoading } from '@/composables'
 import {
   OnboardingStepFour,
   OnboardingStepOne,
@@ -42,6 +42,7 @@ const { handleSubmit } = useForm({
 const route = useRoute()
 const botId = useRouteQuery<string | null>('botId')
 const { add: addBot } = useAddBot()
+const { capture } = useAnalytics()
 const { userInfos } = useCurrentUser()
 const breakpoints = useBreakpoints(breakpointsTailwind)
 const { isLoading, withLoading } = useLoading()
@@ -76,12 +77,23 @@ const steps = [
   },
 ]
 
+function onStepTwoSubmit(library: string) {
+  capture('onboarding_library_selected', { library })
+  currentStep.value = 3
+}
+
+function onStepThreeSubmit() {
+  capture('onboarding_completed', { bot_id: botId.value })
+  currentStep.value = 4
+}
+
 const onSubmit = handleSubmit(async (values) => {
   await withLoading(async () => {
     await addBot(values.botId)
       .then(() => {
         currentStep.value = 2
         botId.value = values.botId
+        capture('onboarding_bot_added', { bot_id: values.botId })
       })
       .catch((err) => {
         toast.error(err.message)
@@ -135,10 +147,10 @@ const onSubmit = handleSubmit(async (values) => {
       <CardContent class="mt-4">
         <Transition name="slide-right" mode="out-in">
           <OnboardingStepOne v-if="currentStep === 1" :loading="isLoading" @submit="onSubmit" />
-          <OnboardingStepTwo v-else-if="currentStep === 2" @submit="currentStep = 3" />
+          <OnboardingStepTwo v-else-if="currentStep === 2" @submit="onStepTwoSubmit" />
           <OnboardingStepThree
             v-else-if="currentStep === 3"
-            @submit="currentStep = 4"
+            @submit="onStepThreeSubmit"
             @exit="currentStep = 2"
           />
           <OnboardingStepFour v-else-if="currentStep === 4" />

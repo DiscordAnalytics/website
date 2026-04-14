@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, type Ref, watch } from 'vue'
-import { useBotCustomEvents, useBotStats, useLoading } from '@/composables'
+import { useAnalytics, useBotCustomEvents, useBotStats, useLoading } from '@/composables'
 import { useRouteParams } from '@vueuse/router'
 import { useStore } from '@/stores'
 import { storeToRefs } from 'pinia'
@@ -37,6 +37,7 @@ const {
   update: updateCustomEvent,
   remove: deleteCustomEvent,
 } = useBotCustomEvents(botId)
+const { capture } = useAnalytics()
 const { isLoading, withLoading } = useLoading()
 
 const editDialogOpen = ref(false)
@@ -91,6 +92,7 @@ const onEventCreated = async (values: {
       .then(() => {
         toast.success(t('pages.dash.stats.charts.customEvents.toasts.created'))
         createDialogOpen.value = false
+        capture('custom_event_created', { bot_id: botId.value, default_mode: values.defaultMode })
       })
       .catch((e) => {
         toast.error(e.message)

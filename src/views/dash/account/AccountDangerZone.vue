@@ -2,7 +2,7 @@
 import SettingCard from '@/components/dash/SettingCard.vue'
 import { TrashIcon } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
-import { useCurrentUser, useLoading } from '@/composables'
+import { useAnalytics, useCurrentUser, useLoading } from '@/composables'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -19,11 +19,14 @@ import { toast } from 'vue-sonner'
 import AccountDashLayout from '@/components/layouts/AccountDashLayout.vue'
 
 const { remove: deleteUser } = useCurrentUser()
+const { capture } = useAnalytics()
 const { isLoading, withLoading } = useLoading()
 
 async function onDelete() {
   await withLoading(async () => {
-    await deleteUser().catch((err) => toast.error(err.message))
+    await deleteUser()
+      .then(() => capture('account_deleted'))
+      .catch((err) => toast.error(err.message))
   })
 }
 </script>

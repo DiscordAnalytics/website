@@ -1,4 +1,5 @@
 export { default as useAddBot } from './useAddBot'
+export { default as useAnalytics } from './useAnalytics'
 export { default as useBlogArticles } from './useBlogArticles'
 export { default as useBot } from './useBot'
 export { default as useBots } from './useBots'
