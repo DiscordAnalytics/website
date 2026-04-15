@@ -1,4 +1,4 @@
-import { type APIClient } from '@/utils/api/index.ts'
+import { type APIClient, APIError, APIScope } from '@/utils/api/index.ts'
 import type {
   Achievement,
   Bot,
@@ -10,12 +10,53 @@ import type {
 } from '@/utils/types.ts'
 import type { DateRange } from 'reka-ui'
 import { dateToUTCDateTime } from '@/utils/dateTime.ts'
+import InvitationsResource from '@/utils/api/invitations.ts'
+import VotesProviderResource from '@/utils/api/votes.ts'
 
 export default class BotsResource {
   constructor(private readonly api: APIClient) {}
 
+  get invitations(): InvitationsResource {
+    return new InvitationsResource(this.api)
+  }
+
+  get votes(): VotesProviderResource {
+    return new VotesProviderResource(this.api)
+  }
+
   get(botId: string): Promise<Bot> {
     return this.api.request('GET', `/bots/${botId}`)
+  }
+
+  getAll(): Promise<Bot[]> {
+    if (this.api.scope !== APIScope.Admin) throw new APIError(401, 'Unauthorized')
+
+    return this.api.request('GET', `/bots`)
+  }
+
+  updateLimits(
+    botId: string,
+    goalsLimit: number,
+    customEventsLimit: number,
+    teammatesLimit: number,
+  ): Promise<Bot> {
+    return this.api.request('PATCH', `/bots/${botId}/settings`, {
+      goalsLimit,
+      customEventsLimit,
+      teammatesLimit,
+    })
+  }
+
+  add(botId: string, ownerId: string): Promise<Bot> {
+    return this.api.request('POST', `/bots/${botId}`, { userId: ownerId })
+  }
+
+  suspend(userId: string, reason: string): Promise<void> {
+    return this.api.request('POST', `/bots/${userId}/suspend`, { reason })
+  }
+
+  unsuspend(userId: string): Promise<void> {
+    return this.api.request('DELETE', `/bots/${userId}/suspend`)
   }
 
   getStats(botId: string, range: DateRange): Promise<{ stats: RawStats[]; votes: RawVotes[] }> {
@@ -23,7 +64,7 @@ export default class BotsResource {
     const end = dateToUTCDateTime(range.end!).split('T')[0]
     return this.api.request(
       'GET',
-      `/bots/${botId}/stats?start=${start}&end=${end}`,
+      `/bots/${botId}/stats?from=${start}&to=${end}`,
       undefined,
       'application/www-form-urlencoded',
     )
@@ -45,7 +86,7 @@ export default class BotsResource {
     return this.api.request('GET', `/bots/${botId}/events`)
   }
 
-  createEvent(botId: string, body: Omit<CustomEvent, 'botId'>): Promise<CustomEvent> {
+  createEvent(botId: string, body: CustomEvent): Promise<CustomEvent> {
     return this.api.request('POST', `/bots/${botId}/events`, body)
   }
 
@@ -57,32 +98,25 @@ export default class BotsResource {
     return this.api.request('DELETE', `/bots/${botId}/events/${event_key}`)
   }
 
-  getTeammates(botId: string): Promise<{ team: Teammate[] }> {
+  getTeammates(botId: string): Promise<Teammate[]> {
     return this.api.request('GET', `/bots/${botId}/team`)
   }
 
-  addTeammate(
-    botId: string,
-    teammateId: string,
-    sendMethod?: 'mail',
-  ): Promise<{ invitationId: string; message: string }> {
-    return this.api.request(
-      'POST',
-      `/bots/${botId}/team${sendMethod ? `send_method=${sendMethod}` : ''}`,
-      { userId: teammateId },
-    )
-  }
-
-  deleteTeammate(botId: string, teammateId: string): Promise<void> {
+  addTeammate(botId: string, teammateId: string): Promise<{ sent: boolean; details: Teammate }> {
     return this.api.request('POST', `/bots/${botId}/team`, { userId: teammateId })
   }
 
-  updateSettings(botId: string, settings: { advanced_stats: boolean }): Promise<void> {
-    return this.api.request('PATCH', `/bots/${botId}/settings`, { settings })
+  deleteTeammate(botId: string, teammateId: string): Promise<void> {
+    return this.api.request('DELETE', `/bots/${botId}/team`, { userId: teammateId })
   }
 
-  getAchievements(botId: string): Promise<Achievement[]> {
-    return this.api.request('GET', `/bots/${botId}/achievements`)
+  updateSettings(botId: string, advancedStats: boolean): Promise<void> {
+    return this.api.request('PATCH', `/bots/${botId}/settings`, { advancedStats })
+  }
+
+  getAchievements(botId?: string): Promise<Achievement[]> {
+    if (botId) return this.api.request('GET', `/bots/${botId}/achievements`)
+    else return this.api.request('GET', `/achievements`)
   }
 
   createAchievement(
@@ -100,7 +134,7 @@ export default class BotsResource {
 
   updateAchievement(
     botId: string,
-    body: Pick<Achievement, 'description' | 'id' | 'title' | 'lang' | 'shared'>,
+    body: Partial<Pick<Achievement, 'description' | 'title' | 'lang' | 'shared'>> & { id: string },
   ): Promise<Achievement> {
     return this.api.request('PATCH', `/bots/${botId}/achievements`, body)
   }
@@ -113,15 +147,29 @@ export default class BotsResource {
     return this.api.request('GET', `/bots/${botId}/reports`)
   }
 
-  createEmailReport(botId: string, frequency: 'weekly' | 'monthly'): Promise<StatsReport> {
-    return this.api.request('POST', `/bots/${botId}/reports`, { frequency })
+  createEmailReport(
+    botId: string,
+    frequency: 'weekly' | 'monthly',
+    userId?: string,
+  ): Promise<StatsReport> {
+    return this.api.request('POST', `/bots/${botId}/reports`, {
+      frequency,
+      userId: userId ?? this.api.userId!,
+    })
   }
 
-  deleteEmailReport(botId: string, frequency: 'weekly' | 'monthly'): Promise<void> {
-    return this.api.request('DELETE', `/bots/${botId}/reports`, { frequency })
+  deleteEmailReport(
+    botId: string,
+    frequency: 'weekly' | 'monthly',
+    userId?: string,
+  ): Promise<void> {
+    return this.api.request('DELETE', `/bots/${botId}/reports`, {
+      frequency,
+      userId: userId ?? this.api.userId!,
+    })
   }
 
   updateVotesWebhook(botId: string, webhookUrl: string): Promise<void> {
-    return this.api.request('PATCH', `/bots/${botId}/votes/webhooks`, { webhookUrl })
+    return this.api.request('PATCH', `/bots/${botId}/settings`, { webhookUrl })
   }
 }

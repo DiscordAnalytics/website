@@ -1,0 +1,67 @@
+{
+  "layout": {
+    "sidebar": {
+      "account": "Account",
+      "yourAccount": "Your Account",
+      "invitations": "Invitations",
+      "security": "Security",
+      "sessions": "Sessions",
+      "dangerZone": "Danger Zone"
+    }
+  },
+  "infos": {
+    "joinedAt": "Joined At",
+    "createdAt": "Created At",
+    "usage": {
+      "title": "Account Usage",
+      "globalUsage": "Global Usage",
+      "bots": "Bots",
+      "myBots": "My bots",
+      "sharedWithMe": "Shared with me",
+      "goals": "Goals",
+      "teammates": "Teammates",
+      "customEvents": "Custom Events"
+    }
+  },
+  "invitations": {
+    "toast": {
+      "accepted": "Invitation accepted!",
+      "declined": "Invitation declined!"
+    },
+    "empty": {
+      "title": "No pending invitations",
+      "description": "You don't have any pending team invitation."
+    }
+  },
+  "sessions": {
+    "current": "Current session",
+    "others": "Other sessions",
+    "revokeAll": "Revoke all sessions",
+    "createdAt": "Created at:",
+    "lastUsedAt": "Last used at:",
+    "never": "Never",
+    "toasts": {
+      "revokedAll": "Successfully revoked all sessions.",
+      "revoked": "Session successfully revoked."
+    },
+    "empty": {
+      "title": "No sessions",
+      "description": "As strange as it sounds, you don't have any active sessions"
+    }
+  },
+  "dangerZone": {
+    "title": "Delete my account",
+    "description": "Permanently delete your account and all associated data.",
+    "dialog": {
+      "title": "Permanently delete your account and all associated data.",
+      "intro": "Deleting your account will permanently:",
+      "bullets": {
+        "bots": "Delete all your bots",
+        "stats": "Delete all statistics you collected until now",
+        "data": "Delete all data related to you from our servers"
+      },
+      "irreversible": "This action is irreversible. Once deleted, no data can be recovered.",
+      "logs": "Activity logs may be retained for up to 14 days before being permanently deleted."
+    }
+  }
+}

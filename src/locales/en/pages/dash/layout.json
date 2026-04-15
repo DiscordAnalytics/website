@@ -1,0 +1,30 @@
+{
+  "sidebar": {
+    "selector": {
+      "myBots": "My Bots",
+      "addBot": "Add bot",
+      "toggle": "Toggle Sidebar"
+    },
+    "links": {
+      "stats": "Stats",
+      "interactions": "Interactions",
+      "guilds": "Guilds",
+      "users": "Users",
+      "votes": "Votes",
+      "customEvents": "Custom Events",
+      "achievements": "Achievements",
+      "myAchievements": "My Achievements",
+      "communityStore": "Community Store",
+      "settings": "Settings",
+      "general": "General",
+      "emailReports": "Email Reports",
+      "votesConf": "Votes Configuration",
+      "dangerZone": "Danger Zone"
+    }
+  },
+  "notConfigured": {
+    "title": "Configuration isn't finished",
+    "description": "It seems you didn't finished configuring Discord Analytics on your bot.",
+    "button": "Finish configuration"
+  }
+}

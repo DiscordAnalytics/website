@@ -1,5 +1,6 @@
 {
   "carroted": "You've been carrotted",
+  "uncarroted": "You've been uncarrotted",
   "links": {
     "documentation": {
       "trigger": "Documentation",
@@ -48,7 +49,8 @@
   "account": {
     "links": {
       "dashboard": "Dashboard",
-      "admin": "Admin Panel"
+      "admin": "Admin Panel",
+      "account": "Account Settings"
     },
     "login": "Login",
     "logout": "Logout"

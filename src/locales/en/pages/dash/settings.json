@@ -1,0 +1,121 @@
+{
+  "learn_more": "Learn more",
+  "general": {
+    "token": {
+      "title": "Bot API Key",
+      "description": "Your API key allow your bot to communicate with our API. DON'T SHARE IT WITH ANYONE!",
+      "showToken": "Show key",
+      "refreshButton": "Refresh key",
+      "toast": "API Key refreshed successfully."
+    },
+    "team": {
+      "title": "Stats Access",
+      "description": "Choose who can see {username}'s stats.",
+      "inviteButton": "Invite a teammate",
+      "toast": {
+        "urlCopied": "URL copied to clipboard"
+      },
+      "dialog": {
+        "title": "Invite a teammate",
+        "description": "Invite a new teammate to access {username}'s stats. This user won't be able to see or update the settings.",
+        "userIdLabel": "User ID",
+        "submitButton": "Invite teammate"
+      },
+      "invited": {
+        "title": "Teammate invited",
+        "emailSent": "We sent an email to {username}. The invitation will expire in 7 days.",
+        "emailFailed": "We were not able to send an invitation to {userId}. You'll have to send the invitation link by yourself.",
+        "copyLabel": "Copy",
+        "close": "Close"
+      },
+      "table": {
+        "user": "User",
+        "actions": "Actions",
+        "pendingInvitation": "Invitation pending",
+        "copyLink": "Copy invitation link"
+      },
+      "empty": {
+        "title": "No teammate",
+        "description": "No one except you has access to {username}'s stats. Invite a teammate to get started."
+      }
+    },
+    "advancedStats": {
+      "title": "Advanced Stats",
+      "description": "Enable advanced stats on {username}. Activating advanced statistics will result in the collection of non-anonymous data about your bot's servers and/or users. THIS ACTION IS IRREVERSIBLE!",
+      "toasts": {
+        "enabled": "Advanced Stats successfully enabled",
+        "disabled": "Advanced stats successfully disabled",
+        "disabledDescription": "Stats collected to date won't be deleted from our database"
+      }
+    }
+  },
+  "votes": {
+    "webhook": {
+      "title": "Votes Webhook",
+      "description": "Receive an alert when someone votes for {username}. The alert will be universal for all compatible sites you configure.",
+      "sendTest": "Send test",
+      "save": "Save"
+    },
+    "providers": {
+      "title": "Votes Providers",
+      "description": "Configure votes providers to receive votes data from them.",
+      "missing": {
+        "title": "Missing providers",
+        "description": "Your bot does not seems to be registered on the following votes providers. Please keep in mind that you have to register your bot on these websites in order to receive votes from them:"
+      }
+    },
+    "provider": {
+      "description": "Configure incoming votes from {provider}",
+      "tokenPlaceholder": "REALLY SECRET TOKEN",
+      "toast": {
+        "copied": "Token copied to clipboard",
+        "regenerated": "Token successfully regenerated."
+      },
+      "topgg": {
+        "installButton": "Install Integration",
+        "active": "Integration is active",
+        "manualConfig": "Manual configuration",
+        "manualConfigDialog": {
+          "title": "Manual configuration",
+          "description": "Paste the webhook secret provided by Top.gg in your bot's dashboard integrations page.",
+          "tokenLabel": "Webhook Secret",
+          "tokenDescription": "You can find this token on Top.gg under your bot's dashboard > \"Integrations & API\".",
+          "submitButton": "Save"
+        }
+      }
+    }
+  },
+  "dangerZone": {
+    "confirm": "Are you absolutely sure?",
+    "cancel": "Cancel",
+    "resetAchievements": {
+      "title": "Reset Achievements",
+      "description": "Delete all current achievements and restore the default achievements. ALL CURRENT PROGRESS WILL BE LOST",
+      "button": "Reset achievements",
+      "toast": "Achievements reset successfully.",
+      "dialog": {
+        "description": "You are about to reset all achievements of {username} and their current progress. This action cannot be undone and will immediately take effect!"
+      }
+    },
+    "deleteBot": {
+      "title": "Delete bot",
+      "description": "Permanently delete {username} and all associated data.",
+      "button": "Delete bot",
+      "dialog": {
+        "description": "You are about to delete {username} and all associated data such as stats, votes and bot information. This action cannot be undone and will immediately take effect!"
+      }
+    }
+  },
+  "reports": {
+    "subscribe": "Subscribe",
+    "unsubscribe": "Unsubscribe",
+    "weekly": {
+      "title": "Weekly Reports",
+      "description": "Stats reports each week in your mailbox"
+    },
+    "monthly": {
+      "title": "Monthly Reports",
+      "description": "Stats reports each month in your mailbox"
+    }
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "charts": {
+    "empty": {
+      "title": "Empty chart",
+      "description": "No data in this chart for the selected date range"
+    },
+    "interactions": {
+      "evolution": "Evolution of interactions",
+      "mostUsed": "Most Used Interactions",
+      "typesPie": "Most Used interactions by type",
+      "mostUsedCommands": "Most Used commands",
+      "commandsTypesPie": "Most Used commands by type",
+      "mostUsedComponents": "Most Used components",
+      "mostUsedModals": "Most Used modals"
+    },
+    "guilds": {
+      "evolution": "Evolution of Guilds",
+      "localesEvolution": "Evolution of Guilds Locales",
+      "localesPie": "Distribution of Guilds Locales",
+      "sizePie": "Distribution of Guilds by Size",
+      "addsAndRemoves": "Additions and Removals",
+      "biggestGuildsRank": {
+        "title": "Largest guilds rankings",
+        "guild": "Guild",
+        "members": "Members Count"
+      },
+      "mostActiveGuildsRank": {
+        "title": "Most active guilds rankings",
+        "interactions": "Interactions Count"
+      }
+    },
+    "users": {
+      "evolution": "Evolution of Users",
+      "installsEvolution": "Evolution of User Installs",
+      "localesEvolution": "Evolution of User Locales",
+      "localesPie": "Distribution of User Locales",
+      "activity": "Distribution of activity over the week",
+      "types": "Types of users",
+      "alert": {
+        "title": "Disclaimer",
+        "description": "To protect your privacy, we don't track individual users. This means that some charts show the total number of members across all guilds, which can result in duplicates and does not accurately reflect your bot's real active user count."
+      }
+    },
+    "votes": {
+      "evolution": "Votes Evolution (all providers)",
+      "pie": "Distribution per provider",
+      "providerEvolution": "Votes Evolution on {provider}",
+      "alert": {
+        "title": "No data?",
+        "description": "That's normal, votes requires additional configuration.",
+        "button": "Read the docs"
+      }
+    },
+    "customEvents": {
+      "createTitle": "Create a custom event",
+      "empty": {
+        "title": "No custom event created",
+        "description": "No custom events available, create one to get started."
+      },
+      "toasts": {
+        "created": "Custom event created successfully.",
+        "updated": "Custom event updated successfully.",
+        "deleted": "Custom event deleted successfully."
+      },
+      "create": {
+        "title": "Create custom event",
+        "description": "Custom events allow you to create charts for specific features of your bot.",
+        "submitButton": "Create event"
+      },
+      "edit": {
+        "title": "Edit custom event",
+        "description": "Editing",
+        "deleteButton": "Delete event",
+        "saveButton": "Save changes",
+        "deleteDialog": {
+          "title": "Delete this event?",
+          "description": "This will permanently delete",
+          "descriptionSuffix": "and all its associated data. This action cannot be undone.",
+          "cancel": "Cancel",
+          "confirm": "Yes, delete"
+        }
+      },
+      "fields": {
+        "eventKey": "Event Key",
+        "eventKeyDescription": "The unique key you'll use in your code to seed the event.",
+        "chartTitle": "Chart title",
+        "chartTitleDescription": "The chart name you'll see on the dashboard.",
+        "defaultMode": "Default value behavior",
+        "defaultModeDescription": "Used when no data exists for a given hour.",
+        "previousHour": "Use previous hour value",
+        "fixedValue": "Use a fixed value",
+        "defaultValue": "Default value",
+        "defaultValueDescription": "The value used when no previous hour data exists."
+      }
+    },
+    "trendUp": "Trending up by {percentage}% on this period",
+    "trendDown": "Trending down by {percentage}% on this period"
+  }
+}

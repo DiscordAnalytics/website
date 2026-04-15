@@ -1,29 +1,43 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
+import type { DateRange } from 'reka-ui'
 import type {
   Achievement,
   BlogArticle,
   Bot,
   Color,
   CustomEvent,
+  OAuthSession,
   RawStats,
   RawVotes,
   StatsReport,
+  TeamInvitationData,
   Teammate,
   User,
 } from '@/utils/types.ts'
 
 export const useStore = defineStore('store', () => {
-  const userInfos = ref<User | null>(null)
-  const userBots = ref<Bot[]>([])
+  const bots = ref<{ [botId: string]: Bot }>({})
+  const userBotIds = ref<{ [userId: string]: string[] }>({})
+
+  const userSessions = ref<OAuthSession[]>([])
   const botAchievements = ref<{ [botId: string]: Achievement[] }>({})
   const botCustomEvents = ref<{ [botId: string]: CustomEvent[] }>({})
   const botTeams = ref<{ [botId: string]: Teammate[] }>({})
   const botEmailReports = ref<{ [botId: string]: StatsReport[] }>({})
   const botStats = ref<{ [botId: string]: { stats: RawStats[]; votes: RawVotes[] } }>({})
   const blogArticles = ref<Omit<BlogArticle, 'content'>[]>([])
+  const achievementsStore = ref<Achievement[]>([])
+  const teamInvitations = ref<TeamInvitationData[]>([])
+
+  const allUsers = ref<User[]>([])
 
   const theme = ref<Color>('zinc')
+
+  const statsRange = ref<DateRange>({
+    start: undefined,
+    end: undefined,
+  })
 
   function setTheme(newTheme: Color) {
     theme.value = newTheme
@@ -37,24 +51,36 @@ export const useStore = defineStore('store', () => {
   }
 
   function clear() {
-    userInfos.value = null
-    userBots.value = []
+    bots.value = {}
+    userBotIds.value = {}
+    userSessions.value = []
     botAchievements.value = {}
     botCustomEvents.value = {}
     botTeams.value = {}
     botEmailReports.value = {}
     botStats.value = {}
+    blogArticles.value = []
+    achievementsStore.value = []
+    teamInvitations.value = []
+    allUsers.value = []
   }
 
   return {
-    userInfos,
-    userBots,
+    bots,
+    userBotIds,
+    userSessions,
     botAchievements,
     botCustomEvents,
     botTeams,
     botEmailReports,
     botStats,
     blogArticles,
+    achievementsStore,
+    teamInvitations,
+
+    allUsers,
+
+    statsRange,
     theme,
     setTheme,
     clear,

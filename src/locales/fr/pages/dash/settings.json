@@ -1,0 +1,121 @@
+{
+  "learn_more": "En savoir plus",
+  "general": {
+    "token": {
+      "title": "Clé d'API du Bot",
+      "description": "Votre clé d'API permet à votre bot de communiquer avec notre API. NE LE PARTAGEZ AVEC PERSONNE !",
+      "showToken": "Afficher la clé",
+      "refreshButton": "Régénérer la clé",
+      "toast": "La clé a été régénérée avec succès."
+    },
+    "team": {
+      "title": "Accès aux statistiques",
+      "description": "Choisissez qui peut voir les statistiques de {username}.",
+      "inviteButton": "Inviter un coéquipier",
+      "toast": {
+        "urlCopied": "URL copiée dans le presse-papiers"
+      },
+      "dialog": {
+        "title": "Inviter un coéquipier",
+        "description": "Invitez un nouveau coéquipier à accéder aux statistiques de {username}. Cet utilisateur ne pourra ni voir ni modifier les paramètres.",
+        "userIdLabel": "ID de l'utilisateur",
+        "submitButton": "Inviter le coéquipier"
+      },
+      "invited": {
+        "title": "Coéquipier invité",
+        "emailSent": "Nous avons envoyé un e-mail à {username}. L'invitation expirera dans 7 jours.",
+        "emailFailed": "Nous n'avons pas pu envoyer d'invitation à {userId}. Vous devrez envoyer le lien d'invitation vous-même.",
+        "copyLabel": "Copier",
+        "close": "Fermer"
+      },
+      "table": {
+        "user": "Utilisateur",
+        "actions": "Actions",
+        "pendingInvitation": "Invitation en attente",
+        "copyLink": "Copier le lien d'invitation"
+      },
+      "empty": {
+        "title": "Aucun coéquipier",
+        "description": "Personne à part vous n'a accès aux statistiques de {username}. Invitez un coéquipier pour commencer."
+      }
+    },
+    "advancedStats": {
+      "title": "Statistiques avancées",
+      "description": "Activer les statistiques avancées pour {username}. L'activation des statistiques avancées entraînera la collecte de données non anonymes sur les serveurs et/ou les utilisateurs de votre bot. CETTE ACTION EST IRRÉVERSIBLE !",
+      "toasts": {
+        "enabled": "Statistiques avancées activées avec succès",
+        "disabled": "Statistiques avancées désactivées avec succès",
+        "disabledDescription": "Les statistiques collectées à ce jour ne seront pas supprimées de notre base de données"
+      }
+    }
+  },
+  "votes": {
+    "webhook": {
+      "title": "Webhook des votes",
+      "description": "Recevez une alerte lorsque quelqu'un vote pour {username}. L'alerte sera universelle pour tous les sites compatibles que vous configurez.",
+      "sendTest": "Envoyer un test",
+      "save": "Enregistrer"
+    },
+    "providers": {
+      "title": "Fournisseurs de votes",
+      "description": "Configurez les fournisseurs de votes pour recevoir leurs données de vote.",
+      "missing": {
+        "title": "Fournisseurs manquants",
+        "description": "Votre bot ne semble pas être enregistré sur les fournisseurs de votes suivants. Veuillez noter que vous devez enregistrer votre bot sur ces sites afin de recevoir leurs votes :"
+      }
+    },
+    "provider": {
+      "description": "Configurer les votes entrants de {provider}",
+      "tokenPlaceholder": "TOKEN TRÈS SECRET",
+      "toast": {
+        "copied": "Token copié dans le presse-papiers",
+        "regenerated": "Token régénéré avec succès."
+      },
+      "topgg": {
+        "installButton": "Installer l'intégration",
+        "active": "L'intégration est active",
+        "manualConfig": "Configuration manuelle",
+        "manualConfigDialog": {
+          "title": "Configuration manuelle",
+          "description": "Collez le secret du webhook fourni par Top.gg.",
+          "tokenLabel": "Secret du webhook",
+          "tokenDescription": "Vous pouvez trouver ce jeton sur Top.gg dans le tableau de bord de votre bot > \"Integrations & API\".",
+          "submitButton": "Enregistrer"
+        }
+      }
+    }
+  },
+  "dangerZone": {
+    "confirm": "Êtes-vous sûr ?",
+    "cancel": "Annuler",
+    "resetAchievements": {
+      "title": "Réinitialiser les succès",
+      "description": "Supprimer tous les succès actuels et restaurer les succès par défaut. TOUTE LA PROGRESSION ACTUELLE SERA PERDUE",
+      "button": "Réinitialiser les succès",
+      "toast": "Les succès ont bien été réinitialisés",
+      "dialog": {
+        "description": "Vous vous apprêtez à réinitialiser les succès de {username} ainsi que la progression actuelle. Cette action est irréversible et prendra effet immédiatement !"
+      }
+    },
+    "deleteBot": {
+      "title": "Supprimer le bot",
+      "description": "Supprimer de manière définitive {username} ainsi que toutes les données qui lui sont associées.",
+      "button": "Supprimer le bot",
+      "dialog": {
+        "description": "Vous vous apprêtez à supprimer {username} ainsi que toutes les données qui lui sont associées telles que les statistiques, les votes et les informations de son compte. Cette action est irréversible et prendra effet immédiatement !"
+      }
+    }
+  },
+  "reports": {
+    "subscribe": "S'abonner",
+    "unsubscribe": "Se désabonner",
+    "weekly": {
+      "title": "Rapports hebdomadaires",
+      "description": "Rapports de statistiques, toutes les semaines dans votre boîte mail"
+    },
+    "monthly": {
+      "title": "Rapports mensuels",
+      "description": "Rapports de statistiques, tous les mois dans votre boîte mail"
+    }
+  }
+}

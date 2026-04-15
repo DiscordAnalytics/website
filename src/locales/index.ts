@@ -5,19 +5,32 @@ const modules = import.meta.glob('../**/*.json', { eager: true })
 
 export type Translations = Record<string, any>
 
-// Helper to transform paths to nested objects
+function setDeep(obj: Translations, keys: string[], value: unknown): void {
+  const last = keys[keys.length - 1]!
+  const parents = keys.slice(0, -1)
+
+  let cursor = obj
+  for (const key of parents) {
+    if (!cursor[key]) cursor[key] = {}
+    cursor = cursor[key]
+  }
+
+  cursor[last] = value
+}
+
 function buildLocaleTree(locale: string) {
-  const tree: Translations = { components: {}, pages: {} }
+  const tree: Translations = {}
+  const localeSegment = `/${locale}/`
 
   for (const path in modules) {
-    if (!path.includes(`/${locale}/`)) continue
+    if (!path.includes(localeSegment)) continue
 
-    // Example: '../en/pages/auth.json' -> ['pages', 'auth']
-    const [, , type, nameWithExt] = path.split('/')
-    const name = nameWithExt!.replace('.json', '')
+    // Strip everything up to and including '/<locale>/'
+    const relative = path.slice(path.indexOf(localeSegment) + localeSegment.length)
+    const keys = relative.replace(/\.json$/, '').split('/')
 
-    if (!tree[type!]) tree[type!] = {}
-    tree[type!][name] = (modules[path] as any).default
+    const mod = modules[path] as any
+    setDeep(tree, keys, mod.default ?? mod)
   }
 
   return tree

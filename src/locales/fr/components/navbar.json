@@ -1,5 +1,6 @@
 {
   "carroted": "Tu as été carotté 🥕",
+  "uncarroted": "Tu as été décarotté",
   "links": {
     "documentation": {
       "trigger": "Documentation",
@@ -48,7 +49,8 @@
   "account": {
     "links": {
       "dashboard": "Tableau de bord",
-      "admin": "Panneau d'administration"
+      "admin": "Panneau d'administration",
+      "account": "Paramètres du compte"
     },
     "login": "Connexion",
     "logout": "Déconnexion"

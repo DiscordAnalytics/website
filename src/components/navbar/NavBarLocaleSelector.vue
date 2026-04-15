@@ -11,24 +11,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { selectLocale } from '@/utils/functions.ts'
 
 defineProps<{
   mobile?: boolean
 }>()
 
 const i18n = useI18n()
-
-function selectLocale(locale: string) {
-  switch (locale) {
-    case 'fr':
-      return i18n.t('components.navbar.customize.language.locales.fr')
-    case 'tr':
-      return i18n.t('components.navbar.customize.language.locales.tr')
-    case 'en':
-    default:
-      return i18n.t('components.navbar.customize.language.locales.en')
-  }
-}
 
 function switchLocale(locale: (typeof i18n.availableLocales)[number]) {
   if (i18n.availableLocales.includes(locale)) {

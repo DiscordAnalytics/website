@@ -1,0 +1,87 @@
+{
+  "steps": {
+    "botInformations": {
+      "title": "Bot Informations",
+      "description": "Enter your bot's ID"
+    },
+    "configure": {
+      "title": "Configure",
+      "description": "Add the code snippet to your bot"
+    },
+    "collectStats": {
+      "title": "Collect stats",
+      "description": "Wait for your first stats"
+    },
+    "finished": {
+      "title": "Finished",
+      "description": "You're ready to use Discord Analytics"
+    }
+  },
+  "botLimitReached": {
+    "title": "Bot limit reached",
+    "description": "You reached the bot limit of your account. Please contact an administrator to increase it.",
+    "joinSupport": "Join support"
+  },
+  "stepOne": {
+    "addNewBot": "Add a new bot",
+    "welcome": "Welcome to Discord Analytics",
+    "subtitle": "You're 5 minutes away from your stats. To get started, we'll need your bot's ID.",
+    "whereToGetId": "Where to get the ID?",
+    "botIdLabel": "Bot's ID",
+    "botIdPlaceholder": "1082615775619199057",
+    "acceptTos": "Accept terms and conditions",
+    "acceptTosDescription": "By submitting this form, you agree with our",
+    "termsOfService": "Terms of Service",
+    "and": "and",
+    "privacyPolicy": "Privacy Policy",
+    "submit": "Submit"
+  },
+  "stepTwo": {
+    "getToken": {
+      "heading": "1. Get your token",
+      "description": "This token allows your bot to interact with our API.",
+      "doNotShare": "DON'T SHARE IT WITH ANYBODY",
+      "tokenPlaceholder": "Your token",
+      "tokenCopied": "Token copied to clipboard"
+    },
+    "integrate": {
+      "heading": "2. Integrate into your code",
+      "description": "Now you'll have to integrate a client into your bot's code. Select your library:",
+      "selectLibraryPlaceholder": "Select a library",
+      "groupJavaScript": "JavaScript",
+      "groupPython": "Python"
+    },
+    "install": {
+      "npmHeading": "a. Install the npm package",
+      "pypiHeading": "a. Install the PyPi package",
+      "addCodeHeading": "b. Add Discord Analytics to your code",
+      "startBotHeading": "c. Start your bot",
+      "startBotDescription": "In order to start your bot with Discord Analytics, you need to add the NODE_ENV to you environment variables"
+    },
+    "erisWarning": {
+      "title": "Compatibility warning",
+      "description": "Due to the lack of update of Eris, some of the features of Discord Analytics might not be available."
+    },
+    "moreExamples": {
+      "title": "More examples",
+      "description": "Check out our documentation for more examples and details about how to install Discord Analytics."
+    },
+    "next": "Next"
+  },
+  "stepThree": {
+    "stillNothing": {
+      "title": "Still nothing?",
+      "description": "Maybe you should check your console or your configuration"
+    },
+    "waitingForLogin": "Waiting for first bot login",
+    "waitingForStats": "Waiting for stats",
+    "waitingForLoginDescription": "We're waiting for your bot to login. If you still see this page after a minute, check the console for potential errors.",
+    "waitingForStatsDescription": "Now your bot is logged in, we'll start collecting stats for you. If you still see this page after a minute, check the console for potential errors.",
+    "getBack": "Get back"
+  },
+  "stepFour": {
+    "title": "You did it!",
+    "description": "Discord Analytics is now configured on your Discord bot. Go check the dashboard to see all the stats you can get",
+    "goToDashboard": "Go to the dashboard"
+  }
+}

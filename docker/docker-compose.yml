@@ -22,12 +22,17 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
+    healthcheck:
+      test: mongosh --username root --password example --authenticationDatabase admin --eval "db.adminCommand('ping')" localhost:27017/admin --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
 
   api:
     image: ghcr.io/discordanalytics/api
     depends_on:
       db:
-        condition: service_started
+        condition: service_healthy
     env_file:
       - .env
     healthcheck:
