@@ -120,13 +120,13 @@ jobs:
         working-directory: /tmp/digests
         run: |
           NORMALIZED_BRANCH=$(echo "${{ github.ref_name }}" | tr '/' '-' | tr '_' '-' | tr '[:upper:]' '[:lower:]')
-          
+
           TAGS="-t ${{ env.GHCR_REPO }}:${NORMALIZED_BRANCH}${{ matrix.suffix }} -t ${{ env.GHCR_REPO }}:${{ matrix.target }}"
-          
+
           if [[ "$NORMALIZED_BRANCH" == "master" ]]; then
             TAGS="$TAGS -t ${{ env.GHCR_REPO }}:latest${{ matrix.suffix }}"
           fi
-          
+
           if [[ "${{ github.event_name }}" == "release" ]]; then
             VERSION="${{ github.event.release.tag_name }}"
             TAGS="$TAGS -t ${{ env.GHCR_REPO }}:${VERSION}${{ matrix.suffix }}"
@@ -147,7 +147,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
-          MARKER: "<!-- docker-preview-comment -->"
+          MARKER: '<!-- docker-preview-comment -->'
         run: |
           NORMALIZED_BRANCH=$(echo "${{ github.ref_name }}" | tr '/' '-' | tr '_' '-' | tr '[:upper:]' '[:lower:]')
           BRANCH_DISPLAY="${{ github.ref_name }}"

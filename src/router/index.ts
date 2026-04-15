@@ -9,6 +9,14 @@ const router = createRouter({
       component: () => import('@/views/HomeView.vue'),
     },
     {
+      path: '/app-monetization-explorer',
+      component: () => import('@/views/MonetizationExplorer.vue'),
+    },
+    {
+      path: '/docs/api',
+      component: () => import('@/views/ApiDocs.vue'),
+    },
+    {
       path: '/auth',
       component: () => import('@/views/AuthView.vue'),
     },

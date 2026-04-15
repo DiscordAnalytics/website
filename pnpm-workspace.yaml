@@ -1,3 +1,7 @@
 onlyBuiltDependencies:
+  - '@tsparticles/engine'
+  - core-js
   - esbuild
+  - maplibre-gl
+  - protobufjs
   - vue-demi
