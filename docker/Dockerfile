@@ -1,16 +1,4 @@
-FROM alpine:3.23 AS locales
-
-WORKDIR /app
-RUN apk add --no-cache jq
-
-COPY sync_locales.sh ./
-COPY src/locales ./src/locales
-
-RUN chmod +x ./sync_locales.sh
-RUN ./sync_locales.sh
-
-
-FROM node:lts-alpine AS deps
+FROM node:lts-alpine AS pnpm
 
 WORKDIR /app
 
@@ -20,6 +8,19 @@ RUN corepack prepare pnpm --activate
 
 COPY package.json ./
 COPY pnpm-lock.yaml ./
+
+FROM pnpm AS locales
+
+WORKDIR /app
+
+COPY ./sync_locales.js ./
+COPY ./src/locales ./src/locales
+
+RUN pnpm locales:sync
+
+FROM pnpm AS deps
+
+WORKDIR /app
 
 RUN pnpm install --frozen-lockfile
 
@@ -53,7 +54,7 @@ LABEL org.opencontainers.image.source="https://github.com/DiscordAnalytics/websi
 LABEL org.opencontainers.image.vendor="Discord Analytics"
 LABEL org.opencontainers.image.licenses="AGPL"
 
-COPY /app/docker/nginx.cloud.conf /etc/nginx/nginx.conf
+COPY ./docker/nginx.cloud.conf /etc/nginx/nginx.conf
 COPY --from=main-app /app/dist /usr/share/nginx/html
 COPY --from=docs /app/docs/.vitepress/dist /usr/share/nginx/html/docs
 
@@ -70,7 +71,7 @@ LABEL org.opencontainers.image.source="https://github.com/DiscordAnalytics/websi
 LABEL org.opencontainers.image.vendor="Discord Analytics"
 LABEL org.opencontainers.image.licenses="AGPL"
 
-COPY /app/nginx.sh.conf /etc/nginx/nginx.conf
+COPY ./docker/nginx.sh.conf /etc/nginx/nginx.conf
 COPY --from=main-app /app/dist /usr/share/nginx/html
 
 EXPOSE 80
