@@ -19,15 +19,14 @@ import { ChevronsLeftRightEllipsisIcon } from 'lucide-vue-next'
         <EmptyMedia variant="icon">
           <ChevronsLeftRightEllipsisIcon />
         </EmptyMedia>
-        <EmptyTitle>Coming soon...</EmptyTitle>
+        <EmptyTitle>{{ $t('pages.appMonetizationExplorer.title') }}</EmptyTitle>
         <EmptyDescription>
-          We're currently working on an improved version of the App Monetization Explorer. Join the
-          support server to receive a notification when it becomes available.
+          {{ $t('pages.appMonetizationExplorer.description') }}
         </EmptyDescription>
       </EmptyHeader>
       <EmptyContent>
         <RouterLink class="w-full" :to="`/support`">
-          <Button class="w-full">Join Support</Button>
+          <Button class="w-full">{{ $t('pages.appMonetizationExplorer.cta') }}</Button>
         </RouterLink>
       </EmptyContent>
     </Empty>
