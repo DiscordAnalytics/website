@@ -9,6 +9,7 @@ import { useColorMode, useLocalStorage, usePreferredLanguages } from '@vueuse/co
 import { toast } from 'vue-sonner'
 import carrotConfettisOptions from '@/utils/particles/carrots_rain.ts'
 import snowParticlesOptions from '@/utils/particles/snow.ts'
+import CookieBanner from '@/components/CookieBanner.vue'
 
 const { setTheme } = useStore()
 const i18n = useI18n()
@@ -48,7 +49,7 @@ onErrorCaptured((err, instance, info) => {
 
 <template>
   <Toaster />
-
+  <CookieBanner />
   <RouterView />
 
   <vue-particles

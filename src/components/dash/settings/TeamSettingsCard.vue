@@ -11,7 +11,7 @@ import {
 } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
 import { useRouteParams } from '@vueuse/router'
-import { useBot, useBotTeam, useLoading } from '@/composables'
+import { useAnalytics, useBot, useBotTeam, useLoading } from '@/composables'
 import { onMounted, ref } from 'vue'
 import {
   Table,
@@ -66,6 +66,7 @@ const { bot } = useBot(botId)
 const { team, fetch: fetchTeam, add: addTeammate, remove: removeTeammate } = useBotTeam(botId)
 const { copy, isSupported: isCopySupported } = useClipboard()
 
+const { capture } = useAnalytics()
 const { isLoading, withLoading } = useLoading()
 const addedTeammate = ref<{ sent: boolean; details: Teammate } | null>(null)
 
@@ -84,6 +85,10 @@ const onSubmit = form.handleSubmit(async (values) => {
     await addTeammate(values.userId)
       .then((res) => {
         addedTeammate.value = res
+        capture('teammate_invited', {
+          bot_id: botId.value,
+          invitation_method: res.sent ? 'email' : 'link',
+        })
       })
       .catch((err) => {
         toast.error(err.message)

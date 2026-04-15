@@ -23,8 +23,8 @@ import { toast } from 'vue-sonner'
 import { useI18n } from 'vue-i18n'
 import { useRouteQuery } from '@vueuse/router'
 
-defineEmits<{
-  (e: 'submit'): void
+const emit = defineEmits<{
+  (e: 'submit', library: string): void
 }>()
 
 const botId = useRouteQuery<string>('botId', '')
@@ -224,7 +224,9 @@ onMounted(() => {
       </Item>
 
       <div class="flex justify-end mt-8">
-        <Button @click="$emit('submit')">{{ $t('pages.dash.onboarding.stepTwo.next') }}</Button>
+        <Button @click="emit('submit', botLibrary)">
+          {{ $t('pages.dash.onboarding.stepTwo.next') }}
+        </Button>
       </div>
     </div>
   </div>

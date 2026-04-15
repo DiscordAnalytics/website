@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import BotDashLayout from '@/components/layouts/BotDashLayout.vue'
 import { useRouteParams } from '@vueuse/router'
-import { useBot, useBotAchievements, useLoading } from '@/composables'
+import { useAnalytics, useBot, useBotAchievements, useLoading } from '@/composables'
 import { onMounted, ref } from 'vue'
 import { goal2Percent } from '@/utils/statsManager.ts'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -44,6 +44,7 @@ const {
 } = useBotAchievements(botId)
 const { bot } = useBot(botId)
 const { t } = useI18n()
+const { capture } = useAnalytics()
 const { isLoading, withLoading } = useLoading()
 
 const createDialogOpen = ref<boolean>(false)
@@ -72,6 +73,7 @@ const onAchievementCreated = async (values: {
         toast.success(t('pages.dash.achievements.toasts.created'))
         createDialogOpen.value = false
         isAchievementCreated.value = true
+        capture('achievement_created', { bot_id: botId.value, objective_type: values.type })
       })
       .catch((e) => {
         toast.error(e.message)
@@ -85,6 +87,7 @@ async function onAchievementShared(lang: string) {
       .then(() => {
         toast.success(t('pages.dash.achievements.toasts.published'))
         shareDialogOpen.value = false
+        capture('achievement_shared', { bot_id: botId.value, language: lang })
       })
       .catch((e) => {
         toast.error(e.message)
@@ -111,6 +114,7 @@ async function onAchievementDeleted() {
       .then(() => {
         toast.success(t('pages.dash.achievements.toasts.deleted'))
         deleteDialogOpen.value = false
+        capture('achievement_deleted', { bot_id: botId.value })
       })
       .catch((e) => {
         toast.error(e.message)

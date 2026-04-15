@@ -4,7 +4,7 @@ import SettingCard from '@/components/dash/SettingCard.vue'
 import { TrashIcon, TrophyIcon } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
 import { useRouteParams } from '@vueuse/router'
-import { useBot, useBotAchievements, useLoading } from '@/composables'
+import { useAnalytics, useBot, useBotAchievements, useLoading } from '@/composables'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -27,6 +27,7 @@ const router = useRouter()
 const botId = useRouteParams<string>('id')
 const { bot, remove: deleteBot } = useBot(botId)
 const { reset: resetAchievements } = useBotAchievements(botId)
+const { capture } = useAnalytics()
 const { isLoading, withLoading } = useLoading()
 
 async function onAchievementsReset() {
@@ -45,6 +46,7 @@ async function onDelete() {
   await withLoading(async () => {
     await deleteBot()
       .then(async () => {
+        capture('bot_deleted', { bot_id: botId.value })
         await router.push('/dash')
       })
       .catch((err) => {
