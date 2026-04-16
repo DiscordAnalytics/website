@@ -19,7 +19,7 @@ import { BookOpenIcon } from 'lucide-vue-next'
         <NavigationMenuTrigger>
           {{ $t('components.navbar.links.documentation.trigger') }}
         </NavigationMenuTrigger>
-        <NavigationMenuContent>
+        <NavigationMenuContent class="z-50">
           <ul class="grid gap-3 p-6 md:w-fit lg:grid-cols-[minmax(0,.75fr)_minmax(0,1fr)]">
             <li class="row-span-3">
               <NavigationMenuLink as-child>
