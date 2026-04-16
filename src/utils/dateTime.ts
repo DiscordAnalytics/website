@@ -24,9 +24,8 @@ export function timeAgo(dateString: string): string {
     return `${days}d ago`
   }
 
-  const weeks = Math.floor(days / 7)
-  if (weeks < 4) {
-    return `${weeks}w ago`
+  if (days < 30) {
+    return `${Math.floor(days / 7)}w ago`
   }
 
   const months = Math.floor(days / 30)
