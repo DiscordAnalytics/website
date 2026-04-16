@@ -17,6 +17,14 @@ const router = createRouter({
       component: () => import('@/views/ApiDocs.vue'),
     },
     {
+      path: '/support',
+      component: () => import('@/views/RedirectionView.vue'),
+    },
+    {
+      path: '/status',
+      component: () => import('@/views/RedirectionView.vue'),
+    },
+    {
       path: '/auth',
       component: () => import('@/views/AuthView.vue'),
     },

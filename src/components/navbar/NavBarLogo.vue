@@ -6,7 +6,7 @@ const mode = useColorMode()
 
 function getLogoPath(): string {
   const suffix = isChristmas ? '_christmas' : ''
-  return `/brand/long_logo_${mode.value}${suffix}.webp`
+  return `https://r2.discordanalytics.xyz/images/brand/long_logo_${mode.value}${suffix}.webp`
 }
 </script>
 
