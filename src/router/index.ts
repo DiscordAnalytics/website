@@ -25,6 +25,10 @@ const router = createRouter({
       component: () => import('@/views/RedirectionView.vue'),
     },
     {
+      path: '/github',
+      component: () => import('@/views/RedirectionView.vue'),
+    },
+    {
       path: '/auth',
       component: () => import('@/views/AuthView.vue'),
     },
