@@ -67,7 +67,9 @@ async function updateToken(token: string = generateWebhookSecret()) {
   await withLoading(async () => {
     await updateProvider(token)
       .then(() => {
-        toast.success(t('pages.dash.settings.votes.provider.toast.regenerated'))
+        if (props.provider === 'topgg')
+          toast.success(t('pages.dash.settings.votes.provider.toast.updated'))
+        else toast.success(t('pages.dash.settings.votes.provider.toast.regenerated'))
         manualConfigOpen.value = false
       })
       .catch((err) => toast.error(err.message))
@@ -131,6 +133,7 @@ const onManualConfigSubmit = manualConfigForm.handleSubmit(async (values) => {
                     id="webhookSecretInput"
                     v-bind="field"
                     :placeholder="$t('pages.dash.settings.votes.provider.tokenPlaceholder')"
+                    :default-value="providerConfig?.webhookSecret"
                     autocomplete="off"
                     autofocus
                     :aria-invalid="!!errors.length"

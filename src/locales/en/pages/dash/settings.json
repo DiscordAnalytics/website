@@ -68,8 +68,9 @@
       "description": "Configure incoming votes from {provider}",
       "tokenPlaceholder": "REALLY SECRET TOKEN",
       "toast": {
-        "copied": "Token copied to clipboard",
-        "regenerated": "Token successfully regenerated."
+        "copied": "Secret copied to clipboard",
+        "regenerated": "Secret successfully regenerated.",
+        "updated": "Secret successfully updated."
       },
       "topgg": {
         "installButton": "Install Integration",

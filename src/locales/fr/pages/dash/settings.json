@@ -68,8 +68,9 @@
       "description": "Configurer les votes entrants de {provider}",
       "tokenPlaceholder": "TOKEN TRÈS SECRET",
       "toast": {
-        "copied": "Token copié dans le presse-papiers",
-        "regenerated": "Token régénéré avec succès."
+        "copied": "Clé copiée dans le presse-papiers",
+        "regenerated": "Clé régénérée avec succès.",
+        "updated": "Clé sauvegardée avec succès."
       },
       "topgg": {
         "installButton": "Installer l'intégration",
