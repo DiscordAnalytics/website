@@ -6,7 +6,7 @@ import { ServerIcon } from 'lucide-vue-next'
 </script>
 
 <template>
-  <section class="max-w-300 w-full flex flex-col lg:flex-row items-center gap-16">
+  <section class="max-w-300 mx-auto w-full flex flex-col lg:flex-row items-center gap-16">
     <div>
       <h2 class="text-4xl font-bold mb-8">
         {{ $t('pages.home.community.title') }}
