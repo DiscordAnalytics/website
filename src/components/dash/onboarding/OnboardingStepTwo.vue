@@ -108,7 +108,6 @@ onMounted(() => {
               </SelectLabel>
               <SelectItem value="discord.js">Discord.js</SelectItem>
               <SelectItem value="oceanic">Oceanic.js</SelectItem>
-              <SelectItem value="eris">Eris</SelectItem>
             </SelectGroup>
 
             <SelectGroup>
@@ -147,33 +146,6 @@ onMounted(() => {
             {{ $t('pages.dash.onboarding.stepTwo.install.npmHeading') }}
           </h2>
           <CodeBlock code="npm install @discordanalytics/oceanic" lang="bash" />
-
-          <h2 class="text-lg font-semibold my-4">
-            {{ $t('pages.dash.onboarding.stepTwo.install.addCodeHeading') }}
-          </h2>
-          <CodeBlock :code="codeExamples.oceanic" lang="js" />
-
-          <h2 class="text-lg font-semibold my-4">
-            {{ $t('pages.dash.onboarding.stepTwo.install.startBotHeading') }}
-          </h2>
-          <p>{{ $t('pages.dash.onboarding.stepTwo.install.startBotDescription') }}</p>
-          <CodeBlock code="export NODE_ENV=production # Linux/MacOS" lang="bash" />
-          <CodeBlock code="$env:NODE_ENV='production' # Windows Powershell" lang="powershell" />
-          <CodeBlock code="npm run start" lang="bash" />
-        </div>
-        <div v-else-if="botLibrary === 'eris'">
-          <Alert class="mt-4" variant="destructive">
-            <TriangleAlertIcon />
-            <AlertTitle>{{ $t('pages.dash.onboarding.stepTwo.erisWarning.title') }}</AlertTitle>
-            <AlertDescription>
-              {{ $t('pages.dash.onboarding.stepTwo.erisWarning.description') }}
-            </AlertDescription>
-          </Alert>
-
-          <h2 class="text-lg font-semibold my-4">
-            {{ $t('pages.dash.onboarding.stepTwo.install.npmHeading') }}
-          </h2>
-          <CodeBlock code="npm install @discordanalytics/eris" lang="bash" />
 
           <h2 class="text-lg font-semibold my-4">
             {{ $t('pages.dash.onboarding.stepTwo.install.addCodeHeading') }}

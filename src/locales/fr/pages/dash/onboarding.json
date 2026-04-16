@@ -58,10 +58,6 @@
       "startBotHeading": "c. Démarrez votre bot",
       "startBotDescription": "Pour démarrer votre bot avec Discord Analytics, vous devez ajouter NODE_ENV à vos variables d'environnement"
     },
-    "erisWarning": {
-      "title": "Avertissement de compatibilité",
-      "description": "En raison du manque de mises à jour d'Eris, certaines fonctionnalités de Discord Analytics pourraient ne pas être disponibles."
-    },
     "moreExamples": {
       "title": "Plus d'exemples",
       "description": "Consultez notre documentation pour plus d'exemples et de détails sur l'installation de Discord Analytics."
