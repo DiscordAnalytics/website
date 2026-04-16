@@ -81,8 +81,7 @@
       },
       "5": {
         "question": "Comment puis-je contribuer à Discord Analytics ?",
-        "answer": "Vous pouvez nous aider en traduisant Discord Analytics dans d'autres langues, ou en étendant la compatibilité de nos services à de nouvelles langues et bibliothèques.",
-        "link": "En savoir plus sur la contribution."
+        "answer": "Discord Analytics est Open Source, donc vous pouvez contribuer en faisant des suggestions, des reports de bugs, des pull requests ou simplement en faisant un don sur Open Collective !"
       }
     }
   },

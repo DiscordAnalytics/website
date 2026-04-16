@@ -64,11 +64,6 @@ import { Button } from '@/components/ui/button'
         </AccordionTrigger>
         <AccordionContent>
           {{ $t('pages.home.faq.questions.5.answer') }}
-          <a href="/contribute" target="_blank">
-            <Button variant="link" class="px-0.5">
-              {{ $t('pages.home.faq.questions.5.link') }}
-            </Button>
-          </a>
         </AccordionContent>
       </AccordionItem>
     </Accordion>

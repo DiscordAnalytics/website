@@ -77,12 +77,11 @@
       },
       "4": {
         "question": "What are the service limits?",
-        "answer": "By default, you are limited to 3 bots, servers or activities. This limit can be increased on request. To do so, please contact our teams."
+        "answer": "You can see you account limits in your account settings. The limits can be increased on request. To do so, please contact our team."
       },
       "5": {
         "question": "How can I contribute to Discord Analytics?",
-        "answer": "You can help us by translating Discord Analytics into other languages, or by extending the compatibility of our services to new languages and libraries.",
-        "link": "Learn more about contributing."
+        "answer": "Discord Analytics is Open Source, so you can contribute by making feature requests, bug reports, code pull requests or just by creating a donation on Open Collective!"
       }
     }
   },
