@@ -12,13 +12,15 @@ services:
       timeout: 5s
       retries: 10
       start_period: 5s
-    volumes:
-      - ./config.js:/app/dist/public/config.js:ro
+# Uncomment if you need to customize the website configuration (not required)
+#    volumes:
+#      - ./config.js:/app/dist/public/config.js:ro
+    restart: unless-stopped
 
   db:
     image: mongo:8
     volumes:
-      - ./db_data:/data/db
+      - discord-analytics-database:/data/db
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
@@ -27,6 +29,7 @@ services:
       interval: 10s
       timeout: 10s
       retries: 5
+    restart: unless-stopped
 
   api:
     image: ghcr.io/discordanalytics/api
@@ -41,3 +44,4 @@ services:
       timeout: 5s
       retries: 10
       start_period: 5s
+    restart: unless-stopped
