@@ -2,7 +2,11 @@
 import { computed, type Ref, watch } from 'vue'
 import { useBotStats, useLoading } from '@/composables'
 import { useRouteParams } from '@vueuse/router'
-import { calculateInteractions } from '@/utils/statsManager.ts'
+import {
+  calculateInteractions,
+  getRangeGranularity,
+  getTickFormatter,
+} from '@/utils/statsManager.ts'
 import { useStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 import type { DateRange } from 'reka-ui'
@@ -23,6 +27,8 @@ const interactionsData = computed(() =>
     ? calculateInteractions(stats.value.stats, statsRange.value)
     : null,
 )
+
+const tickFormatter = computed(() => getTickFormatter(getRangeGranularity(statsRange.value)))
 
 const charts = computed((): ChartConfig[] => [
   {
@@ -112,5 +118,5 @@ watch(statsRange, async (value, oldValue) => {
 </script>
 
 <template>
-  <StatsPage :charts="charts" :is-loading="isLoading" />
+  <StatsPage :charts="charts" :is-loading="isLoading" :tick-formatter="tickFormatter" />
 </template>

@@ -2,7 +2,7 @@
 import { computed, type Ref, watch } from 'vue'
 import { useBotStats, useLoading } from '@/composables'
 import { useRouteParams } from '@vueuse/router'
-import { calculateVotes } from '@/utils/statsManager.ts'
+import { calculateVotes, getRangeGranularity, getTickFormatter } from '@/utils/statsManager.ts'
 import { useStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 import type { DateRange } from 'reka-ui'
@@ -33,6 +33,8 @@ const votesData = computed(() =>
   stats.value && statsRange.value ? calculateVotes(stats.value.votes, statsRange.value) : null,
 )
 const { isLoading, withLoading } = useLoading()
+
+const tickFormatter = computed(() => getTickFormatter(getRangeGranularity(statsRange.value)))
 
 const defaultGetValue = (data: (ChartData | Omit<ChartData, 'date'>)[]): number =>
   data.reduce((sum, e) => sum + (e.Votes as number), 0)
@@ -121,7 +123,7 @@ watch(statsRange, async (value, oldValue) => {
 </script>
 
 <template>
-  <StatsPage :charts="charts" :is-loading="isLoading">
+  <StatsPage :charts="charts" :is-loading="isLoading" :tick-formatter="tickFormatter">
     <template v-if="areAllChartEmpty && !maskedPopups.includes('votesStatsWarning')" #alerts>
       <Item
         variant="muted"

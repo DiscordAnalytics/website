@@ -4,10 +4,11 @@ import StatsRangeSelector from '@/components/dash/StatsRangeSelector.vue'
 import { ChartContainer, EmptyChart, LineChartSkeleton } from '@/components/charts'
 import type { ChartConfig } from '@/utils/types.ts'
 
-defineProps<{
+const props = defineProps<{
   charts: ChartConfig[]
   isLoading: boolean
   chartSettings?: boolean
+  tickFormatter?: (d: number | Date) => string
 }>()
 
 defineEmits<{
@@ -49,7 +50,7 @@ defineEmits<{
           :data="chart.data"
           :tabs="chart.tabs"
           :active-tab="activeTab"
-          :tickFormatter="chart.tickFormatter"
+          :tickFormatter="chart.tickFormatter ?? props.tickFormatter"
         />
       </ChartContainer>
 

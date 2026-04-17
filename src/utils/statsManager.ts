@@ -11,40 +11,49 @@ import type { DateRange } from 'reka-ui'
 
 type Granularity = 'hour' | 'day'
 
-/** Returns 'hour' if the range is 7 days or less, 'day' otherwise. */
 export function getRangeGranularity(dateRange: DateRange): Granularity {
   if (!dateRange.start || !dateRange.end) return 'day'
   const diff = dateRange.end.toDate('UTC').getTime() - dateRange.start.toDate('UTC').getTime()
   return diff <= 7 * 24 * 60 * 60 * 1000 ? 'hour' : 'day'
 }
 
-/** Truncates a date to midnight UTC (day bucket). */
+export function getTickFormatter(granularity: Granularity): (d: number | Date) => string {
+  return (d: number | Date) => {
+    const date = new Date(d)
+    if (granularity === 'hour')
+      return date.toLocaleString(navigator.language, {
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+      })
+    return date.toLocaleDateString(navigator.language, { month: 'short', day: 'numeric' })
+  }
+}
+
 const truncateToDate = (raw: string | Date): Date => {
   const d = new Date(raw)
   return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()))
 }
 
-const toBucket = (raw: string | Date, granularity: Granularity): Date =>
-  granularity === 'hour' ? new Date(raw) : truncateToDate(raw)
+const toBucket = (raw: string | Date, granularity: Granularity): Date => {
+  const d = new Date(raw)
+  if (granularity === 'hour')
+    return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), d.getUTCHours()))
+  return truncateToDate(raw)
+}
 
 const isSameBucket = (a: Date, b: Date): boolean => a.getTime() === b.getTime()
 
-/**
- * Generates all buckets (day or hour) between the start and end of a DateRange, inclusive.
- * Missing raw data entries will be filled with zeros against these buckets.
- */
 function generateBuckets(dateRange: DateRange): Date[] {
   if (!dateRange.start || !dateRange.end) return []
   const granularity = getRangeGranularity(dateRange)
+  const start = truncateToDate(dateRange.start.toDate('UTC'))
   const end = truncateToDate(dateRange.end.toDate('UTC'))
-  const current = truncateToDate(dateRange.start.toDate('UTC'))
-
   const stepMs = granularity === 'hour' ? 60 * 60 * 1000 : 24 * 60 * 60 * 1000
-  const endTime = granularity === 'hour' ? dateRange.end.toDate('UTC').getTime() : end.getTime()
-
-  const bucketCount = Math.floor((endTime - current.getTime()) / stepMs) + 1
-
-  return Array.from({ length: bucketCount }, (_, i) => new Date(current.getTime() + i * stepMs))
+  const endTime = granularity === 'hour' ? end.getTime() + 23 * 60 * 60 * 1000 : end.getTime()
+  const bucketCount = Math.floor((endTime - start.getTime()) / stepMs) + 1
+  return Array.from({ length: bucketCount }, (_, i) => new Date(start.getTime() + i * stepMs))
 }
 
 export function calculateInteractions(
@@ -404,15 +413,16 @@ export function calculateVotes(
   }
 
   // Aggregate votes by bucket and provider
-  const votesMap = new Map<Date, { total: number; byProvider: Map<string, number> }>()
+  const votesMap = new Map<number, { total: number; byProvider: Map<string, number> }>()
   const pieMap = new Map<string, number>()
 
   rawVotes.forEach((votes) => {
     const date = toBucket(votes.date, granularity)
     const providerName = selectVotesProvider(votes.provider)
 
-    if (!votesMap.has(date)) votesMap.set(date, { total: 0, byProvider: new Map() })
-    const entry = votesMap.get(date)!
+    if (!votesMap.has(date.getTime()))
+      votesMap.set(date.getTime(), { total: 0, byProvider: new Map() })
+    const entry = votesMap.get(date.getTime())!
     entry.total += votes.count
     if (providerName) {
       entry.byProvider.set(providerName, (entry.byProvider.get(providerName) ?? 0) + votes.count)
@@ -423,7 +433,7 @@ export function calculateVotes(
   chartsData.votesPie = Array.from(pieMap.entries()).map(([name, total]) => ({ name, total }))
 
   for (const date of generateBuckets(dateRange)) {
-    const entry = votesMap.get(date)
+    const entry = votesMap.get(date.getTime())
 
     chartsData.allVotesEvolution.push({ date, Votes: entry?.total ?? 0 })
     chartsData.topggVotesEvolution.push({ date, Votes: entry?.byProvider.get('Top.gg') ?? 0 })

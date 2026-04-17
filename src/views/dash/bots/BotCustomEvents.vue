@@ -7,7 +7,7 @@ import { storeToRefs } from 'pinia'
 import type { DateRange } from 'reka-ui'
 import type { ChartConfig, CustomEvent } from '@/utils/types.ts'
 import StatsPage from '@/components/dash/StatsPage.vue'
-import { formatCustomEventsStats } from '@/utils/statsManager.ts'
+import { formatCustomEventsStats, getRangeGranularity, getTickFormatter } from '@/utils/statsManager.ts'
 import {
   Empty,
   EmptyContent,
@@ -55,6 +55,8 @@ const eventsData = computed(() =>
     ? formatCustomEventsStats(stats.value.stats, statsRange.value)
     : null,
 )
+
+const tickFormatter = computed(() => getTickFormatter(getRangeGranularity(statsRange.value)))
 
 const charts = computed((): ChartConfig[] =>
   events.value && eventsData.value
@@ -154,6 +156,7 @@ watch(statsRange, async (value, oldValue) => {
   <StatsPage
     :charts="charts"
     :is-loading="isLoading"
+    :tick-formatter="tickFormatter"
     chart-settings
     @settings-clicked="onSettingsClicked"
   >

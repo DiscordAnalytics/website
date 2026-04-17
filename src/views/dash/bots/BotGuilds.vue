@@ -2,7 +2,7 @@
 import { computed, type Ref, watch } from 'vue'
 import { useBot, useBotStats, useLoading, useLocale } from '@/composables'
 import { useRouteParams } from '@vueuse/router'
-import { calculateGuilds } from '@/utils/statsManager.ts'
+import { calculateGuilds, getRangeGranularity, getTickFormatter } from '@/utils/statsManager.ts'
 import { useStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 import type { DateRange } from 'reka-ui'
@@ -24,6 +24,8 @@ const { isLoading, withLoading } = useLoading()
 const guildsData = computed(() =>
   stats.value && statsRange.value ? calculateGuilds(stats.value.stats, statsRange.value) : null,
 )
+
+const tickFormatter = computed(() => getTickFormatter(getRangeGranularity(statsRange.value)))
 
 const defaultGetValue = (
   data: (ChartData | Omit<ChartData, 'date'>)[],
@@ -98,7 +100,7 @@ watch(statsRange, async (value, oldValue) => {
 </script>
 
 <template>
-  <StatsPage :charts="charts" :is-loading="isLoading">
+  <StatsPage :charts="charts" :is-loading="isLoading" :tick-formatter="tickFormatter">
     <TableChart
       v-if="bot && bot.advancedStats"
       :title="$t('pages.dash.stats.charts.guilds.biggestGuildsRank.title')"

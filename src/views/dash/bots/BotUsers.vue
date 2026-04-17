@@ -2,7 +2,7 @@
 import { computed, type Ref, watch } from 'vue'
 import { useBotStats, useLoading, useLocale } from '@/composables'
 import { useRouteParams } from '@vueuse/router'
-import { calculateUsers } from '@/utils/statsManager.ts'
+import { calculateUsers, getRangeGranularity, getTickFormatter } from '@/utils/statsManager.ts'
 import { useStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 import type { DateRange } from 'reka-ui'
@@ -36,6 +36,8 @@ const { isLoading, withLoading } = useLoading()
 const usersData = computed(() =>
   stats.value && statsRange.value ? calculateUsers(stats.value.stats, statsRange.value) : null,
 )
+
+const tickFormatter = computed(() => getTickFormatter(getRangeGranularity(statsRange.value)))
 
 const defaultGetValue = (
   data: (ChartData | Omit<ChartData, 'date'>)[],
@@ -127,7 +129,7 @@ watch(statsRange, async (value, oldValue) => {
 </script>
 
 <template>
-  <StatsPage :charts="charts" :is-loading="isLoading">
+  <StatsPage :charts="charts" :is-loading="isLoading" :tick-formatter="tickFormatter">
     <template v-if="!maskedPopups.includes('usersStatsWarning')" #alerts>
       <Item
         variant="muted"

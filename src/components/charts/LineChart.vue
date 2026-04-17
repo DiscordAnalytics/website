@@ -4,11 +4,18 @@ import { VisAxis, VisCrosshair, VisLine, VisTooltip, VisXYContainer } from '@uno
 import type { ChartData, ChartTab } from '@/utils/types'
 import { computed } from 'vue'
 
-const props = defineProps<{
-  data: ChartData[]
-  activeTab: string
-  tabs: Omit<ChartTab, 'value'>[]
-}>()
+const props = withDefaults(
+  defineProps<{
+    data: ChartData[]
+    activeTab: string
+    tabs: Omit<ChartTab, 'value'>[]
+    tickFormatter?: (d: number | Date) => string
+  }>(),
+  {
+    tickFormatter: (d: number | Date) =>
+      new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+  },
+)
 
 const chartConfig = computed(() => {
   return props.tabs.reduce((config, tab, index) => {
@@ -44,28 +51,14 @@ const chartConfig = computed(() => {
       :tick-line="false"
       :domain-line="false"
       :grid-line="false"
-      :tick-format="
-        (d: number) => {
-          const date = new Date(d)
-          return date.toLocaleDateString('en-US', {
-            month: 'short',
-            day: 'numeric',
-          })
-        }
-      "
+      :tick-format="$props.tickFormatter"
     />
     <VisAxis type="y" :num-ticks="3" :tick-line="false" :domain-line="false" />
     <VisTooltip />
     <VisCrosshair
       :template="
         componentToString(chartConfig, ChartTooltipContent, {
-          labelFormatter(d) {
-            return new Date(d).toLocaleDateString('en-US', {
-              month: 'short',
-              day: 'numeric',
-              year: 'numeric',
-            })
-          },
+          labelFormatter: $props.tickFormatter,
         })
       "
       color="#0000"
