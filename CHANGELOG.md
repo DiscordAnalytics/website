@@ -1,3 +1,17 @@
+# [1.1.0](https://github.com/DiscordAnalytics/website/compare/v1.0.2...v1.1.0) (2026-04-18)
+
+
+### Bug Fixes
+
+* **dash:** fixed header z-index in layouts ([#26](https://github.com/DiscordAnalytics/website/issues/26)) ([1c9f84f](https://github.com/DiscordAnalytics/website/commit/1c9f84f995e9e4322c3ec19f53c62cabf04fee01))
+* **dash:** fixed header z-index in layouts to avoid being above navbar's pop over ([328249e](https://github.com/DiscordAnalytics/website/commit/328249e7ced24c044f59dc8d6993441af142eafc))
+
+
+### Features
+
+* **blog:** added blog article create feature ([621733a](https://github.com/DiscordAnalytics/website/commit/621733a9939a0f53f3ae953ba7750d3f321a70bc))
+* **blog:** added blog article create feature ([#21](https://github.com/DiscordAnalytics/website/issues/21)) ([5e0d6d6](https://github.com/DiscordAnalytics/website/commit/5e0d6d670e1c77f139319dd554e52858706162ee))
+
 ## [1.0.2](https://github.com/DiscordAnalytics/website/compare/v1.0.1...v1.0.2) (2026-04-18)
 
 
