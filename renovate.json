@@ -35,5 +35,6 @@
       "automergeType": "pr",
       "ignoreTests": false
     }
-  ]
+  ],
+  "ignoreDeps": ["docker/docker-compose.yml"]
 }
