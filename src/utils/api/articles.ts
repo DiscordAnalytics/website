@@ -12,6 +12,10 @@ export default class ArticlesResource {
     return this.api.request('GET', `/articles/${articleId}`)
   }
 
+  create(body: Partial<BlogArticle>): Promise<BlogArticle> {
+    return this.api.request('POST', `/articles`, body)
+  }
+
   update(articleId: string, body: Partial<BlogArticle>): Promise<BlogArticle> {
     return this.api.request('PATCH', `/articles/${articleId}`, body)
   }

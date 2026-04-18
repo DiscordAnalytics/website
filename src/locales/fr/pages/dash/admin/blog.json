@@ -31,6 +31,7 @@
     "save": "Enregistrer"
   },
   "toast": {
+    "created": "Article créé avec succès",
     "updated": "Article mis à jour avec succès",
     "published": "Article publié avec succès",
     "deleted": "Article supprimé avec succès"

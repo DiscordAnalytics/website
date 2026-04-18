@@ -22,6 +22,11 @@ export default function useBlogArticles(scope: APIScope = APIScope.Guest) {
     return await api.articles.getArticle(articleId)
   }
 
+  async function create(article: Partial<BlogArticle>): Promise<BlogArticle> {
+    if (api.scope !== APIScope.Admin) throw new Error('Unauthorized')
+    return await api.articles.create(article)
+  }
+
   async function update(articleId: string, body: Partial<BlogArticle>) {
     if (api.scope !== APIScope.Admin) throw new Error('Unauthorized')
     return await api.articles.update(articleId, body)
@@ -37,5 +42,5 @@ export default function useBlogArticles(scope: APIScope = APIScope.Guest) {
     return await api.articles.remove(articleId)
   }
 
-  return { articles, tags, fetch, getArticle, update, publish, remove }
+  return { articles, tags, fetch, getArticle, create, update, publish, remove }
 }

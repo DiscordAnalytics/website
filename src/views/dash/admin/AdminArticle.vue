@@ -35,6 +35,7 @@ const { t } = useI18n()
 const articleId = useRouteParams<string>('tag')
 const {
   getArticle,
+  create: createArticle,
   update: updateArticle,
   publish: publishArticle,
   remove: deleteArticle,
@@ -49,15 +50,27 @@ const article = ref<BlogArticle | null>(null)
 
 const onSave = form.handleSubmit(async (values) => {
   await withLoading(async () => {
-    await updateArticle(articleId.value, values)
-      .then((res) => {
-        article.value = res
-        form.setValues({
-          ...res,
+    if (articleId.value === 'new')
+      await createArticle(values)
+        .then((res) => {
+          article.value = res
+          form.setValues({
+            ...res,
+          })
+          toast.success(t('pages.dash.admin.blog.toast.created'))
+          router.push(`/dash/admin/blog/${res.articleId}`)
         })
-        toast.success(t('pages.dash.admin.blog.toast.updated'))
-      })
-      .catch((err) => toast.error(err.message))
+        .catch((err) => toast.error(err.message))
+    else
+      await updateArticle(articleId.value, values)
+        .then((res) => {
+          article.value = res
+          form.setValues({
+            ...res,
+          })
+          toast.success(t('pages.dash.admin.blog.toast.updated'))
+        })
+        .catch((err) => toast.error(err.message))
   })
 })
 
