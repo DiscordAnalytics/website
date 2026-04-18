@@ -18,11 +18,11 @@
     "minimumReleaseAge": "0 days",
     "automerge": true
   },
+  "git-submodules": {
+    "enabled": true,
+    "automerge": false
+  },
   "packageRules": [
-    {
-      "matchManagers": ["git-submodules"],
-      "automerge": true
-    },
     {
       "matchManagers": ["dockerfile", "github-actions"],
       "automerge": true
