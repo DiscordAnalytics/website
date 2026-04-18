@@ -12,9 +12,9 @@ services:
       timeout: 5s
       retries: 10
       start_period: 5s
-# Uncomment if you need to customize the website configuration (not required)
-#    volumes:
-#      - ./config.js:/app/dist/public/config.js:ro
+    # Uncomment if you need to customize the website configuration (not required)
+    #    volumes:
+    #      - ./config.js:/app/dist/public/config.js:ro
     restart: unless-stopped
 
   db:
