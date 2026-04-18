@@ -105,79 +105,79 @@ importers:
         version: 4.3.6
     devDependencies:
       '@intlify/eslint-plugin-vue-i18n':
-        specifier: ^4.3.0
+        specifier: 4.3.0
         version: 4.3.0(eslint@9.39.4(jiti@2.6.1))(jsonc-eslint-parser@3.1.0)(vue-eslint-parser@10.4.0(eslint@9.39.4(jiti@2.6.1)))(yaml-eslint-parser@1.3.2)
       '@shikijs/markdown-it':
-        specifier: ^4.0.1
+        specifier: 4.0.2
         version: 4.0.2
       '@tailwindcss/typography':
-        specifier: ^0.5.19
+        specifier: 0.5.19
         version: 0.5.19(tailwindcss@4.2.2)
       '@tsconfig/node24':
-        specifier: ^24.0.4
+        specifier: 24.0.4
         version: 24.0.4
       '@types/markdown-it':
-        specifier: ^14.1.2
+        specifier: 14.1.2
         version: 14.1.2
       '@types/node':
-        specifier: ^24.10.13
+        specifier: 24.12.2
         version: 24.12.2
       '@vitejs/plugin-vue':
-        specifier: ^6.0.4
+        specifier: 6.0.6
         version: 6.0.6(vite@7.3.2(@types/node@24.12.2)(jiti@2.6.1)(lightningcss@1.32.0)(yaml@2.8.3))(vue@3.5.32(typescript@5.9.3))
       '@vue/eslint-config-typescript':
-        specifier: ^14.6.0
+        specifier: 14.7.0
         version: 14.7.0(eslint-plugin-vue@10.8.0(@typescript-eslint/parser@8.58.2(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.4(jiti@2.6.1))(vue-eslint-parser@10.4.0(eslint@9.39.4(jiti@2.6.1))))(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3)
       '@vue/tsconfig':
-        specifier: ^0.8.1
+        specifier: 0.8.1
         version: 0.8.1(typescript@5.9.3)(vue@3.5.32(typescript@5.9.3))
       eslint:
-        specifier: ^9.39.2
+        specifier: 9.39.4
         version: 9.39.4(jiti@2.6.1)
       eslint-config-prettier:
-        specifier: ^10.1.8
+        specifier: 10.1.8
         version: 10.1.8(eslint@9.39.4(jiti@2.6.1))
       eslint-plugin-oxlint:
-        specifier: ~1.46.0
+        specifier: 1.46.0
         version: 1.46.0
       eslint-plugin-prettier:
-        specifier: ^5.5.5
+        specifier: 5.5.5
         version: 5.5.5(eslint-config-prettier@10.1.8(eslint@9.39.4(jiti@2.6.1)))(eslint@9.39.4(jiti@2.6.1))(prettier@3.8.1)
       eslint-plugin-vue:
-        specifier: ~10.8.0
+        specifier: 10.8.0
         version: 10.8.0(@typescript-eslint/parser@8.58.2(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.4(jiti@2.6.1))(vue-eslint-parser@10.4.0(eslint@9.39.4(jiti@2.6.1)))
       jiti:
-        specifier: ^2.6.1
+        specifier: 2.6.1
         version: 2.6.1
       npm-run-all2:
-        specifier: ^8.0.4
+        specifier: 8.0.4
         version: 8.0.4
       oxlint:
-        specifier: ~1.47.0
+        specifier: 1.47.0
         version: 1.47.0
       prettier:
         specifier: 3.8.1
         version: 3.8.1
       shiki:
-        specifier: ^4.0.1
+        specifier: 4.0.2
         version: 4.0.2
       typescript:
-        specifier: ~5.9.3
+        specifier: 5.9.3
         version: 5.9.3
       vite:
-        specifier: ^7.3.1
+        specifier: 7.3.2
         version: 7.3.2(@types/node@24.12.2)(jiti@2.6.1)(lightningcss@1.32.0)(yaml@2.8.3)
       vite-plugin-vue-devtools:
-        specifier: ^8.0.6
+        specifier: 8.1.1
         version: 8.1.1(vite@7.3.2(@types/node@24.12.2)(jiti@2.6.1)(lightningcss@1.32.0)(yaml@2.8.3))(vue@3.5.32(typescript@5.9.3))
       vitepress:
         specifier: 2.0.0-alpha.15
         version: 2.0.0-alpha.15(@types/node@24.12.2)(fuse.js@7.3.0)(jiti@2.6.1)(lightningcss@1.32.0)(postcss@8.5.10)(typescript@5.9.3)(universal-cookie@8.1.0)(yaml@2.8.3)
       vitepress-plugin-tabs:
-        specifier: ^0.7.3
+        specifier: 0.7.3
         version: 0.7.3(vitepress@2.0.0-alpha.15(@types/node@24.12.2)(fuse.js@7.3.0)(jiti@2.6.1)(lightningcss@1.32.0)(postcss@8.5.10)(typescript@5.9.3)(universal-cookie@8.1.0)(yaml@2.8.3))(vue@3.5.32(typescript@5.9.3))
       vue-tsc:
-        specifier: ^3.2.4
+        specifier: 3.2.6
         version: 3.2.6(typescript@5.9.3)
 
 packages:
