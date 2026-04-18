@@ -1,6 +1,6 @@
 services:
   app:
-    image: ghcr.io/discordanalytics/website@sha256:bd522f6d320f54d1bfa336d88c8b70fc9cfdeda3245f4bd73fea6f404e5db09c
+    image: ghcr.io/discordanalytics/website@sha256:70807593fee054f131b7a4c91f5e27dd0209035613447907994eecd8703bbab3
     ports:
       - '80:80'
     depends_on:
