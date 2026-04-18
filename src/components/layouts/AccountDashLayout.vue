@@ -45,7 +45,7 @@ const sidebarItems = computed(() => [
   <SidebarLayout :items="sidebarItems">
     <template #inset>
       <header
-        class="flex md:items-center justify-between sticky top-0 bg-background w-full z-50 p-4"
+        class="flex md:items-center justify-between sticky top-0 bg-background w-full z-40 p-4"
       >
         <SidebarTrigger />
         <slot name="header" />
