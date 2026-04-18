@@ -153,7 +153,7 @@ onMounted(async () => {
       <Card
         v-for="achievement in achievements"
         :key="achievement.id"
-        class="group relative col-span-1 m-2 box-border flex flex-col justify-between select-none"
+        class="group relative col-span-1 m-2 box-border flex flex-col justify-between select-none overflow-clip"
       >
         <div
           class="absolute top-0 border-b border-l rounded-tr-lg rounded-bl-lg bg-background shadow-sm right-0 block md:hidden group-hover:block overflow-clip"
