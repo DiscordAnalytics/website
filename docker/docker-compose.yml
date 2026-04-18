@@ -1,6 +1,6 @@
 services:
   app:
-    image: ghcr.io/discordanalytics/website
+    image: ghcr.io/discordanalytics/website@sha256:c7d83b081c4cb3e8c4b983e2c23d989e56d3e61c2e55d645623381d43f621ae8
     ports:
       - '80:80'
     depends_on:
@@ -18,7 +18,7 @@ services:
     restart: unless-stopped
 
   db:
-    image: mongo:8
+    image: mongo:8@sha256:7abfba0d07c9330373f8173981ea4d09cd8a82cdf0e86ccaf7008848d1d24f62
     volumes:
       - discord-analytics-database:/data/db
     environment:
@@ -32,7 +32,7 @@ services:
     restart: unless-stopped
 
   api:
-    image: ghcr.io/discordanalytics/api
+    image: ghcr.io/discordanalytics/api@sha256:56484c8064a3887ed764e0e1a21355fab6c04253cde6650841601c12675e0be9
     depends_on:
       db:
         condition: service_healthy
