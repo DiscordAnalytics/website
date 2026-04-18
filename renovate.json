@@ -20,8 +20,9 @@
   },
   "git-submodules": {
     "enabled": true,
-    "automerge": false
+    "automerge": true
   },
+  "cloneSubmodules": true,
   "packageRules": [
     {
       "matchManagers": ["dockerfile", "github-actions"],
