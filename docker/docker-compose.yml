@@ -32,7 +32,7 @@ services:
     restart: unless-stopped
 
   api:
-    image: ghcr.io/discordanalytics/api@sha256:05de86f029a2e91c1d466846ebd83159b55f1974844611c063ea49c4d64dd5f5
+    image: ghcr.io/discordanalytics/api@sha256:dd51a64d6c8a813fda39f94d5fe14c5c9a66cfd3ce6289b2c423ca304904b9b0
     depends_on:
       db:
         condition: service_healthy
