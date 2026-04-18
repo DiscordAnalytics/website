@@ -26,7 +26,6 @@
     {
       "matchManagers": ["git-submodules"],
       "automerge": true,
-      "recreateWhen": "always",
       "minimumReleaseAge": null
     },
     {
