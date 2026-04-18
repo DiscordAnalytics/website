@@ -1,3 +1,11 @@
+## [1.0.2](https://github.com/DiscordAnalytics/website/compare/v1.0.1...v1.0.2) (2026-04-18)
+
+
+### Bug Fixes
+
+* added page metadata ([4941583](https://github.com/DiscordAnalytics/website/commit/4941583f4983a31d9469a0025025583b7df7a05f))
+* added page metadata ([#13](https://github.com/DiscordAnalytics/website/issues/13)) ([04466ca](https://github.com/DiscordAnalytics/website/commit/04466cad0ebc428cf656468c6c3d72950867471a))
+
 ## [1.0.1](https://github.com/DiscordAnalytics/website/compare/v1.0.0...v1.0.1) (2026-04-18)
 
 # 1.0.0 (2026-04-18)
