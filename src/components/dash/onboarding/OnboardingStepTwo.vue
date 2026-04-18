@@ -4,7 +4,7 @@ import { Spinner } from '@/components/ui/spinner'
 import { useBot, useLoading } from '@/composables'
 import { onMounted, ref } from 'vue'
 import { Button } from '@/components/ui/button'
-import { CopyIcon, ExternalLinkIcon, TriangleAlertIcon } from 'lucide-vue-next'
+import { CopyIcon, ExternalLinkIcon } from 'lucide-vue-next'
 import {
   Select,
   SelectContent,
@@ -17,7 +17,6 @@ import {
 import CodeBlock from '@/components/CodeBlock.vue'
 import * as codeExamples from '@/utils/codeExamples'
 import { Item, ItemActions, ItemContent, ItemDescription, ItemTitle } from '@/components/ui/item'
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { useClipboard } from '@vueuse/core'
 import { toast } from 'vue-sonner'
 import { useI18n } from 'vue-i18n'

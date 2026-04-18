@@ -7,7 +7,11 @@ import { storeToRefs } from 'pinia'
 import type { DateRange } from 'reka-ui'
 import type { ChartConfig, CustomEvent } from '@/utils/types.ts'
 import StatsPage from '@/components/dash/StatsPage.vue'
-import { formatCustomEventsStats, getRangeGranularity, getTickFormatter } from '@/utils/statsManager.ts'
+import {
+  formatCustomEventsStats,
+  getRangeGranularity,
+  getTickFormatter,
+} from '@/utils/statsManager.ts'
 import {
   Empty,
   EmptyContent,
