@@ -1,4 +1,4 @@
-FROM node:lts-alpine AS pnpm
+FROM node:lts-alpine@sha256:d1b3b4da11eefd5941e7f0b9cf17783fc99d9c6fc34884a665f40a06dbdfc94f AS pnpm
 
 WORKDIR /app
 
@@ -45,7 +45,7 @@ COPY ./docs ./docs
 RUN pnpm docs:build
 
 
-FROM nginx:stable-alpine AS production-cloud
+FROM nginx:stable-alpine@sha256:0272e4604ed93c1792f03695a033a6e8546840f86e0de20a884bb17d2c924883 AS production-cloud
 
 LABEL maintainer="Discord Analytics"
 LABEL org.opencontainers.image.title="Discord Analytics Website"
@@ -62,7 +62,7 @@ EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
 
-FROM nginx:stable-alpine AS production-sh
+FROM nginx:stable-alpine@sha256:0272e4604ed93c1792f03695a033a6e8546840f86e0de20a884bb17d2c924883 AS production-sh
 
 LABEL maintainer="Discord Analytics"
 LABEL org.opencontainers.image.title="Discord Analytics Website"
