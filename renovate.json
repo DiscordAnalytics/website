@@ -19,14 +19,15 @@
     "automerge": true
   },
   "git-submodules": {
-    "enabled": true,
-    "automerge": true
+    "enabled": true
   },
   "cloneSubmodules": true,
   "packageRules": [
     {
-      "matchManagers": ["dockerfile", "github-actions"],
-      "automerge": true
+      "matchManagers": ["git-submodules"],
+      "automerge": true,
+      "recreateClosed": true,
+      "minimumReleaseAge": null
     },
     {
       "matchUpdateTypes": ["minor", "patch"],
