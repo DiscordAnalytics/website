@@ -108,10 +108,17 @@ onMounted(async () => {
               class="mb-8 last:mb-0 border-b pb-4 last:border-none last:pb-0"
               :key="bot.botId"
             >
-              <CardTitle class="flex items-center gap-2 mb-4">
-                <DiscordAvatar :id="bot.botId" :alt="bot.username" :avatar="bot.avatar" size="sm" />
-                {{ bot.username }}
-              </CardTitle>
+              <RouterLink :to="`/dash/bots/${bot.botId}`">
+                <CardTitle class="flex items-center gap-2 mb-4">
+                  <DiscordAvatar
+                    :id="bot.botId"
+                    :alt="bot.username"
+                    :avatar="bot.avatar"
+                    size="sm"
+                  />
+                  {{ bot.username }}
+                </CardTitle>
+              </RouterLink>
               <div class="flex flex-col lg:flex-row gap-8">
                 <Field>
                   <div class="flex items-center gap-4 justify-between">
