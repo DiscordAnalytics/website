@@ -51,6 +51,7 @@ import { useStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 import type { DateRange } from 'reka-ui'
 import SidebarLayout from '@/components/layouts/SidebarLayout.vue'
+import MrRobotBanner from '@/components/MrRobotBanner.vue'
 
 const route = useRoute()
 const currentBotId = useRouteParams<string>('id')
@@ -265,6 +266,7 @@ watch(userBots, async () => {
         <slot name="header" />
       </header>
       <main class="px-4">
+        <MrRobotBanner />
         <slot
           v-if="
             (currentBot.framework && currentBot.language && currentBot.lastPush) ||
