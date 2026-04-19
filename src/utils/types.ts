@@ -73,10 +73,11 @@ export interface Bot {
   teammatesLimit: number
   webhooksConfig: {
     webhookUrl?: string
-  } & {
-    [provider: string]: {
-      connectionId?: string
-      webhookSecret?: string
+    providers: {
+      [provider: string]: {
+        connectionId?: string
+        webhookSecret?: string
+      }
     }
   }
 }
@@ -143,9 +144,10 @@ export interface CustomEvent {
 export interface RawVotes {
   id: number
   date: string
-  provider: VotesProvider
+  votes: {
+    [provider: string]: number
+  }
   botId: string
-  count: number
 }
 
 export interface ChartData {

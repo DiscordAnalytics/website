@@ -418,15 +418,18 @@ export function calculateVotes(
 
   rawVotes.forEach((votes) => {
     const date = toBucket(votes.date, granularity)
-    const providerName = selectVotesProvider(votes.provider)
 
     if (!votesMap.has(date.getTime()))
       votesMap.set(date.getTime(), { total: 0, byProvider: new Map() })
     const entry = votesMap.get(date.getTime())!
-    entry.total += votes.count
-    if (providerName) {
-      entry.byProvider.set(providerName, (entry.byProvider.get(providerName) ?? 0) + votes.count)
-      pieMap.set(providerName, (pieMap.get(providerName) ?? 0) + votes.count)
+
+    for (const [provider, count] of Object.entries(votes.votes)) {
+      const providerName = selectVotesProvider(provider as VotesProvider)
+      entry.total += count
+      if (providerName) {
+        entry.byProvider.set(providerName, (entry.byProvider.get(providerName) ?? 0) + count)
+        pieMap.set(providerName, (pieMap.get(providerName) ?? 0) + count)
+      }
     }
   })
 
