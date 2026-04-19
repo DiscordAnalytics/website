@@ -26,6 +26,7 @@
     {
       "matchManagers": ["git-submodules"],
       "automerge": true,
+      "automergeType": "branch",
       "minimumReleaseAge": null
     },
     {
@@ -36,5 +37,5 @@
       "ignoreTests": false
     }
   ],
-  "ignoreDeps": ["docker/docker-compose.yml"]
+  "ignorePaths": ["docker/docker-compose.yml"]
 }
