@@ -20,7 +20,7 @@ services:
   db:
     image: mongo:8
     volumes:
-      - discord-analytics-database:/data/db
+      - mongo_data:/data/db
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
@@ -45,3 +45,6 @@ services:
       retries: 10
       start_period: 5s
     restart: unless-stopped
+
+volumes:
+  mongo_data:
