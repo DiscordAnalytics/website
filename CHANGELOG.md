@@ -1,3 +1,14 @@
+## [1.1.1](https://github.com/DiscordAnalytics/website/compare/v1.1.0...v1.1.1) (2026-04-19)
+
+
+### Bug Fixes
+
+* added missing volume declaration to docker-compose.yml ([fd45108](https://github.com/DiscordAnalytics/website/commit/fd45108e4c00ef2be3323234f0d720257fe328f3))
+* **blog:** fixed inline code blocks style ([fdce1ed](https://github.com/DiscordAnalytics/website/commit/fdce1ed68ce0a8ff98c352ea1272baeb3199af56))
+* **dash:** fixed overflow on achievement cards ([c9e3abb](https://github.com/DiscordAnalytics/website/commit/c9e3abb9a783ed00b4220c381e747ba08a155df3))
+* **dash:** fixed overflow on achievement cards ([#27](https://github.com/DiscordAnalytics/website/issues/27)) ([8b8eefc](https://github.com/DiscordAnalytics/website/commit/8b8eefc4d270dfa2f88c70348707bfc7c38a16bb))
+* multiple fixes ([#34](https://github.com/DiscordAnalytics/website/issues/34)) ([a7cd596](https://github.com/DiscordAnalytics/website/commit/a7cd596e2ef28b747f5ba28826a7afc85432d47c))
+
 # [1.1.0](https://github.com/DiscordAnalytics/website/compare/v1.0.2...v1.1.0) (2026-04-18)
 
 
