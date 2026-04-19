@@ -27,7 +27,8 @@
       "matchManagers": ["git-submodules"],
       "automerge": true,
       "automergeType": "branch",
-      "minimumReleaseAge": null
+      "minimumReleaseAge": null,
+      "ignoreTests": true
     },
     {
       "matchUpdateTypes": ["minor", "patch"],
