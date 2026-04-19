@@ -172,11 +172,11 @@ importers:
         specifier: 8.1.1
         version: 8.1.1(vite@7.3.2(@types/node@24.12.2)(jiti@2.6.1)(lightningcss@1.32.0)(yaml@2.8.3))(vue@3.5.32(typescript@5.9.3))
       vitepress:
-        specifier: 2.0.0-alpha.15
-        version: 2.0.0-alpha.15(@types/node@24.12.2)(fuse.js@7.3.0)(jiti@2.6.1)(lightningcss@1.32.0)(postcss@8.5.10)(typescript@5.9.3)(universal-cookie@8.1.0)(yaml@2.8.3)
+        specifier: 2.0.0-alpha.17
+        version: 2.0.0-alpha.17(@types/node@24.12.2)(fuse.js@7.3.0)(jiti@2.6.1)(lightningcss@1.32.0)(postcss@8.5.10)(typescript@5.9.3)(universal-cookie@8.1.0)(yaml@2.8.3)
       vitepress-plugin-tabs:
         specifier: 0.7.3
-        version: 0.7.3(vitepress@2.0.0-alpha.15(@types/node@24.12.2)(fuse.js@7.3.0)(jiti@2.6.1)(lightningcss@1.32.0)(postcss@8.5.10)(typescript@5.9.3)(universal-cookie@8.1.0)(yaml@2.8.3))(vue@3.5.32(typescript@5.9.3))
+        version: 0.7.3(vitepress@2.0.0-alpha.17(@types/node@24.12.2)(fuse.js@7.3.0)(jiti@2.6.1)(lightningcss@1.32.0)(postcss@8.5.10)(typescript@5.9.3)(universal-cookie@8.1.0)(yaml@2.8.3))(vue@3.5.32(typescript@5.9.3))
       vue-tsc:
         specifier: 3.2.6
         version: 3.2.6(typescript@5.9.3)
@@ -390,6 +390,9 @@ packages:
 
   '@docsearch/js@4.6.2':
     resolution: {integrity: sha512-qj1yoxl3y4GKoK7+VM6fq/rQqPnvUmg3IKzJ9x0VzN14QVzdB/SG/J6VfV1BWT5RcPUFxIcVwoY1fwHM2fSRRw==}
+
+  '@docsearch/sidepanel-js@4.6.2':
+    resolution: {integrity: sha512-Pni85AP/GwRj7fFg8cBJp0U04tzbueBvWSd3gysgnOsVnQVSZwSYncfErUScLE1CAtR+qocPDFjmYR9AMRNJtQ==}
 
   '@emotion/babel-plugin@11.13.5':
     resolution: {integrity: sha512-pxHCpT2ex+0q+HH91/zsdHkw/lXd468DIN2zvfvLtPKLLMo6gQj7oLObq8PhkrxOZb/gGCq03S3Z7PDhS8pduQ==}
@@ -2808,6 +2811,9 @@ packages:
   focus-trap@7.8.0:
     resolution: {integrity: sha512-/yNdlIkpWbM0ptxno3ONTuf+2g318kh2ez3KSeZN5dZ8YC6AAmgeWz+GasYYiBJPFaYcSAPeu4GfhUaChzIJXA==}
 
+  focus-trap@8.0.1:
+    resolution: {integrity: sha512-9ptSG6z51YQOstI/oN4XuVGP/03u2nh0g//qz7L6zX0i6PZiPnkcf3GenXq7N2hZnASXaMxTPpbKwdI+PFvxlw==}
+
   foreground-child@3.3.1:
     resolution: {integrity: sha512-gIXjKqtFuWEgzFRJA9WCQeSJLZDjgJUOMCMzxtvFq/37KojM1BFGufqsCy0r4qSQmYLsZYMeyRqzIWOMup03sw==}
     engines: {node: '>=14'}
@@ -4216,8 +4222,8 @@ packages:
       vitepress: ^1.0.0
       vue: ^3.5.0
 
-  vitepress@2.0.0-alpha.15:
-    resolution: {integrity: sha512-jhjSYd10Z6RZiKOa7jy0xMVf5NB5oSc/lS3bD/QoUc6V8PrvQR5JhC9104NEt6+oTGY/ftieVWxY9v7YI+1IjA==}
+  vitepress@2.0.0-alpha.17:
+    resolution: {integrity: sha512-Z3VPUpwk/bHYqt1uMVOOK1/4xFiWQov1GNc2FvMdz6kvje4JRXEOngVI9C+bi5jeedMSHiA4dwKkff1NCvbZ9Q==}
     hasBin: true
     peerDependencies:
       markdown-it-mathjax3: ^4
@@ -4727,6 +4733,8 @@ snapshots:
   '@docsearch/css@4.6.2': {}
 
   '@docsearch/js@4.6.2': {}
+
+  '@docsearch/sidepanel-js@4.6.2': {}
 
   '@emotion/babel-plugin@11.13.5':
     dependencies:
@@ -6757,6 +6765,16 @@ snapshots:
       fuse.js: 7.3.0
       universal-cookie: 8.1.0
 
+  '@vueuse/integrations@14.2.1(focus-trap@8.0.1)(fuse.js@7.3.0)(universal-cookie@8.1.0)(vue@3.5.32(typescript@5.9.3))':
+    dependencies:
+      '@vueuse/core': 14.2.1(vue@3.5.32(typescript@5.9.3))
+      '@vueuse/shared': 14.2.1(vue@3.5.32(typescript@5.9.3))
+      vue: 3.5.32(typescript@5.9.3)
+    optionalDependencies:
+      focus-trap: 8.0.1
+      fuse.js: 7.3.0
+      universal-cookie: 8.1.0
+
   '@vueuse/metadata@10.11.1': {}
 
   '@vueuse/metadata@13.9.0': {}
@@ -7436,6 +7454,10 @@ snapshots:
   flatted@3.4.2: {}
 
   focus-trap@7.8.0:
+    dependencies:
+      tabbable: 6.4.0
+
+  focus-trap@8.0.1:
     dependencies:
       tabbable: 6.4.0
 
@@ -9160,15 +9182,16 @@ snapshots:
       lightningcss: 1.32.0
       yaml: 2.8.3
 
-  vitepress-plugin-tabs@0.7.3(vitepress@2.0.0-alpha.15(@types/node@24.12.2)(fuse.js@7.3.0)(jiti@2.6.1)(lightningcss@1.32.0)(postcss@8.5.10)(typescript@5.9.3)(universal-cookie@8.1.0)(yaml@2.8.3))(vue@3.5.32(typescript@5.9.3)):
+  vitepress-plugin-tabs@0.7.3(vitepress@2.0.0-alpha.17(@types/node@24.12.2)(fuse.js@7.3.0)(jiti@2.6.1)(lightningcss@1.32.0)(postcss@8.5.10)(typescript@5.9.3)(universal-cookie@8.1.0)(yaml@2.8.3))(vue@3.5.32(typescript@5.9.3)):
     dependencies:
-      vitepress: 2.0.0-alpha.15(@types/node@24.12.2)(fuse.js@7.3.0)(jiti@2.6.1)(lightningcss@1.32.0)(postcss@8.5.10)(typescript@5.9.3)(universal-cookie@8.1.0)(yaml@2.8.3)
+      vitepress: 2.0.0-alpha.17(@types/node@24.12.2)(fuse.js@7.3.0)(jiti@2.6.1)(lightningcss@1.32.0)(postcss@8.5.10)(typescript@5.9.3)(universal-cookie@8.1.0)(yaml@2.8.3)
       vue: 3.5.32(typescript@5.9.3)
 
-  vitepress@2.0.0-alpha.15(@types/node@24.12.2)(fuse.js@7.3.0)(jiti@2.6.1)(lightningcss@1.32.0)(postcss@8.5.10)(typescript@5.9.3)(universal-cookie@8.1.0)(yaml@2.8.3):
+  vitepress@2.0.0-alpha.17(@types/node@24.12.2)(fuse.js@7.3.0)(jiti@2.6.1)(lightningcss@1.32.0)(postcss@8.5.10)(typescript@5.9.3)(universal-cookie@8.1.0)(yaml@2.8.3):
     dependencies:
       '@docsearch/css': 4.6.2
       '@docsearch/js': 4.6.2
+      '@docsearch/sidepanel-js': 4.6.2
       '@iconify-json/simple-icons': 1.2.78
       '@shikijs/core': 3.23.0
       '@shikijs/transformers': 3.23.0
@@ -9178,8 +9201,8 @@ snapshots:
       '@vue/devtools-api': 8.1.1
       '@vue/shared': 3.5.32
       '@vueuse/core': 14.2.1(vue@3.5.32(typescript@5.9.3))
-      '@vueuse/integrations': 14.2.1(focus-trap@7.8.0)(fuse.js@7.3.0)(universal-cookie@8.1.0)(vue@3.5.32(typescript@5.9.3))
-      focus-trap: 7.8.0
+      '@vueuse/integrations': 14.2.1(focus-trap@8.0.1)(fuse.js@7.3.0)(universal-cookie@8.1.0)(vue@3.5.32(typescript@5.9.3))
+      focus-trap: 8.0.1
       mark.js: 8.11.1
       minisearch: 7.2.0
       shiki: 3.23.0
