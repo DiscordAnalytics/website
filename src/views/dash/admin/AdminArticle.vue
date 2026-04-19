@@ -222,7 +222,9 @@ onBeforeMount(async () => {
               <ResizableHandle with-handle />
               <ResizablePanel>
                 <Card class="h-full rounded-r rounded-l-none">
-                  <CardContent class="pt-6 prose lg:prose-xl dark:prose-invert">
+                  <CardContent
+                    class="pt-6 prose lg:prose-xl dark:prose-invert prose-code:bg-accent prose-code:px-2 prose-code:py-0.5 prose-code:rounded prose-code:before:hidden prose-code:after:hidden"
+                  >
                     <VueMarkdown :source="form.values.content ?? ''" />
                   </CardContent>
                 </Card>
