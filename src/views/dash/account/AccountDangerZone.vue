@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import SettingCard from '@/components/dash/SettingCard.vue'
-import { TrashIcon } from 'lucide-vue-next'
+import { TrashIcon } from '@lucide/vue'
 import { Button } from '@/components/ui/button'
 import { useAnalytics, useCurrentUser, useLoading } from '@/composables'
 import {

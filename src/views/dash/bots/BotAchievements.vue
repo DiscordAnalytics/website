@@ -12,7 +12,7 @@ import {
   PlusIcon,
   Share2Icon,
   TrashIcon,
-} from 'lucide-vue-next'
+} from '@lucide/vue'
 import { Progress } from '@/components/ui/progress'
 import {
   Empty,

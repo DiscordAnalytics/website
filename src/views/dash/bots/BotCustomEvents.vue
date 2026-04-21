@@ -20,7 +20,7 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from '@/components/ui/empty'
-import { FrownIcon, PlusIcon } from 'lucide-vue-next'
+import { FrownIcon, PlusIcon } from '@lucide/vue'
 import { Button } from '@/components/ui/button'
 import { LineChart } from '@/components/charts'
 import CreateCustomEventDialog from '@/components/dash/CreateCustomEventDialog.vue'

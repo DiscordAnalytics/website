@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import SidebarLayout from '@/components/layouts/SidebarLayout.vue'
 import { computed } from 'vue'
-import { Bell, IdCard, MonitorSmartphone, TriangleAlert } from 'lucide-vue-next'
+import { Bell, IdCard, MonitorSmartphone, TriangleAlert } from '@lucide/vue'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import { useI18n } from 'vue-i18n'
 

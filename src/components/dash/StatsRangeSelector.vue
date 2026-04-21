@@ -10,7 +10,7 @@ import { onMounted, ref, type Ref, watch } from 'vue'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils.ts'
-import { CalendarIcon, ChevronLeftIcon, ChevronRightIcon } from 'lucide-vue-next'
+import { CalendarIcon, ChevronLeftIcon, ChevronRightIcon } from '@lucide/vue'
 import { RangeCalendar } from '@/components/ui/range-calendar'
 import type { AcceptableValue, DateRange } from 'reka-ui'
 import {

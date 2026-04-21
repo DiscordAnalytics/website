@@ -10,7 +10,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
-import { StoreIcon } from 'lucide-vue-next'
+import { StoreIcon } from '@lucide/vue'
 import { Field as VeeField, useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import { createAchievementFormSchema } from '@/utils/formSchemas.ts'

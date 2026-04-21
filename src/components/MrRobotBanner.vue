@@ -2,7 +2,7 @@
 import { useI18n } from 'vue-i18n'
 import { useLocalStorage } from '@vueuse/core'
 import { Button } from '@/components/ui/button'
-import { XIcon } from 'lucide-vue-next'
+import { XIcon } from '@lucide/vue'
 
 const i18n = useI18n()
 const maskedPopups = useLocalStorage<string[]>('maskedPopups', [])

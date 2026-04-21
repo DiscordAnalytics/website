@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import PageLayout from '@/components/layouts/PageLayout.vue'
 import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group'
-import { FilterIcon, NewspaperIcon, SearchIcon } from 'lucide-vue-next'
+import { FilterIcon, NewspaperIcon, SearchIcon } from '@lucide/vue'
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,

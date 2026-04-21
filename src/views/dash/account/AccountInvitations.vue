@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AccountDashLayout from '@/components/layouts/AccountDashLayout.vue'
 import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty'
-import { CheckIcon, FrownIcon, XIcon } from 'lucide-vue-next'
+import { CheckIcon, FrownIcon, XIcon } from '@lucide/vue'
 import { useLoading, useTeamInvitations } from '@/composables'
 import { onMounted } from 'vue'
 import DiscordAvatar from '@/components/DiscordAvatar.vue'

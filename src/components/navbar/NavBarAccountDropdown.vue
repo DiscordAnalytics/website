@@ -15,7 +15,7 @@ import {
   LogOutIcon,
   ShieldIcon,
   UserIcon,
-} from 'lucide-vue-next'
+} from '@lucide/vue'
 import { Button } from '@/components/ui/button'
 
 defineProps<{

@@ -7,7 +7,7 @@ import { useRouteParams } from '@vueuse/router'
 import { useLoading } from '@/composables'
 import type { VotesProvider } from '@/utils/types.ts'
 import { Item, ItemContent, ItemDescription, ItemMedia, ItemTitle } from '@/components/ui/item'
-import { ExternalLinkIcon, TriangleAlertIcon } from 'lucide-vue-next'
+import { ExternalLinkIcon, TriangleAlertIcon } from '@lucide/vue'
 import { Button } from '@/components/ui/button'
 
 const botId = useRouteParams<string>('id')

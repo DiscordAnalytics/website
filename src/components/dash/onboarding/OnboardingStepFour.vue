@@ -8,7 +8,7 @@ import {
   EmptyTitle,
 } from '@/components/ui/empty'
 import { Button } from '@/components/ui/button'
-import { PartyPopperIcon } from 'lucide-vue-next'
+import { PartyPopperIcon } from '@lucide/vue'
 import { useRoute } from 'vue-router'
 import { useBot } from '@/composables'
 import { useRouteQuery } from '@vueuse/router'

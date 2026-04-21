@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { computed, ref, watch } from 'vue'
 import type { ChartConfig, ChartTab } from '@/utils/types.ts'
 import { Skeleton } from '@/components/ui/skeleton'
-import { EllipsisIcon } from 'lucide-vue-next'
+import { EllipsisIcon } from '@lucide/vue'
 import { cn } from '@/lib/utils.ts'
 
 const props = defineProps<{

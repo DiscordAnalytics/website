@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onBeforeMount, ref } from 'vue'
-import { AlertCircleIcon, PlusIcon } from 'lucide-vue-next'
+import { AlertCircleIcon, PlusIcon } from '@lucide/vue'
 import { useRoute, useRouter } from 'vue-router'
 import { Button } from '@/components/ui/button'
 import { useAnalytics, useAuthToken, useOAuth } from '@/composables'

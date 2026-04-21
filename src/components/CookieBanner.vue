@@ -41,7 +41,7 @@
 
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import { CookieIcon } from 'lucide-vue-next'
+import { CookieIcon } from '@lucide/vue'
 import { useI18n } from 'vue-i18n'
 import posthog from 'posthog-js'
 import { useConfig } from '@/composables'

@@ -2,7 +2,7 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardHeader } from '@/components/ui/card'
 import { Avatar, AvatarImage } from '@/components/ui/avatar'
-import { ServerIcon } from 'lucide-vue-next'
+import { ServerIcon } from '@lucide/vue'
 </script>
 
 <template>

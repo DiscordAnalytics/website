@@ -4,7 +4,7 @@ import { Spinner } from '@/components/ui/spinner'
 import { useBot, useLoading } from '@/composables'
 import { onMounted, ref } from 'vue'
 import { Button } from '@/components/ui/button'
-import { CopyIcon, ExternalLinkIcon } from 'lucide-vue-next'
+import { CopyIcon, ExternalLinkIcon } from '@lucide/vue'
 import {
   Select,
   SelectContent,

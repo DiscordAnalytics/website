@@ -12,7 +12,7 @@ import { useI18n } from 'vue-i18n'
 import { BarChart, LineChart, PieChart } from '@/components/charts'
 import { getDayOfWeek, parseDate } from '@internationalized/date'
 import { dfWeekDay } from '@/utils/dateTime.ts'
-import { InfoIcon, XIcon } from 'lucide-vue-next'
+import { InfoIcon, XIcon } from '@lucide/vue'
 import {
   Item,
   ItemActions,

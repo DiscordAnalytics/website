@@ -2,7 +2,7 @@
 import { onMounted, ref, watch } from 'vue'
 import { type BundledLanguage, createHighlighter } from 'shiki'
 import { Button } from '@/components/ui/button'
-import { CopyIcon } from 'lucide-vue-next'
+import { CopyIcon } from '@lucide/vue'
 
 const props = withDefaults(
   defineProps<{

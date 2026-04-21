@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/item'
 import { cn } from '@/lib/utils.ts'
 import { Button } from '@/components/ui/button'
-import { ExternalLinkIcon } from 'lucide-vue-next'
+import { ExternalLinkIcon } from '@lucide/vue'
 
 withDefaults(
   defineProps<{

@@ -20,7 +20,7 @@ import { useRouter } from 'vue-router'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 import DataTable from '@/components/DataTable.vue'
-import { FrownIcon } from 'lucide-vue-next'
+import { FrownIcon } from '@lucide/vue'
 import { EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty'
 import { Spinner } from '@/components/ui/spinner'
 

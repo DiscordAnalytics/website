@@ -7,7 +7,7 @@ import { Spinner } from '@/components/ui/spinner'
 import { Field as VeeField } from 'vee-validate'
 import { useCurrentUser } from '@/composables'
 import { Label } from '@/components/ui/label'
-import { AlertTriangleIcon } from 'lucide-vue-next'
+import { AlertTriangleIcon } from '@lucide/vue'
 import {
   Empty,
   EmptyContent,
