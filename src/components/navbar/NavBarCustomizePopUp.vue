@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Button } from '@/components/ui/button'
-import { MonitorIcon, MoonIcon, PaletteIcon, SunIcon } from 'lucide-vue-next'
+import { MonitorIcon, MoonIcon, PaletteIcon, SunIcon } from '@lucide/vue'
 import { useStore } from '@/stores'
 import { ref } from 'vue'
 import { createReusableTemplate, useColorMode, useLocalStorage } from '@vueuse/core'

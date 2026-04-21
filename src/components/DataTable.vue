@@ -40,7 +40,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Button } from '@/components/ui/button'
-import { ChevronsUpDownIcon } from 'lucide-vue-next'
+import { ChevronsUpDownIcon } from '@lucide/vue'
 import type { DataTableAction } from '@/utils/types.ts'
 
 const props = defineProps<{

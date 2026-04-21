@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button'
 import useCurrentUser from '@/composables/useCurrentUser.ts'
 import { onBeforeMount } from 'vue'
 import NavBarMobileSheet from '@/components/navbar/NavBarMobileSheet.vue'
-import { MenuIcon } from 'lucide-vue-next'
+import { MenuIcon } from '@lucide/vue'
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 
 const breakpoints = useBreakpoints(breakpointsTailwind)

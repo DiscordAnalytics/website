@@ -8,7 +8,7 @@ import {
   ItemTitle,
 } from '@/components/ui/item'
 import { Button } from '@/components/ui/button'
-import { XIcon } from 'lucide-vue-next'
+import { XIcon } from '@lucide/vue'
 import { Spinner } from '@/components/ui/spinner'
 import CustomIcon from '@/components/CustomIcon.vue'
 import type { OAuthSession } from '@/utils/types.ts'

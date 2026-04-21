@@ -4,7 +4,7 @@ import ThemedImg from '@/components/ThemedImg.vue'
 import scrollTo from '@/utils/scrollTo.ts'
 import { cn } from '@/lib/utils.ts'
 import { Badge } from '@/components/ui/badge'
-import { SparklesIcon } from 'lucide-vue-next'
+import { SparklesIcon } from '@lucide/vue'
 </script>
 
 <template>

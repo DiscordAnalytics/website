@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Field as VeeField, useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
-import { Trash2Icon } from 'lucide-vue-next'
+import { Trash2Icon } from '@lucide/vue'
 
 import {
   Dialog,

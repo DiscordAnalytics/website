@@ -3,7 +3,7 @@ import PageLayout from '@/components/layouts/PageLayout.vue'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import useAchievementsStore from '@/composables/useAchievementsStore.ts'
 import { computed, onMounted, ref } from 'vue'
-import { FrownIcon, FunnelXIcon, SparklesIcon } from 'lucide-vue-next'
+import { FrownIcon, FunnelXIcon, SparklesIcon } from '@lucide/vue'
 import {
   Select,
   SelectContent,

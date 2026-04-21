@@ -19,7 +19,7 @@ import {
   Users,
   Vote,
   Webhook,
-} from 'lucide-vue-next'
+} from '@lucide/vue'
 import { useRouteParams } from '@vueuse/router'
 import { useBot, useCurrentUser } from '@/composables'
 import DiscordAvatar from '@/components/DiscordAvatar.vue'

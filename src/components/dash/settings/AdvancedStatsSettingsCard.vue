@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import SettingCard from '@/components/dash/SettingCard.vue'
-import { ZapIcon } from 'lucide-vue-next'
+import { ZapIcon } from '@lucide/vue'
 import { useRouteParams } from '@vueuse/router'
 import { useBot, useLoading } from '@/composables'
 import { ref, watch } from 'vue'

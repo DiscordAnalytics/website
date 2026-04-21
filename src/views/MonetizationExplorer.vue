@@ -9,7 +9,7 @@ import {
   EmptyTitle,
 } from '@/components/ui/empty'
 import { Button } from '@/components/ui/button'
-import { ChevronsLeftRightEllipsisIcon } from 'lucide-vue-next'
+import { ChevronsLeftRightEllipsisIcon } from '@lucide/vue'
 </script>
 
 <template>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AdminDashLayout from '@/components/layouts/AdminDashLayout.vue'
 import { Button } from '@/components/ui/button'
-import { FilterIcon, NewspaperIcon, PlusIcon, SearchIcon } from 'lucide-vue-next'
+import { FilterIcon, NewspaperIcon, PlusIcon, SearchIcon } from '@lucide/vue'
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,

@@ -2,7 +2,7 @@
 import ThemedImg from '@/components/ThemedImg.vue'
 import { Vue3Marquee } from 'vue3-marquee'
 import { Card } from '@/components/ui/card'
-import { MailIcon } from 'lucide-vue-next'
+import { MailIcon } from '@lucide/vue'
 </script>
 
 <template>

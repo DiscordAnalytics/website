@@ -7,7 +7,7 @@ import {
 } from '@/components/ui/input-group'
 import SettingCard from '@/components/dash/SettingCard.vue'
 import { Spinner } from '@/components/ui/spinner'
-import { CopyIcon, EyeIcon, EyeOffIcon, KeyIcon, RefreshCwIcon } from 'lucide-vue-next'
+import { CopyIcon, EyeIcon, EyeOffIcon, KeyIcon, RefreshCwIcon } from '@lucide/vue'
 import { Button } from '@/components/ui/button'
 import { useRouteParams } from '@vueuse/router'
 import { useBot, useLoading } from '@/composables'

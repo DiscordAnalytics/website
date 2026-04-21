@@ -10,7 +10,7 @@ import {
   StepperTitle,
   StepperTrigger,
 } from '@/components/ui/stepper'
-import { Check, Clock, Code, IdCard } from 'lucide-vue-next'
+import { Check, Clock, Code, IdCard } from '@lucide/vue'
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import { addBotSchema } from '@/utils/formSchemas.ts'

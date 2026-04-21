@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue'
 import { useLoading } from '@/composables'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { FrownIcon, PencilIcon, SparklesIcon, TrashIcon } from 'lucide-vue-next'
+import { FrownIcon, PencilIcon, SparklesIcon, TrashIcon } from '@lucide/vue'
 import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty'
 import { Spinner } from '@/components/ui/spinner'
 import type { Achievement } from '@/utils/types.ts'

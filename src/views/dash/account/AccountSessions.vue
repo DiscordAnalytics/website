@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AccountDashLayout from '@/components/layouts/AccountDashLayout.vue'
 import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty'
-import { BrushCleaningIcon, FrownIcon } from 'lucide-vue-next'
+import { BrushCleaningIcon, FrownIcon } from '@lucide/vue'
 import { onMounted } from 'vue'
 import { Spinner } from '@/components/ui/spinner'
 import useOAuthSessions from '@/composables/useOAuthSessions.ts'

@@ -5,7 +5,7 @@ import type { HTMLAttributes } from 'vue'
 import type { ButtonVariants } from '@/components/ui/button'
 import { buttonVariants } from '@/components/ui/button'
 import { reactiveOmit } from '@vueuse/core'
-import { ChevronLeftIcon } from 'lucide-vue-next'
+import { ChevronLeftIcon } from '@lucide/vue'
 import { cn } from '@/lib/utils'
 
 const props = withDefaults(

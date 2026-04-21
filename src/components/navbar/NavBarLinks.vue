@@ -9,7 +9,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
-import { BookOpenIcon } from 'lucide-vue-next'
+import { BookOpenIcon } from '@lucide/vue'
 </script>
 
 <template>

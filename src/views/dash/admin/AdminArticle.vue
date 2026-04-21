@@ -24,7 +24,7 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/componen
 import { Card, CardContent } from '@/components/ui/card'
 import VueMarkdown from 'vue-markdown-render'
 import type { BlogArticle } from '@/utils/types.ts'
-import { SaveIcon, SendIcon, TrashIcon } from 'lucide-vue-next'
+import { SaveIcon, SendIcon, TrashIcon } from '@lucide/vue'
 import { APIScope } from '@/utils/api'
 import { toast } from 'vue-sonner'
 import { useRouter } from 'vue-router'

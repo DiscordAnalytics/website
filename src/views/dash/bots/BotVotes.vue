@@ -19,7 +19,7 @@ import {
   ItemTitle,
 } from '@/components/ui/item'
 import { Button } from '@/components/ui/button'
-import { ExternalLinkIcon, InfoIcon, XIcon } from 'lucide-vue-next'
+import { ExternalLinkIcon, InfoIcon, XIcon } from '@lucide/vue'
 import { useLocalStorage } from '@vueuse/core'
 
 const botId = useRouteParams<string>('id')

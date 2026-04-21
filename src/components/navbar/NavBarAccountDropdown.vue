@@ -9,13 +9,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import DiscordAvatar from '@/components/DiscordAvatar.vue'
-import {
-  ChartLineIcon,
-  ChevronsUpDownIcon,
-  LogOutIcon,
-  ShieldIcon,
-  UserIcon,
-} from 'lucide-vue-next'
+import { ChartLineIcon, ChevronsUpDownIcon, LogOutIcon, ShieldIcon, UserIcon } from '@lucide/vue'
 import { Button } from '@/components/ui/button'
 
 defineProps<{

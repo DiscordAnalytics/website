@@ -2,7 +2,7 @@
 import { h, ref } from 'vue'
 import CustomIcon from '@/components/CustomIcon.vue'
 import SettingCard from '@/components/dash/SettingCard.vue'
-import { CircleCheckIcon, CopyIcon, EyeIcon, EyeOffIcon, RefreshCwIcon } from 'lucide-vue-next'
+import { CircleCheckIcon, CopyIcon, EyeIcon, EyeOffIcon, RefreshCwIcon } from '@lucide/vue'
 import {
   InputGroup,
   InputGroupAddon,

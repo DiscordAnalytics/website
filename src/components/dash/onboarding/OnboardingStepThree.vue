@@ -9,7 +9,7 @@ import {
   EmptyTitle,
 } from '@/components/ui/empty'
 import { Button } from '@/components/ui/button'
-import { ArrowLeftIcon, TriangleAlertIcon } from 'lucide-vue-next'
+import { ArrowLeftIcon, TriangleAlertIcon } from '@lucide/vue'
 import { useBot } from '@/composables'
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'

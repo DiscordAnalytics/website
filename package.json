@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@internationalized/date": "^3.11.0",
+    "@lucide/vue": "^1.8.0",
     "@scalar/api-reference": "^1.52.1",
     "@tailwindcss/vite": "^4.2.1",
     "@tanstack/vue-table": "^8.21.3",
@@ -33,7 +34,6 @@
     "@vueuse/router": "^14.2.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "lucide-vue-next": "^1.0.0",
     "markdown-it-anchor": "^9.2.0",
     "pinia": "^3.0.4",
     "posthog-js": "^1.368.2",
@@ -75,9 +75,9 @@
     "shiki": "4.0.2",
     "typescript": "5.9.3",
     "vite": "7.3.2",
+    "vite-plugin-vue-devtools": "8.1.1",
     "vitepress": "2.0.0-alpha.17",
     "vitepress-plugin-tabs": "0.8.0",
-    "vite-plugin-vue-devtools": "8.1.1",
     "vue-tsc": "3.2.6"
   },
   "engines": {

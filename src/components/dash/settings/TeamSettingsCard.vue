@@ -8,7 +8,7 @@ import {
   PlusIcon,
   TrashIcon,
   UsersIcon,
-} from 'lucide-vue-next'
+} from '@lucide/vue'
 import { Button } from '@/components/ui/button'
 import { useRouteParams } from '@vueuse/router'
 import { useAnalytics, useBot, useBotTeam, useLoading } from '@/composables'

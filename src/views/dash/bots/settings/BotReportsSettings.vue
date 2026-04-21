@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import BotDashLayout from '@/components/layouts/BotDashLayout.vue'
 import SettingCard from '@/components/dash/SettingCard.vue'
-import { Calendar1Icon, CalendarRangeIcon } from 'lucide-vue-next'
+import { Calendar1Icon, CalendarRangeIcon } from '@lucide/vue'
 import { Button } from '@/components/ui/button'
 import { useRouteParams } from '@vueuse/router'
 import { useBotEmailReports, useCurrentUser, useLoading } from '@/composables'

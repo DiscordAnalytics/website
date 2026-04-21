@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { WebhookIcon } from 'lucide-vue-next'
+import { WebhookIcon } from '@lucide/vue'
 import SettingCard from '@/components/dash/SettingCard.vue'
 import { Spinner } from '@/components/ui/spinner'
 import { Button } from '@/components/ui/button'
