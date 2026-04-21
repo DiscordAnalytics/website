@@ -60,7 +60,6 @@ export interface Bot {
   username: string
   avatar?: string
   watchedSince: string
-  language?: string
   framework?: string
   ownerId: string
   suspended: boolean

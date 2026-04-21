@@ -28,7 +28,7 @@ const emit = defineEmits<{
 }>()
 
 function isBotReady(b: Bot): boolean {
-  return !!(b.framework && b.language && b.lastPush)
+  return !!(b.framework && b.lastPush)
 }
 
 onMounted(() => {
@@ -77,13 +77,13 @@ onBeforeUnmount(() => {
         <EmptyMedia variant="icon">
           <Spinner />
         </EmptyMedia>
-        <EmptyTitle v-if="!bot.language || !bot.framework">
+        <EmptyTitle v-if="!bot.framework">
           {{ $t('pages.dash.onboarding.stepThree.waitingForLogin') }}
         </EmptyTitle>
         <EmptyTitle v-else>
           {{ $t('pages.dash.onboarding.stepThree.waitingForStats') }}
         </EmptyTitle>
-        <EmptyDescription v-if="!bot.language || !bot.framework">
+        <EmptyDescription v-if="!bot.framework">
           {{ $t('pages.dash.onboarding.stepThree.waitingForLoginDescription') }}
         </EmptyDescription>
         <EmptyDescription v-else>
