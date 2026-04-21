@@ -1,3 +1,13 @@
+## [1.1.3](https://github.com/DiscordAnalytics/website/compare/v1.1.2...v1.1.3) (2026-04-21)
+
+
+### Bug Fixes
+
+* **deps:** update dependency lucide-vue-next to ^0.577.0 ([39bf56c](https://github.com/DiscordAnalytics/website/commit/39bf56c3f478a1810b7abd9171ad93f7a2167cb4))
+* **deps:** update dependency lucide-vue-next to ^0.577.0 ([#39](https://github.com/DiscordAnalytics/website/issues/39)) ([14bc2bf](https://github.com/DiscordAnalytics/website/commit/14bc2bfa169286f943a6f7e42ff46fb6c9ecd3a3))
+* **deps:** update dependency lucide-vue-next to v1 ([85dc8de](https://github.com/DiscordAnalytics/website/commit/85dc8de85eb24a9dc5fd5fffce27554d1007d80d))
+* **deps:** update dependency lucide-vue-next to v1 ([#52](https://github.com/DiscordAnalytics/website/issues/52)) ([9b79f62](https://github.com/DiscordAnalytics/website/commit/9b79f62f1f375413a41b21aeeccafa522964e354))
+
 ## [1.1.2](https://github.com/DiscordAnalytics/website/compare/v1.1.1...v1.1.2) (2026-04-19)
 
 ## [1.1.1](https://github.com/DiscordAnalytics/website/compare/v1.1.0...v1.1.1) (2026-04-19)
