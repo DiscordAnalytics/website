@@ -268,10 +268,7 @@ watch(userBots, async () => {
       <main class="px-4">
         <MrRobotBanner />
         <slot
-          v-if="
-            (currentBot.framework && currentBot.language && currentBot.lastPush) ||
-            route.path.includes('/settings')
-          "
+          v-if="(currentBot.framework && currentBot.lastPush) || route.path.includes('/settings')"
         />
         <Empty v-else class="h-full">
           <EmptyHeader>
