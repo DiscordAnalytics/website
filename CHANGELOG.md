@@ -1,3 +1,11 @@
+## [1.1.4](https://github.com/DiscordAnalytics/website/compare/v1.1.3...v1.1.4) (2026-05-03)
+
+
+### Bug Fixes
+
+* add security sanitization for code blocks ([570f2a6](https://github.com/DiscordAnalytics/website/commit/570f2a6cfd2957895da442f54db9d29d5e2ef091))
+* add security sanitization for code blocks ([#60](https://github.com/DiscordAnalytics/website/issues/60)) ([73fe53a](https://github.com/DiscordAnalytics/website/commit/73fe53a4da660cf1f1ef5e5bc0d11a535c6f5dd5))
+
 ## [1.1.3](https://github.com/DiscordAnalytics/website/compare/v1.1.2...v1.1.3) (2026-04-21)
 
 
