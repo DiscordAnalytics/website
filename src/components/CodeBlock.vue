@@ -3,6 +3,7 @@ import { onMounted, ref, watch } from 'vue'
 import { type BundledLanguage, createHighlighter } from 'shiki'
 import { Button } from '@/components/ui/button'
 import { CopyIcon } from '@lucide/vue'
+import DOMPurify from 'dompurify'
 
 const props = withDefaults(
   defineProps<{
@@ -21,9 +22,14 @@ onMounted(async () => {
   })
 
   const render = () => {
-    highlighted.value = highlighter.codeToHtml(props.code, {
+    const rawHtml = highlighter.codeToHtml(props.code, {
       lang: props.lang,
       themes: { light: 'github-light', dark: 'github-dark' },
+    })
+
+    highlighted.value = DOMPurify.sanitize(rawHtml, {
+      ALLOWED_TAGS: ['pre', 'code', 'span'],
+      ALLOWED_ATTR: ['class', 'style', 'tabindex'],
     })
   }
 
