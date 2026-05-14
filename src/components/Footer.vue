@@ -49,16 +49,16 @@ import ThemedImg from '@/components/ThemedImg.vue'
                   {{ $t('components.footer.columns.product.items.achievements') }}
                 </Button>
               </RouterLink>
-              <RouterLink to="/docs">
+              <a href="/docs">
                 <Button variant="link" class="px-0 justify-start">
                   {{ $t('components.footer.columns.product.items.docs') }}
                 </Button>
-              </RouterLink>
-              <RouterLink to="/docs/get-started/installation">
+              </a>
+              <a href="/docs/get-started/installation">
                 <Button variant="link" class="px-0 justify-start">
                   {{ $t('components.footer.columns.product.items.integrate') }}
                 </Button>
-              </RouterLink>
+              </a>
             </div>
             <div class="flex flex-col">
               <h3 class="font-semibold">
@@ -99,16 +99,16 @@ import ThemedImg from '@/components/ThemedImg.vue'
               <h3 class="font-semibold">
                 {{ $t('components.footer.columns.legals.title') }}
               </h3>
-              <RouterLink to="/docs/legals/terms">
+              <a href="/docs/legals/terms">
                 <Button variant="link" class="px-0 justify-start">
                   {{ $t('components.footer.columns.legals.items.terms') }}
                 </Button>
-              </RouterLink>
-              <RouterLink to="/docs/legals/privacy-policy">
+              </a>
+              <a href="/docs/legals/privacy-policy">
                 <Button variant="link" class="px-0 justify-start">
                   {{ $t('components.footer.columns.legals.items.privacy') }}
                 </Button>
-              </RouterLink>
+              </a>
             </div>
           </div>
         </div>
