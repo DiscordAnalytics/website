@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/DiscordAnalytics/website/compare/v1.1.4...v1.1.5) (2026-05-14)
+
+
+### Bug Fixes
+
+* fixed external links in footer ([68d195e](https://github.com/DiscordAnalytics/website/commit/68d195e7d607c30f55a8a71e0e7f67a7409c5622))
+
 ## [1.1.4](https://github.com/DiscordAnalytics/website/compare/v1.1.3...v1.1.4) (2026-05-03)
 
 
