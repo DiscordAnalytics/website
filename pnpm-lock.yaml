@@ -24,8 +24,8 @@ importers:
         specifier: ^8.21.3
         version: 8.21.3(vue@3.5.34(typescript@5.9.3))
       '@tsparticles/vue3':
-        specifier: ^3.0.1
-        version: 3.0.1(typescript@5.9.3)
+        specifier: ^4.0.0
+        version: 4.0.4(typescript@5.9.3)
       '@unovis/ts':
         specifier: ^1.6.4
         version: 1.6.5
@@ -1500,6 +1500,9 @@ packages:
     resolution: {integrity: sha512-DpdgAhWMZ3Eh2gyxik8FXS6BKZ8vyea+Eu5BC4epsahqTGY9V3JGGJcXC6lRJx6cPMAx1A0FaQAojPF3v6rkmQ==}
     deprecated: tsParticles v4 is out, please upgrade for better performances and more features
 
+  '@tsparticles/engine@4.0.4':
+    resolution: {integrity: sha512-o8tTj8mUJABm965uy0Y+Q2VuNWlIeAHrjdZNE6rkr2A/jnOruoKQMWyFrE6XPbOwz0bR3wU/dRaExExyUZSPhA==}
+
   '@tsparticles/interaction-external-attract@3.9.1':
     resolution: {integrity: sha512-5AJGmhzM9o4AVFV24WH5vSqMBzOXEOzIdGLIr+QJf4fRh9ZK62snsusv/ozKgs2KteRYQx+L7c5V3TqcDy2upg==}
 
@@ -1640,8 +1643,8 @@ packages:
   '@tsparticles/updater-wobble@3.9.1':
     resolution: {integrity: sha512-c99Ogy9q4QWO+zsDXol0UnpUwZiY2UucFb8ltuDv9AlbGUeprygoub8jhgT5pEDv+GdzWOJGSgq7rfgv9cHBrg==}
 
-  '@tsparticles/vue3@3.0.1':
-    resolution: {integrity: sha512-BxaSZ0wtxq33SDsrqLkLWoV88Jd5BnBoYjyVhKSNzOLOesCiG8Z5WQC1QZGTez79l/gBe0xaCDF0ng1e2iKJvA==}
+  '@tsparticles/vue3@4.0.4':
+    resolution: {integrity: sha512-Q/hg5VjkImIzWcjDjlbVddcYHhXeHeyJ5beNddntbgq2JZDXQN0Ct5vLvN38Q/xtL8fPMkSfLl7h1bgz7AlJ7A==}
 
   '@types/d3-array@3.2.2':
     resolution: {integrity: sha512-hOLWVbm7uRza0BYXpIIW5pxfrKe0W+D5lrFiAEYR+pb6w3N2SwSMaJbXdUfSEv+dT4MfHBLtn5js0LAWaO6otw==}
@@ -5880,6 +5883,8 @@ snapshots:
 
   '@tsparticles/engine@3.9.1': {}
 
+  '@tsparticles/engine@4.0.4': {}
+
   '@tsparticles/interaction-external-attract@3.9.1':
     dependencies:
       '@tsparticles/engine': 3.9.1
@@ -6087,9 +6092,9 @@ snapshots:
     dependencies:
       '@tsparticles/engine': 3.9.1
 
-  '@tsparticles/vue3@3.0.1(typescript@5.9.3)':
+  '@tsparticles/vue3@4.0.4(typescript@5.9.3)':
     dependencies:
-      '@tsparticles/engine': 3.9.1
+      '@tsparticles/engine': 4.0.4
       vue: 3.5.34(typescript@5.9.3)
     transitivePeerDependencies:
       - typescript
