@@ -5,6 +5,7 @@ import { computed, type ComputedRef, type Ref } from 'vue'
 import { useLocalStorage } from '@vueuse/core'
 import useOAuthSessions from '@/composables/useOAuthSessions.ts'
 import type { Bot } from '@/utils/types.ts'
+import { useAnalytics } from '.'
 
 export default function useUser(
   scope: APIScope,
