@@ -8,6 +8,7 @@ import { useLocalStorage } from '@vueuse/core'
 import ThemedImg from '@/components/ThemedImg.vue'
 import CustomIcon from '@/components/CustomIcon.vue'
 import { useI18n } from 'vue-i18n'
+import useAPI, { APIScope } from '@/utils/api/index.ts'
 
 const state = ref<'loading' | 'error'>('loading')
 const error = ref<string>('')
@@ -71,7 +72,19 @@ onBeforeMount(async () => {
       refreshToken,
       userId: id,
     })
-    identify(id, { app_locale: i18n.locale.value })
+    
+    try {
+      const user = await useAPI(APIScope.User).users.get(id)
+      identify(id, {
+        app_locale: i18n.locale.value,
+        username: user.username,
+        avatar: user.avatar,
+        admin: user.admin,
+        joinedAt: user.joinedAt,
+      })
+    } catch (e) {
+      identify(id, { app_locale: i18n.locale.value })
+    }
 
     setTimeout(() => {
       const redirectAfterLogin = useLocalStorage('redirectAfterLogin', '')
