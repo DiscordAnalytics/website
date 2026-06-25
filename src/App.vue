@@ -21,18 +21,16 @@ const isChristmas = new Date().getMonth() === 11
 const snowEnabled = useLocalStorage('snowEnabled', true)
 
 onBeforeMount(() => {
-  const theme = localStorage.getItem('theme') as Color | null
+  const store = useStore()
+  setTheme(store.theme)
 
-  if (theme) setTheme(theme)
-  else setTheme('blue')
-
-  const locale = localStorage.getItem('locale')
-  if (locale) i18n.locale.value = locale
+  const locale = useLocalStorage('locale', '')
+  if (locale.value) i18n.locale.value = locale.value
   else {
     for (const lang of languages.value) {
       if (i18n.availableLocales.includes(lang)) {
         i18n.locale.value = lang
-        localStorage.setItem('locale', lang)
+        locale.value = lang
       }
     }
   }

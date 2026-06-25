@@ -79,5 +79,15 @@
     "title": "You did it!",
     "description": "Discord Analytics is now configured on your Discord bot. Go check the dashboard to see all the stats you can get",
     "goToDashboard": "Go to the dashboard"
+  },
+  "newOnboarding": {
+    "title": "Welcome to Discord Analytics",
+    "description": "Choose how you want to get started. You can try a live demo, or start collecting stats from your own Discord bot.",
+    "demoCardTitle": "Live Demo",
+    "demoCardDesc": "Explore the full dashboard with pre-populated data. Ideal if you don't have a bot ready yet or want to try the product first.",
+    "demoCardButton": "Explore Demo",
+    "connectCardTitle": "Connect Your Discord Bot",
+    "connectCardDesc": "Connect your bot via our SDK to track real-time analytics. Recommended if you're ready to integrate.",
+    "connectCardButton": "Connect Bot"
   }
 }

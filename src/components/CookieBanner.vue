@@ -69,6 +69,8 @@ onMounted(() => {
     },
   })
 
+  ;(window as any).posthog = posthog
+
   if (analyticsConsent) {
     posthog.opt_in_capturing()
   }

@@ -4,6 +4,7 @@ import { AlertCircleIcon, PlusIcon } from '@lucide/vue'
 import { useRoute, useRouter } from 'vue-router'
 import { Button } from '@/components/ui/button'
 import { useAnalytics, useAuthToken, useOAuth } from '@/composables'
+import { useLocalStorage } from '@vueuse/core'
 import ThemedImg from '@/components/ThemedImg.vue'
 import CustomIcon from '@/components/CustomIcon.vue'
 import { useI18n } from 'vue-i18n'
@@ -45,7 +46,7 @@ onBeforeMount(async () => {
   }
 
   if (!code) {
-    if (redirection) localStorage.setItem('redirectAfterLogin', redirection)
+    if (redirection) useLocalStorage('redirectAfterLogin', '').value = redirection
 
     return redirect()
   }
@@ -73,11 +74,12 @@ onBeforeMount(async () => {
     identify(id, { app_locale: i18n.locale.value })
 
     setTimeout(() => {
-      const redirectAfterLogin = localStorage.getItem('redirectAfterLogin')
+      const redirectAfterLogin = useLocalStorage('redirectAfterLogin', '')
 
-      if (redirectAfterLogin) {
-        localStorage.removeItem('redirectAfterLogin')
-        return router.push(redirectAfterLogin)
+      if (redirectAfterLogin.value) {
+        const url = redirectAfterLogin.value
+        redirectAfterLogin.value = null
+        return router.push(url)
       } else return router.push('/')
     }, 1000)
   } else

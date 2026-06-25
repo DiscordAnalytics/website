@@ -2,6 +2,7 @@ import useAPI, { APIScope } from '@/utils/api'
 import { useStore } from '@/stores'
 import { useRoute, useRouter } from 'vue-router'
 import { computed, type ComputedRef, type Ref } from 'vue'
+import { useLocalStorage } from '@vueuse/core'
 import useOAuthSessions from '@/composables/useOAuthSessions.ts'
 import type { Bot } from '@/utils/types.ts'
 
@@ -20,19 +21,49 @@ export default function useUser(
       ? (store.userBotIds[userId.value] ?? [])
           .map((id) => store.bots[id])
           .filter((b): b is Bot => !!b)
+          .filter((b) => {
+            if (b.botId === 'demo-bot') {
+              return window.location.pathname.includes('/bots/demo-bot')
+            }
+            return true
+          })
       : [],
   )
   const ownedBots = computed(() => userBots.value.filter((bot) => bot.ownerId === userId.value))
-  const notOwnedBots = computed(() =>
-    userBots.value.filter((bot) => bot.team.includes(userId.value!)),
-  )
+  const notOwnedBots = computed(() => userBots.value.filter((bot) => bot.ownerId !== userId.value))
   const accessibleBots = computed(() => [...ownedBots.value, ...notOwnedBots.value])
 
   async function fetch() {
     if (!userId.value) throw new Error('Not Authenticated')
     store.allUsers.push(await api.users.get(userId.value))
     const { ownedBots, teamBots } = await api.users.getBots(userId.value)
-    const allUserBots = [...ownedBots, ...teamBots]
+    let allUserBots = [...ownedBots, ...teamBots]
+    if (useLocalStorage('sandbox_demo', false).value) {
+      const demoBot = {
+        botId: 'demo-bot',
+        username: 'Demo Bot',
+        watchedSince: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString(),
+        framework: 'discord.js',
+        ownerId: 'demo-owner',
+        suspended: false,
+        version: '1.0.0',
+        team: [userId.value || 'demo-user'],
+        lastPush: new Date().toISOString(),
+        advancedStats: true,
+        goalsLimit: 5,
+        customEventsLimit: 10,
+        teammatesLimit: 3,
+        webhooksConfig: {
+          providers: {},
+        },
+      }
+      if (!allUserBots.some((b) => b.botId === 'demo-bot')) {
+        allUserBots.push(demoBot)
+      }
+    } else {
+      allUserBots = allUserBots.filter((b) => b.botId !== 'demo-bot')
+      delete store.bots['demo-bot']
+    }
     for (const bot of allUserBots) {
       store.bots[bot.botId] = bot
     }

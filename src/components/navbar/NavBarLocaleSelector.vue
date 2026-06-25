@@ -11,6 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { useLocalStorage } from '@vueuse/core'
 import { selectLocale } from '@/utils/functions.ts'
 
 defineProps<{
@@ -22,7 +23,7 @@ const i18n = useI18n()
 function switchLocale(locale: (typeof i18n.availableLocales)[number]) {
   if (i18n.availableLocales.includes(locale)) {
     i18n.locale.value = locale
-    localStorage.setItem('locale', locale)
+    useLocalStorage('locale', '').value = locale
     document.querySelector('html')?.setAttribute('lang', locale)
     if (!maintainedLocales.includes(locale))
       toast({

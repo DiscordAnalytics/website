@@ -6,6 +6,7 @@ import '@/assets/index.css'
 import { createI18n } from 'vue-i18n'
 import * as locales from './locales'
 import Particles from '@tsparticles/vue3'
+import type { Engine } from '@tsparticles/engine'
 import { loadFull } from 'tsparticles'
 
 const app = createApp(App)
@@ -25,7 +26,7 @@ app
   .use(router)
   .use(i18n)
   .use(Particles, {
-    init: async (engine) => {
+    init: async (engine: Engine) => {
       await loadFull(engine)
     },
   })
