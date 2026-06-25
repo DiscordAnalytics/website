@@ -5,6 +5,7 @@ import { useRouteParams } from '@vueuse/router'
 import { useBot, useLoading } from '@/composables'
 import { ref, watch } from 'vue'
 import { Switch } from '@/components/ui/switch'
+import { useAnalytics } from '@/composables/index.ts'
 import { toast } from 'vue-sonner'
 import { useI18n } from 'vue-i18n'
 
@@ -20,6 +21,10 @@ watch(advancedStats, async () => {
   await withLoading(async () => {
     await toggleAdvancedStats()
       .then(() => {
+        useAnalytics().capture('advanced_stats_toggled', {
+          enabled: advancedStats.value,
+          bot_id: botId.value,
+        })
         if (advancedStats.value)
           toast.success(t('pages.dash.settings.general.advancedStats.toasts.enabled'))
         else

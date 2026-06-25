@@ -18,7 +18,7 @@ const router = useRouter()
 const route = useRoute()
 const { config: oauthConfig, fetch: fetchOAuthConfig } = useOAuth()
 const { setTokens } = useAuthToken()
-const { identify } = useAnalytics()
+const { identify, capture } = useAnalytics()
 
 const authErrors = {
   access_denied: i18n.t('pages.auth.errors.access_denied'),
@@ -72,7 +72,7 @@ onBeforeMount(async () => {
       refreshToken,
       userId: id,
     })
-    
+
     try {
       const user = await useAPI(APIScope.User).users.get(id)
       identify(id, {
@@ -82,8 +82,10 @@ onBeforeMount(async () => {
         admin: user.admin,
         joinedAt: user.joinedAt,
       })
-    } catch (e) {
+      capture('user_logged_in')
+    } catch {
       identify(id, { app_locale: i18n.locale.value })
+      capture('user_logged_in')
     }
 
     setTimeout(() => {

@@ -76,7 +76,9 @@ const form = useForm({
 
 async function onTeammateDelete(userId: string) {
   await withLoading(async () => {
-    await removeTeammate(userId)
+    await removeTeammate(userId).then(() => {
+      capture('teammate_removed', { bot_id: botId.value })
+    })
   })
 }
 

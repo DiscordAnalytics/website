@@ -23,7 +23,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
-import { useCurrentUser, useLoading } from '@/composables'
+import { useCurrentUser, useLoading, useAnalytics } from '@/composables'
 import DiscordAvatar from '@/components/DiscordAvatar.vue'
 import { Field as VeeField, useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
@@ -63,6 +63,10 @@ const onSubmit = form.handleSubmit(async (values) => {
   await withLoading(async () => {
     await copyAchievement(values.botId, selectedAchievement.value!.id)
       .then(() => {
+        useAnalytics().capture('achievement_copied', {
+          bot_id: values.botId,
+          achievement_id: selectedAchievement.value!.id,
+        })
         toast.success('Achievement successfully copied!')
         isCopyModelOpen.value = false
       })

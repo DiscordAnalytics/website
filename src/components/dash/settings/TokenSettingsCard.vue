@@ -13,6 +13,7 @@ import { useRouteParams } from '@vueuse/router'
 import { useBot, useLoading } from '@/composables'
 import { useClipboard } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
+import { useAnalytics } from '@/composables/index.ts'
 import { onMounted, ref } from 'vue'
 import { toast } from 'vue-sonner'
 
@@ -34,6 +35,7 @@ async function onTokenRefresh() {
   await withLoading(async () => {
     await regenBotToken()
       .then(async () => {
+        useAnalytics().capture('api_token_reset', { bot_id: botId.value })
         botToken.value = (await getBotToken()).token
         toast.success(t('pages.dash.settings.general.token.toast'))
       })

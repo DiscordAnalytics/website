@@ -4,7 +4,7 @@ import SettingCard from '@/components/dash/SettingCard.vue'
 import { Calendar1Icon, CalendarRangeIcon } from '@lucide/vue'
 import { Button } from '@/components/ui/button'
 import { useRouteParams } from '@vueuse/router'
-import { useBotEmailReports, useCurrentUser, useLoading } from '@/composables'
+import { useBotEmailReports, useCurrentUser, useLoading, useAnalytics } from '@/composables'
 import { onMounted } from 'vue'
 import { Spinner } from '@/components/ui/spinner'
 import { toast } from 'vue-sonner'
@@ -21,13 +21,21 @@ const { isLoading, withLoading } = useLoading()
 
 async function onSubscribe(frequency: 'weekly' | 'monthly') {
   await withLoading(async () => {
-    await createReport(frequency).catch((err) => toast.error(err.message))
+    await createReport(frequency)
+      .then(() =>
+        useAnalytics().capture('email_reports_subscribed', { frequency, bot_id: botId.value }),
+      )
+      .catch((err) => toast.error(err.message))
   })
 }
 
 async function onUnsubscribe(frequency: 'weekly' | 'monthly') {
   await withLoading(async () => {
-    await removeReport(frequency).catch((err) => toast.error(err.message))
+    await removeReport(frequency)
+      .then(() =>
+        useAnalytics().capture('email_reports_unsubscribed', { frequency, bot_id: botId.value }),
+      )
+      .catch((err) => toast.error(err.message))
   })
 }
 

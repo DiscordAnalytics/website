@@ -9,5 +9,9 @@ export default function useAnalytics() {
     posthog.identify(userId, properties)
   }
 
-  return { capture, identify }
+  function reset() {
+    posthog.reset()
+  }
+
+  return { capture, identify, reset }
 }

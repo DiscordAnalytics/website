@@ -18,11 +18,11 @@ import {
   StepperTitle,
   StepperTrigger,
 } from '@/components/ui/stepper'
-import { Check, Clock, Code, IdCard, Sparkles, Bot as BotIcon, ArrowLeft } from '@lucide/vue'
+import { Check, Clock, Code, IdCard, ArrowLeft } from '@lucide/vue'
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import { addBotSchema } from '@/utils/formSchemas.ts'
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useAddBot, useAnalytics, useCurrentUser, useLoading, useFeatureFlag } from '@/composables'
 import {

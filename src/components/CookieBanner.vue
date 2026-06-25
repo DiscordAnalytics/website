@@ -68,7 +68,6 @@ onMounted(() => {
       else return event
     },
   })
-
   ;(window as any).posthog = posthog
 
   if (analyticsConsent.value) {

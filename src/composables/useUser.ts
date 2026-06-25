@@ -81,6 +81,9 @@ export default function useUser(
     api.clearTokens()
     store.clear()
 
+    useAnalytics().capture('user_logged_out')
+    useAnalytics().reset()
+
     setTimeout(async () => {
       if (route.path.startsWith('/dash') || route.path.startsWith('/auth')) await router.push('/')
     }, 500)
