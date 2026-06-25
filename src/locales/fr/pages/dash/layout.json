@@ -23,8 +23,13 @@
     }
   },
   "notConfigured": {
-    "title": "Configuration isn't finished",
-    "description": "It seems you didn't finished configuring Discord Analytics on your bot.",
-    "button": "Finish configuration"
+    "title": "La configuration n'est pas terminée",
+    "description": "Il semble que vous n'ayez pas terminé de configurer Discord Analytics sur votre bot.",
+    "button": "Terminer la configuration"
+  },
+  "demoBanner": {
+    "title": "Mode Démo",
+    "description": "Vous consultez actuellement une démonstration. Prêt à analyser vos propres données ? Ajoutez votre bot pour obtenir vos statistiques !",
+    "button": "Ajouter mon bot"
   }
 }
