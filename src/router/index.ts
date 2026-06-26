@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import useCurrentUser from '@/composables/useCurrentUser.ts'
+import { useCurrentUser } from '@/composables'
 import { useLocalStorage } from '@vueuse/core'
 
 const router = createRouter({

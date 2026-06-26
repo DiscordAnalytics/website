@@ -2,10 +2,9 @@
 import SettingCard from '@/components/dash/SettingCard.vue'
 import { ZapIcon } from '@lucide/vue'
 import { useRouteParams } from '@vueuse/router'
-import { useBot, useLoading } from '@/composables'
+import { useAnalytics, useBot, useLoading } from '@/composables'
 import { ref, watch } from 'vue'
 import { Switch } from '@/components/ui/switch'
-import { useAnalytics } from '@/composables/index.ts'
 import { toast } from 'vue-sonner'
 import { useI18n } from 'vue-i18n'
 
