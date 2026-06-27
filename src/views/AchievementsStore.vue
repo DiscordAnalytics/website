@@ -1,4 +1,11 @@
 <script setup lang="ts">
+import { FrownIcon, FunnelXIcon, SparklesIcon } from '@lucide/vue'
+import { toTypedSchema } from '@vee-validate/zod'
+import { Field as VeeField, useForm } from 'vee-validate'
+import { computed, onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { toast } from 'vue-sonner'
+
 import { DiscordAvatar, PageLayout } from '@/components'
 import {
   Button,
@@ -30,15 +37,9 @@ import {
   Spinner,
 } from '@/components/ui'
 import { useAchievementsStore, useAnalytics, useCurrentUser, useLoading } from '@/composables'
-import { computed, onMounted, ref } from 'vue'
-import { FrownIcon, FunnelXIcon, SparklesIcon } from '@lucide/vue'
-import { useI18n } from 'vue-i18n'
-import { selectLocale } from '@/utils/functions.ts'
-import { Field as VeeField, useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
 import { copyAchievementFormSchema } from '@/utils/formSchemas.ts'
+import { selectLocale } from '@/utils/functions.ts'
 import type { Achievement } from '@/utils/types.ts'
-import { toast } from 'vue-sonner'
 
 const { achievements, fetch: fetchAchievements, copy: copyAchievement } = useAchievementsStore()
 const { userInfos, ownedBots: userBots } = useCurrentUser()

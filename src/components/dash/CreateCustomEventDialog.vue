@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { Field as VeeField, useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
+import { Field as VeeField, useForm } from 'vee-validate'
+import { watch } from 'vue'
 
 import {
   Button,
@@ -21,7 +22,6 @@ import {
   Spinner,
 } from '@/components/ui'
 import { createCustomEventSchema } from '@/utils/formSchemas.ts'
-import { watch } from 'vue'
 
 const props = defineProps<{
   isLoading: boolean

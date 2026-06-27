@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { AlertTriangleIcon } from '@lucide/vue'
+import { Field as VeeField } from 'vee-validate'
+
 import {
   Button,
   Checkbox,
@@ -16,9 +19,7 @@ import {
   Label,
   Spinner,
 } from '@/components/ui'
-import { Field as VeeField } from 'vee-validate'
 import { useCurrentUser } from '@/composables'
-import { AlertTriangleIcon } from '@lucide/vue'
 
 defineProps<{
   loading: boolean

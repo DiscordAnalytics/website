@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { Badge, Button } from '@/components/ui'
-import { ThemedImg } from '@/components'
-import scrollTo from '@/utils/scrollTo.ts'
-import { cn } from '@/lib/utils.ts'
 import { SparklesIcon } from '@lucide/vue'
+
+import { ThemedImg } from '@/components'
+import { Badge, Button } from '@/components/ui'
+import { cn } from '@/lib/utils.ts'
+import scrollTo from '@/utils/scrollTo.ts'
 </script>
 
 <template>

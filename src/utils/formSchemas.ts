@@ -1,6 +1,7 @@
 import * as z from 'zod'
-import type { BotAchievementType } from '@/utils/types.ts'
+
 import { i18n } from '@/main.ts'
+import type { BotAchievementType } from '@/utils/types.ts'
 
 function t(key: string) {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment

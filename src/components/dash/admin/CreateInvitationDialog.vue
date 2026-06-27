@@ -1,4 +1,10 @@
 <script setup lang="ts">
+import { toTypedSchema } from '@vee-validate/zod'
+import { Field as VeeField, useForm } from 'vee-validate'
+import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { toast } from 'vue-sonner'
+
 import {
   Button,
   Dialog,
@@ -14,13 +20,8 @@ import {
   Input,
   Spinner,
 } from '@/components/ui'
-import { ref } from 'vue'
 import { useBotTeam, useLoading } from '@/composables'
-import { Field as VeeField, useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
 import { adminCreateInvitationFormSchema } from '@/utils/formSchemas.ts'
-import { toast } from 'vue-sonner'
-import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 

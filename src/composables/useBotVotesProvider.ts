@@ -1,7 +1,8 @@
-import { computed, type Ref } from 'vue'
-import type { VotesProvider } from '@/utils/types.ts'
-import useAPI, { APIScope } from '@/utils/api'
+import { type Ref, computed } from 'vue'
+
 import { useStore } from '@/stores'
+import useAPI, { APIScope } from '@/utils/api'
+import type { VotesProvider } from '@/utils/types.ts'
 
 export default function useBotVotesProvider(botId: Ref<string>, provider: VotesProvider) {
   const api = useAPI(APIScope.User)

@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import type { DialogContentEmits, DialogContentProps } from 'reka-ui'
-import type { HTMLAttributes } from 'vue'
-import type { SheetVariants } from '.'
-import { reactiveOmit } from '@vueuse/core'
 import { X } from '@lucide/vue'
+import { reactiveOmit } from '@vueuse/core'
+import type { DialogContentEmits, DialogContentProps } from 'reka-ui'
 import {
   DialogClose,
   DialogContent,
@@ -11,7 +9,11 @@ import {
   DialogPortal,
   useForwardPropsEmits,
 } from 'reka-ui'
+import type { HTMLAttributes } from 'vue'
+
 import { cn } from '@/lib/utils'
+
+import type { SheetVariants } from '.'
 import { sheetVariants } from '.'
 
 interface SheetContentProps extends DialogContentProps {

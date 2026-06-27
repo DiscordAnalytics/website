@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { PartyPopperIcon } from '@lucide/vue'
+import { useRouteQuery } from '@vueuse/router'
+import { useRoute } from 'vue-router'
+
 import {
   Button,
   Empty,
@@ -8,10 +12,7 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from '@/components/ui'
-import { PartyPopperIcon } from '@lucide/vue'
-import { useRoute } from 'vue-router'
 import { useBot } from '@/composables'
-import { useRouteQuery } from '@vueuse/router'
 
 const route = useRoute()
 const botId = useRouteQuery<string>('botId', '')

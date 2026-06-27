@@ -1,4 +1,10 @@
 <script setup lang="ts">
+import { toTypedSchema } from '@vee-validate/zod'
+import { Field as VeeField, useForm } from 'vee-validate'
+import { watch } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { toast } from 'vue-sonner'
+
 import {
   Button,
   Checkbox,
@@ -15,14 +21,9 @@ import {
   Label,
   Spinner,
 } from '@/components/ui'
-import { Field as VeeField, useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
-import { adminUpdateUserLimitsFormSchema } from '@/utils/formSchemas.ts'
-import { toast } from 'vue-sonner'
-import { watch } from 'vue'
-import type { User } from '@/utils/types.ts'
 import { useLoading, useUsers } from '@/composables'
-import { useI18n } from 'vue-i18n'
+import { adminUpdateUserLimitsFormSchema } from '@/utils/formSchemas.ts'
+import type { User } from '@/utils/types.ts'
 
 const { t } = useI18n()
 

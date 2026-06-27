@@ -1,4 +1,12 @@
 <script setup lang="ts">
+import { CopyIcon, EyeIcon, EyeOffIcon, KeyIcon, RefreshCwIcon } from '@lucide/vue'
+import { useClipboard } from '@vueuse/core'
+import { useRouteParams } from '@vueuse/router'
+import { onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { toast } from 'vue-sonner'
+
+import { SettingCard } from '@/components'
 import {
   Button,
   InputGroup,
@@ -7,14 +15,7 @@ import {
   InputGroupInput,
   Spinner,
 } from '@/components/ui'
-import { SettingCard } from '@/components'
-import { CopyIcon, EyeIcon, EyeOffIcon, KeyIcon, RefreshCwIcon } from '@lucide/vue'
-import { useRouteParams } from '@vueuse/router'
 import { useAnalytics, useBot, useLoading } from '@/composables'
-import { useClipboard } from '@vueuse/core'
-import { useI18n } from 'vue-i18n'
-import { onMounted, ref } from 'vue'
-import { toast } from 'vue-sonner'
 
 const botId = useRouteParams<string>('id')
 const { getToken: getBotToken, regenToken: regenBotToken } = useBot(botId)

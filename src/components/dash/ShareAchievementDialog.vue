@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { toTypedSchema } from '@vee-validate/zod'
+import { Field as VeeField, useForm } from 'vee-validate'
+
 import {
   Button,
   Checkbox,
@@ -19,8 +22,6 @@ import {
   SelectValue,
   Spinner,
 } from '@/components/ui'
-import { Field as VeeField, useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
 import { shareAchievementFormSchema } from '@/utils/formSchemas.ts'
 
 defineProps<{

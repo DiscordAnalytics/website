@@ -1,6 +1,10 @@
 <script setup lang="ts">
+import { FrownIcon, PencilIcon, SparklesIcon, TrashIcon } from '@lucide/vue'
 import { onMounted, ref } from 'vue'
-import { useAchievementsStore, useBotAchievements, useLoading } from '@/composables'
+import { useI18n } from 'vue-i18n'
+import { toast } from 'vue-sonner'
+
+import { AdminDashLayout, DeleteAchievementDialog, EditAchievementDialog } from '@/components'
 import {
   Card,
   CardContent,
@@ -14,14 +18,11 @@ import {
   EmptyTitle,
   Spinner,
 } from '@/components/ui'
-import { FrownIcon, PencilIcon, SparklesIcon, TrashIcon } from '@lucide/vue'
-import type { Achievement } from '@/utils/types.ts'
-import { useI18n } from 'vue-i18n'
-import { AdminDashLayout, DeleteAchievementDialog, EditAchievementDialog } from '@/components'
-import { APIScope } from '@/utils/api'
-import { toast } from 'vue-sonner'
+import { useAchievementsStore, useBotAchievements, useLoading } from '@/composables'
 import { useStore } from '@/stores'
+import { APIScope } from '@/utils/api'
 import { selectLocale } from '@/utils/functions.ts'
+import type { Achievement } from '@/utils/types.ts'
 
 const { achievements, fetch: fetchAchievements } = useAchievementsStore(APIScope.Admin)
 const store = useStore()

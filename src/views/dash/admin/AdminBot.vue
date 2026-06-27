@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { useRouteParams } from '@vueuse/router'
+import { computed, onMounted, ref } from 'vue'
+
 import {
   AdminDashLayout,
   DeleteBotsDialog,
@@ -6,10 +9,6 @@ import {
   EditBotsLimitsDialog,
   SuspendBotsDialog,
 } from '@/components'
-import { useBot, useBotAchievements, useBotCustomEvents, useLoading, useUser } from '@/composables'
-import { computed, onMounted, ref } from 'vue'
-import { useRouteParams } from '@vueuse/router'
-import { APIScope } from '@/utils/api'
 import {
   Button,
   Card,
@@ -22,6 +21,8 @@ import {
   Progress,
   Spinner,
 } from '@/components/ui'
+import { useBot, useBotAchievements, useBotCustomEvents, useLoading, useUser } from '@/composables'
+import { APIScope } from '@/utils/api'
 import { df } from '@/utils/dateTime.ts'
 
 const botId = useRouteParams<string>('id')

@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { WebhookIcon } from '@lucide/vue'
-import { SettingCard } from '@/components'
-import { Button, Input, Spinner } from '@/components/ui'
-import { useBot, useLoading, useAnalytics } from '@/composables'
 import { useRouteParams } from '@vueuse/router'
 import { ref } from 'vue'
 import { toast } from 'vue-sonner'
+
+import { SettingCard } from '@/components'
+import { Button, Input, Spinner } from '@/components/ui'
+import { useAnalytics, useBot, useLoading } from '@/composables'
 
 const botId = useRouteParams<string>('id')
 const { bot, updateVotesWebhook, testVotesWebhook } = useBot(botId)

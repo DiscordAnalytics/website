@@ -1,5 +1,19 @@
 <script setup lang="ts">
 import {
+  CalendarDate,
+  endOfMonth,
+  getLocalTimeZone,
+  today as getToday,
+  parseDate,
+  startOfMonth,
+} from '@internationalized/date'
+import { CalendarIcon, ChevronLeftIcon, ChevronRightIcon } from '@lucide/vue'
+import { breakpointsTailwind, createReusableTemplate, useBreakpoints } from '@vueuse/core'
+import { useRouteQuery } from '@vueuse/router'
+import type { AcceptableValue, DateRange } from 'reka-ui'
+import { type Ref, onMounted, ref, watch } from 'vue'
+
+import {
   Button,
   ButtonGroup,
   Popover,
@@ -12,22 +26,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui'
-import { onMounted, ref, type Ref, watch } from 'vue'
 import { cn } from '@/lib/utils.ts'
-import { CalendarIcon, ChevronLeftIcon, ChevronRightIcon } from '@lucide/vue'
-import type { AcceptableValue, DateRange } from 'reka-ui'
-import {
-  CalendarDate,
-  endOfMonth,
-  getLocalTimeZone,
-  parseDate,
-  startOfMonth,
-  today as getToday,
-} from '@internationalized/date'
-import { df } from '@/utils/dateTime.ts'
-import { useRouteQuery } from '@vueuse/router'
 import { useStore } from '@/stores'
-import { breakpointsTailwind, createReusableTemplate, useBreakpoints } from '@vueuse/core'
+import { df } from '@/utils/dateTime.ts'
 
 const store = useStore()
 const startQuery = useRouteQuery<string | null>('start')

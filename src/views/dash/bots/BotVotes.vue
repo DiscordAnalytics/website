@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import { computed, type Ref, watch } from 'vue'
-import { useBotStats, useLoading } from '@/composables'
+import { ExternalLinkIcon, InfoIcon, XIcon } from '@lucide/vue'
+import { useLocalStorage } from '@vueuse/core'
 import { useRouteParams } from '@vueuse/router'
-import { calculateVotes, getRangeGranularity, getTickFormatter } from '@/utils/statsManager.ts'
-import { useStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 import type { DateRange } from 'reka-ui'
-import type { ChartConfig, ChartData } from '@/utils/types.ts'
-import { LineChart, PieChart, StatsPage } from '@/components'
+import { type Ref, computed, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+
+import { LineChart, PieChart, StatsPage } from '@/components'
 import {
   Button,
   Item,
@@ -18,8 +17,10 @@ import {
   ItemMedia,
   ItemTitle,
 } from '@/components/ui'
-import { ExternalLinkIcon, InfoIcon, XIcon } from '@lucide/vue'
-import { useLocalStorage } from '@vueuse/core'
+import { useBotStats, useLoading } from '@/composables'
+import { useStore } from '@/stores'
+import { calculateVotes, getRangeGranularity, getTickFormatter } from '@/utils/statsManager.ts'
+import type { ChartConfig, ChartData } from '@/utils/types.ts'
 
 const botId = useRouteParams<string>('id')
 const { stats, fetch: fetchStats } = useBotStats(botId)

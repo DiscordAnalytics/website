@@ -1,4 +1,14 @@
 <script setup lang="ts">
+import { ArrowLeft, Check, Clock, Code, IdCard } from '@lucide/vue'
+import { toTypedSchema } from '@vee-validate/zod'
+import { breakpointsTailwind, useBreakpoints, useLocalStorage } from '@vueuse/core'
+import { useRouteQuery } from '@vueuse/router'
+import { useForm } from 'vee-validate'
+import { onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useRoute, useRouter } from 'vue-router'
+import { toast } from 'vue-sonner'
+
 import {
   OnboardingStepFour,
   OnboardingStepOne,
@@ -22,19 +32,10 @@ import {
   StepperTitle,
   StepperTrigger,
 } from '@/components/ui'
-import { Check, Clock, Code, IdCard, ArrowLeft } from '@lucide/vue'
-import { toTypedSchema } from '@vee-validate/zod'
-import { useForm } from 'vee-validate'
-import { addBotSchema } from '@/utils/formSchemas.ts'
-import { ref, onMounted } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { useAddBot, useAnalytics, useCurrentUser, useLoading, useFeatureFlag } from '@/composables'
-import { useRouteQuery } from '@vueuse/router'
-import { toast } from 'vue-sonner'
-import fireworksParticlesOptions from '@/utils/particles/fireworks.ts'
-import { breakpointsTailwind, useBreakpoints, useLocalStorage } from '@vueuse/core'
+import { useAddBot, useAnalytics, useCurrentUser, useFeatureFlag, useLoading } from '@/composables'
 import { cn } from '@/lib/utils.ts'
-import { useI18n } from 'vue-i18n'
+import { addBotSchema } from '@/utils/formSchemas.ts'
+import fireworksParticlesOptions from '@/utils/particles/fireworks.ts'
 
 const { t } = useI18n()
 const router = useRouter()

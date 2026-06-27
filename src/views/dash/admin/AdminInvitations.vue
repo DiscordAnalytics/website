@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import { ArrowUpDown, FrownIcon, PlusIcon } from '@lucide/vue'
+import type { ColumnDef } from '@tanstack/vue-table'
+import { computed, h, onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+
 import {
   AdminDashLayout,
   AnswerInvitationsDialog,
@@ -6,10 +11,6 @@ import {
   DataTable,
   DiscordAvatar,
 } from '@/components'
-import { useLoading, useTeamInvitations } from '@/composables'
-import { computed, h, onMounted, ref } from 'vue'
-import type { DataTableAction, TeamInvitationData } from '@/utils/types.ts'
-import type { ColumnDef } from '@tanstack/vue-table'
 import {
   Button,
   Checkbox,
@@ -19,10 +20,10 @@ import {
   EmptyTitle,
   Spinner,
 } from '@/components/ui'
-import { ArrowUpDown, FrownIcon, PlusIcon } from '@lucide/vue'
-import { df } from '@/utils/dateTime.ts'
-import { useI18n } from 'vue-i18n'
+import { useLoading, useTeamInvitations } from '@/composables'
 import { APIScope } from '@/utils/api'
+import { df } from '@/utils/dateTime.ts'
+import type { DataTableAction, TeamInvitationData } from '@/utils/types.ts'
 
 const { t } = useI18n()
 const { invitations, fetch: fetchInvitations } = useTeamInvitations(APIScope.Admin)

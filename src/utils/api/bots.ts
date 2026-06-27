@@ -1,4 +1,9 @@
+import type { DateRange } from 'reka-ui'
+
 import { type APIClient, APIError, APIScope } from '@/utils/api/index.ts'
+import InvitationsResource from '@/utils/api/invitations.ts'
+import VotesProviderResource from '@/utils/api/votes.ts'
+import { dateToUTCDateTime } from '@/utils/dateTime.ts'
 import type {
   Achievement,
   Bot,
@@ -8,10 +13,6 @@ import type {
   StatsReport,
   Teammate,
 } from '@/utils/types.ts'
-import type { DateRange } from 'reka-ui'
-import { dateToUTCDateTime } from '@/utils/dateTime.ts'
-import InvitationsResource from '@/utils/api/invitations.ts'
-import VotesProviderResource from '@/utils/api/votes.ts'
 
 export default class BotsResource {
   constructor(private readonly api: APIClient) {}

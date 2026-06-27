@@ -1,4 +1,10 @@
 <script setup lang="ts">
+import { ArrowUpDown, FrownIcon } from '@lucide/vue'
+import type { ColumnDef } from '@tanstack/vue-table'
+import { computed, h, onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useRouter } from 'vue-router'
+
 import {
   AdminDashLayout,
   DataTable,
@@ -7,10 +13,6 @@ import {
   EditUsersLimitsDialog,
   SuspendUsersDialog,
 } from '@/components'
-import { useLoading, useUsers } from '@/composables'
-import { computed, h, onMounted, ref } from 'vue'
-import type { DataTableAction, User } from '@/utils/types.ts'
-import type { ColumnDef } from '@tanstack/vue-table'
 import {
   Badge,
   Button,
@@ -21,10 +23,9 @@ import {
   EmptyTitle,
   Spinner,
 } from '@/components/ui'
-import { ArrowUpDown, FrownIcon } from '@lucide/vue'
+import { useLoading, useUsers } from '@/composables'
 import { df } from '@/utils/dateTime.ts'
-import { useRouter } from 'vue-router'
-import { useI18n } from 'vue-i18n'
+import type { DataTableAction, User } from '@/utils/types.ts'
 
 const { t } = useI18n()
 

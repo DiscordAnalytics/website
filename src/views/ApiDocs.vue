@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ApiReference } from '@scalar/api-reference'
+import '@scalar/api-reference/style.css'
+
 import { NavBar } from '@/components'
 import { Separator } from '@/components/ui'
-import '@scalar/api-reference/style.css'
 import { useConfig } from '@/composables'
 
 const config = useConfig()

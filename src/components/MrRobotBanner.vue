@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
-import { useLocalStorage } from '@vueuse/core'
-import { Button } from '@/components/ui'
 import { XIcon } from '@lucide/vue'
+import { useLocalStorage } from '@vueuse/core'
+import { useI18n } from 'vue-i18n'
+
+import { Button } from '@/components/ui'
 
 const i18n = useI18n()
 const maskedPopups = useLocalStorage<string[]>('maskedPopups', [])

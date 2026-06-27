@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import { CheckIcon, FrownIcon, XIcon } from '@lucide/vue'
+import { onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { toast } from 'vue-sonner'
+
 import { AccountDashLayout, DiscordAvatar } from '@/components'
 import {
   Button,
@@ -14,11 +19,7 @@ import {
   ItemTitle,
   Spinner,
 } from '@/components/ui'
-import { CheckIcon, FrownIcon, XIcon } from '@lucide/vue'
-import { useLoading, useTeamInvitations, useAnalytics } from '@/composables'
-import { onMounted } from 'vue'
-import { toast } from 'vue-sonner'
-import { useI18n } from 'vue-i18n'
+import { useAnalytics, useLoading, useTeamInvitations } from '@/composables'
 
 const { invitations, fetch: fetchInvitations, accept, reject } = useTeamInvitations()
 const i18n = useI18n()

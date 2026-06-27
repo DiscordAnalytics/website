@@ -1,4 +1,12 @@
 <script setup lang="ts">
+import { MonitorIcon, MoonIcon, PaletteIcon, SunIcon } from '@lucide/vue'
+import { createReusableTemplate, useColorMode, useLocalStorage } from '@vueuse/core'
+import { storeToRefs } from 'pinia'
+import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { toast } from 'vue-sonner'
+
+import { isChristmas } from '@/components'
 import {
   Button,
   ButtonGroup,
@@ -10,16 +18,9 @@ import {
   PopoverTrigger,
   Switch,
 } from '@/components/ui'
-import { MonitorIcon, MoonIcon, PaletteIcon, SunIcon } from '@lucide/vue'
-import { useStore } from '@/stores'
-import { ref } from 'vue'
-import { createReusableTemplate, useColorMode, useLocalStorage } from '@vueuse/core'
-import { useI18n } from 'vue-i18n'
-import { toast } from 'vue-sonner'
-import type { Color } from '@/utils/types.ts'
 import { cn } from '@/lib/utils.ts'
-import { storeToRefs } from 'pinia'
-import { isChristmas } from '@/components'
+import { useStore } from '@/stores'
+import type { Color } from '@/utils/types.ts'
 
 defineProps<{
   mobile?: boolean

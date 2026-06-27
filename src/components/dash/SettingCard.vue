@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { ExternalLinkIcon } from '@lucide/vue'
 import { type Component } from 'vue'
+
 import {
   Button,
   Item,
@@ -10,7 +12,6 @@ import {
   ItemTitle,
 } from '@/components/ui'
 import { cn } from '@/lib/utils.ts'
-import { ExternalLinkIcon } from '@lucide/vue'
 
 withDefaults(
   defineProps<{

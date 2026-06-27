@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ChevronsLeftRightEllipsisIcon } from '@lucide/vue'
+
 import { PageLayout } from '@/components'
 import {
   Button,
@@ -9,7 +11,6 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from '@/components/ui'
-import { ChevronsLeftRightEllipsisIcon } from '@lucide/vue'
 </script>
 
 <template>

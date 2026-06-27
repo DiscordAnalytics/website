@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
-import { useCurrentUser } from '@/composables'
 import { useLocalStorage } from '@vueuse/core'
+import { onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+
 import { PageLayout } from '@/components'
 import { Empty, EmptyHeader, EmptyMedia, EmptyTitle, Spinner } from '@/components/ui'
-import { onMounted } from 'vue'
+import { useCurrentUser } from '@/composables'
 
 const router = useRouter()
 const { accessibleBots: userBots } = useCurrentUser()

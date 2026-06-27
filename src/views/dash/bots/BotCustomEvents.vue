@@ -1,17 +1,13 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, type Ref, watch } from 'vue'
-import { useAnalytics, useBotCustomEvents, useBotStats, useLoading } from '@/composables'
+import { FrownIcon, PlusIcon } from '@lucide/vue'
 import { useRouteParams } from '@vueuse/router'
-import { useStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 import type { DateRange } from 'reka-ui'
-import type { ChartConfig, CustomEvent } from '@/utils/types.ts'
+import { type Ref, computed, onMounted, ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { toast } from 'vue-sonner'
+
 import { CreateCustomEventDialog, EditCustomEventDialog, LineChart, StatsPage } from '@/components'
-import {
-  formatCustomEventsStats,
-  getRangeGranularity,
-  getTickFormatter,
-} from '@/utils/statsManager.ts'
 import {
   Button,
   Empty,
@@ -21,9 +17,14 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from '@/components/ui'
-import { FrownIcon, PlusIcon } from '@lucide/vue'
-import { toast } from 'vue-sonner'
-import { useI18n } from 'vue-i18n'
+import { useAnalytics, useBotCustomEvents, useBotStats, useLoading } from '@/composables'
+import { useStore } from '@/stores'
+import {
+  formatCustomEventsStats,
+  getRangeGranularity,
+  getTickFormatter,
+} from '@/utils/statsManager.ts'
+import type { ChartConfig, CustomEvent } from '@/utils/types.ts'
 
 const { t } = useI18n()
 

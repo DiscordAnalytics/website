@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import { Toaster } from '@/components/ui'
-import 'vue-sonner/style.css'
-import { onBeforeMount, onErrorCaptured } from 'vue'
-import { useStore } from '@/stores'
-import { useI18n } from 'vue-i18n'
 import { useColorMode, useLocalStorage, usePreferredLanguages } from '@vueuse/core'
+import { onBeforeMount, onErrorCaptured } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { toast } from 'vue-sonner'
+import 'vue-sonner/style.css'
+
+import { CookieBanner } from '@/components'
+import { Toaster } from '@/components/ui'
+import { useStore } from '@/stores'
 import carrotConfettisOptions from '@/utils/particles/carrots_rain.ts'
 import snowParticlesOptions from '@/utils/particles/snow.ts'
-import { CookieBanner } from '@/components'
 
 const { setTheme } = useStore()
 const i18n = useI18n()

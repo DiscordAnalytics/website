@@ -1,6 +1,7 @@
-import useAPI, { APIScope } from '@/utils/api'
-import { useStore } from '@/stores'
 import { computed } from 'vue'
+
+import { useStore } from '@/stores'
+import useAPI, { APIScope } from '@/utils/api'
 
 export default function useOAuthSessions() {
   const api = useAPI(APIScope.User)

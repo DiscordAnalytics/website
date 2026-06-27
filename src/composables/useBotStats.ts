@@ -1,8 +1,9 @@
-import useAPI, { APIScope } from '@/utils/api'
-import { useStore } from '@/stores'
-import { computed, type Ref } from 'vue'
-import type { DateRange } from 'reka-ui'
 import posthog from 'posthog-js'
+import type { DateRange } from 'reka-ui'
+import { type Ref, computed } from 'vue'
+
+import { useStore } from '@/stores'
+import useAPI, { APIScope } from '@/utils/api'
 
 export default function useBotStats(botId: Ref<string>) {
   const api = useAPI(APIScope.User)

@@ -1,16 +1,19 @@
 <script setup lang="ts" generic="TData, TValue">
+import { ChevronsUpDownIcon } from '@lucide/vue'
 import {
   type ColumnDef,
   type ColumnFiltersState,
   FlexRender,
+  type Row,
+  type SortingState,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  type Row,
-  type SortingState,
   useVueTable,
 } from '@tanstack/vue-table'
+import { ref } from 'vue'
+
 import {
   Button,
   DropdownMenu,
@@ -35,8 +38,6 @@ import {
   TableRow,
 } from '@/components/ui'
 import { valueUpdater } from '@/lib/utils'
-import { ref } from 'vue'
-import { ChevronsUpDownIcon } from '@lucide/vue'
 import type { DataTableAction } from '@/utils/types.ts'
 
 const props = defineProps<{

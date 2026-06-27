@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { ArrowLeftIcon, TriangleAlertIcon } from '@lucide/vue'
+import { useRouteQuery } from '@vueuse/router'
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
+
 import {
   Alert,
   AlertDescription,
@@ -12,10 +16,7 @@ import {
   EmptyTitle,
   Spinner,
 } from '@/components/ui'
-import { ArrowLeftIcon, TriangleAlertIcon } from '@lucide/vue'
 import { useBot } from '@/composables'
-import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
-import { useRouteQuery } from '@vueuse/router'
 import type { Bot } from '@/utils/types.ts'
 
 const botId = useRouteQuery<string>('botId', '')

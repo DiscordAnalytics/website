@@ -59,6 +59,7 @@
     "@intlify/eslint-plugin-vue-i18n": "4.4.0",
     "@shikijs/markdown-it": "4.0.2",
     "@tailwindcss/typography": "0.5.19",
+    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@tsconfig/node24": "24.0.4",
     "@types/markdown-it": "14.1.2",
     "@types/node": "24.12.4",

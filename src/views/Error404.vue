@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
-import { cn } from '@/lib/utils'
+
 import { PageLayout } from '@/components'
 import { useConfig } from '@/composables'
+import { cn } from '@/lib/utils'
 
 const { apiBaseUrl } = useConfig()
 

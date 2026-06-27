@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { useLocalStorage } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
-import { maintainedLocales } from '@/locales'
 import { toast } from 'vue-sonner'
+
 import {
   Select,
   SelectContent,
@@ -11,7 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui'
-import { useLocalStorage } from '@vueuse/core'
+import { maintainedLocales } from '@/locales'
 import { selectLocale } from '@/utils/functions.ts'
 
 defineProps<{

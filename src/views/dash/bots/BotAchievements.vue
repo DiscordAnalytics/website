@@ -1,15 +1,24 @@
 <script setup lang="ts">
 import {
+  CircleCheckIcon,
+  FrownIcon,
+  PencilIcon,
+  PlusIcon,
+  Share2Icon,
+  TrashIcon,
+} from '@lucide/vue'
+import { useRouteParams } from '@vueuse/router'
+import { onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { toast } from 'vue-sonner'
+
+import {
   BotDashLayout,
   CreateAchievementDialog,
   DeleteAchievementDialog,
   EditAchievementDialog,
   ShareAchievementDialog,
 } from '@/components'
-import { useRouteParams } from '@vueuse/router'
-import { useAnalytics, useBot, useBotAchievements, useLoading } from '@/composables'
-import { onMounted, ref } from 'vue'
-import { goal2Percent } from '@/utils/statsManager.ts'
 import {
   Badge,
   Button,
@@ -27,18 +36,10 @@ import {
   Progress,
   Spinner,
 } from '@/components/ui'
-import {
-  CircleCheckIcon,
-  FrownIcon,
-  PencilIcon,
-  PlusIcon,
-  Share2Icon,
-  TrashIcon,
-} from '@lucide/vue'
-import { toast } from 'vue-sonner'
-import type { Achievement, GoalType } from '@/utils/types.ts'
-import { useI18n } from 'vue-i18n'
+import { useAnalytics, useBot, useBotAchievements, useLoading } from '@/composables'
 import { df } from '@/utils/dateTime.ts'
+import { goal2Percent } from '@/utils/statsManager.ts'
+import type { Achievement, GoalType } from '@/utils/types.ts'
 
 const botId = useRouteParams<string>('id')
 const {

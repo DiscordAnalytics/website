@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useColorMode } from '@vueuse/core'
+
 import { isChristmas } from '.'
 
 const mode = useColorMode()

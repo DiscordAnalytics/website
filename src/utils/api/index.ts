@@ -1,12 +1,13 @@
-import UsersResource from '@/utils/api/users.ts'
 import { useCookies } from '@vueuse/integrations/useCookies'
-import BotsResource from '@/utils/api/bots.ts'
-import { useConfig } from '@/composables'
 import { computed, reactive } from 'vue'
-import { oneMonthInSec } from '@/utils/dateTime.ts'
-import OAuthRessource from '@/utils/api/oauth.ts'
+
+import { useConfig } from '@/composables'
 import ArticlesResource from '@/utils/api/articles.ts'
+import BotsResource from '@/utils/api/bots.ts'
 import { handleDemoRequest } from '@/utils/api/demo.ts'
+import OAuthRessource from '@/utils/api/oauth.ts'
+import UsersResource from '@/utils/api/users.ts'
+import { oneMonthInSec } from '@/utils/dateTime.ts'
 
 const authState = reactive<{
   userId: string | null

@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import type { HTMLAttributes } from 'vue'
 import { computed } from 'vue'
-import type { ChartConfig } from '.'
+
 import { cn } from '@/lib/utils'
+
+import type { ChartConfig } from '.'
 
 const props = withDefaults(
   defineProps<{

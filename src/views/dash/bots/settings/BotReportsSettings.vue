@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { BotDashLayout, SettingCard } from '@/components'
 import { Calendar1Icon, CalendarRangeIcon } from '@lucide/vue'
-import { Button, Spinner } from '@/components/ui'
 import { useRouteParams } from '@vueuse/router'
-import { useBotEmailReports, useCurrentUser, useLoading, useAnalytics } from '@/composables'
 import { onMounted } from 'vue'
 import { toast } from 'vue-sonner'
+
+import { BotDashLayout, SettingCard } from '@/components'
+import { Button, Spinner } from '@/components/ui'
+import { useAnalytics, useBotEmailReports, useCurrentUser, useLoading } from '@/composables'
 
 const botId = useRouteParams<string>('id')
 const {

@@ -1,8 +1,9 @@
-import useAPI, { APIScope } from '@/utils/api'
+import { type Ref, computed } from 'vue'
+
 import { useStore } from '@/stores'
-import { computed, type Ref } from 'vue'
-import type { Achievement } from '@/utils/types.ts'
+import useAPI, { APIScope } from '@/utils/api'
 import { goal2Percent } from '@/utils/statsManager.ts'
+import type { Achievement } from '@/utils/types.ts'
 
 export default function useBotAchievements(botId: Ref<string>, scope: APIScope = APIScope.User) {
   const api = useAPI(scope)

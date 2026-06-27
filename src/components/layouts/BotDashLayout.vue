@@ -1,5 +1,30 @@
 <script setup lang="ts">
 import {
+  ChartNoAxesColumn,
+  ChevronsUpDownIcon,
+  InfoIcon,
+  Mail,
+  PlusIcon,
+  Pointer,
+  Server,
+  Settings,
+  Store,
+  TriangleAlert,
+  Trophy,
+  Users,
+  Vote,
+  Webhook,
+} from '@lucide/vue'
+import { breakpointsTailwind, useBreakpoints, useLocalStorage } from '@vueuse/core'
+import { useRouteParams } from '@vueuse/router'
+import { storeToRefs } from 'pinia'
+import type { DateRange } from 'reka-ui'
+import { type Ref, computed, onMounted, ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useRoute } from 'vue-router'
+
+import { DiscordAvatar, MrRobotBanner, SidebarLayout } from '@/components'
+import {
   Alert,
   AlertDescription,
   AlertTitle,
@@ -22,34 +47,10 @@ import {
   SidebarTrigger,
   Skeleton,
 } from '@/components/ui'
-import {
-  ChartNoAxesColumn,
-  ChevronsUpDownIcon,
-  Mail,
-  PlusIcon,
-  Pointer,
-  Server,
-  Settings,
-  Store,
-  TriangleAlert,
-  Trophy,
-  Users,
-  Vote,
-  Webhook,
-  InfoIcon,
-} from '@lucide/vue'
-import { useRouteParams } from '@vueuse/router'
 import { useBot, useCurrentUser } from '@/composables'
-import { DiscordAvatar, MrRobotBanner, SidebarLayout } from '@/components'
-import { breakpointsTailwind, useBreakpoints, useLocalStorage } from '@vueuse/core'
-import { useRoute } from 'vue-router'
-import type { BotScanResult } from '@/utils/types.ts'
-import { computed, onMounted, type Ref, ref, watch } from 'vue'
-import scanBot, { getScanTypeColor } from '@/utils/botScanner.ts'
-import { useI18n } from 'vue-i18n'
 import { useStore } from '@/stores'
-import { storeToRefs } from 'pinia'
-import type { DateRange } from 'reka-ui'
+import scanBot, { getScanTypeColor } from '@/utils/botScanner.ts'
+import type { BotScanResult } from '@/utils/types.ts'
 
 const route = useRoute()
 const currentBotId = useRouteParams<string>('id')

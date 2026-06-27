@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { AccountDashLayout, SettingCard } from '@/components'
 import { TrashIcon } from '@lucide/vue'
+import { toast } from 'vue-sonner'
+
+import { AccountDashLayout, SettingCard } from '@/components'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -15,7 +17,6 @@ import {
   Spinner,
 } from '@/components/ui'
 import { useAnalytics, useCurrentUser, useLoading } from '@/composables'
-import { toast } from 'vue-sonner'
 
 const { remove: deleteUser } = useCurrentUser()
 const { capture } = useAnalytics()

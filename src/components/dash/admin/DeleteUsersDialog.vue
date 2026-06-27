@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+import { toast } from 'vue-sonner'
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -10,10 +13,8 @@ import {
   AlertDialogTitle,
   Spinner,
 } from '@/components/ui'
-import { toast } from 'vue-sonner'
-import type { User } from '@/utils/types.ts'
 import { useLoading, useUsers } from '@/composables'
-import { useI18n } from 'vue-i18n'
+import type { User } from '@/utils/types.ts'
 
 const props = defineProps<{
   users: User[]

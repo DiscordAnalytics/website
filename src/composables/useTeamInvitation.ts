@@ -1,5 +1,6 @@
-import useAPI, { APIScope } from '@/utils/api'
 import { type Ref, ref } from 'vue'
+
+import useAPI, { APIScope } from '@/utils/api'
 import type { TeamInvitationData } from '@/utils/types.ts'
 
 export default function useTeamInvitation(

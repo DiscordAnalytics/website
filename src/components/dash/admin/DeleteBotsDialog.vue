@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+import { toast } from 'vue-sonner'
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -10,10 +13,8 @@ import {
   AlertDialogTitle,
   Spinner,
 } from '@/components/ui'
-import { toast } from 'vue-sonner'
-import type { Bot } from '@/utils/types.ts'
 import { useBots, useLoading } from '@/composables'
-import { useI18n } from 'vue-i18n'
+import type { Bot } from '@/utils/types.ts'
 
 const props = defineProps<{
   bots: Bot[]

@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import { toTypedSchema } from '@vee-validate/zod'
+import { Field as VeeField, useForm } from 'vee-validate'
+import { useI18n } from 'vue-i18n'
+import { toast } from 'vue-sonner'
+
 import {
   Button,
   Checkbox,
@@ -15,13 +20,9 @@ import {
   Label,
   Spinner,
 } from '@/components/ui'
-import { Field as VeeField, useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
-import { adminAskForReasonFormSchema } from '@/utils/formSchemas.ts'
-import { toast } from 'vue-sonner'
-import type { User } from '@/utils/types.ts'
 import { useLoading, useUsers } from '@/composables'
-import { useI18n } from 'vue-i18n'
+import { adminAskForReasonFormSchema } from '@/utils/formSchemas.ts'
+import type { User } from '@/utils/types.ts'
 
 const { t } = useI18n()
 

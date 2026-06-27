@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { DiscordAvatar, SettingCard } from '@/components'
 import {
   CheckIcon,
   CopyIcon,
@@ -9,6 +8,15 @@ import {
   TrashIcon,
   UsersIcon,
 } from '@lucide/vue'
+import { toTypedSchema } from '@vee-validate/zod'
+import { useClipboard } from '@vueuse/core'
+import { useRouteParams } from '@vueuse/router'
+import { Field as VeeField, useForm } from 'vee-validate'
+import { onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { toast } from 'vue-sonner'
+
+import { DiscordAvatar, SettingCard } from '@/components'
 import {
   Badge,
   Button,
@@ -44,16 +52,9 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui'
-import { useRouteParams } from '@vueuse/router'
 import { useAnalytics, useBot, useBotTeam, useLoading } from '@/composables'
-import { onMounted, ref } from 'vue'
-import { Field as VeeField, useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
 import { addTeammateFormSchema } from '@/utils/formSchemas.ts'
 import type { Teammate } from '@/utils/types.ts'
-import { toast } from 'vue-sonner'
-import { useClipboard } from '@vueuse/core'
-import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 

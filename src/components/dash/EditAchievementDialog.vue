@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { toTypedSchema } from '@vee-validate/zod'
+import { Field as VeeField, useForm } from 'vee-validate'
+import { watch } from 'vue'
+
 import {
   Button,
   Checkbox,
@@ -15,11 +19,8 @@ import {
   Label,
   Spinner,
 } from '@/components/ui'
-import { Field as VeeField, useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
-import type { Achievement } from '@/utils/types.ts'
-import { watch } from 'vue'
 import { editAchievementFormSchema } from '@/utils/formSchemas.ts'
+import type { Achievement } from '@/utils/types.ts'
 
 const props = defineProps<{
   achievement: Achievement | null

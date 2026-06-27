@@ -1,5 +1,5 @@
-import type { Component, FunctionalComponent } from 'vue'
 import type { Table } from '@tanstack/vue-table'
+import type { Component, FunctionalComponent } from 'vue'
 
 export enum InteractionType {
   Unknown,

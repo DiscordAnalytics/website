@@ -1,6 +1,7 @@
-import useAPI, { APIScope } from '@/utils/api'
+import { type Ref, computed } from 'vue'
+
 import { useStore } from '@/stores'
-import { computed, type Ref } from 'vue'
+import useAPI, { APIScope } from '@/utils/api'
 
 export default function useBotEmailReports(botId: Ref<string>) {
   const api = useAPI(APIScope.User)

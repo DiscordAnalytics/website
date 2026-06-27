@@ -1,6 +1,11 @@
 <script setup lang="ts">
-import { BotDashLayout, SettingCard } from '@/components'
 import { TrashIcon, TrophyIcon } from '@lucide/vue'
+import { useRouteParams } from '@vueuse/router'
+import { useI18n } from 'vue-i18n'
+import { useRouter } from 'vue-router'
+import { toast } from 'vue-sonner'
+
+import { BotDashLayout, SettingCard } from '@/components'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -14,11 +19,7 @@ import {
   Button,
   Spinner,
 } from '@/components/ui'
-import { useRouteParams } from '@vueuse/router'
 import { useAnalytics, useBot, useBotAchievements, useLoading } from '@/composables'
-import { toast } from 'vue-sonner'
-import { useRouter } from 'vue-router'
-import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 

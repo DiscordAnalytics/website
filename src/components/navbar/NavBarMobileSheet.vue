@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { NavBarAccountDropdown, NavBarCustomizePopUp, NavBarLocaleSelector } from '@/components'
 import {
   Accordion,
   AccordionContent,
@@ -9,7 +10,6 @@ import {
   SheetContent,
   SheetTrigger,
 } from '@/components/ui'
-import { NavBarAccountDropdown, NavBarCustomizePopUp, NavBarLocaleSelector } from '@/components'
 import { useCurrentUser } from '@/composables'
 
 const { userInfos } = useCurrentUser()

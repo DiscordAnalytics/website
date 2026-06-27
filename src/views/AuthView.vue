@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { onBeforeMount, ref } from 'vue'
 import { AlertCircleIcon, PlusIcon } from '@lucide/vue'
-import { useRoute, useRouter } from 'vue-router'
-import { Button } from '@/components/ui'
-import { useAnalytics, useAuthToken, useOAuth, useCurrentUser } from '@/composables'
 import { useLocalStorage } from '@vueuse/core'
-import { CustomIcon, ThemedImg } from '@/components'
+import { onBeforeMount, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useRoute, useRouter } from 'vue-router'
+
+import { CustomIcon, ThemedImg } from '@/components'
+import { Button } from '@/components/ui'
+import { useAnalytics, useAuthToken, useCurrentUser, useOAuth } from '@/composables'
 
 const state = ref<'loading' | 'error'>('loading')
 const error = ref<string>('')

@@ -1,4 +1,12 @@
 <script setup lang="ts">
+import { CopyIcon, ExternalLinkIcon } from '@lucide/vue'
+import { useClipboard } from '@vueuse/core'
+import { useRouteQuery } from '@vueuse/router'
+import { onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { toast } from 'vue-sonner'
+
+import { CodeBlock } from '@/components'
 import {
   Button,
   InputGroup,
@@ -19,14 +27,7 @@ import {
   Spinner,
 } from '@/components/ui'
 import { useBot, useLoading } from '@/composables'
-import { onMounted, ref } from 'vue'
-import { CopyIcon, ExternalLinkIcon } from '@lucide/vue'
-import { CodeBlock } from '@/components'
 import * as codeExamples from '@/utils/codeExamples'
-import { useClipboard } from '@vueuse/core'
-import { toast } from 'vue-sonner'
-import { useI18n } from 'vue-i18n'
-import { useRouteQuery } from '@vueuse/router'
 
 const emit = defineEmits<{
   (e: 'submit', library: string): void

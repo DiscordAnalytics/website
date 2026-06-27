@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import { useRouteParams } from '@vueuse/router'
+
 import {
   AdvancedStatsSettingsCard,
   BotDashLayout,
   TeamSettingsCard,
   TokenSettingsCard,
 } from '@/components'
-import { useRouteParams } from '@vueuse/router'
 import { useBot } from '@/composables'
 
 const botId = useRouteParams<string>('id')

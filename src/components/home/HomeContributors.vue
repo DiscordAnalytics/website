@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { Avatar, AvatarImage, Button, Card, CardHeader } from '@/components/ui'
 import { ServerIcon } from '@lucide/vue'
+
+import { Avatar, AvatarImage, Button, Card, CardHeader } from '@/components/ui'
 </script>
 
 <template>

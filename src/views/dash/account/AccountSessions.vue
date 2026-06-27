@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import { BrushCleaningIcon, FrownIcon } from '@lucide/vue'
+import { onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { toast } from 'vue-sonner'
+
 import { AccountDashLayout, AccountSessionCard } from '@/components'
 import {
   Button,
@@ -9,11 +14,7 @@ import {
   EmptyTitle,
   Spinner,
 } from '@/components/ui'
-import { BrushCleaningIcon, FrownIcon } from '@lucide/vue'
-import { onMounted } from 'vue'
-import { useLoading, useAnalytics, useOAuthSessions } from '@/composables'
-import { toast } from 'vue-sonner'
-import { useI18n } from 'vue-i18n'
+import { useAnalytics, useLoading, useOAuthSessions } from '@/composables'
 
 const { t } = useI18n()
 

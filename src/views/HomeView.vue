@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
+
 import {
   HomeCTA,
   HomeContributors,
@@ -7,7 +9,6 @@ import {
   HomeLearnMore,
   PageLayout,
 } from '@/components'
-import { onMounted } from 'vue'
 import scrollTo from '@/utils/scrollTo.ts'
 
 onMounted(() => {

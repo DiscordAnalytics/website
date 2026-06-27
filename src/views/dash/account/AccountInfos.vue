@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { onMounted, ref } from 'vue'
+
 import { AccountDashLayout, DiscordAvatar } from '@/components'
 import {
   Card,
@@ -16,7 +18,6 @@ import {
 } from '@/components/ui'
 import { useBotAchievements, useBotCustomEvents, useCurrentUser, useLoading } from '@/composables'
 import { df } from '@/utils/dateTime.ts'
-import { onMounted, ref } from 'vue'
 
 const { userInfos, ownedBots, notOwnedBots, accessibleBots: userBots } = useCurrentUser()
 

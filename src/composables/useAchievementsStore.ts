@@ -1,7 +1,8 @@
-import useAPI, { APIScope } from '@/utils/api'
-import { useStore } from '@/stores'
 import { computed, ref } from 'vue'
+
 import { useBotAchievements } from '@/composables'
+import { useStore } from '@/stores'
+import useAPI, { APIScope } from '@/utils/api'
 
 export default function useAchievementsStore(scope: APIScope = APIScope.User) {
   const api = useAPI(scope)

@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+import { toast } from 'vue-sonner'
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -10,11 +13,9 @@ import {
   AlertDialogTitle,
   Spinner,
 } from '@/components/ui'
-import { toast } from 'vue-sonner'
-import type { TeamInvitationData } from '@/utils/types.ts'
 import { useLoading, useTeamInvitations } from '@/composables'
-import { useI18n } from 'vue-i18n'
 import { APIScope } from '@/utils/api'
+import type { TeamInvitationData } from '@/utils/types.ts'
 
 const props = defineProps<{
   invitations: TeamInvitationData[]

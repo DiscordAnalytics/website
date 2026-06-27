@@ -1,6 +1,7 @@
-import useAPI, { APIScope } from '@/utils/api'
+import { type Ref, computed } from 'vue'
+
 import { useStore } from '@/stores'
-import { computed, type Ref } from 'vue'
+import useAPI, { APIScope } from '@/utils/api'
 import type { Teammate } from '@/utils/types.ts'
 
 export default function useBotTeam(botId: Ref<string>) {

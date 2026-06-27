@@ -1,4 +1,11 @@
 <script setup lang="ts">
+import { FrownIcon } from '@lucide/vue'
+import type { ColumnDef } from '@tanstack/vue-table'
+import { useRouteParams } from '@vueuse/router'
+import { computed, h, onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useRouter } from 'vue-router'
+
 import {
   AdminDashLayout,
   DataTable,
@@ -7,10 +14,6 @@ import {
   EditUsersLimitsDialog,
   SuspendUsersDialog,
 } from '@/components'
-import { useLoading, useUser } from '@/composables'
-import { computed, h, onMounted, ref } from 'vue'
-import { useRouteParams } from '@vueuse/router'
-import { APIScope } from '@/utils/api'
 import {
   Badge,
   Button,
@@ -28,12 +31,10 @@ import {
   Progress,
   Spinner,
 } from '@/components/ui'
+import { useLoading, useUser } from '@/composables'
+import { APIScope } from '@/utils/api'
 import { df } from '@/utils/dateTime.ts'
-import type { ColumnDef } from '@tanstack/vue-table'
 import type { Bot } from '@/utils/types.ts'
-import { useI18n } from 'vue-i18n'
-import { useRouter } from 'vue-router'
-import { FrownIcon } from '@lucide/vue'
 
 const { t } = useI18n()
 const router = useRouter()

@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import { ChevronLeftIcon } from '@lucide/vue'
+import { reactiveOmit } from '@vueuse/core'
 import type { PaginationFirstProps } from 'reka-ui'
 import { PaginationFirst, useForwardProps } from 'reka-ui'
 import type { HTMLAttributes } from 'vue'
+
 import type { ButtonVariants } from '@/components/ui'
 import { buttonVariants } from '@/components/ui'
-import { reactiveOmit } from '@vueuse/core'
-import { ChevronLeftIcon } from '@lucide/vue'
 import { cn } from '@/lib/utils'
 
 const props = withDefaults(

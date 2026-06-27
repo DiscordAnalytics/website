@@ -1,6 +1,11 @@
 <script setup lang="ts">
+import Shiki from '@shikijs/markdown-it'
+import type { PluginSimple } from 'markdown-it'
+import MarkdownItAnchor from 'markdown-it-anchor'
 import { computed, onBeforeMount, ref, shallowRef, useTemplateRef } from 'vue'
-import type { Anchor, BlogArticle } from '@/utils/types.ts'
+import VueMarkdown from 'vue-markdown-render'
+import { useRoute } from 'vue-router'
+
 import { DiscordAvatar, PageLayout, TableOfContent, ThemedImg } from '@/components'
 import {
   AspectRatio,
@@ -11,12 +16,8 @@ import {
   TooltipTrigger,
 } from '@/components/ui'
 import { useBlogArticles } from '@/composables'
-import { useRoute } from 'vue-router'
 import { df, dfWithHour } from '@/utils/dateTime.ts'
-import VueMarkdown from 'vue-markdown-render'
-import MarkdownItAnchor from 'markdown-it-anchor'
-import Shiki from '@shikijs/markdown-it'
-import type { PluginSimple } from 'markdown-it'
+import type { Anchor, BlogArticle } from '@/utils/types.ts'
 
 const { getArticle } = useBlogArticles()
 const route = useRoute()

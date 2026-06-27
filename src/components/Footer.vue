@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { Button, Separator } from '@/components/ui'
 import { ThemedImg } from '@/components'
+import { Button, Separator } from '@/components/ui'
 </script>
 
 <template>

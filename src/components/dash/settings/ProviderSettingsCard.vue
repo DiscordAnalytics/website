@@ -1,7 +1,14 @@
 <script setup lang="ts">
-import { h, ref } from 'vue'
-import { CustomIcon, SettingCard } from '@/components'
 import { CircleCheckIcon, CopyIcon, EyeIcon, EyeOffIcon, RefreshCwIcon } from '@lucide/vue'
+import { toTypedSchema } from '@vee-validate/zod'
+import { useClipboard } from '@vueuse/core'
+import { useRouteParams } from '@vueuse/router'
+import { Field as VeeField, useForm } from 'vee-validate'
+import { h, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { toast } from 'vue-sonner'
+
+import { CustomIcon, SettingCard } from '@/components'
 import {
   Button,
   Dialog,
@@ -22,15 +29,9 @@ import {
   InputGroupInput,
   Spinner,
 } from '@/components/ui'
-import type { VotesProvider } from '@/utils/types.ts'
-import { useClipboard } from '@vueuse/core'
-import { toast } from 'vue-sonner'
-import { useBotVotesProvider, useLoading, useAnalytics } from '@/composables'
-import { useRouteParams } from '@vueuse/router'
-import { useI18n } from 'vue-i18n'
-import { Field as VeeField, useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
+import { useAnalytics, useBotVotesProvider, useLoading } from '@/composables'
 import { topggTokenUpdateFormSchema } from '@/utils/formSchemas.ts'
+import type { VotesProvider } from '@/utils/types.ts'
 
 const { t } = useI18n()
 

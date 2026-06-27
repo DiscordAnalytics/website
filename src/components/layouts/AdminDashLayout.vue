@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { SidebarLayout } from '@/components'
-import { computed } from 'vue'
 import { Bot, HomeIcon, Mails, Rss, Trophy, Users } from '@lucide/vue'
-import { SidebarMenuButton, SidebarMenuItem, SidebarTrigger } from '@/components/ui'
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+
+import { SidebarLayout } from '@/components'
+import { SidebarMenuButton, SidebarMenuItem, SidebarTrigger } from '@/components/ui'
 
 const { t } = useI18n()
 

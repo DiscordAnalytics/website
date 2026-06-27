@@ -1,11 +1,13 @@
-import useAPI, { APIScope } from '@/utils/api'
-import { useStore } from '@/stores'
-import { useRoute, useRouter } from 'vue-router'
-import { computed, type ComputedRef, type Ref } from 'vue'
 import { useLocalStorage } from '@vueuse/core'
-import type { Bot } from '@/utils/types.ts'
-import { useAnalytics, useOAuthSessions } from '.'
+import { type ComputedRef, type Ref, computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+
+import { useStore } from '@/stores'
+import useAPI, { APIScope } from '@/utils/api'
 import { getDemoBot } from '@/utils/api/demo.ts'
+import type { Bot } from '@/utils/types.ts'
+
+import { useAnalytics, useOAuthSessions } from '.'
 
 export default function useUser(
   scope: APIScope,

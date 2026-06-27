@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { timeAgo } from '@/utils/dateTime.ts'
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+
+import { ThemedImg } from '@/components'
 import {
   AspectRatio,
   Badge,
@@ -9,9 +12,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui'
-import { ThemedImg } from '@/components'
-import { useRoute } from 'vue-router'
-import { computed } from 'vue'
+import { timeAgo } from '@/utils/dateTime.ts'
 import type { BlogArticle } from '@/utils/types.ts'
 
 const props = defineProps<{

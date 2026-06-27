@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import { useElementHover, useWindowFocus } from '@vueuse/core'
 import { computed, useTemplateRef } from 'vue'
+
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui'
 import { cn } from '@/lib/utils.ts'
-import { useElementHover, useWindowFocus } from '@vueuse/core'
 
 interface Props {
   id: string
