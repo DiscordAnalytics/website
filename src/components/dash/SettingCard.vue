@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ExternalLinkIcon } from '@lucide/vue'
-import { type Component } from 'vue'
+import type { Component } from 'vue'
 
 import {
   Button,
