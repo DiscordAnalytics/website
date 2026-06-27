@@ -1,6 +1,6 @@
 import * as z from 'zod'
 
-import { i18n } from '@/main.ts'
+import { i18n } from '@/i18n.ts'
 import type { BotAchievementType } from '@/utils/types'
 
 function t(key: string) {
