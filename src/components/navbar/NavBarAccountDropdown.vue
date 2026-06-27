@@ -11,7 +11,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui'
-import useCurrentUser from '@/composables'
+import { useCurrentUser } from '@/composables'
 
 defineProps<{
   mobile?: boolean
