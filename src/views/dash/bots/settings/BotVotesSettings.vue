@@ -1,14 +1,12 @@
 <script setup lang="ts">
-import BotDashLayout from '@/components/layouts/BotDashLayout.vue'
-import { VotesWebhookSettingsCard } from '@/components/dash/settings'
-import ProviderSettingsCard from '@/components/dash/settings/ProviderSettingsCard.vue'
-import { computed, onMounted, ref } from 'vue'
-import { useRouteParams } from '@vueuse/router'
-import { useLoading } from '@/composables'
-import type { VotesProvider } from '@/utils/types.ts'
-import { Item, ItemContent, ItemDescription, ItemMedia, ItemTitle } from '@/components/ui/item'
 import { ExternalLinkIcon, TriangleAlertIcon } from '@lucide/vue'
-import { Button } from '@/components/ui/button'
+import { useRouteParams } from '@vueuse/router'
+import { computed, onMounted, ref } from 'vue'
+
+import { BotDashLayout, ProviderSettingsCard, VotesWebhookSettingsCard } from '@/components'
+import { Button, Item, ItemContent, ItemDescription, ItemMedia, ItemTitle } from '@/components/ui'
+import { useLoading } from '@/composables'
+import type { VotesProvider } from '@/utils/types'
 
 const botId = useRouteParams<string>('id')
 const { isLoading, withLoading } = useLoading()

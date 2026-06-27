@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
-import { type BundledLanguage, createHighlighter } from 'shiki'
-import { Button } from '@/components/ui/button'
 import { CopyIcon } from '@lucide/vue'
 import DOMPurify from 'dompurify'
+import { type BundledLanguage, createHighlighter } from 'shiki'
+import { onMounted, ref, watch } from 'vue'
+
+import { Button } from '@/components/ui'
 
 const props = withDefaults(
   defineProps<{

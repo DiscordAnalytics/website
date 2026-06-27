@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import { computed, type Ref, watch } from 'vue'
-import { useBotStats, useLoading } from '@/composables'
 import { useRouteParams } from '@vueuse/router'
+import { storeToRefs } from 'pinia'
+import type { DateRange } from 'reka-ui'
+import { type Ref, computed, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+import { LineChart, PieChart, StatsPage } from '@/components'
+import { useBotStats, useLoading } from '@/composables'
+import { useStore } from '@/stores'
 import {
   calculateInteractions,
   getRangeGranularity,
   getTickFormatter,
 } from '@/utils/statsManager.ts'
-import { useStore } from '@/stores'
-import { storeToRefs } from 'pinia'
-import type { DateRange } from 'reka-ui'
-import { LineChart, PieChart } from '@/components/charts'
-import type { ChartConfig } from '@/utils/types.ts'
-import StatsPage from '@/components/dash/StatsPage.vue'
-import { useI18n } from 'vue-i18n'
+import type { ChartConfig } from '@/utils/types'
 
 const botId = useRouteParams<string>('id')
 const { stats, fetch: fetchStats } = useBotStats(botId)

@@ -1,12 +1,19 @@
 <script setup lang="ts">
-import { timeAgo } from '@/utils/dateTime.ts'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import ThemedImg from '@/components/ThemedImg.vue'
-import { AspectRatio } from '@/components/ui/aspect-ratio'
-import { useRoute } from 'vue-router'
 import { computed } from 'vue'
-import type { BlogArticle } from '@/utils/types.ts'
-import { Badge } from '@/components/ui/badge'
+import { useRoute } from 'vue-router'
+
+import { ThemedImg } from '@/components'
+import {
+  AspectRatio,
+  Badge,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui'
+import { timeAgo } from '@/utils/dateTime.ts'
+import type { BlogArticle } from '@/utils/types'
 
 const props = defineProps<{
   article: Omit<BlogArticle, 'content'>

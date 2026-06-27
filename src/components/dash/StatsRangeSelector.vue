@@ -1,31 +1,34 @@
 <script setup lang="ts">
 import {
+  CalendarDate,
+  endOfMonth,
+  getLocalTimeZone,
+  today as getToday,
+  parseDate,
+  startOfMonth,
+} from '@internationalized/date'
+import { CalendarIcon, ChevronLeftIcon, ChevronRightIcon } from '@lucide/vue'
+import { breakpointsTailwind, createReusableTemplate, useBreakpoints } from '@vueuse/core'
+import { useRouteQuery } from '@vueuse/router'
+import type { AcceptableValue, DateRange } from 'reka-ui'
+import { type Ref, onMounted, ref, watch } from 'vue'
+
+import {
+  Button,
+  ButtonGroup,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  RangeCalendar,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'
-import { onMounted, ref, type Ref, watch } from 'vue'
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { Button } from '@/components/ui/button'
+} from '@/components/ui'
 import { cn } from '@/lib/utils.ts'
-import { CalendarIcon, ChevronLeftIcon, ChevronRightIcon } from '@lucide/vue'
-import { RangeCalendar } from '@/components/ui/range-calendar'
-import type { AcceptableValue, DateRange } from 'reka-ui'
-import {
-  CalendarDate,
-  endOfMonth,
-  getLocalTimeZone,
-  parseDate,
-  startOfMonth,
-  today as getToday,
-} from '@internationalized/date'
-import { df } from '@/utils/dateTime.ts'
-import { useRouteQuery } from '@vueuse/router'
 import { useStore } from '@/stores'
-import { breakpointsTailwind, createReusableTemplate, useBreakpoints } from '@vueuse/core'
-import { ButtonGroup } from '@/components/ui/button-group'
+import { df } from '@/utils/dateTime.ts'
 
 const store = useStore()
 const startQuery = useRouteQuery<string | null>('start')

@@ -1,3 +1,6 @@
+import { createContext } from 'reka-ui'
+import { type Component, type Ref, h, render, useId } from 'vue'
+
 export { default as ChartCrosshair } from './ChartCrosshair.vue'
 export { default as ChartLegend } from './ChartLegend.vue'
 export { default as ChartSingleTooltip } from './ChartSingleTooltip.vue'
@@ -21,8 +24,6 @@ export function defaultColors(count: number = 3) {
 }
 
 export * from './interface'
-import { type Component, h, type Ref, render, useId } from 'vue'
-import { createContext } from 'reka-ui'
 
 // Format: { THEME_NAME: CSS_SELECTOR }
 export const THEMES = { light: '', dark: '.dark' } as const

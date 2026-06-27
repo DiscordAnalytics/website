@@ -1,28 +1,28 @@
 <script setup lang="ts">
-import { computed, type Ref, watch } from 'vue'
-import { useBotStats, useLoading, useLocale } from '@/composables'
+import { getDayOfWeek, parseDate } from '@internationalized/date'
+import { InfoIcon, XIcon } from '@lucide/vue'
+import { useLocalStorage } from '@vueuse/core'
 import { useRouteParams } from '@vueuse/router'
-import { calculateUsers, getRangeGranularity, getTickFormatter } from '@/utils/statsManager.ts'
-import { useStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 import type { DateRange } from 'reka-ui'
-import type { ChartConfig, ChartData } from '@/utils/types.ts'
-import StatsPage from '@/components/dash/StatsPage.vue'
+import { type Ref, computed, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { BarChart, LineChart, PieChart } from '@/components/charts'
-import { getDayOfWeek, parseDate } from '@internationalized/date'
-import { dfWeekDay } from '@/utils/dateTime.ts'
-import { InfoIcon, XIcon } from '@lucide/vue'
+
+import { BarChart, LineChart, PieChart, StatsPage } from '@/components'
 import {
+  Button,
   Item,
   ItemActions,
   ItemContent,
   ItemDescription,
   ItemMedia,
   ItemTitle,
-} from '@/components/ui/item'
-import { Button } from '@/components/ui/button'
-import { useLocalStorage } from '@vueuse/core'
+} from '@/components/ui'
+import { useBotStats, useLoading, useLocale } from '@/composables'
+import { useStore } from '@/stores'
+import { dfWeekDay } from '@/utils/dateTime.ts'
+import { calculateUsers, getRangeGranularity, getTickFormatter } from '@/utils/statsManager.ts'
+import type { ChartConfig, ChartData } from '@/utils/types'
 
 const botId = useRouteParams<string>('id')
 const { stats, fetch: fetchStats } = useBotStats(botId)

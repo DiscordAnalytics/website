@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import PageLayout from '@/components/layouts/PageLayout.vue'
+
+import { PageLayout } from '@/components'
 
 const router = useRouter()
 const route = useRoute()

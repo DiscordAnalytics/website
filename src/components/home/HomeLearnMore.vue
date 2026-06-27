@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import ThemedImg from '@/components/ThemedImg.vue'
-import { Vue3Marquee } from 'vue3-marquee'
-import { Card } from '@/components/ui/card'
 import { MailIcon } from '@lucide/vue'
+import { Vue3Marquee } from 'vue3-marquee'
+
+import { ThemedImg } from '@/components'
+import { Card } from '@/components/ui'
 </script>
 
 <template>

@@ -1,21 +1,28 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import { useLoading } from '@/composables'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { FrownIcon, PencilIcon, SparklesIcon, TrashIcon } from '@lucide/vue'
-import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty'
-import { Spinner } from '@/components/ui/spinner'
-import type { Achievement } from '@/utils/types.ts'
+import { onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import EditAchievementDialog from '@/components/dash/EditAchievementDialog.vue'
-import DeleteAchievementDialog from '@/components/dash/DeleteAchievementDialog.vue'
-import AdminDashLayout from '@/components/layouts/AdminDashLayout.vue'
-import useAchievementsStore from '@/composables/useAchievementsStore.ts'
-import { APIScope } from '@/utils/api'
-import { useBotAchievements } from '@/composables'
 import { toast } from 'vue-sonner'
+
+import { AdminDashLayout, DeleteAchievementDialog, EditAchievementDialog } from '@/components'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+  Spinner,
+} from '@/components/ui'
+import { useAchievementsStore, useBotAchievements, useLoading } from '@/composables'
 import { useStore } from '@/stores'
+import { APIScope } from '@/utils/api'
 import { selectLocale } from '@/utils/functions.ts'
+import type { Achievement } from '@/utils/types'
 
 const { achievements, fetch: fetchAchievements } = useAchievementsStore(APIScope.Admin)
 const store = useStore()

@@ -1,6 +1,10 @@
 <script setup lang="ts">
-import fireworksParticlesOptions from '@/utils/particles/fireworks.ts'
+import { StoreIcon } from '@lucide/vue'
+import { toTypedSchema } from '@vee-validate/zod'
+import { Field as VeeField, useForm } from 'vee-validate'
+
 import {
+  Button,
   Dialog,
   DialogClose,
   DialogContent,
@@ -8,22 +12,20 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog'
-import { Button } from '@/components/ui/button'
-import { StoreIcon } from '@lucide/vue'
-import { Field as VeeField, useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
-import { createAchievementFormSchema } from '@/utils/formSchemas.ts'
-import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field'
-import { Spinner } from '@/components/ui/spinner'
-import { Input } from '@/components/ui/input'
-import {
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  Input,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'
+  Spinner,
+} from '@/components/ui'
+import { createAchievementFormSchema } from '@/utils/formSchemas.ts'
+import fireworksParticlesOptions from '@/utils/particles/fireworks.ts'
 
 defineProps<{
   isLoading: boolean

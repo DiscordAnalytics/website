@@ -1,8 +1,12 @@
 <script setup lang="ts">
-import BotDashLayout from '@/components/layouts/BotDashLayout.vue'
-import StatsRangeSelector from '@/components/dash/StatsRangeSelector.vue'
-import { ChartContainer, EmptyChart, LineChartSkeleton } from '@/components/charts'
-import type { ChartConfig } from '@/utils/types.ts'
+import {
+  BotDashLayout,
+  ChartContainer,
+  EmptyChart,
+  LineChartSkeleton,
+  StatsRangeSelector,
+} from '@/components'
+import type { ChartConfig } from '@/utils/types'
 
 const props = defineProps<{
   charts: ChartConfig[]

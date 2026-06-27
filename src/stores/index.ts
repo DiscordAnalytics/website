@@ -1,7 +1,8 @@
-import { ref } from 'vue'
-import { defineStore } from 'pinia'
 import { useLocalStorage } from '@vueuse/core'
+import { defineStore } from 'pinia'
 import type { DateRange } from 'reka-ui'
+import { ref } from 'vue'
+
 import type {
   Achievement,
   BlogArticle,
@@ -15,7 +16,7 @@ import type {
   TeamInvitationData,
   Teammate,
   User,
-} from '@/utils/types.ts'
+} from '@/utils/types'
 
 export const useStore = defineStore('store', () => {
   const bots = ref<{ [botId: string]: Bot }>({})

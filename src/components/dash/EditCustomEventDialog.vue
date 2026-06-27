@@ -1,15 +1,9 @@
 <script setup lang="ts">
-import { Field as VeeField, useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
 import { Trash2Icon } from '@lucide/vue'
+import { toTypedSchema } from '@vee-validate/zod'
+import { Field as VeeField, useForm } from 'vee-validate'
+import { watch } from 'vue'
 
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -20,14 +14,22 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/ui/alert-dialog'
-import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { Spinner } from '@/components/ui/spinner'
+  Button,
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  Field,
+  FieldDescription,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  Input,
+  Spinner,
+} from '@/components/ui'
 import { editCustomEventSchema } from '@/utils/formSchemas.ts'
 import type { CustomEvent } from '@/utils/types'
-import { watch } from 'vue'
 
 const props = defineProps<{
   open: boolean

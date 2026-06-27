@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { BookOpenIcon } from '@lucide/vue'
+
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -8,8 +10,7 @@ import {
   NavigationMenuListItem,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from '@/components/ui/navigation-menu'
-import { BookOpenIcon } from '@lucide/vue'
+} from '@/components/ui'
 </script>
 
 <template>

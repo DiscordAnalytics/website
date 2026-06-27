@@ -1,6 +1,7 @@
-import useAPI, { APIScope } from '@/utils/api'
 import { ref } from 'vue'
-import type { OAuthConfig } from '@/utils/types.ts'
+
+import useAPI, { APIScope } from '@/utils/api'
+import type { OAuthConfig } from '@/utils/types'
 
 export default function useOAuth(scope: APIScope = APIScope.Guest) {
   const api = useAPI(scope)

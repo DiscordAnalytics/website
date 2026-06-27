@@ -1,13 +1,8 @@
 <script setup lang="ts">
 import {
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarTrigger,
-} from '@/components/ui/sidebar'
-import {
   ChartNoAxesColumn,
   ChevronsUpDownIcon,
+  InfoIcon,
   Mail,
   PlusIcon,
   Pointer,
@@ -19,41 +14,43 @@ import {
   Users,
   Vote,
   Webhook,
-  InfoIcon,
 } from '@lucide/vue'
+import { breakpointsTailwind, useBreakpoints, useLocalStorage } from '@vueuse/core'
 import { useRouteParams } from '@vueuse/router'
-import { useBot, useCurrentUser } from '@/composables'
-import DiscordAvatar from '@/components/DiscordAvatar.vue'
+import { storeToRefs } from 'pinia'
+import type { DateRange } from 'reka-ui'
+import { type Ref, computed, onMounted, ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useRoute } from 'vue-router'
+
+import { DiscordAvatar, MrRobotBanner, SidebarLayout } from '@/components'
 import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+  Button,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import { breakpointsTailwind, useBreakpoints, useLocalStorage } from '@vueuse/core'
-import {
   Empty,
   EmptyContent,
   EmptyDescription,
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from '@/components/ui/empty'
-import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert'
-import { Button } from '@/components/ui/button'
-import { useRoute } from 'vue-router'
-import type { BotScanResult } from '@/utils/types.ts'
-import { Skeleton } from '@/components/ui/skeleton'
-import { computed, onMounted, type Ref, ref, watch } from 'vue'
-import scanBot, { getScanTypeColor } from '@/utils/botScanner.ts'
-import { useI18n } from 'vue-i18n'
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarTrigger,
+  Skeleton,
+} from '@/components/ui'
+import { useBot, useCurrentUser } from '@/composables'
 import { useStore } from '@/stores'
-import { storeToRefs } from 'pinia'
-import type { DateRange } from 'reka-ui'
-import SidebarLayout from '@/components/layouts/SidebarLayout.vue'
-import MrRobotBanner from '@/components/MrRobotBanner.vue'
+import scanBot, { getScanTypeColor } from '@/utils/botScanner.ts'
+import type { BotScanResult } from '@/utils/types'
 
 const route = useRoute()
 const currentBotId = useRouteParams<string>('id')

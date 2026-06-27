@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { type ChartConfig, ChartLegend, ChartSingleTooltip } from '@/components/ui/chart'
-import { VisDonut, VisSingleContainer } from '@unovis/vue'
-import type { ChartData, ChartTab } from '@/utils/types.ts'
-import { computed } from 'vue'
 import { Donut } from '@unovis/ts'
+import { VisDonut, VisSingleContainer } from '@unovis/vue'
+import { computed } from 'vue'
+
+import { type ChartConfig, ChartLegend, ChartSingleTooltip } from '@/components/ui'
 import { useLocale } from '@/composables'
+import type { ChartData, ChartTab } from '@/utils/types'
 
 const props = defineProps<{
   data: ChartData[]

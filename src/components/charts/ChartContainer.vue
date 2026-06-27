@@ -1,10 +1,17 @@
 <script setup lang="ts">
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { computed, ref, watch } from 'vue'
-import type { ChartConfig, ChartTab } from '@/utils/types.ts'
-import { Skeleton } from '@/components/ui/skeleton'
 import { EllipsisIcon } from '@lucide/vue'
+import { computed, ref, watch } from 'vue'
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+  Skeleton,
+} from '@/components/ui'
 import { cn } from '@/lib/utils.ts'
+import type { ChartConfig, ChartTab } from '@/utils/types'
 
 const props = defineProps<{
   title: string

@@ -1,23 +1,31 @@
 <script setup lang="ts">
-import AdminDashLayout from '@/components/layouts/AdminDashLayout.vue'
-import { useLoading, useUsers } from '@/composables'
-import { computed, h, onMounted, ref } from 'vue'
-import type { DataTableAction, User } from '@/utils/types.ts'
-import type { ColumnDef } from '@tanstack/vue-table'
-import { Button } from '@/components/ui/button'
 import { ArrowUpDown, FrownIcon } from '@lucide/vue'
-import { df } from '@/utils/dateTime.ts'
-import { useRouter } from 'vue-router'
-import DiscordAvatar from '@/components/DiscordAvatar.vue'
-import DataTable from '@/components/DataTable.vue'
-import { Checkbox } from '@/components/ui/checkbox'
-import { EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty'
-import EditUsersLimitsDialog from '@/components/dash/admin/EditUsersLimitsDialog.vue'
-import SuspendUsersDialog from '@/components/dash/admin/SuspendUsersDialog.vue'
-import { Badge } from '@/components/ui/badge'
-import DeleteUsersDialog from '@/components/dash/admin/DeleteUsersDialog.vue'
+import type { ColumnDef } from '@tanstack/vue-table'
+import { computed, h, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { Spinner } from '@/components/ui/spinner'
+import { useRouter } from 'vue-router'
+
+import {
+  AdminDashLayout,
+  DataTable,
+  DeleteUsersDialog,
+  DiscordAvatar,
+  EditUsersLimitsDialog,
+  SuspendUsersDialog,
+} from '@/components'
+import {
+  Badge,
+  Button,
+  Checkbox,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+  Spinner,
+} from '@/components/ui'
+import { useLoading, useUsers } from '@/composables'
+import { df } from '@/utils/dateTime.ts'
+import type { DataTableAction, User } from '@/utils/types'
 
 const { t } = useI18n()
 

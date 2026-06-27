@@ -1,5 +1,5 @@
-import { type APIClient } from '@/utils/api/index.ts'
-import type { BlogArticle } from '@/utils/types.ts'
+import { type APIClient } from '@/utils/api'
+import type { BlogArticle } from '@/utils/types'
 
 export default class ArticlesResource {
   constructor(private readonly api: APIClient) {}

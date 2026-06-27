@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import { ChartContainer, EmptyChart } from '@/components/charts/index.ts'
-import DiscordAvatar from '@/components/DiscordAvatar.vue'
-import { Table, TableBody, TableCell, TableHeader, TableRow } from '@/components/ui/table'
-import { Skeleton } from '@/components/ui/skeleton'
-import type { FormattedStats } from '@/utils/types.ts'
+import { ChartContainer, DiscordAvatar, EmptyChart } from '@/components'
+import { Skeleton, Table, TableBody, TableCell, TableHeader, TableRow } from '@/components/ui'
+import type { FormattedStats } from '@/utils/types'
 
 defineProps<{
   title: string

@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import PageLayout from '@/components/layouts/PageLayout.vue'
+import { ChevronsLeftRightEllipsisIcon } from '@lucide/vue'
+
+import { PageLayout } from '@/components'
 import {
+  Button,
   Empty,
   EmptyContent,
   EmptyDescription,
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from '@/components/ui/empty'
-import { Button } from '@/components/ui/button'
-import { ChevronsLeftRightEllipsisIcon } from '@lucide/vue'
+} from '@/components/ui'
 </script>
 
 <template>

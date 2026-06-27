@@ -1,14 +1,20 @@
 <script setup lang="ts">
-import AccountDashLayout from '@/components/layouts/AccountDashLayout.vue'
-import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty'
 import { BrushCleaningIcon, FrownIcon } from '@lucide/vue'
 import { onMounted } from 'vue'
-import { Spinner } from '@/components/ui/spinner'
-import { useLoading, useAnalytics, useOAuthSessions } from '@/composables'
-import AccountSessionCard from '@/components/dash/AccountSessionCard.vue'
-import { toast } from 'vue-sonner'
-import { Button } from '@/components/ui/button'
 import { useI18n } from 'vue-i18n'
+import { toast } from 'vue-sonner'
+
+import { AccountDashLayout, AccountSessionCard } from '@/components'
+import {
+  Button,
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+  Spinner,
+} from '@/components/ui'
+import { useAnalytics, useLoading, useOAuthSessions } from '@/composables'
 
 const { t } = useI18n()
 

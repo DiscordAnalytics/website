@@ -1,15 +1,25 @@
 <script setup lang="ts">
-import AccountDashLayout from '@/components/layouts/AccountDashLayout.vue'
-import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty'
 import { CheckIcon, FrownIcon, XIcon } from '@lucide/vue'
-import { useLoading, useTeamInvitations, useAnalytics } from '@/composables'
 import { onMounted } from 'vue'
-import DiscordAvatar from '@/components/DiscordAvatar.vue'
-import { Spinner } from '@/components/ui/spinner'
-import { Item, ItemActions, ItemContent, ItemMedia, ItemTitle } from '@/components/ui/item'
-import { Button } from '@/components/ui/button'
-import { toast } from 'vue-sonner'
 import { useI18n } from 'vue-i18n'
+import { toast } from 'vue-sonner'
+
+import { AccountDashLayout, DiscordAvatar } from '@/components'
+import {
+  Button,
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+  Item,
+  ItemActions,
+  ItemContent,
+  ItemMedia,
+  ItemTitle,
+  Spinner,
+} from '@/components/ui'
+import { useAnalytics, useLoading, useTeamInvitations } from '@/composables'
 
 const { invitations, fetch: fetchInvitations, accept, reject } = useTeamInvitations()
 const i18n = useI18n()

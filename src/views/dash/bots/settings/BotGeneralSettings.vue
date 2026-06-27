@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import BotDashLayout from '@/components/layouts/BotDashLayout.vue'
 import { useRouteParams } from '@vueuse/router'
-import { useBot } from '@/composables'
+
 import {
   AdvancedStatsSettingsCard,
+  BotDashLayout,
   TeamSettingsCard,
   TokenSettingsCard,
-} from '@/components/dash/settings'
+} from '@/components'
+import { useBot } from '@/composables'
 
 const botId = useRouteParams<string>('id')
 const { bot } = useBot(botId)

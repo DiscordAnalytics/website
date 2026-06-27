@@ -1,20 +1,23 @@
 <script setup lang="ts">
-import { Spinner } from '@/components/ui/spinner'
+import { ArrowLeftIcon, TriangleAlertIcon } from '@lucide/vue'
+import { useRouteQuery } from '@vueuse/router'
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
+
 import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+  Button,
   Empty,
   EmptyContent,
   EmptyDescription,
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from '@/components/ui/empty'
-import { Button } from '@/components/ui/button'
-import { ArrowLeftIcon, TriangleAlertIcon } from '@lucide/vue'
+  Spinner,
+} from '@/components/ui'
 import { useBot } from '@/composables'
-import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
-import { useRouteQuery } from '@vueuse/router'
-import type { Bot } from '@/utils/types.ts'
+import type { Bot } from '@/utils/types'
 
 const botId = useRouteQuery<string>('botId', '')
 const { bot, fetch: fetchBot } = useBot(botId)

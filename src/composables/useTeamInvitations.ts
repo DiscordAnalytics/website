@@ -1,6 +1,7 @@
-import useAPI, { APIScope } from '@/utils/api'
 import { computed } from 'vue'
+
 import { useStore } from '@/stores'
+import useAPI, { APIScope } from '@/utils/api'
 
 export default function useTeamInvitations(scope: APIScope = APIScope.User) {
   const api = useAPI(scope)

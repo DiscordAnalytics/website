@@ -1,21 +1,25 @@
 <script setup lang="ts">
-import { Button } from '@/components/ui/button'
-import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field'
-import { Checkbox } from '@/components/ui/checkbox'
-import { Input } from '@/components/ui/input'
-import { Spinner } from '@/components/ui/spinner'
-import { Field as VeeField } from 'vee-validate'
-import { useCurrentUser } from '@/composables'
-import { Label } from '@/components/ui/label'
 import { AlertTriangleIcon } from '@lucide/vue'
+import { Field as VeeField } from 'vee-validate'
+
 import {
+  Button,
+  Checkbox,
   Empty,
   EmptyContent,
   EmptyDescription,
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from '@/components/ui/empty'
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  Input,
+  Label,
+  Spinner,
+} from '@/components/ui'
+import { useCurrentUser } from '@/composables'
 
 defineProps<{
   loading: boolean

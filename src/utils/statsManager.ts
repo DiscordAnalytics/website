@@ -1,3 +1,5 @@
+import type { DateRange } from 'reka-ui'
+
 import {
   type Achievement,
   type ChartData,
@@ -6,8 +8,7 @@ import {
   type RawStats,
   type RawVotes,
   type VotesProvider,
-} from '@/utils/types.ts'
-import type { DateRange } from 'reka-ui'
+} from '@/utils/types'
 
 type Granularity = 'hour' | 'day'
 

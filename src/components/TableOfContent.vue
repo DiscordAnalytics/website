@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Anchor } from '@/utils/types.ts'
+import type { Anchor } from '@/utils/types'
 
 defineProps<{
   anchors: Anchor[]

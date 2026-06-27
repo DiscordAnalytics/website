@@ -1,5 +1,5 @@
-import useAPI, { APIScope } from '@/utils/api'
 import { useStore } from '@/stores'
+import useAPI, { APIScope } from '@/utils/api'
 
 export default function useAddBot(scope: APIScope = APIScope.User) {
   const api = useAPI(scope)

@@ -1,23 +1,31 @@
 <script setup lang="ts">
-import AdminDashLayout from '@/components/layouts/AdminDashLayout.vue'
-import { useBots, useLoading } from '@/composables'
-import { computed, h, onMounted, ref } from 'vue'
-import type { Bot, DataTableAction } from '@/utils/types.ts'
-import type { ColumnDef } from '@tanstack/vue-table'
-import { Button } from '@/components/ui/button'
 import { ArrowUpDown, FrownIcon } from '@lucide/vue'
-import { df } from '@/utils/dateTime.ts'
-import { useRouter } from 'vue-router'
-import DiscordAvatar from '@/components/DiscordAvatar.vue'
-import DataTable from '@/components/DataTable.vue'
-import { Checkbox } from '@/components/ui/checkbox'
-import { EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty'
-import { Badge } from '@/components/ui/badge'
+import type { ColumnDef } from '@tanstack/vue-table'
+import { computed, h, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import EditBotsLimitsDialog from '@/components/dash/admin/EditBotsLimitsDialog.vue'
-import SuspendBotsDialog from '@/components/dash/admin/SuspendBotsDialog.vue'
-import DeleteBotsDialog from '@/components/dash/admin/DeleteBotsDialog.vue'
-import { Spinner } from '@/components/ui/spinner'
+import { useRouter } from 'vue-router'
+
+import {
+  AdminDashLayout,
+  DataTable,
+  DeleteBotsDialog,
+  DiscordAvatar,
+  EditBotsLimitsDialog,
+  SuspendBotsDialog,
+} from '@/components'
+import {
+  Badge,
+  Button,
+  Checkbox,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+  Spinner,
+} from '@/components/ui'
+import { useBots, useLoading } from '@/composables'
+import { df } from '@/utils/dateTime.ts'
+import type { Bot, DataTableAction } from '@/utils/types'
 
 const { t } = useI18n()
 

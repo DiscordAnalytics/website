@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { BulletLegendItemInterface } from '@unovis/ts'
 import { omit } from '@unovis/ts'
+import { VisTooltip } from '@unovis/vue'
 import type { Component } from 'vue'
 import { createApp } from 'vue'
-import { VisTooltip } from '@unovis/vue'
+
 import { ChartTooltip } from '.'
 
 const props = defineProps<{

@@ -1,34 +1,40 @@
 <script setup lang="ts">
-import AdminDashLayout from '@/components/layouts/AdminDashLayout.vue'
-import { useBlogArticles, useLoading } from '@/composables'
-import { onBeforeMount, ref } from 'vue'
-import { useRouteParams } from '@vueuse/router'
-import ThemedImg from '@/components/ThemedImg.vue'
-import { AspectRatio } from '@/components/ui/aspect-ratio'
-import { Field as VeeField, useForm } from 'vee-validate'
+import { SaveIcon, SendIcon, TrashIcon } from '@lucide/vue'
 import { toTypedSchema } from '@vee-validate/zod'
-import { adminBlogEditorFormSchema } from '@/utils/formSchemas.ts'
-import { Button } from '@/components/ui/button'
-import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field'
-import { Input } from '@/components/ui/input'
-import { Spinner } from '@/components/ui/spinner'
+import { useRouteParams } from '@vueuse/router'
+import { Field as VeeField, useForm } from 'vee-validate'
+import { onBeforeMount, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import VueMarkdown from 'vue-markdown-render'
+import { useRouter } from 'vue-router'
+import { toast } from 'vue-sonner'
+
+import { AdminDashLayout, ThemedImg } from '@/components'
 import {
+  AspectRatio,
+  Button,
+  Card,
+  CardContent,
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  Input,
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+  Spinner,
   TagsInput,
   TagsInputInput,
   TagsInputItem,
   TagsInputItemDelete,
   TagsInputItemText,
-} from '@/components/ui/tags-input'
-import { Textarea } from '@/components/ui/textarea'
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable'
-import { Card, CardContent } from '@/components/ui/card'
-import VueMarkdown from 'vue-markdown-render'
-import type { BlogArticle } from '@/utils/types.ts'
-import { SaveIcon, SendIcon, TrashIcon } from '@lucide/vue'
+  Textarea,
+} from '@/components/ui'
+import { useBlogArticles, useLoading } from '@/composables'
 import { APIScope } from '@/utils/api'
-import { toast } from 'vue-sonner'
-import { useRouter } from 'vue-router'
-import { useI18n } from 'vue-i18n'
+import { adminBlogEditorFormSchema } from '@/utils/formSchemas.ts'
+import type { BlogArticle } from '@/utils/types'
 
 const router = useRouter()
 const { t } = useI18n()

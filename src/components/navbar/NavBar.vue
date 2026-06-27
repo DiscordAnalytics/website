@@ -1,17 +1,18 @@
 <script setup lang="ts">
+import { MenuIcon } from '@lucide/vue'
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
+import { onBeforeMount } from 'vue'
+
 import {
   NavBarAccountDropdown,
   NavBarCustomizePopUp,
   NavBarLinks,
   NavBarLocaleSelector,
   NavBarLogo,
-} from '.'
-import { Button } from '@/components/ui/button'
-import useCurrentUser from '@/composables/useCurrentUser.ts'
-import { onBeforeMount } from 'vue'
-import NavBarMobileSheet from '@/components/navbar/NavBarMobileSheet.vue'
-import { MenuIcon } from '@lucide/vue'
-import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
+  NavBarMobileSheet,
+} from '@/components'
+import { Button } from '@/components/ui'
+import { useCurrentUser } from '@/composables'
 
 const breakpoints = useBreakpoints(breakpointsTailwind)
 const { userInfos, fetch: fetchCurrentUser } = useCurrentUser()

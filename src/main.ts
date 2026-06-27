@@ -1,13 +1,15 @@
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
-import App from './App.vue'
-import router from './router'
-import '@/assets/index.css'
-import { createI18n } from 'vue-i18n'
-import * as locales from './locales'
-import Particles from '@tsparticles/vue3'
 import type { Engine } from '@tsparticles/engine'
+import Particles from '@tsparticles/vue3'
+import { createPinia } from 'pinia'
 import { loadFull } from 'tsparticles'
+import { createApp } from 'vue'
+import { createI18n } from 'vue-i18n'
+
+import '@/assets/index.css'
+
+import App from './App.vue'
+import * as locales from './locales'
+import router from './router'
 
 const app = createApp(App)
 

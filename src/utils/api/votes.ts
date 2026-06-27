@@ -1,5 +1,5 @@
-import type { APIClient } from '@/utils/api/index.ts'
-import type { VotesProvider } from '@/utils/types.ts'
+import type { APIClient } from '@/utils/api'
+import type { VotesProvider } from '@/utils/types'
 
 export default class VotesProviderResource {
   constructor(readonly api: APIClient) {}

@@ -1,4 +1,5 @@
 import type { Bot, BotScanResult } from '@/utils/types'
+
 import { oneMonthAgo, timeAgo } from './dateTime.ts'
 
 export async function fetchLatestVersion(url: string, versionKey: string): Promise<string> {

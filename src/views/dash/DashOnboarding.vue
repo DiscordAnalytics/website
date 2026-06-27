@@ -1,15 +1,29 @@
 <script setup lang="ts">
-import PageLayout from '@/components/layouts/PageLayout.vue'
+import { ArrowLeft, Check, Clock, Code, IdCard } from '@lucide/vue'
+import { toTypedSchema } from '@vee-validate/zod'
+import { breakpointsTailwind, useBreakpoints, useLocalStorage } from '@vueuse/core'
+import { useRouteQuery } from '@vueuse/router'
+import { useForm } from 'vee-validate'
+import { onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useRoute, useRouter } from 'vue-router'
+import { toast } from 'vue-sonner'
+
 import {
+  OnboardingStepFour,
+  OnboardingStepOne,
+  OnboardingStepThree,
+  OnboardingStepTwo,
+  PageLayout,
+} from '@/components'
+import {
+  Button,
   Card,
   CardContent,
-  CardHeader,
-  CardTitle,
   CardDescription,
   CardFooter,
-} from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import {
+  CardHeader,
+  CardTitle,
   Stepper,
   StepperDescription,
   StepperIndicator,
@@ -17,26 +31,11 @@ import {
   StepperSeparator,
   StepperTitle,
   StepperTrigger,
-} from '@/components/ui/stepper'
-import { Check, Clock, Code, IdCard, ArrowLeft } from '@lucide/vue'
-import { toTypedSchema } from '@vee-validate/zod'
-import { useForm } from 'vee-validate'
-import { addBotSchema } from '@/utils/formSchemas.ts'
-import { ref, onMounted } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { useAddBot, useAnalytics, useCurrentUser, useLoading, useFeatureFlag } from '@/composables'
-import {
-  OnboardingStepFour,
-  OnboardingStepOne,
-  OnboardingStepThree,
-  OnboardingStepTwo,
-} from '@/components/dash/onboarding'
-import { useRouteQuery } from '@vueuse/router'
-import { toast } from 'vue-sonner'
-import fireworksParticlesOptions from '@/utils/particles/fireworks.ts'
-import { breakpointsTailwind, useBreakpoints, useLocalStorage } from '@vueuse/core'
+} from '@/components/ui'
+import { useAddBot, useAnalytics, useCurrentUser, useFeatureFlag, useLoading } from '@/composables'
 import { cn } from '@/lib/utils.ts'
-import { useI18n } from 'vue-i18n'
+import { addBotSchema } from '@/utils/formSchemas.ts'
+import fireworksParticlesOptions from '@/utils/particles/fireworks.ts'
 
 const { t } = useI18n()
 const router = useRouter()

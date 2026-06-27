@@ -1,20 +1,24 @@
 <script setup lang="ts">
+import { XIcon } from '@lucide/vue'
+import { computed } from 'vue'
+
+import { CustomIcon } from '@/components'
 import {
+  Button,
   Item,
   ItemActions,
   ItemContent,
   ItemDescription,
   ItemMedia,
   ItemTitle,
-} from '@/components/ui/item'
-import { Button } from '@/components/ui/button'
-import { XIcon } from '@lucide/vue'
-import { Spinner } from '@/components/ui/spinner'
-import CustomIcon from '@/components/CustomIcon.vue'
-import type { OAuthSession } from '@/utils/types.ts'
-import { computed } from 'vue'
+  Spinner,
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui'
 import { timeAgo } from '@/utils/dateTime.ts'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
+import type { OAuthSession } from '@/utils/types'
 
 const props = defineProps<{
   session: OAuthSession

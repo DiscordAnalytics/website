@@ -1,7 +1,8 @@
-import useAPI, { APIScope } from '@/utils/api'
+import { type Ref, computed } from 'vue'
+
 import { useStore } from '@/stores'
-import { computed, type Ref } from 'vue'
-import type { CustomEvent } from '@/utils/types.ts'
+import useAPI, { APIScope } from '@/utils/api'
+import type { CustomEvent } from '@/utils/types'
 
 export default function useBotCustomEvents(botId: Ref<string>, scope: APIScope = APIScope.User) {
   const api = useAPI(scope)

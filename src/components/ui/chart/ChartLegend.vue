@@ -3,7 +3,8 @@ import type { BulletLegendItemInterface } from '@unovis/ts'
 import { BulletLegend } from '@unovis/ts'
 import { VisBulletLegend } from '@unovis/vue'
 import { nextTick, onMounted, ref } from 'vue'
-import { buttonVariants } from '@/components/ui/button'
+
+import { buttonVariants } from '@/components/ui'
 
 const props = withDefaults(defineProps<{ items: BulletLegendItemInterface[] }>(), {
   items: () => [],

@@ -1,23 +1,27 @@
 <script setup lang="ts">
-import { Spinner } from '@/components/ui/spinner'
+import { toTypedSchema } from '@vee-validate/zod'
+import { Field as VeeField, useForm } from 'vee-validate'
 import { ref } from 'vue'
-import { useBotTeam, useLoading } from '@/composables'
+import { useI18n } from 'vue-i18n'
+import { toast } from 'vue-sonner'
+
 import {
+  Button,
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field'
-import { Field as VeeField, useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  Input,
+  Spinner,
+} from '@/components/ui'
+import { useBotTeam, useLoading } from '@/composables'
 import { adminCreateInvitationFormSchema } from '@/utils/formSchemas.ts'
-import { toast } from 'vue-sonner'
-import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 

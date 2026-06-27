@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
-import { Button } from '@/components/ui/button'
 import { useRouteParams } from '@vueuse/router'
-import { useCurrentUser, useLoading, useTeamInvitation } from '@/composables'
-import PageLayout from '@/components/layouts/PageLayout.vue'
-import DiscordAvatar from '@/components/DiscordAvatar.vue'
+import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { Skeleton } from '@/components/ui/skeleton'
+
+import { DiscordAvatar, PageLayout } from '@/components'
+import { Button, Skeleton } from '@/components/ui'
+import { useCurrentUser, useLoading, useTeamInvitation } from '@/composables'
 
 const router = useRouter()
 const invitationId = useRouteParams<string>('id')

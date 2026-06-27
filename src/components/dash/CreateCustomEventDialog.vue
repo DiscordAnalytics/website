@@ -1,22 +1,27 @@
 <script setup lang="ts">
-import { Field as VeeField, useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
+import { Field as VeeField, useForm } from 'vee-validate'
+import { watch } from 'vue'
 
 import {
+  Button,
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog'
-import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { Spinner } from '@/components/ui/spinner'
+  Field,
+  FieldDescription,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  Input,
+  RadioGroup,
+  RadioGroupItem,
+  Spinner,
+} from '@/components/ui'
 import { createCustomEventSchema } from '@/utils/formSchemas.ts'
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import { watch } from 'vue'
 
 const props = defineProps<{
   isLoading: boolean

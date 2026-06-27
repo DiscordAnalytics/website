@@ -1,25 +1,29 @@
 <script setup lang="ts">
-import { Checkbox } from '@/components/ui/checkbox'
-import { Input } from '@/components/ui/input'
+import { toTypedSchema } from '@vee-validate/zod'
+import { Field as VeeField, useForm } from 'vee-validate'
+import { watch } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { toast } from 'vue-sonner'
+
 import {
+  Button,
+  Checkbox,
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog'
-import { Label } from '@/components/ui/label'
-import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field'
-import { Button } from '@/components/ui/button'
-import { Spinner } from '@/components/ui/spinner'
-import { Field as VeeField, useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
-import { adminUpdateUserLimitsFormSchema } from '@/utils/formSchemas.ts'
-import { toast } from 'vue-sonner'
-import { watch } from 'vue'
-import type { User } from '@/utils/types.ts'
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  Input,
+  Label,
+  Spinner,
+} from '@/components/ui'
 import { useLoading, useUsers } from '@/composables'
-import { useI18n } from 'vue-i18n'
+import { adminUpdateUserLimitsFormSchema } from '@/utils/formSchemas.ts'
+import type { User } from '@/utils/types'
 
 const { t } = useI18n()
 
