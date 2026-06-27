@@ -5,6 +5,7 @@ import { computed, type ComputedRef, type Ref } from 'vue'
 import { useLocalStorage } from '@vueuse/core'
 import type { Bot } from '@/utils/types.ts'
 import { useAnalytics, useOAuthSessions } from '.'
+import { getDemoBot } from '@/utils/api/demo.ts'
 
 export default function useUser(
   scope: APIScope,
@@ -39,26 +40,9 @@ export default function useUser(
     const { ownedBots, teamBots } = await api.users.getBots(userId.value)
     let allUserBots = [...ownedBots, ...teamBots]
     if (useLocalStorage('sandbox_demo', false).value) {
-      const demoBot = {
-        botId: 'demo-bot',
-        username: 'Demo Bot',
-        watchedSince: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString(),
-        framework: 'discord.js',
-        ownerId: 'demo-owner',
-        suspended: false,
-        version: '1.0.0',
-        team: [userId.value || 'demo-user'],
-        lastPush: new Date().toISOString(),
-        advancedStats: true,
-        goalsLimit: 5,
-        customEventsLimit: 10,
-        teammatesLimit: 3,
-        webhooksConfig: {
-          providers: {},
-        },
-      }
+      const demoBot = getDemoBot(userId.value)
       if (!allUserBots.some((b) => b.botId === 'demo-bot')) {
-        allUserBots.push(demoBot)
+        allUserBots.push(demoBot as Bot)
       }
     } else {
       allUserBots = allUserBots.filter((b) => b.botId !== 'demo-bot')

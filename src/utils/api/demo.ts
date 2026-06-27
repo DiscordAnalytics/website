@@ -1,26 +1,30 @@
 import { useLocalStorage } from '@vueuse/core'
 
+export function getDemoBot(userId: string | null) {
+  return {
+    botId: 'demo-bot',
+    username: 'Demo Bot',
+    watchedSince: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString(),
+    framework: 'discord.js',
+    ownerId: 'demo-owner',
+    suspended: false,
+    version: '1.0.0',
+    team: [userId || 'demo-user'],
+    lastPush: new Date().toISOString(),
+    advancedStats: true,
+    goalsLimit: 5,
+    customEventsLimit: 10,
+    teammatesLimit: 3,
+    webhooksConfig: {
+      providers: {},
+    },
+  }
+}
+
 export function handleDemoRequest<T>(method: string, path: string, userId: string | null): T {
   if (method === 'GET') {
     if (path === '/bots/demo-bot') {
-      return {
-        botId: 'demo-bot',
-        username: 'Demo Bot',
-        watchedSince: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString(),
-        framework: 'discord.js',
-        ownerId: 'demo-owner',
-        suspended: false,
-        version: '1.0.0',
-        team: [userId || 'demo-user'],
-        lastPush: new Date().toISOString(),
-        advancedStats: true,
-        goalsLimit: 5,
-        customEventsLimit: 10,
-        teammatesLimit: 3,
-        webhooksConfig: {
-          providers: {},
-        },
-      } as unknown as T
+      return getDemoBot(userId) as unknown as T
     }
     if (path.startsWith('/bots/demo-bot/stats')) {
       const urlParams = new URLSearchParams(path.split('?')[1])
