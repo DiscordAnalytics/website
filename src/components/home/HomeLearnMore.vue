@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import ThemedImg from '@/components/ThemedImg.vue'
+import { ThemedImg } from '@/components'
 import { Vue3Marquee } from 'vue3-marquee'
-import { Card } from '@/components/ui/card'
+import { Card } from '@/components/ui'
 import { MailIcon } from '@lucide/vue'
 </script>
 

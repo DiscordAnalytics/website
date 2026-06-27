@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import {
+  Button,
   Empty,
   EmptyContent,
   EmptyDescription,
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from '@/components/ui/empty'
-import { Button } from '@/components/ui/button'
+} from '@/components/ui'
 import { PartyPopperIcon } from '@lucide/vue'
 import { useRoute } from 'vue-router'
 import { useBot } from '@/composables'

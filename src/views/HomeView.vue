@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import PageLayout from '@/components/layouts/PageLayout.vue'
-import { onMounted } from 'vue'
-import scrollTo from '@/utils/scrollTo.ts'
 import {
-  HomeContributors,
   HomeCTA,
+  HomeContributors,
   HomeFaq,
   HomeHeroHeader,
   HomeLearnMore,
-} from '@/components/home'
+  PageLayout,
+} from '@/components'
+import { onMounted } from 'vue'
+import scrollTo from '@/utils/scrollTo.ts'
 
 onMounted(() => {
   if (window.location.hash) scrollTo(window.location.hash.substring(1))

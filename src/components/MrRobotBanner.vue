@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import { useLocalStorage } from '@vueuse/core'
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/ui'
 import { XIcon } from '@lucide/vue'
 
 const i18n = useI18n()

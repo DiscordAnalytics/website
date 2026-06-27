@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NavigationMenuLink } from '@/components/ui/navigation-menu'
+import { NavigationMenuLink } from '@/components/ui'
 
 const props = defineProps({
   title: String,

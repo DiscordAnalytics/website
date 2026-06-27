@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type ChartConfig, ChartLegend, ChartSingleTooltip } from '@/components/ui/chart'
+import { type ChartConfig, ChartLegend, ChartSingleTooltip } from '@/components/ui'
 import { VisDonut, VisSingleContainer } from '@unovis/vue'
 import type { ChartData, ChartTab } from '@/utils/types.ts'
 import { computed } from 'vue'

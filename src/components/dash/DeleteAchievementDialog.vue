@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Spinner } from '@/components/ui/spinner'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -10,7 +9,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/ui/alert-dialog'
+  Spinner,
+} from '@/components/ui'
 
 defineProps<{
   isLoading: boolean

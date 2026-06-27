@@ -5,11 +5,11 @@ import {
   NavBarLinks,
   NavBarLocaleSelector,
   NavBarLogo,
-} from '.'
-import { Button } from '@/components/ui/button'
-import useCurrentUser from '@/composables/useCurrentUser.ts'
+  NavBarMobileSheet,
+} from '@/components'
+import { Button } from '@/components/ui'
+import { useCurrentUser } from '@/composables'
 import { onBeforeMount } from 'vue'
-import NavBarMobileSheet from '@/components/navbar/NavBarMobileSheet.vue'
 import { MenuIcon } from '@lucide/vue'
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 

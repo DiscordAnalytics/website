@@ -8,7 +8,7 @@ import {
   NavigationMenuListItem,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from '@/components/ui/navigation-menu'
+} from '@/components/ui'
 import { BookOpenIcon } from '@lucide/vue'
 </script>
 

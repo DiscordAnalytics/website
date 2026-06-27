@@ -1,5 +1,5 @@
 import useAPI, { APIScope } from '@/utils/api'
-import { useUser } from '@/composables/index.ts'
+import { useUser } from '@/composables'
 import { ref } from 'vue'
 
 export default function useCurrentUser() {

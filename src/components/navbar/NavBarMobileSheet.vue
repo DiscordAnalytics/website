@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion'
-import { Button } from '@/components/ui/button'
-import { NavBarCustomizePopUp, NavBarLocaleSelector } from '@/components/navbar/index.ts'
+  Button,
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from '@/components/ui'
+import { NavBarAccountDropdown, NavBarCustomizePopUp, NavBarLocaleSelector } from '@/components'
 import { useCurrentUser } from '@/composables'
-import NavBarAccountDropdown from '@/components/navbar/NavBarAccountDropdown.vue'
 
 const { userInfos } = useCurrentUser()
 </script>

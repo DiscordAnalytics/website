@@ -1,18 +1,20 @@
 <script setup lang="ts">
 import { computed, onBeforeMount, ref, shallowRef, useTemplateRef } from 'vue'
 import type { Anchor, BlogArticle } from '@/utils/types.ts'
-import PageLayout from '@/components/layouts/PageLayout.vue'
-import { Skeleton } from '@/components/ui/skeleton'
-import { AspectRatio } from '@/components/ui/aspect-ratio'
+import { DiscordAvatar, PageLayout, TableOfContent, ThemedImg } from '@/components'
+import {
+  AspectRatio,
+  Skeleton,
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui'
 import { useBlogArticles } from '@/composables'
 import { useRoute } from 'vue-router'
-import ThemedImg from '@/components/ThemedImg.vue'
 import { df, dfWithHour } from '@/utils/dateTime.ts'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import VueMarkdown from 'vue-markdown-render'
-import DiscordAvatar from '@/components/DiscordAvatar.vue'
 import MarkdownItAnchor from 'markdown-it-anchor'
-import TableOfContent from '@/components/TableOfContent.vue'
 import Shiki from '@shikijs/markdown-it'
 import type { PluginSimple } from 'markdown-it'
 

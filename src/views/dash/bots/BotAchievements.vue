@@ -1,10 +1,32 @@
 <script setup lang="ts">
-import BotDashLayout from '@/components/layouts/BotDashLayout.vue'
+import {
+  BotDashLayout,
+  CreateAchievementDialog,
+  DeleteAchievementDialog,
+  EditAchievementDialog,
+  ShareAchievementDialog,
+} from '@/components'
 import { useRouteParams } from '@vueuse/router'
 import { useAnalytics, useBot, useBotAchievements, useLoading } from '@/composables'
 import { onMounted, ref } from 'vue'
 import { goal2Percent } from '@/utils/statsManager.ts'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Badge,
+  Button,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+  Progress,
+  Spinner,
+} from '@/components/ui'
 import {
   CircleCheckIcon,
   FrownIcon,
@@ -13,26 +35,10 @@ import {
   Share2Icon,
   TrashIcon,
 } from '@lucide/vue'
-import { Progress } from '@/components/ui/progress'
-import {
-  Empty,
-  EmptyContent,
-  EmptyDescription,
-  EmptyHeader,
-  EmptyMedia,
-  EmptyTitle,
-} from '@/components/ui/empty'
-import { Spinner } from '@/components/ui/spinner'
-import { Button } from '@/components/ui/button'
-import CreateAchievementDialog from '@/components/dash/CreateAchievementDialog.vue'
 import { toast } from 'vue-sonner'
 import type { Achievement, GoalType } from '@/utils/types.ts'
 import { useI18n } from 'vue-i18n'
-import ShareAchievementDialog from '@/components/dash/ShareAchievementDialog.vue'
-import { Badge } from '@/components/ui/badge'
 import { df } from '@/utils/dateTime.ts'
-import EditAchievementDialog from '@/components/dash/EditAchievementDialog.vue'
-import DeleteAchievementDialog from '@/components/dash/DeleteAchievementDialog.vue'
 
 const botId = useRouteParams<string>('id')
 const {

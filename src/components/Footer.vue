@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { Button } from '@/components/ui/button'
-import { Separator } from '@/components/ui/separator'
-import ThemedImg from '@/components/ThemedImg.vue'
+import { Button, Separator } from '@/components/ui'
+import { ThemedImg } from '@/components'
 </script>
 
 <template>

@@ -1,18 +1,21 @@
 <script setup lang="ts">
-import { Spinner } from '@/components/ui/spinner'
-import { ref } from 'vue'
-import { useBotTeam, useLoading } from '@/composables'
 import {
+  Button,
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field'
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  Input,
+  Spinner,
+} from '@/components/ui'
+import { ref } from 'vue'
+import { useBotTeam, useLoading } from '@/composables'
 import { Field as VeeField, useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import { adminCreateInvitationFormSchema } from '@/utils/formSchemas.ts'

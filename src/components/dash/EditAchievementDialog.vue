@@ -1,22 +1,25 @@
 <script setup lang="ts">
 import {
+  Button,
+  Checkbox,
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog'
-import { Button } from '@/components/ui/button'
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  Input,
+  Label,
+  Spinner,
+} from '@/components/ui'
 import { Field as VeeField, useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
-import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field'
-import { Spinner } from '@/components/ui/spinner'
-import { Input } from '@/components/ui/input'
 import type { Achievement } from '@/utils/types.ts'
 import { watch } from 'vue'
 import { editAchievementFormSchema } from '@/utils/formSchemas.ts'
-import { Label } from '@/components/ui/label'
-import { Checkbox } from '@/components/ui/checkbox'
 
 const props = defineProps<{
   achievement: Achievement | null

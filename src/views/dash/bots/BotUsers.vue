@@ -7,21 +7,20 @@ import { useStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 import type { DateRange } from 'reka-ui'
 import type { ChartConfig, ChartData } from '@/utils/types.ts'
-import StatsPage from '@/components/dash/StatsPage.vue'
+import { BarChart, LineChart, PieChart, StatsPage } from '@/components'
 import { useI18n } from 'vue-i18n'
-import { BarChart, LineChart, PieChart } from '@/components/charts'
 import { getDayOfWeek, parseDate } from '@internationalized/date'
 import { dfWeekDay } from '@/utils/dateTime.ts'
 import { InfoIcon, XIcon } from '@lucide/vue'
 import {
+  Button,
   Item,
   ItemActions,
   ItemContent,
   ItemDescription,
   ItemMedia,
   ItemTitle,
-} from '@/components/ui/item'
-import { Button } from '@/components/ui/button'
+} from '@/components/ui'
 import { useLocalStorage } from '@vueuse/core'
 
 const botId = useRouteParams<string>('id')

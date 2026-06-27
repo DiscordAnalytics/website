@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty'
+import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui'
 import { FrownIcon } from '@lucide/vue'
 </script>
 

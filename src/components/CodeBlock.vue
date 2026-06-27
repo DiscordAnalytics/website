@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue'
 import { type BundledLanguage, createHighlighter } from 'shiki'
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/ui'
 import { CopyIcon } from '@lucide/vue'
 import DOMPurify from 'dompurify'
 

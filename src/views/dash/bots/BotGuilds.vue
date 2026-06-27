@@ -7,10 +7,9 @@ import { useStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 import type { DateRange } from 'reka-ui'
 import type { ChartConfig, ChartData } from '@/utils/types.ts'
-import StatsPage from '@/components/dash/StatsPage.vue'
+import { BarChart, LineChart, PieChart, StatsPage, TableChart } from '@/components'
 import { useI18n } from 'vue-i18n'
-import { BarChart, LineChart, PieChart, TableChart } from '@/components/charts'
-import { TableHead, TableRow } from '@/components/ui/table'
+import { TableHead, TableRow } from '@/components/ui'
 
 const botId = useRouteParams<string>('id')
 const { stats, fetch: fetchStats } = useBotStats(botId)

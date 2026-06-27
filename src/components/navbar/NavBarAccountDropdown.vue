@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import useCurrentUser from '../../composables/useCurrentUser.ts'
+import useCurrentUser from '@/composables'
 import {
+  Button,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import DiscordAvatar from '@/components/DiscordAvatar.vue'
+} from '@/components/ui'
+import { DiscordAvatar } from '@/components'
 import { ChartLineIcon, ChevronsUpDownIcon, LogOutIcon, ShieldIcon, UserIcon } from '@lucide/vue'
-import { Button } from '@/components/ui/button'
 
 defineProps<{
   mobile?: boolean

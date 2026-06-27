@@ -6,25 +6,22 @@ import { useStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 import type { DateRange } from 'reka-ui'
 import type { ChartConfig, CustomEvent } from '@/utils/types.ts'
-import StatsPage from '@/components/dash/StatsPage.vue'
+import { CreateCustomEventDialog, EditCustomEventDialog, LineChart, StatsPage } from '@/components'
 import {
   formatCustomEventsStats,
   getRangeGranularity,
   getTickFormatter,
 } from '@/utils/statsManager.ts'
 import {
+  Button,
   Empty,
   EmptyContent,
   EmptyDescription,
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from '@/components/ui/empty'
+} from '@/components/ui'
 import { FrownIcon, PlusIcon } from '@lucide/vue'
-import { Button } from '@/components/ui/button'
-import { LineChart } from '@/components/charts'
-import CreateCustomEventDialog from '@/components/dash/CreateCustomEventDialog.vue'
-import EditCustomEventDialog from '@/components/dash/EditCustomEventDialog.vue'
 import { toast } from 'vue-sonner'
 import { useI18n } from 'vue-i18n'
 

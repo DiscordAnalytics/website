@@ -1,20 +1,28 @@
 <script setup lang="ts">
-import AdminDashLayout from '@/components/layouts/AdminDashLayout.vue'
+import {
+  AdminDashLayout,
+  DeleteBotsDialog,
+  DiscordAvatar,
+  EditBotsLimitsDialog,
+  SuspendBotsDialog,
+} from '@/components'
 import { useBot, useBotAchievements, useBotCustomEvents, useLoading, useUser } from '@/composables'
 import { computed, onMounted, ref } from 'vue'
-import EditBotsLimitsDialog from '@/components/dash/admin/EditBotsLimitsDialog.vue'
-import SuspendBotsDialog from '@/components/dash/admin/SuspendBotsDialog.vue'
-import DeleteBotsDialog from '@/components/dash/admin/DeleteBotsDialog.vue'
 import { useRouteParams } from '@vueuse/router'
 import { APIScope } from '@/utils/api'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import DiscordAvatar from '@/components/DiscordAvatar.vue'
+import {
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  Field,
+  FieldLabel,
+  Input,
+  Progress,
+  Spinner,
+} from '@/components/ui'
 import { df } from '@/utils/dateTime.ts'
-import { Input } from '@/components/ui/input'
-import { Field, FieldLabel } from '@/components/ui/field'
-import { Button } from '@/components/ui/button'
-import { Progress } from '@/components/ui/progress'
-import { Spinner } from '@/components/ui/spinner'
 
 const botId = useRouteParams<string>('id')
 const { bot, fetch: fetchBot, unsuspend: unsuspendBot } = useBot(botId, APIScope.Admin)

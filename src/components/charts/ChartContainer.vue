@@ -1,8 +1,14 @@
 <script setup lang="ts">
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+  Skeleton,
+} from '@/components/ui'
 import { computed, ref, watch } from 'vue'
 import type { ChartConfig, ChartTab } from '@/utils/types.ts'
-import { Skeleton } from '@/components/ui/skeleton'
 import { EllipsisIcon } from '@lucide/vue'
 import { cn } from '@/lib/utils.ts'
 

@@ -1,15 +1,22 @@
 <script lang="ts" setup>
-import AccountDashLayout from '@/components/layouts/AccountDashLayout.vue'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import DiscordAvatar from '@/components/DiscordAvatar.vue'
+import { AccountDashLayout, DiscordAvatar } from '@/components'
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  Empty,
+  EmptyHeader,
+  EmptyMedia,
+  Field,
+  FieldLabel,
+  Input,
+  Progress,
+  Spinner,
+} from '@/components/ui'
 import { useBotAchievements, useBotCustomEvents, useCurrentUser, useLoading } from '@/composables'
-import { Field, FieldLabel } from '@/components/ui/field'
-import { Input } from '@/components/ui/input'
 import { df } from '@/utils/dateTime.ts'
-import { Progress } from '@/components/ui/progress'
 import { onMounted, ref } from 'vue'
-import { Empty, EmptyHeader, EmptyMedia } from '@/components/ui/empty'
-import { Spinner } from '@/components/ui/spinner'
 
 const { userInfos, ownedBots, notOwnedBots, accessibleBots: userBots } = useCurrentUser()
 

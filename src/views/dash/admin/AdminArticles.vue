@@ -1,24 +1,31 @@
 <script setup lang="ts">
-import AdminDashLayout from '@/components/layouts/AdminDashLayout.vue'
-import { Button } from '@/components/ui/button'
-import { FilterIcon, NewspaperIcon, PlusIcon, SearchIcon } from '@lucide/vue'
+import { AdminDashLayout, BlogArticleCard } from '@/components'
 import {
+  AspectRatio,
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import { Card, CardContent, CardHeader } from '@/components/ui/card'
-import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty'
-import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group'
-import { Skeleton } from '@/components/ui/skeleton'
-import { AspectRatio } from '@/components/ui/aspect-ratio'
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+  Skeleton,
+} from '@/components/ui'
+import { FilterIcon, NewspaperIcon, PlusIcon, SearchIcon } from '@lucide/vue'
 import { useBlogArticles, useLoading } from '@/composables'
 import { computed, onBeforeMount, ref } from 'vue'
 import { APIScope } from '@/utils/api'
-import BlogArticleCard from '@/components/BlogArticleCard.vue'
 
 const { articles, tags, fetch: fetchArticles } = useBlogArticles(APIScope.Admin)
 

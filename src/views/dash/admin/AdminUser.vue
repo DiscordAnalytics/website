@@ -1,28 +1,39 @@
 <script setup lang="ts">
-import AdminDashLayout from '@/components/layouts/AdminDashLayout.vue'
+import {
+  AdminDashLayout,
+  DataTable,
+  DeleteUsersDialog,
+  DiscordAvatar,
+  EditUsersLimitsDialog,
+  SuspendUsersDialog,
+} from '@/components'
 import { useLoading, useUser } from '@/composables'
 import { computed, h, onMounted, ref } from 'vue'
-import EditUsersLimitsDialog from '@/components/dash/admin/EditUsersLimitsDialog.vue'
-import SuspendUsersDialog from '@/components/dash/admin/SuspendUsersDialog.vue'
-import DeleteUsersDialog from '@/components/dash/admin/DeleteUsersDialog.vue'
 import { useRouteParams } from '@vueuse/router'
 import { APIScope } from '@/utils/api'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import DiscordAvatar from '@/components/DiscordAvatar.vue'
+import {
+  Badge,
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+  Field,
+  FieldLabel,
+  Input,
+  Progress,
+  Spinner,
+} from '@/components/ui'
 import { df } from '@/utils/dateTime.ts'
-import { Input } from '@/components/ui/input'
-import { Field, FieldLabel } from '@/components/ui/field'
 import type { ColumnDef } from '@tanstack/vue-table'
 import type { Bot } from '@/utils/types.ts'
-import { Badge } from '@/components/ui/badge'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
-import { Button } from '@/components/ui/button'
-import { Progress } from '@/components/ui/progress'
-import DataTable from '@/components/DataTable.vue'
 import { FrownIcon } from '@lucide/vue'
-import { EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty'
-import { Spinner } from '@/components/ui/spinner'
 
 const { t } = useI18n()
 const router = useRouter()

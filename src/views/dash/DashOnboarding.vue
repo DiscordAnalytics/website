@@ -1,15 +1,19 @@
 <script setup lang="ts">
-import PageLayout from '@/components/layouts/PageLayout.vue'
 import {
+  OnboardingStepFour,
+  OnboardingStepOne,
+  OnboardingStepThree,
+  OnboardingStepTwo,
+  PageLayout,
+} from '@/components'
+import {
+  Button,
   Card,
   CardContent,
-  CardHeader,
-  CardTitle,
   CardDescription,
   CardFooter,
-} from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import {
+  CardHeader,
+  CardTitle,
   Stepper,
   StepperDescription,
   StepperIndicator,
@@ -17,7 +21,7 @@ import {
   StepperSeparator,
   StepperTitle,
   StepperTrigger,
-} from '@/components/ui/stepper'
+} from '@/components/ui'
 import { Check, Clock, Code, IdCard, ArrowLeft } from '@lucide/vue'
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
@@ -25,12 +29,6 @@ import { addBotSchema } from '@/utils/formSchemas.ts'
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useAddBot, useAnalytics, useCurrentUser, useLoading, useFeatureFlag } from '@/composables'
-import {
-  OnboardingStepFour,
-  OnboardingStepOne,
-  OnboardingStepThree,
-  OnboardingStepTwo,
-} from '@/components/dash/onboarding'
 import { useRouteQuery } from '@vueuse/router'
 import { toast } from 'vue-sonner'
 import fireworksParticlesOptions from '@/utils/particles/fireworks.ts'

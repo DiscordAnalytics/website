@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { type Component } from 'vue'
 import {
+  Button,
   Item,
   ItemActions,
   ItemContent,
   ItemDescription,
   ItemMedia,
   ItemTitle,
-} from '@/components/ui/item'
+} from '@/components/ui'
 import { cn } from '@/lib/utils.ts'
-import { Button } from '@/components/ui/button'
 import { ExternalLinkIcon } from '@lucide/vue'
 
 withDefaults(

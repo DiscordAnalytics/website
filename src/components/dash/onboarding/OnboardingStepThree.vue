@@ -1,18 +1,20 @@
 <script setup lang="ts">
-import { Spinner } from '@/components/ui/spinner'
 import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+  Button,
   Empty,
   EmptyContent,
   EmptyDescription,
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from '@/components/ui/empty'
-import { Button } from '@/components/ui/button'
+  Spinner,
+} from '@/components/ui'
 import { ArrowLeftIcon, TriangleAlertIcon } from '@lucide/vue'
 import { useBot } from '@/composables'
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { useRouteQuery } from '@vueuse/router'
 import type { Bot } from '@/utils/types.ts'
 

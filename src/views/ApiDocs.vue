@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ApiReference } from '@scalar/api-reference'
-import { NavBar } from '@/components/navbar'
-import { Separator } from '@/components/ui/separator'
+import { NavBar } from '@/components'
+import { Separator } from '@/components/ui'
 import '@scalar/api-reference/style.css'
 import { useConfig } from '@/composables'
 

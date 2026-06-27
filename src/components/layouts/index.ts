@@ -1,0 +1,5 @@
+export { default as AccountDashLayout } from './AccountDashLayout.vue'
+export { default as AdminDashLayout } from './AdminDashLayout.vue'
+export { default as BotDashLayout } from './BotDashLayout.vue'
+export { default as PageLayout } from './PageLayout.vue'
+export { default as SidebarLayout } from './SidebarLayout.vue'

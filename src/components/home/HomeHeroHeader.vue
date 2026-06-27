@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { Button } from '@/components/ui/button'
-import ThemedImg from '@/components/ThemedImg.vue'
+import { Badge, Button } from '@/components/ui'
+import { ThemedImg } from '@/components'
 import scrollTo from '@/utils/scrollTo.ts'
 import { cn } from '@/lib/utils.ts'
-import { Badge } from '@/components/ui/badge'
 import { SparklesIcon } from '@lucide/vue'
 </script>
 

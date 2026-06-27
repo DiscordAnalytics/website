@@ -1,19 +1,18 @@
 <script setup lang="ts">
 import {
+  Button,
   InputGroup,
   InputGroupAddon,
   InputGroupButton,
   InputGroupInput,
-} from '@/components/ui/input-group'
-import SettingCard from '@/components/dash/SettingCard.vue'
-import { Spinner } from '@/components/ui/spinner'
+  Spinner,
+} from '@/components/ui'
+import { SettingCard } from '@/components'
 import { CopyIcon, EyeIcon, EyeOffIcon, KeyIcon, RefreshCwIcon } from '@lucide/vue'
-import { Button } from '@/components/ui/button'
 import { useRouteParams } from '@vueuse/router'
-import { useBot, useLoading } from '@/composables'
+import { useAnalytics, useBot, useLoading } from '@/composables'
 import { useClipboard } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
-import { useAnalytics } from '@/composables/index.ts'
 import { onMounted, ref } from 'vue'
 import { toast } from 'vue-sonner'
 

@@ -1,21 +1,28 @@
 <script setup lang="ts">
-import AdminDashLayout from '@/components/layouts/AdminDashLayout.vue'
+import {
+  AdminDashLayout,
+  AnswerInvitationsDialog,
+  CreateInvitationDialog,
+  DataTable,
+  DiscordAvatar,
+} from '@/components'
 import { useLoading, useTeamInvitations } from '@/composables'
 import { computed, h, onMounted, ref } from 'vue'
 import type { DataTableAction, TeamInvitationData } from '@/utils/types.ts'
 import type { ColumnDef } from '@tanstack/vue-table'
-import { Button } from '@/components/ui/button'
+import {
+  Button,
+  Checkbox,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+  Spinner,
+} from '@/components/ui'
 import { ArrowUpDown, FrownIcon, PlusIcon } from '@lucide/vue'
 import { df } from '@/utils/dateTime.ts'
-import DiscordAvatar from '@/components/DiscordAvatar.vue'
-import DataTable from '@/components/DataTable.vue'
-import { Checkbox } from '@/components/ui/checkbox'
-import { EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty'
 import { useI18n } from 'vue-i18n'
 import { APIScope } from '@/utils/api'
-import AnswerInvitationsDialog from '@/components/dash/admin/AnswerInvitationsDialog.vue'
-import CreateInvitationDialog from '@/components/dash/admin/CreateInvitationDialog.vue'
-import { Spinner } from '@/components/ui/spinner'
 
 const { t } = useI18n()
 const { invitations, fetch: fetchInvitations } = useTeamInvitations(APIScope.Admin)

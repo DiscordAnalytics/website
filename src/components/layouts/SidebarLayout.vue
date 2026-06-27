@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {
+  Badge,
   Sidebar,
   SidebarContent,
   SidebarGroup,
@@ -11,9 +12,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarProvider,
-} from '@/components/ui/sidebar'
-import { Badge } from '@/components/ui/badge'
-import { NavBar } from '@/components/navbar'
+} from '@/components/ui'
+import { NavBar } from '@/components'
 import type { SidebarItem } from '@/utils/types.ts'
 
 defineProps<{

@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { NavBar } from '@/components/navbar'
-import Footer from '@/components/Footer.vue'
+import { Footer, NavBar } from '@/components'
 import { cn } from '@/lib/utils.ts'
 
 withDefaults(

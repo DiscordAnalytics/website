@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import SettingCard from '@/components/dash/SettingCard.vue'
+import { DiscordAvatar, SettingCard } from '@/components'
 import {
   CheckIcon,
   CopyIcon,
@@ -9,23 +9,9 @@ import {
   TrashIcon,
   UsersIcon,
 } from '@lucide/vue'
-import { Button } from '@/components/ui/button'
-import { useRouteParams } from '@vueuse/router'
-import { useAnalytics, useBot, useBotTeam, useLoading } from '@/composables'
-import { onMounted, ref } from 'vue'
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableEmpty,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table'
-import DiscordAvatar from '@/components/DiscordAvatar.vue'
-import { Skeleton } from '@/components/ui/skeleton'
-import { Badge } from '@/components/ui/badge'
-import {
+  Badge,
+  Button,
   Dialog,
   DialogClose,
   DialogContent,
@@ -33,29 +19,39 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog'
-import { Spinner } from '@/components/ui/spinner'
-import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field'
-import { Field as VeeField, useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
-import { addTeammateFormSchema } from '@/utils/formSchemas.ts'
-import type { Teammate } from '@/utils/types.ts'
-import { toast } from 'vue-sonner'
-import { Input } from '@/components/ui/input'
-import {
   Empty,
   EmptyContent,
   EmptyDescription,
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from '@/components/ui/empty'
-import {
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  Input,
   InputGroup,
   InputGroupAddon,
   InputGroupButton,
   InputGroupInput,
-} from '@/components/ui/input-group'
+  Skeleton,
+  Spinner,
+  Table,
+  TableBody,
+  TableCell,
+  TableEmpty,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui'
+import { useRouteParams } from '@vueuse/router'
+import { useAnalytics, useBot, useBotTeam, useLoading } from '@/composables'
+import { onMounted, ref } from 'vue'
+import { Field as VeeField, useForm } from 'vee-validate'
+import { toTypedSchema } from '@vee-validate/zod'
+import { addTeammateFormSchema } from '@/utils/formSchemas.ts'
+import type { Teammate } from '@/utils/types.ts'
+import { toast } from 'vue-sonner'
 import { useClipboard } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
 

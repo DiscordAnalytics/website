@@ -1,6 +1,15 @@
 <script setup lang="ts">
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { Button } from '@/components/ui/button'
+import {
+  Button,
+  ButtonGroup,
+  Drawer,
+  DrawerContent,
+  DrawerTrigger,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  Switch,
+} from '@/components/ui'
 import { MonitorIcon, MoonIcon, PaletteIcon, SunIcon } from '@lucide/vue'
 import { useStore } from '@/stores'
 import { ref } from 'vue'
@@ -9,11 +18,8 @@ import { useI18n } from 'vue-i18n'
 import { toast } from 'vue-sonner'
 import type { Color } from '@/utils/types.ts'
 import { cn } from '@/lib/utils.ts'
-import { ButtonGroup } from '@/components/ui/button-group'
 import { storeToRefs } from 'pinia'
-import { Switch } from '@/components/ui/switch'
-import { isChristmas } from '@/components/navbar/index.ts'
-import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer'
+import { isChristmas } from '@/components'
 
 defineProps<{
   mobile?: boolean

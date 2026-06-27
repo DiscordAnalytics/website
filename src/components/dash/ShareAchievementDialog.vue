@@ -1,27 +1,27 @@
 <script setup lang="ts">
 import {
+  Button,
+  Checkbox,
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog'
-import { Button } from '@/components/ui/button'
-import { Field as VeeField, useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
-import { shareAchievementFormSchema } from '@/utils/formSchemas.ts'
-import { Field, FieldError, FieldGroup } from '@/components/ui/field'
-import { Spinner } from '@/components/ui/spinner'
-import {
+  Field,
+  FieldError,
+  FieldGroup,
+  Label,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'
-import { Label } from '@/components/ui/label'
-import { Checkbox } from '@/components/ui/checkbox'
+  Spinner,
+} from '@/components/ui'
+import { Field as VeeField, useForm } from 'vee-validate'
+import { toTypedSchema } from '@vee-validate/zod'
+import { shareAchievementFormSchema } from '@/utils/formSchemas.ts'
 
 defineProps<{
   isLoading: boolean

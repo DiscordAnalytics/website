@@ -7,18 +7,17 @@ import { useStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 import type { DateRange } from 'reka-ui'
 import type { ChartConfig, ChartData } from '@/utils/types.ts'
-import StatsPage from '@/components/dash/StatsPage.vue'
+import { LineChart, PieChart, StatsPage } from '@/components'
 import { useI18n } from 'vue-i18n'
-import { LineChart, PieChart } from '@/components/charts'
 import {
+  Button,
   Item,
   ItemActions,
   ItemContent,
   ItemDescription,
   ItemMedia,
   ItemTitle,
-} from '@/components/ui/item'
-import { Button } from '@/components/ui/button'
+} from '@/components/ui'
 import { ExternalLinkIcon, InfoIcon, XIcon } from '@lucide/vue'
 import { useLocalStorage } from '@vueuse/core'
 

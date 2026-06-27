@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { Button } from '@/components/ui/button'
-import ThemedImg from '@/components/ThemedImg.vue'
+import { Button } from '@/components/ui'
+import { ThemedImg } from '@/components'
 </script>
 
 <template>

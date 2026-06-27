@@ -1,23 +1,30 @@
 <script setup lang="ts">
-import PageLayout from '@/components/layouts/PageLayout.vue'
-import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group'
-import { FilterIcon, NewspaperIcon, SearchIcon } from '@lucide/vue'
+import { BlogArticleCard, PageLayout } from '@/components'
 import {
+  AspectRatio,
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import { Button } from '@/components/ui/button'
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+  Skeleton,
+} from '@/components/ui'
+import { FilterIcon, NewspaperIcon, SearchIcon } from '@lucide/vue'
 import { useBlogArticles, useLoading } from '@/composables'
-import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty'
 import { computed, onBeforeMount, ref } from 'vue'
-import { Card, CardContent, CardHeader } from '@/components/ui/card'
-import { AspectRatio } from '@/components/ui/aspect-ratio'
-import { Skeleton } from '@/components/ui/skeleton'
-import BlogArticleCard from '@/components/BlogArticleCard.vue'
 
 const { articles, tags, fetch: fetchArticles } = useBlogArticles()
 

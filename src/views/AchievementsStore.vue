@@ -1,10 +1,25 @@
 <script setup lang="ts">
-import PageLayout from '@/components/layouts/PageLayout.vue'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import useAchievementsStore from '@/composables/useAchievementsStore.ts'
-import { computed, onMounted, ref } from 'vue'
-import { FrownIcon, FunnelXIcon, SparklesIcon } from '@lucide/vue'
+import { DiscordAvatar, PageLayout } from '@/components'
 import {
+  Button,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+  Field,
+  FieldError,
   Select,
   SelectContent,
   SelectGroup,
@@ -12,34 +27,18 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'
+  Spinner,
+} from '@/components/ui'
+import { useAchievementsStore, useAnalytics, useCurrentUser, useLoading } from '@/composables'
+import { computed, onMounted, ref } from 'vue'
+import { FrownIcon, FunnelXIcon, SparklesIcon } from '@lucide/vue'
 import { useI18n } from 'vue-i18n'
 import { selectLocale } from '@/utils/functions.ts'
-import { Button } from '@/components/ui/button'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog'
-import { useCurrentUser, useLoading, useAnalytics } from '@/composables'
-import DiscordAvatar from '@/components/DiscordAvatar.vue'
 import { Field as VeeField, useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import { copyAchievementFormSchema } from '@/utils/formSchemas.ts'
-import { Field, FieldError } from '@/components/ui/field'
-import { Spinner } from '@/components/ui/spinner'
 import type { Achievement } from '@/utils/types.ts'
 import { toast } from 'vue-sonner'
-import {
-  Empty,
-  EmptyContent,
-  EmptyDescription,
-  EmptyHeader,
-  EmptyMedia,
-  EmptyTitle,
-} from '@/components/ui/empty'
 
 const { achievements, fetch: fetchAchievements, copy: copyAchievement } = useAchievementsStore()
 const { userInfos, ownedBots: userBots } = useCurrentUser()

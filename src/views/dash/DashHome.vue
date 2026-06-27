@@ -2,9 +2,8 @@
 import { useRouter } from 'vue-router'
 import { useCurrentUser } from '@/composables'
 import { useLocalStorage } from '@vueuse/core'
-import PageLayout from '@/components/layouts/PageLayout.vue'
-import { Empty, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty'
-import { Spinner } from '@/components/ui/spinner'
+import { PageLayout } from '@/components'
+import { Empty, EmptyHeader, EmptyMedia, EmptyTitle, Spinner } from '@/components/ui'
 import { onMounted } from 'vue'
 
 const router = useRouter()

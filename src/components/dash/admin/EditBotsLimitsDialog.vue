@@ -1,17 +1,20 @@
 <script setup lang="ts">
-import { Checkbox } from '@/components/ui/checkbox'
-import { Input } from '@/components/ui/input'
 import {
+  Button,
+  Checkbox,
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog'
-import { Label } from '@/components/ui/label'
-import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field'
-import { Button } from '@/components/ui/button'
-import { Spinner } from '@/components/ui/spinner'
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  Input,
+  Label,
+  Spinner,
+} from '@/components/ui'
 import { Field as VeeField, useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import { adminUpdateBotLimitsFormSchema } from '@/utils/formSchemas.ts'

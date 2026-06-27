@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import SettingCard from '@/components/dash/SettingCard.vue'
+import { SettingCard } from '@/components'
 import { ZapIcon } from '@lucide/vue'
 import { useRouteParams } from '@vueuse/router'
 import { useAnalytics, useBot, useLoading } from '@/composables'
 import { ref, watch } from 'vue'
-import { Switch } from '@/components/ui/switch'
+import { Switch } from '@/components/ui'
 import { toast } from 'vue-sonner'
 import { useI18n } from 'vue-i18n'
 

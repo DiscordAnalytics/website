@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group'
-import { Spinner } from '@/components/ui/spinner'
-import { useBot, useLoading } from '@/composables'
-import { onMounted, ref } from 'vue'
-import { Button } from '@/components/ui/button'
-import { CopyIcon, ExternalLinkIcon } from '@lucide/vue'
 import {
+  Button,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+  Item,
+  ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemTitle,
   Select,
   SelectContent,
   SelectGroup,
@@ -13,10 +16,13 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'
-import CodeBlock from '@/components/CodeBlock.vue'
+  Spinner,
+} from '@/components/ui'
+import { useBot, useLoading } from '@/composables'
+import { onMounted, ref } from 'vue'
+import { CopyIcon, ExternalLinkIcon } from '@lucide/vue'
+import { CodeBlock } from '@/components'
 import * as codeExamples from '@/utils/codeExamples'
-import { Item, ItemActions, ItemContent, ItemDescription, ItemTitle } from '@/components/ui/item'
 import { useClipboard } from '@vueuse/core'
 import { toast } from 'vue-sonner'
 import { useI18n } from 'vue-i18n'

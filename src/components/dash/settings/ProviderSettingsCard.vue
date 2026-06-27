@@ -1,34 +1,35 @@
 <script setup lang="ts">
 import { h, ref } from 'vue'
-import CustomIcon from '@/components/CustomIcon.vue'
-import SettingCard from '@/components/dash/SettingCard.vue'
+import { CustomIcon, SettingCard } from '@/components'
 import { CircleCheckIcon, CopyIcon, EyeIcon, EyeOffIcon, RefreshCwIcon } from '@lucide/vue'
 import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupButton,
-  InputGroupInput,
-} from '@/components/ui/input-group'
-import { Spinner } from '@/components/ui/spinner'
-import { Button } from '@/components/ui/button'
-import type { VotesProvider } from '@/utils/types.ts'
-import { useClipboard } from '@vueuse/core'
-import { toast } from 'vue-sonner'
-import { useBotVotesProvider, useLoading, useAnalytics } from '@/composables'
-import { useRouteParams } from '@vueuse/router'
-import { useI18n } from 'vue-i18n'
-import {
+  Button,
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog'
-import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field'
+  Field,
+  FieldDescription,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  Input,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+  Spinner,
+} from '@/components/ui'
+import type { VotesProvider } from '@/utils/types.ts'
+import { useClipboard } from '@vueuse/core'
+import { toast } from 'vue-sonner'
+import { useBotVotesProvider, useLoading, useAnalytics } from '@/composables'
+import { useRouteParams } from '@vueuse/router'
+import { useI18n } from 'vue-i18n'
 import { Field as VeeField, useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
-import { Input } from '@/components/ui/input'
 import { topggTokenUpdateFormSchema } from '@/utils/formSchemas.ts'
 
 const { t } = useI18n()

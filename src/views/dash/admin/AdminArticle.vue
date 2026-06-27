@@ -1,27 +1,32 @@
 <script setup lang="ts">
-import AdminDashLayout from '@/components/layouts/AdminDashLayout.vue'
+import { AdminDashLayout, ThemedImg } from '@/components'
 import { useBlogArticles, useLoading } from '@/composables'
 import { onBeforeMount, ref } from 'vue'
 import { useRouteParams } from '@vueuse/router'
-import ThemedImg from '@/components/ThemedImg.vue'
-import { AspectRatio } from '@/components/ui/aspect-ratio'
-import { Field as VeeField, useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
-import { adminBlogEditorFormSchema } from '@/utils/formSchemas.ts'
-import { Button } from '@/components/ui/button'
-import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field'
-import { Input } from '@/components/ui/input'
-import { Spinner } from '@/components/ui/spinner'
 import {
+  AspectRatio,
+  Button,
+  Card,
+  CardContent,
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  Input,
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+  Spinner,
   TagsInput,
   TagsInputInput,
   TagsInputItem,
   TagsInputItemDelete,
   TagsInputItemText,
-} from '@/components/ui/tags-input'
-import { Textarea } from '@/components/ui/textarea'
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable'
-import { Card, CardContent } from '@/components/ui/card'
+  Textarea,
+} from '@/components/ui'
+import { Field as VeeField, useForm } from 'vee-validate'
+import { toTypedSchema } from '@vee-validate/zod'
+import { adminBlogEditorFormSchema } from '@/utils/formSchemas.ts'
 import VueMarkdown from 'vue-markdown-render'
 import type { BlogArticle } from '@/utils/types.ts'
 import { SaveIcon, SendIcon, TrashIcon } from '@lucide/vue'

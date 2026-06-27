@@ -2,11 +2,10 @@
 import { onBeforeMount, ref } from 'vue'
 import { AlertCircleIcon, PlusIcon } from '@lucide/vue'
 import { useRoute, useRouter } from 'vue-router'
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/ui'
 import { useAnalytics, useAuthToken, useOAuth, useCurrentUser } from '@/composables'
 import { useLocalStorage } from '@vueuse/core'
-import ThemedImg from '@/components/ThemedImg.vue'
-import CustomIcon from '@/components/CustomIcon.vue'
+import { CustomIcon, ThemedImg } from '@/components'
 import { useI18n } from 'vue-i18n'
 
 const state = ref<'loading' | 'error'>('loading')
