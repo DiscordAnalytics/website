@@ -3,12 +3,11 @@ import { onBeforeMount, ref } from 'vue'
 import { AlertCircleIcon, PlusIcon } from '@lucide/vue'
 import { useRoute, useRouter } from 'vue-router'
 import { Button } from '@/components/ui/button'
-import { useAnalytics, useAuthToken, useOAuth } from '@/composables'
+import { useAnalytics, useAuthToken, useOAuth, useCurrentUser } from '@/composables'
 import { useLocalStorage } from '@vueuse/core'
 import ThemedImg from '@/components/ThemedImg.vue'
 import CustomIcon from '@/components/CustomIcon.vue'
 import { useI18n } from 'vue-i18n'
-import useAPI, { APIScope } from '@/utils/api/index.ts'
 
 const state = ref<'loading' | 'error'>('loading')
 const error = ref<string>('')
@@ -74,14 +73,21 @@ onBeforeMount(async () => {
     })
 
     try {
-      const user = await useAPI(APIScope.User).users.get(id)
-      identify(id, {
-        app_locale: i18n.locale.value,
-        username: user.username,
-        avatar: user.avatar,
-        admin: user.admin,
-        joinedAt: user.joinedAt,
-      })
+      const { fetch: fetchUser, userInfos, ownedBots, notOwnedBots } = useCurrentUser()
+      await fetchUser()
+      if (userInfos.value) {
+        identify(id, {
+          app_locale: i18n.locale.value,
+          username: userInfos.value.username,
+          avatar: userInfos.value.avatar,
+          admin: userInfos.value.admin,
+          joinedAt: userInfos.value.joinedAt,
+          owned_bots_count: ownedBots.value.length,
+          team_bots_count: notOwnedBots.value.length,
+        })
+      } else {
+        identify(id, { app_locale: i18n.locale.value })
+      }
       capture('user_logged_in')
     } catch {
       identify(id, { app_locale: i18n.locale.value })
