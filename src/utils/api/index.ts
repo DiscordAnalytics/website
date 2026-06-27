@@ -2,12 +2,12 @@ import { useCookies } from '@vueuse/integrations/useCookies'
 import { computed, reactive } from 'vue'
 
 import { useConfig } from '@/composables'
-import ArticlesResource from '@/utils/api/articles.ts'
-import BotsResource from '@/utils/api/bots.ts'
-import { handleDemoRequest } from '@/utils/api/demo.ts'
-import OAuthRessource from '@/utils/api/oauth.ts'
-import UsersResource from '@/utils/api/users.ts'
-import { oneMonthInSec } from '@/utils/dateTime.ts'
+import ArticlesResource from '@/utils/api/articles'
+import BotsResource from '@/utils/api/bots'
+import { handleDemoRequest } from '@/utils/api/demo'
+import OAuthRessource from '@/utils/api/oauth'
+import UsersResource from '@/utils/api/users'
+import { oneMonthInSec } from '@/utils/dateTime'
 
 const authState = reactive<{
   userId: string | null
@@ -211,3 +211,12 @@ export function useAuthToken() {
 export default function useAPI(scope: APIScope): APIClient {
   return new APIClient(scope)
 }
+
+export * from './demo'
+export { default as ArticlesResource } from './articles.ts'
+export { default as BotsResource } from './bots.ts'
+export { default as OAuthRessource } from './oauth.ts'
+export { default as UsersResource } from './users.ts'
+export { default as InvitationsResource } from './invitations.ts'
+export { default as VotesProviderResource } from './votes.ts'
+export { default as SessionsRessource } from './sessions.ts'

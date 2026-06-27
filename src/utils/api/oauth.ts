@@ -1,5 +1,4 @@
-import { type APIClient } from '@/utils/api/index.ts'
-import SessionsRessource from '@/utils/api/sessions.ts'
+import { type APIClient, SessionsRessource } from '@/utils/api'
 import type { OAuthConfig } from '@/utils/types'
 
 export default class OAuthRessource {

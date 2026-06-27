@@ -1,9 +1,13 @@
 import type { DateRange } from 'reka-ui'
 
-import { type APIClient, APIError, APIScope } from '@/utils/api/index.ts'
-import InvitationsResource from '@/utils/api/invitations.ts'
-import VotesProviderResource from '@/utils/api/votes.ts'
-import { dateToUTCDateTime } from '@/utils/dateTime.ts'
+import {
+  type APIClient,
+  APIError,
+  APIScope,
+  InvitationsResource,
+  VotesProviderResource,
+} from '@/utils/api'
+import { dateToUTCDateTime } from '@/utils/dateTime'
 import type {
   Achievement,
   Bot,

@@ -1,4 +1,4 @@
-import type { APIClient } from '@/utils/api/index.ts'
+import type { APIClient } from '@/utils/api'
 import type { TeamInvitationData } from '@/utils/types'
 
 export default class InvitationsResource {

@@ -3,8 +3,7 @@ import { type ComputedRef, type Ref, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 import { useStore } from '@/stores'
-import useAPI, { APIScope } from '@/utils/api'
-import { getDemoBot } from '@/utils/api/demo.ts'
+import useAPI, { APIScope, getDemoBot } from '@/utils/api'
 import type { Bot } from '@/utils/types'
 
 import { useAnalytics, useOAuthSessions } from '.'

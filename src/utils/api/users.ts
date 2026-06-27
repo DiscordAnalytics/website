@@ -1,4 +1,4 @@
-import { type APIClient, APIError, APIScope } from '@/utils/api/index.ts'
+import { type APIClient, APIError, APIScope } from '@/utils/api'
 import type { Bot, User } from '@/utils/types'
 
 export default class UsersResource {
