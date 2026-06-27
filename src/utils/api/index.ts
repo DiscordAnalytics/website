@@ -1,7 +1,6 @@
 import UsersResource from '@/utils/api/users.ts'
 import { useCookies } from '@vueuse/integrations/useCookies'
 import BotsResource from '@/utils/api/bots.ts'
-import { useLocalStorage } from '@vueuse/core'
 import { useConfig } from '@/composables'
 import { computed, reactive } from 'vue'
 import { oneMonthInSec } from '@/utils/dateTime.ts'
