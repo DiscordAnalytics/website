@@ -3,7 +3,8 @@ import { onBeforeMount, ref } from 'vue'
 import { AlertCircleIcon, PlusIcon } from '@lucide/vue'
 import { useRoute, useRouter } from 'vue-router'
 import { Button } from '@/components/ui/button'
-import { useAnalytics, useAuthToken, useOAuth } from '@/composables'
+import { useAnalytics, useAuthToken, useOAuth, useCurrentUser } from '@/composables'
+import { useLocalStorage } from '@vueuse/core'
 import ThemedImg from '@/components/ThemedImg.vue'
 import CustomIcon from '@/components/CustomIcon.vue'
 import { useI18n } from 'vue-i18n'
@@ -16,7 +17,7 @@ const router = useRouter()
 const route = useRoute()
 const { config: oauthConfig, fetch: fetchOAuthConfig } = useOAuth()
 const { setTokens } = useAuthToken()
-const { identify } = useAnalytics()
+const { identify, capture } = useAnalytics()
 
 const authErrors = {
   access_denied: i18n.t('pages.auth.errors.access_denied'),
@@ -45,7 +46,7 @@ onBeforeMount(async () => {
   }
 
   if (!code) {
-    if (redirection) localStorage.setItem('redirectAfterLogin', redirection)
+    if (redirection) useLocalStorage('redirectAfterLogin', '').value = redirection
 
     return redirect()
   }
@@ -70,14 +71,36 @@ onBeforeMount(async () => {
       refreshToken,
       userId: id,
     })
-    identify(id, { app_locale: i18n.locale.value })
+
+    try {
+      const { fetch: fetchUser, userInfos, ownedBots, notOwnedBots } = useCurrentUser()
+      await fetchUser()
+      if (userInfos.value) {
+        identify(id, {
+          app_locale: i18n.locale.value,
+          username: userInfos.value.username,
+          avatar: userInfos.value.avatar,
+          admin: userInfos.value.admin,
+          joinedAt: userInfos.value.joinedAt,
+          owned_bots_count: ownedBots.value.length,
+          team_bots_count: notOwnedBots.value.length,
+        })
+      } else {
+        identify(id, { app_locale: i18n.locale.value })
+      }
+      capture('user_logged_in')
+    } catch {
+      identify(id, { app_locale: i18n.locale.value })
+      capture('user_logged_in')
+    }
 
     setTimeout(() => {
-      const redirectAfterLogin = localStorage.getItem('redirectAfterLogin')
+      const redirectAfterLogin = useLocalStorage('redirectAfterLogin', '')
 
-      if (redirectAfterLogin) {
-        localStorage.removeItem('redirectAfterLogin')
-        return router.push(redirectAfterLogin)
+      if (redirectAfterLogin.value) {
+        const url = redirectAfterLogin.value
+        redirectAfterLogin.value = null
+        return router.push(url)
       } else return router.push('/')
     }, 1000)
   } else

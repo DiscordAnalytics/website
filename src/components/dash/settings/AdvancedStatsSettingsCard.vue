@@ -2,7 +2,7 @@
 import SettingCard from '@/components/dash/SettingCard.vue'
 import { ZapIcon } from '@lucide/vue'
 import { useRouteParams } from '@vueuse/router'
-import { useBot, useLoading } from '@/composables'
+import { useAnalytics, useBot, useLoading } from '@/composables'
 import { ref, watch } from 'vue'
 import { Switch } from '@/components/ui/switch'
 import { toast } from 'vue-sonner'
@@ -20,6 +20,10 @@ watch(advancedStats, async () => {
   await withLoading(async () => {
     await toggleAdvancedStats()
       .then(() => {
+        useAnalytics().capture('advanced_stats_toggled', {
+          enabled: advancedStats.value,
+          bot_id: botId.value,
+        })
         if (advancedStats.value)
           toast.success(t('pages.dash.settings.general.advancedStats.toasts.enabled'))
         else

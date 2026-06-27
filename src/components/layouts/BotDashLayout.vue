@@ -19,6 +19,7 @@ import {
   Users,
   Vote,
   Webhook,
+  InfoIcon,
 } from '@lucide/vue'
 import { useRouteParams } from '@vueuse/router'
 import { useBot, useCurrentUser } from '@/composables'
@@ -31,7 +32,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
+import { breakpointsTailwind, useBreakpoints, useLocalStorage } from '@vueuse/core'
 import {
   Empty,
   EmptyContent,
@@ -40,6 +41,7 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from '@/components/ui/empty'
+import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import { useRoute } from 'vue-router'
 import type { BotScanResult } from '@/utils/types.ts'
@@ -65,6 +67,7 @@ const breakpoints = useBreakpoints(breakpointsTailwind)
 
 const largerThanMd = breakpoints.greater('md')
 const scanResults = ref<{ [botId: string]: BotScanResult }>({})
+const isDemoMode = useLocalStorage('sandbox_demo', false)
 
 const statsRangeQuery = computed(() =>
   statsRange.value.start && statsRange.value.end
@@ -266,7 +269,24 @@ watch(userBots, async () => {
         <slot name="header" />
       </header>
       <main class="px-4">
-        <MrRobotBanner />
+        <Alert v-if="isDemoMode" class="bg-primary/10 border-primary/20">
+          <InfoIcon />
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 ml-2">
+            <div>
+              <AlertTitle>{{ $t('pages.dash.layout.demoBanner.title') }}</AlertTitle>
+              <AlertDescription>
+                {{ $t('pages.dash.layout.demoBanner.description') }}
+              </AlertDescription>
+            </div>
+
+            <RouterLink to="/dash/onboarding">
+              <Button size="sm" variant="outline">
+                {{ $t('pages.dash.layout.demoBanner.button') }}
+              </Button>
+            </RouterLink>
+          </div>
+        </Alert>
+        <MrRobotBanner v-else />
         <slot
           v-if="(currentBot.framework && currentBot.lastPush) || route.path.includes('/settings')"
         />

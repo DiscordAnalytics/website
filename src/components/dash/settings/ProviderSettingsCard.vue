@@ -14,7 +14,7 @@ import { Button } from '@/components/ui/button'
 import type { VotesProvider } from '@/utils/types.ts'
 import { useClipboard } from '@vueuse/core'
 import { toast } from 'vue-sonner'
-import { useBotVotesProvider, useLoading } from '@/composables'
+import { useBotVotesProvider, useLoading, useAnalytics } from '@/composables'
 import { useRouteParams } from '@vueuse/router'
 import { useI18n } from 'vue-i18n'
 import {
@@ -67,6 +67,10 @@ async function updateToken(token: string = generateWebhookSecret()) {
   await withLoading(async () => {
     await updateProvider(token)
       .then(() => {
+        useAnalytics().capture('votes_provider_updated', {
+          provider: props.id,
+          bot_id: botId.value,
+        })
         if (props.provider === 'topgg')
           toast.success(t('pages.dash.settings.votes.provider.toast.updated'))
         else toast.success(t('pages.dash.settings.votes.provider.toast.regenerated'))

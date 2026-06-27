@@ -26,5 +26,10 @@
     "title": "Configuration isn't finished",
     "description": "It seems you didn't finished configuring Discord Analytics on your bot.",
     "button": "Finish configuration"
+  },
+  "demoBanner": {
+    "title": "Demo Mode",
+    "description": "You are currently viewing a live demonstration. Ready to see your own data? Add your bot to start gathering statistics!",
+    "button": "Add my bot"
   }
 }

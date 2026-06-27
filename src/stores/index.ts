@@ -1,5 +1,6 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
+import { useLocalStorage } from '@vueuse/core'
 import type { DateRange } from 'reka-ui'
 import type {
   Achievement,
@@ -32,7 +33,7 @@ export const useStore = defineStore('store', () => {
 
   const allUsers = ref<User[]>([])
 
-  const theme = ref<Color>('zinc')
+  const theme = useLocalStorage<Color>('theme', 'zinc')
 
   const statsRange = ref<DateRange>({
     start: undefined,
@@ -46,8 +47,6 @@ export const useStore = defineStore('store', () => {
 
     document.documentElement.classList.remove(...allColors.map((color) => `theme-${color}`))
     document.documentElement.classList.add(`theme-${newTheme}`)
-
-    localStorage.setItem('theme', newTheme)
   }
 
   function clear() {

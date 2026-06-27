@@ -6,6 +6,7 @@ import { computed, reactive } from 'vue'
 import { oneMonthInSec } from '@/utils/dateTime.ts'
 import OAuthRessource from '@/utils/api/oauth.ts'
 import ArticlesResource from '@/utils/api/articles.ts'
+import { handleDemoRequest } from '@/utils/api/demo.ts'
 
 const authState = reactive<{
   userId: string | null
@@ -71,6 +72,10 @@ export class APIClient {
     body?: unknown,
     contentType: string = 'application/json',
   ): Promise<T> {
+    if (path.includes('demo-bot')) {
+      return handleDemoRequest<T>(method, path, this.userId)
+    }
+
     const headers = {
       ...(await this.getHeaders()),
       'Content-Type': contentType,

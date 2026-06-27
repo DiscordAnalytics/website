@@ -68,15 +68,18 @@ onMounted(() => {
       else return event
     },
   })
+  ;(window as any).posthog = posthog
 
-  if (analyticsConsent) {
+  if (analyticsConsent.value) {
     posthog.opt_in_capturing()
+    posthog.startSessionRecording()
   }
 })
 
 function acceptCookies() {
   analyticsConsent.value = true
   posthog.opt_in_capturing()
+  posthog.startSessionRecording()
 }
 
 function rejectCookies() {

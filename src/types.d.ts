@@ -9,3 +9,5 @@ declare global {
     CONFIG: AppConfig
   }
 }
+
+declare module '@tsparticles/vue3'

@@ -2,7 +2,7 @@
 import AccountDashLayout from '@/components/layouts/AccountDashLayout.vue'
 import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty'
 import { CheckIcon, FrownIcon, XIcon } from '@lucide/vue'
-import { useLoading, useTeamInvitations } from '@/composables'
+import { useLoading, useTeamInvitations, useAnalytics } from '@/composables'
 import { onMounted } from 'vue'
 import DiscordAvatar from '@/components/DiscordAvatar.vue'
 import { Spinner } from '@/components/ui/spinner'
@@ -19,6 +19,7 @@ async function acceptInvitation(invitationId: string) {
   await withLoading(async () => {
     await accept(invitationId)
       .then(async () => {
+        useAnalytics().capture('team_invitation_accepted', { invitation_id: invitationId })
         toast.success(i18n.t('pages.dash.account.invitations.toast.accepted'))
       })
       .catch((err) => toast.error(err.message))
@@ -29,6 +30,7 @@ async function rejectInvitation(invitationId: string) {
   await withLoading(async () => {
     await reject(invitationId)
       .then(() => {
+        useAnalytics().capture('team_invitation_rejected', { invitation_id: invitationId })
         toast.success(i18n.t('pages.dash.account.invitations.toast.rejected'))
       })
       .catch((err) => toast.error(err.message))

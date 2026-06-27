@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import useCurrentUser from '@/composables/useCurrentUser.ts'
+import { useCurrentUser } from '@/composables'
+import { useLocalStorage } from '@vueuse/core'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -171,6 +172,12 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to) => {
+  if (to.params.id === 'demo-bot' && to.path.includes('/settings')) {
+    return '/dash/bots/demo-bot/teammates'
+  }
+  if (to.params.id && to.params.id !== 'demo-bot' && useLocalStorage('sandbox_demo', false).value) {
+    useLocalStorage('sandbox_demo', false).value = false
+  }
   const { userInfos, fetch: fetchUser } = useCurrentUser()
   if (to.path.startsWith('/dash') && !userInfos.value) {
     try {

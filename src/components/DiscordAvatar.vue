@@ -53,9 +53,14 @@ const sizeConfig = {
 
 const imageType = computed(() => (props.isGuildIcon ? 'icons' : 'avatars'))
 
-const avatarFallbackUrl = computed(
-  () => `https://cdn.discordapp.com/embed/avatars/${Number((BigInt(props.id) >> 22n) % 6n)}.png`,
-)
+const avatarFallbackUrl = computed(() => {
+  try {
+    const idBigInt = BigInt(props.id)
+    return `https://cdn.discordapp.com/embed/avatars/${Number((idBigInt >> 22n) % 6n)}.png`
+  } catch {
+    return 'https://cdn.discordapp.com/embed/avatars/0.png'
+  }
+})
 
 const avatarUrl = computed(() => {
   return props.avatar

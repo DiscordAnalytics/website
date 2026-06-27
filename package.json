@@ -25,6 +25,7 @@
     "@scalar/api-reference": "^1.52.1",
     "@tailwindcss/vite": "^4.2.1",
     "@tanstack/vue-table": "^8.21.3",
+    "@tsparticles/engine": "^3.9.1",
     "@tsparticles/vue3": "^3.0.1",
     "@unovis/ts": "^1.6.4",
     "@unovis/vue": "^1.6.4",

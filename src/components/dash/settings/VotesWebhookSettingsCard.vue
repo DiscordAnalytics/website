@@ -3,7 +3,7 @@ import { WebhookIcon } from '@lucide/vue'
 import SettingCard from '@/components/dash/SettingCard.vue'
 import { Spinner } from '@/components/ui/spinner'
 import { Button } from '@/components/ui/button'
-import { useBot, useLoading } from '@/composables'
+import { useBot, useLoading, useAnalytics } from '@/composables'
 import { useRouteParams } from '@vueuse/router'
 import { ref } from 'vue'
 import { Input } from '@/components/ui/input'
@@ -31,6 +31,7 @@ async function update() {
     if ((bot.value?.webhooksConfig.webhookUrl ?? '') !== webhookUrl.value)
       await updateVotesWebhook(webhookUrl.value)
         .then(() => {
+          useAnalytics().capture('votes_webhook_updated', { bot_id: botId.value })
           toast.success('Votes webhook updated successfully.')
         })
         .catch((err) => toast.error(err.message))

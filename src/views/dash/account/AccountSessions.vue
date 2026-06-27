@@ -4,8 +4,7 @@ import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/
 import { BrushCleaningIcon, FrownIcon } from '@lucide/vue'
 import { onMounted } from 'vue'
 import { Spinner } from '@/components/ui/spinner'
-import useOAuthSessions from '@/composables/useOAuthSessions.ts'
-import { useLoading } from '@/composables'
+import { useLoading, useAnalytics, useOAuthSessions } from '@/composables'
 import AccountSessionCard from '@/components/dash/AccountSessionCard.vue'
 import { toast } from 'vue-sonner'
 import { Button } from '@/components/ui/button'
@@ -19,7 +18,10 @@ const { isLoading, withLoading } = useLoading()
 async function onRevokeAllSessions() {
   await withLoading(async () => {
     await revokeAll()
-      .then(() => toast.success(t('pages.dash.account.sessions.toasts.revokedAll')))
+      .then(() => {
+        useAnalytics().capture('session_revoked_all')
+        toast.success(t('pages.dash.account.sessions.toasts.revokedAll'))
+      })
       .catch((err) => toast.error(err.message))
   })
 }
@@ -27,7 +29,10 @@ async function onRevokeAllSessions() {
 async function onRevokeSession(sessionId: string) {
   await withLoading(async () => {
     await revokeSession(sessionId)
-      .then(() => toast.success(t('pages.dash.account.sessions.toasts.revoked')))
+      .then(() => {
+        useAnalytics().capture('session_revoked', { session_id: sessionId })
+        toast.success(t('pages.dash.account.sessions.toasts.revoked'))
+      })
       .catch((err) => toast.error(err.message))
   })
 }

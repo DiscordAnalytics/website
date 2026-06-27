@@ -2,8 +2,10 @@ import useAPI, { APIScope } from '@/utils/api'
 import { useStore } from '@/stores'
 import { useRoute, useRouter } from 'vue-router'
 import { computed, type ComputedRef, type Ref } from 'vue'
-import useOAuthSessions from '@/composables/useOAuthSessions.ts'
+import { useLocalStorage } from '@vueuse/core'
 import type { Bot } from '@/utils/types.ts'
+import { useAnalytics, useOAuthSessions } from '.'
+import { getDemoBot } from '@/utils/api/demo.ts'
 
 export default function useUser(
   scope: APIScope,
@@ -20,19 +22,32 @@ export default function useUser(
       ? (store.userBotIds[userId.value] ?? [])
           .map((id) => store.bots[id])
           .filter((b): b is Bot => !!b)
+          .filter((b) => {
+            if (b.botId === 'demo-bot') {
+              return window.location.pathname.includes('/bots/demo-bot')
+            }
+            return true
+          })
       : [],
   )
   const ownedBots = computed(() => userBots.value.filter((bot) => bot.ownerId === userId.value))
-  const notOwnedBots = computed(() =>
-    userBots.value.filter((bot) => bot.team.includes(userId.value!)),
-  )
+  const notOwnedBots = computed(() => userBots.value.filter((bot) => bot.ownerId !== userId.value))
   const accessibleBots = computed(() => [...ownedBots.value, ...notOwnedBots.value])
 
   async function fetch() {
     if (!userId.value) throw new Error('Not Authenticated')
     store.allUsers.push(await api.users.get(userId.value))
     const { ownedBots, teamBots } = await api.users.getBots(userId.value)
-    const allUserBots = [...ownedBots, ...teamBots]
+    let allUserBots = [...ownedBots, ...teamBots]
+    if (useLocalStorage('sandbox_demo', false).value) {
+      const demoBot = getDemoBot(userId.value)
+      if (!allUserBots.some((b) => b.botId === 'demo-bot')) {
+        allUserBots.push(demoBot as Bot)
+      }
+    } else {
+      allUserBots = allUserBots.filter((b) => b.botId !== 'demo-bot')
+      delete store.bots['demo-bot']
+    }
     for (const bot of allUserBots) {
       store.bots[bot.botId] = bot
     }
@@ -49,6 +64,9 @@ export default function useUser(
     }
     api.clearTokens()
     store.clear()
+
+    useAnalytics().capture('user_logged_out')
+    useAnalytics().reset()
 
     setTimeout(async () => {
       if (route.path.startsWith('/dash') || route.path.startsWith('/auth')) await router.push('/')
