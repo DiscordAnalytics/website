@@ -1,3 +1,11 @@
+## [1.1.6](https://github.com/DiscordAnalytics/website/compare/v1.1.5...v1.1.6) (2026-06-27)
+
+
+### Bug Fixes
+
+* fixed build errors ([f7be73d](https://github.com/DiscordAnalytics/website/commit/f7be73d652ba40c0a41098a58b4426c271b95bf0))
+* **navbar:** fixed bad import ([60c312f](https://github.com/DiscordAnalytics/website/commit/60c312fc2429be0ba73e3de45788f861f995426a))
+
 ## [1.1.5](https://github.com/DiscordAnalytics/website/compare/v1.1.4...v1.1.5) (2026-05-14)
 
 
