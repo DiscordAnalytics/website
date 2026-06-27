@@ -1,3 +1,10 @@
+## [1.1.7](https://github.com/DiscordAnalytics/website/compare/v1.1.6...v1.1.7) (2026-06-27)
+
+
+### Bug Fixes
+
+* fixed runtime error ([348e200](https://github.com/DiscordAnalytics/website/commit/348e200ccecadd27be70fe9811f57de1c7c19417))
+
 ## [1.1.6](https://github.com/DiscordAnalytics/website/compare/v1.1.5...v1.1.6) (2026-06-27)
 
 
