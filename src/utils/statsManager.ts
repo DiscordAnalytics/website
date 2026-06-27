@@ -8,7 +8,7 @@ import {
   type RawStats,
   type RawVotes,
   type VotesProvider,
-} from '@/utils/types.ts'
+} from '@/utils/types'
 
 type Granularity = 'hour' | 'day'
 

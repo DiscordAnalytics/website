@@ -39,7 +39,7 @@ import {
 import { useAchievementsStore, useAnalytics, useCurrentUser, useLoading } from '@/composables'
 import { copyAchievementFormSchema } from '@/utils/formSchemas.ts'
 import { selectLocale } from '@/utils/functions.ts'
-import type { Achievement } from '@/utils/types.ts'
+import type { Achievement } from '@/utils/types'
 
 const { achievements, fetch: fetchAchievements, copy: copyAchievement } = useAchievementsStore()
 const { userInfos, ownedBots: userBots } = useCurrentUser()

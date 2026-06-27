@@ -17,7 +17,7 @@ import {
   Spinner,
 } from '@/components/ui'
 import { useBot } from '@/composables'
-import type { Bot } from '@/utils/types.ts'
+import type { Bot } from '@/utils/types'
 
 const botId = useRouteQuery<string>('botId', '')
 const { bot, fetch: fetchBot } = useBot(botId)

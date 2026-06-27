@@ -34,7 +34,7 @@ import {
 import { useLoading, useUser } from '@/composables'
 import { APIScope } from '@/utils/api'
 import { df } from '@/utils/dateTime.ts'
-import type { Bot } from '@/utils/types.ts'
+import type { Bot } from '@/utils/types'
 
 const { t } = useI18n()
 const router = useRouter()

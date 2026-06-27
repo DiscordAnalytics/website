@@ -5,7 +5,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { useStore } from '@/stores'
 import useAPI, { APIScope } from '@/utils/api'
 import { getDemoBot } from '@/utils/api/demo.ts'
-import type { Bot } from '@/utils/types.ts'
+import type { Bot } from '@/utils/types'
 
 import { useAnalytics, useOAuthSessions } from '.'
 

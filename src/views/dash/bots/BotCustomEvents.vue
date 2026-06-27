@@ -24,7 +24,7 @@ import {
   getRangeGranularity,
   getTickFormatter,
 } from '@/utils/statsManager.ts'
-import type { ChartConfig, CustomEvent } from '@/utils/types.ts'
+import type { ChartConfig, CustomEvent } from '@/utils/types'
 
 const { t } = useI18n()
 

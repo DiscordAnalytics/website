@@ -23,7 +23,7 @@ import {
 } from '@/components/ui'
 import { useBots, useLoading } from '@/composables'
 import { adminUpdateBotLimitsFormSchema } from '@/utils/formSchemas.ts'
-import type { Bot } from '@/utils/types.ts'
+import type { Bot } from '@/utils/types'
 
 const { t } = useI18n()
 

@@ -25,7 +25,7 @@ import {
 } from '@/components/ui'
 import { useBots, useLoading } from '@/composables'
 import { df } from '@/utils/dateTime.ts'
-import type { Bot, DataTableAction } from '@/utils/types.ts'
+import type { Bot, DataTableAction } from '@/utils/types'
 
 const { t } = useI18n()
 

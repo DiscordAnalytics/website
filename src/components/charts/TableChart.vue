@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ChartContainer, DiscordAvatar, EmptyChart } from '@/components'
 import { Skeleton, Table, TableBody, TableCell, TableHeader, TableRow } from '@/components/ui'
-import type { FormattedStats } from '@/utils/types.ts'
+import type { FormattedStats } from '@/utils/types'
 
 defineProps<{
   title: string

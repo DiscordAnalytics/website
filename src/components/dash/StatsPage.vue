@@ -6,7 +6,7 @@ import {
   LineChartSkeleton,
   StatsRangeSelector,
 } from '@/components'
-import type { ChartConfig } from '@/utils/types.ts'
+import type { ChartConfig } from '@/utils/types'
 
 const props = defineProps<{
   charts: ChartConfig[]

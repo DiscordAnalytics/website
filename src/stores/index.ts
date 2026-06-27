@@ -16,7 +16,7 @@ import type {
   TeamInvitationData,
   Teammate,
   User,
-} from '@/utils/types.ts'
+} from '@/utils/types'
 
 export const useStore = defineStore('store', () => {
   const bots = ref<{ [botId: string]: Bot }>({})

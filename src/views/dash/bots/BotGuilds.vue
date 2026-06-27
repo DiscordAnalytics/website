@@ -10,7 +10,7 @@ import { TableHead, TableRow } from '@/components/ui'
 import { useBot, useBotStats, useLoading, useLocale } from '@/composables'
 import { useStore } from '@/stores'
 import { calculateGuilds, getRangeGranularity, getTickFormatter } from '@/utils/statsManager.ts'
-import type { ChartConfig, ChartData } from '@/utils/types.ts'
+import type { ChartConfig, ChartData } from '@/utils/types'
 
 const botId = useRouteParams<string>('id')
 const { stats, fetch: fetchStats } = useBotStats(botId)

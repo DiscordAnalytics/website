@@ -14,7 +14,7 @@ import {
   Spinner,
 } from '@/components/ui'
 import { useBots, useLoading } from '@/composables'
-import type { Bot } from '@/utils/types.ts'
+import type { Bot } from '@/utils/types'
 
 const props = defineProps<{
   bots: Bot[]

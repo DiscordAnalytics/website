@@ -14,7 +14,7 @@ import {
   SidebarMenuItem,
   SidebarProvider,
 } from '@/components/ui'
-import type { SidebarItem } from '@/utils/types.ts'
+import type { SidebarItem } from '@/utils/types'
 
 defineProps<{
   items: SidebarItem[]

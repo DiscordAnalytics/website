@@ -23,7 +23,7 @@ import {
 import { useLoading, useTeamInvitations } from '@/composables'
 import { APIScope } from '@/utils/api'
 import { df } from '@/utils/dateTime.ts'
-import type { DataTableAction, TeamInvitationData } from '@/utils/types.ts'
+import type { DataTableAction, TeamInvitationData } from '@/utils/types'
 
 const { t } = useI18n()
 const { invitations, fetch: fetchInvitations } = useTeamInvitations(APIScope.Admin)

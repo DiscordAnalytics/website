@@ -54,7 +54,7 @@ import {
 } from '@/components/ui'
 import { useAnalytics, useBot, useBotTeam, useLoading } from '@/composables'
 import { addTeammateFormSchema } from '@/utils/formSchemas.ts'
-import type { Teammate } from '@/utils/types.ts'
+import type { Teammate } from '@/utils/types'
 
 const { t } = useI18n()
 

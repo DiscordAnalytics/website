@@ -13,7 +13,7 @@ import {
   CardTitle,
 } from '@/components/ui'
 import { timeAgo } from '@/utils/dateTime.ts'
-import type { BlogArticle } from '@/utils/types.ts'
+import type { BlogArticle } from '@/utils/types'
 
 const props = defineProps<{
   article: Omit<BlogArticle, 'content'>

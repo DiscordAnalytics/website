@@ -11,7 +11,7 @@ import {
   Skeleton,
 } from '@/components/ui'
 import { cn } from '@/lib/utils.ts'
-import type { ChartConfig, ChartTab } from '@/utils/types.ts'
+import type { ChartConfig, ChartTab } from '@/utils/types'
 
 const props = defineProps<{
   title: string

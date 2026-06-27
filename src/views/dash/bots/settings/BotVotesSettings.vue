@@ -6,7 +6,7 @@ import { computed, onMounted, ref } from 'vue'
 import { BotDashLayout, ProviderSettingsCard, VotesWebhookSettingsCard } from '@/components'
 import { Button, Item, ItemContent, ItemDescription, ItemMedia, ItemTitle } from '@/components/ui'
 import { useLoading } from '@/composables'
-import type { VotesProvider } from '@/utils/types.ts'
+import type { VotesProvider } from '@/utils/types'
 
 const botId = useRouteParams<string>('id')
 const { isLoading, withLoading } = useLoading()

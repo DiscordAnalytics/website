@@ -20,7 +20,7 @@ import {
   Spinner,
 } from '@/components/ui'
 import { editAchievementFormSchema } from '@/utils/formSchemas.ts'
-import type { Achievement } from '@/utils/types.ts'
+import type { Achievement } from '@/utils/types'
 
 const props = defineProps<{
   achievement: Achievement | null

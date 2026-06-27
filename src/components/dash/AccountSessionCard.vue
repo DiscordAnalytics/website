@@ -18,7 +18,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui'
 import { timeAgo } from '@/utils/dateTime.ts'
-import type { OAuthSession } from '@/utils/types.ts'
+import type { OAuthSession } from '@/utils/types'
 
 const props = defineProps<{
   session: OAuthSession

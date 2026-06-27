@@ -15,7 +15,7 @@ import {
 } from '@/components/ui'
 import { useLoading, useTeamInvitations } from '@/composables'
 import { APIScope } from '@/utils/api'
-import type { TeamInvitationData } from '@/utils/types.ts'
+import type { TeamInvitationData } from '@/utils/types'
 
 const props = defineProps<{
   invitations: TeamInvitationData[]

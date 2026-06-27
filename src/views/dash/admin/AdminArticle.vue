@@ -34,7 +34,7 @@ import {
 import { useBlogArticles, useLoading } from '@/composables'
 import { APIScope } from '@/utils/api'
 import { adminBlogEditorFormSchema } from '@/utils/formSchemas.ts'
-import type { BlogArticle } from '@/utils/types.ts'
+import type { BlogArticle } from '@/utils/types'
 
 const router = useRouter()
 const { t } = useI18n()

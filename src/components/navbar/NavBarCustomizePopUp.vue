@@ -20,7 +20,7 @@ import {
 } from '@/components/ui'
 import { cn } from '@/lib/utils.ts'
 import { useStore } from '@/stores'
-import type { Color } from '@/utils/types.ts'
+import type { Color } from '@/utils/types'
 
 defineProps<{
   mobile?: boolean

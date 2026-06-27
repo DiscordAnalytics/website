@@ -2,7 +2,7 @@ import { computed } from 'vue'
 
 import { useStore } from '@/stores'
 import useAPI, { APIScope } from '@/utils/api'
-import type { Bot } from '@/utils/types.ts'
+import type { Bot } from '@/utils/types'
 
 export default function useBots() {
   const api = useAPI(APIScope.Admin)

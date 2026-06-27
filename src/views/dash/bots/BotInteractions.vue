@@ -13,7 +13,7 @@ import {
   getRangeGranularity,
   getTickFormatter,
 } from '@/utils/statsManager.ts'
-import type { ChartConfig } from '@/utils/types.ts'
+import type { ChartConfig } from '@/utils/types'
 
 const botId = useRouteParams<string>('id')
 const { stats, fetch: fetchStats } = useBotStats(botId)

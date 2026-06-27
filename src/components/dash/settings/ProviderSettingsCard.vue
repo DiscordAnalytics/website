@@ -31,7 +31,7 @@ import {
 } from '@/components/ui'
 import { useAnalytics, useBotVotesProvider, useLoading } from '@/composables'
 import { topggTokenUpdateFormSchema } from '@/utils/formSchemas.ts'
-import type { VotesProvider } from '@/utils/types.ts'
+import type { VotesProvider } from '@/utils/types'
 
 const { t } = useI18n()
 

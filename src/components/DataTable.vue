@@ -38,7 +38,7 @@ import {
   TableRow,
 } from '@/components/ui'
 import { valueUpdater } from '@/lib/utils'
-import type { DataTableAction } from '@/utils/types.ts'
+import type { DataTableAction } from '@/utils/types'
 
 const props = defineProps<{
   columns: ColumnDef<TData, TValue>[]

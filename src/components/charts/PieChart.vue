@@ -5,7 +5,7 @@ import { computed } from 'vue'
 
 import { type ChartConfig, ChartLegend, ChartSingleTooltip } from '@/components/ui'
 import { useLocale } from '@/composables'
-import type { ChartData, ChartTab } from '@/utils/types.ts'
+import type { ChartData, ChartTab } from '@/utils/types'
 
 const props = defineProps<{
   data: ChartData[]

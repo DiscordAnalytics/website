@@ -50,7 +50,7 @@ import {
 import { useBot, useCurrentUser } from '@/composables'
 import { useStore } from '@/stores'
 import scanBot, { getScanTypeColor } from '@/utils/botScanner.ts'
-import type { BotScanResult } from '@/utils/types.ts'
+import type { BotScanResult } from '@/utils/types'
 
 const route = useRoute()
 const currentBotId = useRouteParams<string>('id')

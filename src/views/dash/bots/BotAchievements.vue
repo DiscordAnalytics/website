@@ -39,7 +39,7 @@ import {
 import { useAnalytics, useBot, useBotAchievements, useLoading } from '@/composables'
 import { df } from '@/utils/dateTime.ts'
 import { goal2Percent } from '@/utils/statsManager.ts'
-import type { Achievement, GoalType } from '@/utils/types.ts'
+import type { Achievement, GoalType } from '@/utils/types'
 
 const botId = useRouteParams<string>('id')
 const {

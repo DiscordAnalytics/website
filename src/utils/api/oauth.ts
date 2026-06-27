@@ -1,6 +1,6 @@
 import { type APIClient } from '@/utils/api/index.ts'
 import SessionsRessource from '@/utils/api/sessions.ts'
-import type { OAuthConfig } from '@/utils/types.ts'
+import type { OAuthConfig } from '@/utils/types'
 
 export default class OAuthRessource {
   constructor(private readonly api: APIClient) {}

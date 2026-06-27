@@ -23,7 +23,7 @@ import {
 } from '@/components/ui'
 import { useLoading, useUsers } from '@/composables'
 import { adminUpdateUserLimitsFormSchema } from '@/utils/formSchemas.ts'
-import type { User } from '@/utils/types.ts'
+import type { User } from '@/utils/types'
 
 const { t } = useI18n()
 

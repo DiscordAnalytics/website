@@ -22,7 +22,7 @@ import { useAchievementsStore, useBotAchievements, useLoading } from '@/composab
 import { useStore } from '@/stores'
 import { APIScope } from '@/utils/api'
 import { selectLocale } from '@/utils/functions.ts'
-import type { Achievement } from '@/utils/types.ts'
+import type { Achievement } from '@/utils/types'
 
 const { achievements, fetch: fetchAchievements } = useAchievementsStore(APIScope.Admin)
 const store = useStore()

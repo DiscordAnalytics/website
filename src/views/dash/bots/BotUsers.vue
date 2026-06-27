@@ -22,7 +22,7 @@ import { useBotStats, useLoading, useLocale } from '@/composables'
 import { useStore } from '@/stores'
 import { dfWeekDay } from '@/utils/dateTime.ts'
 import { calculateUsers, getRangeGranularity, getTickFormatter } from '@/utils/statsManager.ts'
-import type { ChartConfig, ChartData } from '@/utils/types.ts'
+import type { ChartConfig, ChartData } from '@/utils/types'
 
 const botId = useRouteParams<string>('id')
 const { stats, fetch: fetchStats } = useBotStats(botId)

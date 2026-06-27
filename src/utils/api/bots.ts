@@ -12,7 +12,7 @@ import type {
   RawVotes,
   StatsReport,
   Teammate,
-} from '@/utils/types.ts'
+} from '@/utils/types'
 
 export default class BotsResource {
   constructor(private readonly api: APIClient) {}

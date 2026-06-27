@@ -17,7 +17,7 @@ import {
 } from '@/components/ui'
 import { useBlogArticles } from '@/composables'
 import { df, dfWithHour } from '@/utils/dateTime.ts'
-import type { Anchor, BlogArticle } from '@/utils/types.ts'
+import type { Anchor, BlogArticle } from '@/utils/types'
 
 const { getArticle } = useBlogArticles()
 const route = useRoute()

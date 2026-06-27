@@ -14,7 +14,7 @@ import {
   Spinner,
 } from '@/components/ui'
 import { useLoading, useUsers } from '@/composables'
-import type { User } from '@/utils/types.ts'
+import type { User } from '@/utils/types'
 
 const props = defineProps<{
   users: User[]
