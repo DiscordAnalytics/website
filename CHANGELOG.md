@@ -1,3 +1,11 @@
+## [1.1.8](https://github.com/DiscordAnalytics/website/compare/v1.1.7...v1.1.8) (2026-06-29)
+
+
+### Bug Fixes
+
+* **home:** fixed scrollTo function ([4407af6](https://github.com/DiscordAnalytics/website/commit/4407af6f7116b6f4215040fa8247d63b4d4b27d1))
+* **home:** fixed scrollTo function ([#120](https://github.com/DiscordAnalytics/website/issues/120)) ([903db51](https://github.com/DiscordAnalytics/website/commit/903db51c4fcc5adb2fe22d1d68331785b7232ae8))
+
 ## [1.1.7](https://github.com/DiscordAnalytics/website/compare/v1.1.6...v1.1.7) (2026-06-27)
 
 
