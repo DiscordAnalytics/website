@@ -7,9 +7,8 @@ import { createApp } from 'vue'
 import '@/assets/index.css'
 
 import App from './App.vue'
-import * as locales from './locales'
-import router from './router'
 import { i18n } from './i18n'
+import router from './router'
 
 const app = createApp(App)
 
