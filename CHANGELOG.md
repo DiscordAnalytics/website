@@ -1,3 +1,11 @@
+## [1.1.9](https://github.com/DiscordAnalytics/website/compare/v1.1.8...v1.1.9) (2026-07-03)
+
+
+### Bug Fixes
+
+* correctly aggregate daily stats across all metrics ([7d75e5f](https://github.com/DiscordAnalytics/website/commit/7d75e5f21053e3f6ccc14dbae7ede609b04f1e57))
+* correctly aggregate daily stats across all metrics ([#122](https://github.com/DiscordAnalytics/website/issues/122)) ([10dca46](https://github.com/DiscordAnalytics/website/commit/10dca46491506282dd32afd8198bb50606396255))
+
 ## [1.1.8](https://github.com/DiscordAnalytics/website/compare/v1.1.7...v1.1.8) (2026-06-29)
 
 
