@@ -203,8 +203,6 @@ export function calculateInteractions(
   ensureZeroEntries(chartsData.mostUsedComponents, top5Components)
   ensureZeroEntries(chartsData.mostUsedModals, top5Modals)
 
-  console.log(chartsData.allInteractionsEvolution)
-
   return chartsData
 }
 
