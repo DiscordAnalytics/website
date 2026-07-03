@@ -139,10 +139,10 @@ export function calculateInteractions(
 
   for (const date of generateBuckets(dateRange)) {
     let totalInteractionsCount = 0
-    const dailyStats = rawStats.find((stats) =>
+    const bucketStats = rawStats.filter((stats) =>
       isSameBucket(toBucket(stats.date, granularity), date),
     )
-    const dailyInteractions = dailyStats ? dailyStats.interactions || [] : []
+    const dailyInteractions = bucketStats.flatMap((stats) => stats.interactions || [])
 
     const dailyData: {
       mostUsedInteractions: ChartData
@@ -288,18 +288,19 @@ export function calculateGuilds(
   const top3Locales = sortedLocales.slice(0, 3).map(([loc]) => loc)
 
   for (const date of generateBuckets(dateRange)) {
-    const stats = rawStats.find((s) => isSameBucket(toBucket(s.date, granularity), date))
+    const bucketStats = rawStats.filter((s) => isSameBucket(toBucket(s.date, granularity), date))
+    const lastStats = bucketStats[bucketStats.length - 1]
 
-    chartsData.guildsEvolution.push({ date, Guilds: stats?.guildCount ?? 0 })
+    chartsData.guildsEvolution.push({ date, Guilds: lastStats?.guildCount ?? 0 })
     chartsData.addsAndRemoves.push({
       date,
-      Additions: stats?.addedGuilds ?? 0,
-      Removals: stats?.removedGuilds ?? 0,
+      Additions: bucketStats.reduce((sum, s) => sum + (s.addedGuilds ?? 0), 0),
+      Removals: bucketStats.reduce((sum, s) => sum + (s.removedGuilds ?? 0), 0),
     })
 
     const localeEntry: ChartData = { date }
     for (const loc of top3Locales) {
-      const localeData = stats?.guildLocales?.find((l) => l.locale === loc)
+      const localeData = lastStats?.guildLocales?.find((l) => l.locale === loc)
       localeEntry[loc] = localeData?.number ?? 0
     }
     if (top3Locales.length > 0) chartsData.guildsLocalesEvolution.push(localeEntry)
@@ -382,14 +383,15 @@ export function calculateUsers(
   const top3Locales = sortedLocales.slice(0, 3).map(([loc]) => loc)
 
   for (const date of generateBuckets(dateRange)) {
-    const stats = rawStats.find((s) => isSameBucket(toBucket(s.date, granularity), date))
+    const bucketStats = rawStats.filter((s) => isSameBucket(toBucket(s.date, granularity), date))
+    const lastStats = bucketStats[bucketStats.length - 1]
 
-    chartsData.usersEvolution.push({ date, Users: stats?.userCount ?? 0 })
-    chartsData.userInstallEvolution.push({ date, Installations: stats?.userInstallCount ?? 0 })
+    chartsData.usersEvolution.push({ date, Users: lastStats?.userCount ?? 0 })
+    chartsData.userInstallEvolution.push({ date, Installations: lastStats?.userInstallCount ?? 0 })
 
     const localeEntry: ChartData = { date }
     for (const loc of top3Locales) {
-      const localeData = stats?.interactionsLocales?.find((l) => l.locale === loc)
+      const localeData = lastStats?.interactionsLocales?.find((l) => l.locale === loc)
       localeEntry[loc] = localeData?.number ?? 0
     }
     if (top3Locales.length > 0) chartsData.usersLocalesEvolution.push(localeEntry)
@@ -424,15 +426,25 @@ export function calculateVotes(
       votesMap.set(date.getTime(), { total: 0, byProvider: new Map() })
     const entry = votesMap.get(date.getTime())!
 
+    entry.total = 0
+    entry.byProvider.clear()
+
     for (const [provider, count] of Object.entries(votes.votes)) {
       const providerName = selectVotesProvider(provider as VotesProvider)
       entry.total += count
       if (providerName) {
-        entry.byProvider.set(providerName, (entry.byProvider.get(providerName) ?? 0) + count)
-        pieMap.set(providerName, (pieMap.get(providerName) ?? 0) + count)
+        entry.byProvider.set(providerName, count)
       }
     }
   })
+
+  const lastVote = rawVotes[rawVotes.length - 1]
+  if (lastVote) {
+    for (const [provider, count] of Object.entries(lastVote.votes)) {
+      const providerName = selectVotesProvider(provider as VotesProvider)
+      if (providerName) pieMap.set(providerName, count)
+    }
+  }
 
   chartsData.votesPie = Array.from(pieMap.entries()).map(([name, total]) => ({ name, total }))
 
@@ -478,10 +490,11 @@ export function formatCustomEventsStats(
     for (const [eventName, eventCount] of Object.entries(stats.customEvents)) {
       allEventNames.add(eventName)
       const existingEntry = statsMap.get(date.getTime())
-      if (existingEntry)
-        (existingEntry[eventName] as number) =
-          ((existingEntry[eventName] as number) || 0) + eventCount
-      else statsMap.set(date.getTime(), { date, [eventName]: eventCount })
+      if (existingEntry) {
+        existingEntry[eventName] = eventCount
+      } else {
+        statsMap.set(date.getTime(), { date, [eventName]: eventCount })
+      }
     }
   }
 
