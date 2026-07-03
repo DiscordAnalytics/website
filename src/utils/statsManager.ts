@@ -427,7 +427,7 @@ export function calculateVotes(
     if (!votesMap.has(date.getTime()))
       votesMap.set(date.getTime(), { total: 0, byProvider: new Map() })
     const entry = votesMap.get(date.getTime())!
-    
+
     entry.total = 0
     entry.byProvider.clear()
 
