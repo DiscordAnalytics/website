@@ -98,7 +98,7 @@ const onManualConfigSubmit = manualConfigForm.handleSubmit(async (values) => {
     <template v-if="$props.id === 'topgg'" #actions>
       <a
         v-if="!providerConfig?.connectionId"
-        :href="`https://top.gg/bot/${botId}/dashboard/integrations`"
+        :href="`https://top.gg/discord/bots/${botId}/dashboard/integrations`"
         target="_blank"
       >
         <Button class="w-full md:w-fit">
