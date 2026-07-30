@@ -8,7 +8,7 @@ import {
   TrashIcon,
 } from '@lucide/vue'
 import { useRouteParams } from '@vueuse/router'
-import { onMounted, ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { toast } from 'vue-sonner'
 
@@ -129,11 +129,15 @@ async function onAchievementDeleted() {
   })
 }
 
-onMounted(async () => {
-  await withLoading(async () => {
-    await fetchAchievements()
-  })
-})
+watch(
+  botId,
+  async () => {
+    await withLoading(async () => {
+      await fetchAchievements()
+    })
+  },
+  { immediate: true },
+)
 </script>
 
 <template>
