@@ -52,9 +52,14 @@ function generateBuckets(dateRange: DateRange): Date[] {
   const start = truncateToDate(dateRange.start.toDate('UTC'))
   const end = truncateToDate(dateRange.end.toDate('UTC'))
   const stepMs = granularity === 'hour' ? 60 * 60 * 1000 : 24 * 60 * 60 * 1000
-  const endTime = granularity === 'hour' ? end.getTime() + 23 * 60 * 60 * 1000 : end.getTime()
+  const lastBucket = granularity === 'hour' ? end.getTime() + 23 * 60 * 60 * 1000 : end.getTime()
+  // never plot buckets in the future: cap on the bucket the current instant falls into
+  const endTime = Math.min(lastBucket, toBucket(new Date(), granularity).getTime())
   const bucketCount = Math.floor((endTime - start.getTime()) / stepMs) + 1
-  return Array.from({ length: bucketCount }, (_, i) => new Date(start.getTime() + i * stepMs))
+  return Array.from(
+    { length: Math.max(bucketCount, 0) },
+    (_, i) => new Date(start.getTime() + i * stepMs),
+  )
 }
 
 export function calculateInteractions(
