@@ -1,3 +1,14 @@
+## [1.1.10](https://github.com/DiscordAnalytics/website/compare/v1.1.9...v1.1.10) (2026-07-31)
+
+
+### Bug Fixes
+
+* **dash:** refetch bot-scoped data when switching bots ([e2ae729](https://github.com/DiscordAnalytics/website/commit/e2ae729cb334c46f8b747beee859a01138789447))
+* **dash:** stats bucketing, bot switching, and top.gg link ([#124](https://github.com/DiscordAnalytics/website/issues/124)) ([8727910](https://github.com/DiscordAnalytics/website/commit/872791020a852b74a50225500faa4f709306a84d))
+* **stats:** show last value for custom events with a previous-hour ([9cda29c](https://github.com/DiscordAnalytics/website/commit/9cda29c68d0bfcec112cc94e97374fda987ad191))
+* **stats:** stop plotting chart buckets in the future ([e1fa7d6](https://github.com/DiscordAnalytics/website/commit/e1fa7d67d2759cda55d0f562b191854fb6821e86))
+* **votes:** fixed top.gg integration link ([cb5f0b9](https://github.com/DiscordAnalytics/website/commit/cb5f0b92821255d316933806431ce88dcf7ba2b6))
+
 ## [1.1.9](https://github.com/DiscordAnalytics/website/compare/v1.1.8...v1.1.9) (2026-07-03)
 
 
