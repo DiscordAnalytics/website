@@ -46,8 +46,11 @@ const editDialogOpen = ref(false)
 const createDialogOpen = ref(false)
 const editingEvent = ref<CustomEvent | null>(null)
 
-const defaultGetValue = (data: Record<string, unknown>[], currentTab: string): number =>
+const getSumValue = (data: Record<string, unknown>[], currentTab: string): number =>
   data.reduce((sum, e) => sum + ((e[currentTab] as number) ?? 0), 0)
+
+const getValue = (data: Record<string, unknown>[], currentTab: string): number =>
+  (data[data.length - 1]?.[currentTab] as number) ?? 0
 
 const defaultIsEmpty = (data: Record<string, unknown>[], currentTab: string): boolean =>
   data.every((d) => ((d[currentTab] as number) ?? 0) === 0)
@@ -70,7 +73,7 @@ const charts = computed((): ChartConfig[] =>
         })),
         tabs: [{ id: event.eventKey, label: event.eventKey }],
         component: LineChart,
-        getValue: defaultGetValue,
+        getValue: event.defaultValue === null ? getValue : getSumValue,
         isEmpty: defaultIsEmpty,
       }))
     : [],
