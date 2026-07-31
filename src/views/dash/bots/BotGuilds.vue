@@ -2,24 +2,23 @@
 import { useRouteParams } from '@vueuse/router'
 import { storeToRefs } from 'pinia'
 import type { DateRange } from 'reka-ui'
-import { type Ref, computed, watch } from 'vue'
+import { type Ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { BarChart, LineChart, PieChart, StatsPage, TableChart } from '@/components'
 import { TableHead, TableRow } from '@/components/ui'
-import { useBot, useBotStats, useLoading, useLocale } from '@/composables'
+import { useBot, useBotStats, useLocale } from '@/composables'
 import { useStore } from '@/stores'
 import { calculateGuilds, getRangeGranularity, getTickFormatter } from '@/utils/statsManager.ts'
 import type { ChartConfig, ChartData } from '@/utils/types'
 
 const botId = useRouteParams<string>('id')
-const { stats, fetch: fetchStats } = useBotStats(botId)
+const { stats, isLoading } = useBotStats(botId)
 const { bot } = useBot(botId)
 const { statsRange: a } = storeToRefs(useStore())
 const statsRange = a as Ref<DateRange>
 const { t } = useI18n()
 const { getLocaleName } = useLocale()
-const { isLoading, withLoading } = useLoading()
 
 const guildsData = computed(() =>
   stats.value && statsRange.value ? calculateGuilds(stats.value.stats, statsRange.value) : null,
@@ -89,14 +88,6 @@ const charts = computed((): ChartConfig[] => [
     isEmpty: defaultIsEmpty,
   },
 ])
-
-watch(statsRange, async (value, oldValue) => {
-  if (value.start !== oldValue.start || value.end !== oldValue.end) {
-    await withLoading(async () => {
-      await fetchStats(value)
-    })
-  }
-})
 </script>
 
 <template>

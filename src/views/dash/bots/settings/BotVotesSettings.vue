@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ExternalLinkIcon, TriangleAlertIcon } from '@lucide/vue'
 import { useRouteParams } from '@vueuse/router'
-import { computed, onMounted, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 
 import { BotDashLayout, ProviderSettingsCard, VotesWebhookSettingsCard } from '@/components'
 import { Button, Item, ItemContent, ItemDescription, ItemMedia, ItemTitle } from '@/components/ui'
@@ -67,22 +67,31 @@ const providers = computed<{
   },
 }))
 
-onMounted(async () => {
-  await withLoading(async () => {
-    for (const provider of Object.keys(providers.value)) {
-      const res = await fetch(
-        `https://proxy.discordanalytics.xyz/get?url=${encodeURIComponent(providers.value[provider]!.botPage)}`,
-        {
-          method: 'GET',
-          cache: 'force-cache',
-        },
-      )
+watch(
+  botId,
+  async (id) => {
+    providerAvailability.value = []
 
-      if (await providers.value[provider]!.isAvailable(res))
-        providerAvailability.value.push(provider as VotesProvider)
-    }
-  })
-})
+    await withLoading(async () => {
+      for (const provider of Object.keys(providers.value)) {
+        const res = await fetch(
+          `https://proxy.discordanalytics.xyz/get?url=${encodeURIComponent(providers.value[provider]!.botPage)}`,
+          {
+            method: 'GET',
+            cache: 'force-cache',
+          },
+        )
+
+        // Another scan started for a different bot — drop this one
+        if (id !== botId.value) return
+
+        if (await providers.value[provider]!.isAvailable(res))
+          providerAvailability.value.push(provider as VotesProvider)
+      }
+    })
+  },
+  { immediate: true },
+)
 </script>
 
 <template>

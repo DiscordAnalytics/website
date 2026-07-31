@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Calendar1Icon, CalendarRangeIcon } from '@lucide/vue'
 import { useRouteParams } from '@vueuse/router'
-import { onMounted } from 'vue'
+import { watch } from 'vue'
 import { toast } from 'vue-sonner'
 
 import { BotDashLayout, SettingCard } from '@/components'
@@ -38,13 +38,17 @@ async function onUnsubscribe(frequency: 'weekly' | 'monthly') {
   })
 }
 
-onMounted(async () => {
-  if (reports.value.length === 0) {
-    await withLoading(async () => {
-      await fetchReports()
-    })
-  }
-})
+watch(
+  botId,
+  async () => {
+    if (reports.value.length === 0) {
+      await withLoading(async () => {
+        await fetchReports()
+      })
+    }
+  },
+  { immediate: true },
+)
 </script>
 
 <template>

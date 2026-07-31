@@ -4,7 +4,7 @@ import { useLocalStorage } from '@vueuse/core'
 import { useRouteParams } from '@vueuse/router'
 import { storeToRefs } from 'pinia'
 import type { DateRange } from 'reka-ui'
-import { type Ref, computed, watch } from 'vue'
+import { type Ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { LineChart, PieChart, StatsPage } from '@/components'
@@ -17,13 +17,13 @@ import {
   ItemMedia,
   ItemTitle,
 } from '@/components/ui'
-import { useBotStats, useLoading } from '@/composables'
+import { useBotStats } from '@/composables'
 import { useStore } from '@/stores'
 import { calculateVotes, getRangeGranularity, getTickFormatter } from '@/utils/statsManager.ts'
 import type { ChartConfig, ChartData } from '@/utils/types'
 
 const botId = useRouteParams<string>('id')
-const { stats, fetch: fetchStats } = useBotStats(botId)
+const { stats, isLoading } = useBotStats(botId)
 const { statsRange: a } = storeToRefs(useStore())
 const statsRange = a as Ref<DateRange>
 const { t } = useI18n()
@@ -32,7 +32,6 @@ const maskedPopups = useLocalStorage<string[]>('maskedPopups', [])
 const votesData = computed(() =>
   stats.value && statsRange.value ? calculateVotes(stats.value.votes, statsRange.value) : null,
 )
-const { isLoading, withLoading } = useLoading()
 
 const tickFormatter = computed(() => getTickFormatter(getRangeGranularity(statsRange.value)))
 
@@ -112,14 +111,6 @@ const areAllChartEmpty = computed(() =>
     ),
   ),
 )
-
-watch(statsRange, async (value, oldValue) => {
-  if (value.start !== oldValue.start || value.end !== oldValue.end) {
-    await withLoading(async () => {
-      await fetchStats(value)
-    })
-  }
-})
 </script>
 
 <template>

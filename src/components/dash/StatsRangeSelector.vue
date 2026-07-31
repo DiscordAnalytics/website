@@ -9,7 +9,8 @@ import {
 } from '@internationalized/date'
 import { CalendarIcon, ChevronLeftIcon, ChevronRightIcon } from '@lucide/vue'
 import { breakpointsTailwind, createReusableTemplate, useBreakpoints } from '@vueuse/core'
-import { useRouteQuery } from '@vueuse/router'
+import { useRouteParams, useRouteQuery } from '@vueuse/router'
+import posthog from 'posthog-js'
 import type { AcceptableValue, DateRange } from 'reka-ui'
 import { type Ref, onMounted, ref, watch } from 'vue'
 
@@ -31,6 +32,7 @@ import { useStore } from '@/stores'
 import { df } from '@/utils/dateTime.ts'
 
 const store = useStore()
+const botId = useRouteParams<string>('id')
 const startQuery = useRouteQuery<string | null>('start')
 const endQuery = useRouteQuery<string | null>('end')
 const breakpoints = useBreakpoints(breakpointsTailwind)
@@ -161,13 +163,21 @@ onMounted(() => {
       : 'last30days'
 })
 
-watch(statsRange, (value) => {
+watch(statsRange, (value, oldValue) => {
   if (value.start && value.end) {
     startQuery.value = value.start.toString()
     endQuery.value = value.end.toString()
     store.statsRange = {
       start: value.start,
       end: value.end,
+    }
+
+    if (oldValue.start && oldValue.end) {
+      posthog.capture('stats_range_changed', {
+        bot_id: botId.value,
+        start: value.start.toString(),
+        end: value.end.toString(),
+      })
     }
   }
 })

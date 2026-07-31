@@ -3,7 +3,7 @@ import { FrownIcon, PlusIcon } from '@lucide/vue'
 import { useRouteParams } from '@vueuse/router'
 import { storeToRefs } from 'pinia'
 import type { DateRange } from 'reka-ui'
-import { type Ref, computed, onMounted, ref, watch } from 'vue'
+import { type Ref, computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { toast } from 'vue-sonner'
 
@@ -29,7 +29,7 @@ import type { ChartConfig, CustomEvent } from '@/utils/types'
 const { t } = useI18n()
 
 const botId = useRouteParams<string>('id')
-const { stats, fetch: fetchStats } = useBotStats(botId)
+const { stats, isLoading: isStatsLoading } = useBotStats(botId)
 const { statsRange: a } = storeToRefs(useStore())
 const statsRange = a as Ref<DateRange>
 const {
@@ -46,8 +46,11 @@ const editDialogOpen = ref(false)
 const createDialogOpen = ref(false)
 const editingEvent = ref<CustomEvent | null>(null)
 
-const defaultGetValue = (data: Record<string, unknown>[], currentTab: string): number =>
+const getSumValue = (data: Record<string, unknown>[], currentTab: string): number =>
   data.reduce((sum, e) => sum + ((e[currentTab] as number) ?? 0), 0)
+
+const getValue = (data: Record<string, unknown>[], currentTab: string): number =>
+  (data[data.length - 1]?.[currentTab] as number) ?? 0
 
 const defaultIsEmpty = (data: Record<string, unknown>[], currentTab: string): boolean =>
   data.every((d) => ((d[currentTab] as number) ?? 0) === 0)
@@ -70,7 +73,7 @@ const charts = computed((): ChartConfig[] =>
         })),
         tabs: [{ id: event.eventKey, label: event.eventKey }],
         component: LineChart,
-        getValue: defaultGetValue,
+        getValue: event.defaultValue === null ? getValue : getSumValue,
         isEmpty: defaultIsEmpty,
       }))
     : [],
@@ -131,19 +134,15 @@ const onEventDeleted = async (eventKey: string) => {
   editDialogOpen.value = false
 }
 
-onMounted(async () => {
-  await withLoading(async () => {
-    await fetchEvents()
-  })
-})
-
-watch(statsRange, async (value, oldValue) => {
-  if (value.start !== oldValue.start || value.end !== oldValue.end) {
+watch(
+  botId,
+  async () => {
     await withLoading(async () => {
-      await fetchStats(value)
+      await fetchEvents()
     })
-  }
-})
+  },
+  { immediate: true },
+)
 </script>
 
 <template>
@@ -157,7 +156,7 @@ watch(statsRange, async (value, oldValue) => {
 
   <StatsPage
     :charts="charts"
-    :is-loading="isLoading"
+    :is-loading="isLoading || isStatsLoading"
     :tick-formatter="tickFormatter"
     chart-settings
     @settings-clicked="onSettingsClicked"
