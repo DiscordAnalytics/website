@@ -206,13 +206,11 @@
     @apply bg-background;
   }
   .shiki,
-  .shiki span {
-    background-color: var(--shiki-light-bg, var(--muted)) !important;
+  .shiki span:not(.line-added, .line-added *) {
+    background-color: var(--muted) !important;
   }
-  .dark .shiki,
   .dark .shiki span {
     color: var(--shiki-dark) !important;
-    background-color: var(--shiki-dark-bg) !important;
   }
 }
 
