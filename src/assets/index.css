@@ -265,6 +265,26 @@
   transform: translateX(0);
 }
 
+/* ------ Reveal ------ */
+[data-reveal='hidden'] {
+  opacity: 0;
+}
+
+[data-reveal='shown'] {
+  animation: reveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms) both;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* ------ Fold ------ */
 .library-enter-active {
   animation: fold-in 0.35s ease-out;

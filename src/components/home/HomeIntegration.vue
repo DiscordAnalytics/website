@@ -12,6 +12,7 @@ import {
   ItemTitle,
 } from '@/components/ui'
 import * as codeExamples from '@/utils/codeExamples'
+import { vReveal } from '@/utils/reveal.ts'
 
 const steps = [
   { icon: PackageIcon, key: 'install' },
@@ -22,17 +23,17 @@ const steps = [
 
 <template>
   <section id="integration" v-bind="$attrs">
-    <h2 class="text-4xl font-black text-center mb-4">
+    <h2 v-reveal class="text-4xl font-black text-center mb-4">
       {{ $t('pages.home.integration.title') }}
     </h2>
-    <p class="text-center text-balance text-muted-foreground max-w-2xl mx-auto mb-12">
+    <p v-reveal="80" class="text-center text-balance text-muted-foreground max-w-2xl mx-auto mb-12">
       {{ $t('pages.home.integration.description') }}
     </p>
 
     <div class="max-w-300 mx-auto w-full flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
       <div class="w-full lg:w-96 shrink-0">
         <ItemGroup>
-          <Item v-for="step in steps" :key="step.key" class="px-0">
+          <Item v-for="(step, index) in steps" :key="step.key" v-reveal="index * 100" class="px-0">
             <ItemMedia variant="icon">
               <component :is="step.icon" />
             </ItemMedia>
@@ -45,7 +46,12 @@ const steps = [
           </Item>
         </ItemGroup>
 
-        <Item variant="outline" as-child class="mt-4">
+        <Item
+          v-reveal="300"
+          variant="outline"
+          as-child
+          class="mt-4 transition-colors hover:bg-accent"
+        >
           <a href="/docs/get-started/installation">
             <ItemContent>
               <ItemTitle>{{ $t('pages.home.integration.docs.title') }}</ItemTitle>
@@ -61,8 +67,9 @@ const steps = [
       </div>
 
       <div class="w-full min-w-0">
-        <CodeBlock code="npm install @discordanalytics/discordjs" lang="bash" />
+        <CodeBlock v-reveal="120" code="npm install @discordanalytics/discordjs" lang="bash" />
         <CodeBlock
+          v-reveal="220"
           :code="codeExamples.discordjsQuickstart.code"
           :added-lines="codeExamples.discordjsQuickstart.addedLines"
           lang="js"

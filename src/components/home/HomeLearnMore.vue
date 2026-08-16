@@ -4,18 +4,20 @@ import { Vue3Marquee } from 'vue3-marquee'
 
 import { ThemedImg } from '@/components'
 import { Card } from '@/components/ui'
+import { vReveal } from '@/utils/reveal.ts'
 </script>
 
 <template>
   <section id="learn-more" v-bind="$attrs">
-    <h2 class="text-4xl font-black text-center mb-12">
+    <h2 v-reveal class="text-4xl font-black text-center mb-12">
       {{ $t('pages.home.features.title') }}
     </h2>
     <div class="flex gap-4 flex-wrap">
       <div class="flex gap-4 flex-wrap w-full">
         <a
+          v-reveal
           href="/docs/get-started/advanced-usage/teams"
-          class="flex-1 min-w-80 h-80 relative hover:brightness-90 transition-all"
+          class="flex-1 min-w-80 h-80 relative hover:brightness-90 hover:-translate-y-1 transition-all duration-300"
         >
           <Card class="w-full h-full relative overflow-clip group">
             <div class="absolute z-10 w-full flex flex-col items-center p-4 pt-8">
@@ -38,8 +40,9 @@ import { Card } from '@/components/ui'
           </Card>
         </a>
         <a
+          v-reveal="100"
           href="/docs/reference/graphs"
-          class="flex-2 min-w-80 h-80 relative hover:brightness-90 transition-all"
+          class="flex-2 min-w-80 h-80 relative hover:brightness-90 hover:-translate-y-1 transition-all duration-300"
         >
           <Card class="w-full h-full relative overflow-clip group">
             <div class="relative">
@@ -66,8 +69,9 @@ import { Card } from '@/components/ui'
           </Card>
         </a>
         <a
+          v-reveal="200"
           href="/docs/get-started/votes-integration"
-          class="flex-1 min-w-80 h-80 relative hover:brightness-90 transition-all"
+          class="flex-1 min-w-80 h-80 relative hover:brightness-90 hover:-translate-y-1 transition-all duration-300"
         >
           <Card class="w-full h-full relative overflow-clip group">
             <div class="absolute z-10 w-full flex flex-col items-center p-4 pt-8">
@@ -91,7 +95,7 @@ import { Card } from '@/components/ui'
         </a>
       </div>
       <div class="flex gap-4 flex-wrap w-full">
-        <div class="flex-1 min-w-80 h-80 relative">
+        <div v-reveal class="flex-1 min-w-80 h-80 relative">
           <Card class="w-full h-full relative overflow-clip group flex items-center flex-col gap-4">
             <div class="w-full flex flex-col items-center p-4 pt-8">
               <h3 class="text-2xl font-semibold">
@@ -115,8 +119,9 @@ import { Card } from '@/components/ui'
           </Card>
         </div>
         <a
+          v-reveal="100"
           href="/docs/reference/achievements"
-          class="flex-1 min-w-80 h-80 relative hover:brightness-90 transition-all"
+          class="flex-1 min-w-80 h-80 relative hover:brightness-90 hover:-translate-y-1 transition-all duration-300"
         >
           <Card class="w-full h-full relative overflow-clip group">
             <div class="absolute z-10 w-full flex flex-col items-center p-4 pt-8">
@@ -140,7 +145,7 @@ import { Card } from '@/components/ui'
             />
           </Card>
         </a>
-        <div class="flex-1 min-w-80 h-80 relative">
+        <div v-reveal="200" class="flex-1 min-w-80 h-80 relative">
           <Card class="w-full h-full relative overflow-clip group">
             <div class="absolute bottom-0 z-10 w-full flex flex-col items-center p-4 pt-8">
               <h3 class="text-2xl font-semibold">
