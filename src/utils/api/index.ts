@@ -26,12 +26,16 @@ export enum APIScope {
 }
 
 export class APIError extends Error {
+  /** The server message on its own, without the status prefix `message` carries. */
+  readonly detail: string
+
   constructor(
     public readonly status: number,
     message: string,
   ) {
     super(`${status} - ${message}`)
     this.name = 'APIError'
+    this.detail = message
   }
 }
 

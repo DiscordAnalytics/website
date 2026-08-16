@@ -34,13 +34,14 @@ import {
 } from '@/components/ui'
 import { useAddBot, useAnalytics, useCurrentUser, useFeatureFlag, useLoading } from '@/composables'
 import { cn } from '@/lib/utils.ts'
+import { APIError } from '@/utils/api'
 import { addBotSchema } from '@/utils/formSchemas.ts'
 import fireworksParticlesOptions from '@/utils/particles/fireworks.ts'
 
 const { t } = useI18n()
 const router = useRouter()
 
-const { handleSubmit } = useForm({
+const { handleSubmit, setFieldError } = useForm({
   validationSchema: toTypedSchema(addBotSchema),
   initialValues: {
     botId: '',
@@ -58,9 +59,9 @@ const { isLoading, withLoading } = useLoading()
 const onboardingVersion = useFeatureFlag('onboarding-version')
 const selectedFlow = ref<'choose' | 'connect'>('choose')
 const eventCaptured = ref(false)
+const addBotFailed = ref(false)
 
 onMounted(() => {
-  console.log(onboardingVersion.value, ownedBots.value, selectedFlow.value)
   if (onboardingVersion.value) {
     if (
       onboardingVersion.value === 'test' &&
@@ -121,17 +122,55 @@ function onStepThreeSubmit() {
   currentStep.value = 4
 }
 
+/**
+ * Turn a failed `addBot` into an analytics reason plus a message we can show under the field.
+ * The `not_a_bot` / `already_added` matches lean on the API's wording, so a copy change on the
+ * backend degrades them to `api_error` rather than dropping the event.
+ */
+function classifyAddBotError(err: unknown) {
+  if (!(err instanceof APIError)) {
+    return { reason: 'network', message: t('pages.dash.onboarding.stepOne.errors.network') }
+  }
+
+  const detail = err.detail || ''
+  const normalized = detail.toLowerCase()
+
+  let reason = 'api_error'
+  if (normalized.includes('bot account') || normalized.includes('not a bot')) reason = 'not_a_bot'
+  else if (err.status === 409 || normalized.includes('already')) reason = 'already_added'
+
+  return {
+    reason,
+    status: err.status,
+    message: detail || t('pages.dash.onboarding.stepOne.errors.unknown'),
+  }
+}
+
 const onSubmit = handleSubmit(async (values) => {
+  // The single most common onboarding failure: pasting your own account ID instead of the bot's.
+  // Catch it here so the user gets a message that names the mistake, with no round-trip.
+  if (userInfos.value && values.botId === userInfos.value.userId) {
+    addBotFailed.value = true
+    setFieldError('botId', t('pages.dash.onboarding.stepOne.errors.ownId'))
+    capture('onboarding_bot_add_failed', { reason: 'own_user_id', bot_id: values.botId })
+    return
+  }
+
   await withLoading(async () => {
-    await addBot(values.botId)
-      .then(() => {
-        currentStep.value = 2
-        botId.value = values.botId
-        capture('onboarding_bot_added', { bot_id: values.botId })
-      })
-      .catch((err) => {
-        toast.error(err.message)
-      })
+    try {
+      await addBot(values.botId)
+      addBotFailed.value = false
+      currentStep.value = 2
+      botId.value = values.botId
+      capture('onboarding_bot_added', { bot_id: values.botId })
+    } catch (err) {
+      const { reason, status, message } = classifyAddBotError(err)
+      addBotFailed.value = true
+      setFieldError('botId', message)
+      // Transport failures have nothing to do with what's in the field, so they stay a toast.
+      if (reason === 'network') toast.error(message)
+      capture('onboarding_bot_add_failed', { reason, status, bot_id: values.botId })
+    }
   })
 })
 
@@ -252,7 +291,12 @@ function startSandbox() {
         </CardHeader>
         <CardContent class="mt-4">
           <Transition name="slide-right" mode="out-in">
-            <OnboardingStepOne v-if="currentStep === 1" :loading="isLoading" @submit="onSubmit" />
+            <OnboardingStepOne
+              v-if="currentStep === 1"
+              :loading="isLoading"
+              :failed="addBotFailed"
+              @submit="onSubmit"
+            />
             <OnboardingStepTwo v-else-if="currentStep === 2" @submit="onStepTwoSubmit" />
             <OnboardingStepThree
               v-else-if="currentStep === 3"
