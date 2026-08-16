@@ -55,9 +55,9 @@ import { Card } from '@/components/ui'
               <div
                 class="absolute top-0 left-0 w-full h-full bg-white/50 dark:bg-black/50 z-10 text-center flex flex-col items-center justify-center gap-2"
               >
-                <h2 class="text-4xl font-bold mb-4">
+                <h3 class="text-4xl font-bold mb-4">
                   {{ $t('pages.home.features.cards.graphs.title') }}
-                </h2>
+                </h3>
                 <p class="text-balance mb-4 max-w-96">
                   {{ $t('pages.home.features.cards.graphs.description') }}
                 </p>
@@ -91,7 +91,7 @@ import { Card } from '@/components/ui'
         </a>
       </div>
       <div class="flex gap-4 flex-wrap w-full">
-        <RouterLink to="#" class="flex-1 min-w-80 h-80 relative hover:brightness-90 transition-all">
+        <div class="flex-1 min-w-80 h-80 relative">
           <Card class="w-full h-full relative overflow-clip group flex items-center flex-col gap-4">
             <div class="w-full flex flex-col items-center p-4 pt-8">
               <h3 class="text-2xl font-semibold">
@@ -113,7 +113,7 @@ import { Card } from '@/components/ui'
               </p>
             </div>
           </Card>
-        </RouterLink>
+        </div>
         <a
           href="/docs/reference/achievements"
           class="flex-1 min-w-80 h-80 relative hover:brightness-90 transition-all"
@@ -140,7 +140,7 @@ import { Card } from '@/components/ui'
             />
           </Card>
         </a>
-        <RouterLink to="#" class="flex-1 min-w-80 h-80 relative hover:brightness-90 transition-all">
+        <div class="flex-1 min-w-80 h-80 relative">
           <Card class="w-full h-full relative overflow-clip group">
             <div class="absolute bottom-0 z-10 w-full flex flex-col items-center p-4 pt-8">
               <h3 class="text-2xl font-semibold">
@@ -162,7 +162,7 @@ import { Card } from '@/components/ui'
               class="absolute bottom-0 w-full h-3/4 bg-linear-to-t from-background from-40% to-transparent"
             />
           </Card>
-        </RouterLink>
+        </div>
       </div>
     </div>
   </section>

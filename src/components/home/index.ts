@@ -1,5 +1,6 @@
 export { default as HomeContributors } from './HomeContributors.vue'
 export { default as HomeCTA } from './HomeCTA.vue'
 export { default as HomeFaq } from './HomeFaq.vue'
+export { default as HomeIntegration } from './HomeIntegration.vue'
 export { default as HomeLearnMore } from './HomeLearnMore.vue'
 export { default as HomeHeroHeader } from './HomeHeroHeader.vue'

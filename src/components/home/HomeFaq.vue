@@ -10,9 +10,9 @@ import {
 
 <template>
   <section id="faq" class="flex flex-col items-center w-full xl:px-64 2xl:px-96 gap-6">
-    <h1 class="text-4xl font-bold text-center">
+    <h2 class="text-4xl font-bold text-center">
       {{ $t('pages.home.faq.title') }}
-    </h1>
+    </h2>
     <Accordion type="single" collapsible class="w-full">
       <AccordionItem value="item-1">
         <AccordionTrigger class="text-start">

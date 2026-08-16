@@ -6,6 +6,7 @@ import {
   HomeContributors,
   HomeFaq,
   HomeHeroHeader,
+  HomeIntegration,
   HomeLearnMore,
   PageLayout,
 } from '@/components'
@@ -18,14 +19,16 @@ onMounted(() => {
 
 <template>
   <PageLayout>
-    <HomeHeroHeader class="pb-16 md:pb-48" />
+    <HomeHeroHeader class="pb-16 md:pb-32" />
+
+    <HomeIntegration class="py-16 md:py-32" />
 
     <HomeLearnMore class="py-16 md:py-48" />
 
-    <HomeContributors class="py-16 md:py-48" />
-
     <HomeFaq class="py-16 md:py-48" />
 
-    <HomeCTA class="pb-72" />
+    <HomeContributors class="py-16 md:py-48" />
+
+    <HomeCTA class="py-16 md:py-32" />
   </PageLayout>
 </template>

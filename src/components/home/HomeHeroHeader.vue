@@ -28,10 +28,14 @@ import scrollTo from '@/utils/scrollTo.ts'
         <RouterLink to="/dash">
           <Button>{{ $t('pages.home.hero.cta.primary') }}</Button>
         </RouterLink>
-        <Button variant="secondary" @click="scrollTo('learn-more')">
+        <Button variant="secondary" @click="scrollTo('integration')">
           {{ $t('pages.home.hero.cta.secondary') }}
         </Button>
       </div>
+
+      <p class="text-sm text-muted-foreground text-center text-balance">
+        {{ $t('pages.home.hero.works_with') }}
+      </p>
 
       <div
         class="relative max-w-[95%] lg:max-w-6xl rounded-t-lg border-t border-l border-r border-primary md:mt-20 overflow-clip max-h-112"

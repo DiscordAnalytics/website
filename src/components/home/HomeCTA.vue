@@ -11,11 +11,18 @@ import { Button } from '@/components/ui'
       alt="Discord Analytics"
       class="sm:w-48 w-28"
     />
-    <h1 class="text-4xl font-bold text-center">
+    <h2 class="text-4xl font-bold text-center">
       {{ $t('pages.home.cta.start') }}
-    </h1>
-    <Button href="/dash">
-      {{ $t('pages.home.cta.sign_up') }}
-    </Button>
+    </h2>
+    <div class="flex flex-col items-center gap-3">
+      <RouterLink to="/dash">
+        <Button>
+          {{ $t('pages.home.cta.sign_up') }}
+        </Button>
+      </RouterLink>
+      <p class="text-sm text-muted-foreground text-center text-balance">
+        {{ $t('pages.home.cta.reassurance') }}
+      </p>
+    </div>
   </section>
 </template>
