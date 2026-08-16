@@ -69,12 +69,32 @@ const { userInfos, ownedBots } = useCurrentUser()
               :aria-invalid="!!errors.length"
               :disabled="$props.loading"
             />
-            <FieldDescription>
+            <FieldDescription v-if="!$props.failed">
               {{ $t('pages.dash.onboarding.stepOne.botIdHint') }}
             </FieldDescription>
             <FieldError v-if="errors.length" :errors="errors.map((message) => ({ message }))" />
           </Field>
         </VeeField>
+
+        <Alert v-if="$props.failed" variant="destructive">
+          <AlertTriangleIcon class="h-4 w-4" />
+          <AlertTitle>{{ $t('pages.dash.onboarding.stepOne.failureHelp.title') }}</AlertTitle>
+          <AlertDescription class="flex flex-col items-start gap-2">
+            <span>{{ $t('pages.dash.onboarding.stepOne.failureHelp.description') }}</span>
+            <div class="flex flex-wrap items-center gap-2">
+              <a :href="DEVELOPER_PORTAL_URL" target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" size="sm">
+                  {{ $t('pages.dash.onboarding.stepOne.failureHelp.openPortal') }}
+                </Button>
+              </a>
+              <RouterLink to="/support" target="_blank">
+                <Button variant="ghost" size="sm">
+                  {{ $t('pages.dash.onboarding.stepOne.failureHelp.contactSupport') }}
+                </Button>
+              </RouterLink>
+            </div>
+          </AlertDescription>
+        </Alert>
 
         <VeeField v-slot="{ field, errors }" name="acceptTos">
           <Field :data-invalid="!!errors.length">
@@ -122,26 +142,6 @@ const { userInfos, ownedBots } = useCurrentUser()
         </Field>
       </FieldGroup>
     </form>
-
-    <Alert v-if="$props.failed" variant="destructive" class="max-w-100 mx-auto mt-8">
-      <AlertTriangleIcon class="h-4 w-4" />
-      <AlertTitle>{{ $t('pages.dash.onboarding.stepOne.failureHelp.title') }}</AlertTitle>
-      <AlertDescription class="flex flex-col items-start gap-2">
-        <span>{{ $t('pages.dash.onboarding.stepOne.failureHelp.description') }}</span>
-        <div class="flex flex-wrap items-center gap-2">
-          <a :href="DEVELOPER_PORTAL_URL" target="_blank" rel="noopener noreferrer">
-            <Button variant="outline" size="sm">
-              {{ $t('pages.dash.onboarding.stepOne.failureHelp.openPortal') }}
-            </Button>
-          </a>
-          <RouterLink to="/support">
-            <Button variant="ghost" size="sm">
-              {{ $t('pages.dash.onboarding.stepOne.failureHelp.contactSupport') }}
-            </Button>
-          </RouterLink>
-        </div>
-      </AlertDescription>
-    </Alert>
   </div>
   <Empty v-else-if="userInfos" class="h-full">
     <EmptyHeader>

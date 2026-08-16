@@ -4,7 +4,7 @@ import { toTypedSchema } from '@vee-validate/zod'
 import { breakpointsTailwind, useBreakpoints, useLocalStorage } from '@vueuse/core'
 import { useRouteQuery } from '@vueuse/router'
 import { useForm } from 'vee-validate'
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import { toast } from 'vue-sonner'
@@ -41,7 +41,7 @@ import fireworksParticlesOptions from '@/utils/particles/fireworks.ts'
 const { t } = useI18n()
 const router = useRouter()
 
-const { handleSubmit, setFieldError } = useForm({
+const { handleSubmit, setFieldError, errors } = useForm({
   validationSchema: toTypedSchema(addBotSchema),
   initialValues: {
     botId: '',
@@ -60,6 +60,7 @@ const onboardingVersion = useFeatureFlag('onboarding-version')
 const selectedFlow = ref<'choose' | 'connect'>('choose')
 const eventCaptured = ref(false)
 const addBotFailed = ref(false)
+const showFailureHelp = computed(() => addBotFailed.value && !!errors.value.botId)
 
 onMounted(() => {
   if (onboardingVersion.value) {
@@ -294,7 +295,7 @@ function startSandbox() {
             <OnboardingStepOne
               v-if="currentStep === 1"
               :loading="isLoading"
-              :failed="addBotFailed"
+              :failed="showFailureHelp"
               @submit="onSubmit"
             />
             <OnboardingStepTwo v-else-if="currentStep === 2" @submit="onStepTwoSubmit" />

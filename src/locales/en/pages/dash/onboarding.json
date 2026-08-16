@@ -31,13 +31,13 @@
     "botIdHint": "Discord Developer Portal → your application → General Information → Application ID. This is your bot's ID, not your own Discord account ID.",
     "botIdPlaceholder": "1082615775619199057",
     "errors": {
-      "ownId": "That's your own Discord account ID, not your bot's. You need your application's ID, found in the Discord Developer Portal under General Information.",
+      "ownId": "That's your own Discord account ID, not your bot's.",
       "network": "We couldn't reach our servers. Check your connection and try again.",
       "unknown": "Something went wrong on our side. Please try again, or contact support if it keeps happening."
     },
     "failureHelp": {
       "title": "That ID didn't work",
-      "description": "Make sure you're copying the Application ID of your bot: open the Discord Developer Portal, select your application, and copy the Application ID from the General Information tab. It is not your own Discord account ID.",
+      "description": "You'll find the Application ID on your application's General Information tab in the Discord Developer Portal.",
       "openPortal": "Open the Developer Portal",
       "contactSupport": "Ask us for help"
     },
