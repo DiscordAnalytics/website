@@ -65,11 +65,6 @@ import {
         </RouterLink>
       </NavigationMenuItem>
       <NavigationMenuItem>
-        <RouterLink to="/app-monetization-explorer" :class="navigationMenuTriggerStyle()">
-          {{ $t('components.navbar.links.app_monetization') }}
-        </RouterLink>
-      </NavigationMenuItem>
-      <NavigationMenuItem>
         <RouterLink to="/support" :class="navigationMenuTriggerStyle()">
           {{ $t('components.navbar.links.support') }}
         </RouterLink>

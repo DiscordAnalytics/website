@@ -50,12 +50,6 @@ const { userInfos } = useCurrentUser()
           <RouterLink to="/blog" class="flex w-full items-center py-2 hover:underline">
             {{ $t('components.navbar.links.blog') }}
           </RouterLink>
-          <RouterLink
-            to="/app-monetization-explorer"
-            class="flex w-full items-center py-2 hover:underline"
-          >
-            {{ $t('components.navbar.links.app_monetization') }}
-          </RouterLink>
           <RouterLink to="/support" class="flex w-full items-center py-2 hover:underline">
             {{ $t('components.navbar.links.support') }}
           </RouterLink>
