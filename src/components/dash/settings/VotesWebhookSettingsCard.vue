@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { WebhookIcon } from '@lucide/vue'
 import { useRouteParams } from '@vueuse/router'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { toast } from 'vue-sonner'
 
 import { SettingCard } from '@/components'
@@ -12,7 +12,15 @@ const botId = useRouteParams<string>('id')
 const { bot, updateVotesWebhook, testVotesWebhook } = useBot(botId)
 const { isLoading, withLoading } = useLoading()
 
-const webhookUrl = ref<string>(bot.value?.webhooksConfig.webhookUrl ?? '')
+const webhookUrl = ref<string>(bot.value?.webhooksConfig?.webhookUrl ?? '')
+
+// The bot is refetched once the page opens, so pick the URL up unless it's being edited
+watch(
+  () => bot.value?.webhooksConfig?.webhookUrl,
+  (url, previousUrl) => {
+    if (webhookUrl.value === (previousUrl ?? '')) webhookUrl.value = url ?? ''
+  },
+)
 
 async function sendTest() {
   await withLoading(async () => {

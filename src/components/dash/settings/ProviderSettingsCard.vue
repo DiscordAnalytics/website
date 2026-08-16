@@ -4,7 +4,7 @@ import { toTypedSchema } from '@vee-validate/zod'
 import { useClipboard } from '@vueuse/core'
 import { useRouteParams } from '@vueuse/router'
 import { Field as VeeField, useForm } from 'vee-validate'
-import { h, ref } from 'vue'
+import { h, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { toast } from 'vue-sonner'
 
@@ -52,6 +52,11 @@ const manualConfigForm = useForm({
   validationSchema: toTypedSchema(topggTokenUpdateFormSchema),
 })
 
+// `default-value` is only read once, so the dialog has to be filled every time it opens
+watch(manualConfigOpen, (open) => {
+  if (open) manualConfigForm.setValues({ webhookSecret: providerConfig.value?.webhookSecret ?? '' })
+})
+
 function copyToken() {
   if (providerConfig.value?.webhookSecret) {
     copy(providerConfig.value?.webhookSecret)
@@ -73,7 +78,7 @@ async function updateToken(token: string = generateWebhookSecret()) {
           provider: props.id,
           bot_id: botId.value,
         })
-        if (props.provider === 'topgg')
+        if (props.id === 'topgg')
           toast.success(t('pages.dash.settings.votes.provider.toast.updated'))
         else toast.success(t('pages.dash.settings.votes.provider.toast.regenerated'))
         manualConfigOpen.value = false
@@ -128,7 +133,7 @@ const onManualConfigSubmit = manualConfigForm.handleSubmit(async (values) => {
 
           <form id="manualConfigForm" @submit="onManualConfigSubmit">
             <FieldGroup>
-              <VeeField v-slot="{ field, errors }" name="webhookSecret">
+              <VeeField v-slot="{ componentField, errors }" name="webhookSecret">
                 <Field :data-invalid="!!errors.length">
                   <FieldLabel for="webhookSecretInput">
                     {{
@@ -137,9 +142,8 @@ const onManualConfigSubmit = manualConfigForm.handleSubmit(async (values) => {
                   </FieldLabel>
                   <Input
                     id="webhookSecretInput"
-                    v-bind="field"
+                    v-bind="componentField"
                     :placeholder="$t('pages.dash.settings.votes.provider.tokenPlaceholder')"
-                    :default-value="providerConfig?.webhookSecret"
                     autocomplete="off"
                     autofocus
                     :aria-invalid="!!errors.length"
@@ -176,8 +180,7 @@ const onManualConfigSubmit = manualConfigForm.handleSubmit(async (values) => {
       <div class="flex items-center gap-2 w-full flex-col md:flex-row">
         <InputGroup class="my-2 w-full">
           <InputGroupInput
-            :default-value="providerConfig?.webhookSecret"
-            :value="providerConfig?.webhookSecret"
+            :model-value="providerConfig?.webhookSecret ?? ''"
             :placeholder="$t('pages.dash.settings.votes.provider.tokenPlaceholder')"
             :disabled="isLoading"
             readonly

@@ -2,13 +2,15 @@
 import { ExternalLinkIcon, TriangleAlertIcon } from '@lucide/vue'
 import { useRouteParams } from '@vueuse/router'
 import { computed, ref, watch } from 'vue'
+import { toast } from 'vue-sonner'
 
 import { BotDashLayout, ProviderSettingsCard, VotesWebhookSettingsCard } from '@/components'
 import { Button, Item, ItemContent, ItemDescription, ItemMedia, ItemTitle } from '@/components/ui'
-import { useLoading } from '@/composables'
+import { useBot, useLoading } from '@/composables'
 import type { VotesProvider } from '@/utils/types'
 
 const botId = useRouteParams<string>('id')
+const { fetch: fetchBot } = useBot(botId)
 const { isLoading, withLoading } = useLoading()
 
 const providerAvailability = ref<VotesProvider[]>([])
@@ -66,6 +68,15 @@ const providers = computed<{
     isAvailable: isNormalProviderApiAvailable,
   },
 }))
+
+// The cards read the providers config from the store, so make sure the full bot is loaded
+watch(
+  botId,
+  async (id) => {
+    if (id) await fetchBot().catch((err) => toast.error(err.message))
+  },
+  { immediate: true },
+)
 
 watch(
   botId,
