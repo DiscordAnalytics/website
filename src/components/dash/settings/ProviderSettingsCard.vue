@@ -1,10 +1,17 @@
 <script setup lang="ts">
-import { CircleCheckIcon, CopyIcon, EyeIcon, EyeOffIcon, RefreshCwIcon } from '@lucide/vue'
+import {
+  CircleCheckIcon,
+  CopyIcon,
+  EyeIcon,
+  EyeOffIcon,
+  PlusIcon,
+  RefreshCwIcon,
+} from '@lucide/vue'
 import { toTypedSchema } from '@vee-validate/zod'
 import { useClipboard } from '@vueuse/core'
 import { useRouteParams } from '@vueuse/router'
 import { Field as VeeField, useForm } from 'vee-validate'
-import { h, ref, watch } from 'vue'
+import { computed, h, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { toast } from 'vue-sonner'
 
@@ -48,6 +55,9 @@ const { isLoading, withLoading } = useLoading()
 const showToken = ref<boolean>(false)
 const manualConfigOpen = ref<boolean>(false)
 
+// Bots are created without a secret, so the provider has to be set up from the card
+const hasToken = computed(() => !!providerConfig.value?.webhookSecret)
+
 const manualConfigForm = useForm({
   validationSchema: toTypedSchema(topggTokenUpdateFormSchema),
 })
@@ -71,6 +81,8 @@ function generateWebhookSecret() {
 }
 
 async function updateToken(token: string = generateWebhookSecret()) {
+  const hadToken = hasToken.value
+
   await withLoading(async () => {
     await updateProvider(token)
       .then(() => {
@@ -80,6 +92,7 @@ async function updateToken(token: string = generateWebhookSecret()) {
         })
         if (props.id === 'topgg')
           toast.success(t('pages.dash.settings.votes.provider.toast.updated'))
+        else if (!hadToken) toast.success(t('pages.dash.settings.votes.provider.toast.created'))
         else toast.success(t('pages.dash.settings.votes.provider.toast.regenerated'))
         manualConfigOpen.value = false
       })
@@ -175,6 +188,13 @@ const onManualConfigSubmit = manualConfigForm.handleSubmit(async (values) => {
           </form>
         </DialogContent>
       </Dialog>
+    </template>
+    <template v-else-if="!hasToken" #actions>
+      <Button class="w-full md:w-fit" :disabled="isLoading" @click="updateToken()">
+        <Spinner v-if="isLoading" />
+        <PlusIcon v-else />
+        {{ $t('pages.dash.settings.votes.provider.createToken') }}
+      </Button>
     </template>
     <template v-else #content>
       <div class="flex items-center gap-2 w-full flex-col md:flex-row">

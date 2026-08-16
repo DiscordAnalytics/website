@@ -67,8 +67,10 @@
     "provider": {
       "description": "Configure incoming votes from {provider}",
       "tokenPlaceholder": "REALLY SECRET TOKEN",
+      "createToken": "Create token",
       "toast": {
         "copied": "Secret copied to clipboard",
+        "created": "Secret successfully created.",
         "regenerated": "Secret successfully regenerated.",
         "updated": "Secret successfully updated."
       },
