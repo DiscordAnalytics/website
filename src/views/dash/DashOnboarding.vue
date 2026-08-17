@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ArrowLeft, Check, Clock, Code, IdCard } from '@lucide/vue'
 import { toTypedSchema } from '@vee-validate/zod'
-import { breakpointsTailwind, useBreakpoints, useLocalStorage } from '@vueuse/core'
+import { useLocalStorage } from '@vueuse/core'
 import { useRouteQuery } from '@vueuse/router'
 import { useForm } from 'vee-validate'
 import { computed, onMounted, ref } from 'vue'
@@ -30,10 +30,10 @@ import {
   StepperItem,
   StepperSeparator,
   StepperTitle,
+  StepperTrack,
   StepperTrigger,
 } from '@/components/ui'
 import { useAddBot, useAnalytics, useCurrentUser, useFeatureFlag, useLoading } from '@/composables'
-import { cn } from '@/lib/utils.ts'
 import { APIError } from '@/utils/api'
 import { addBotSchema } from '@/utils/formSchemas.ts'
 import fireworksParticlesOptions from '@/utils/particles/fireworks.ts'
@@ -53,7 +53,6 @@ const botId = useRouteQuery<string | null>('botId')
 const { add: addBot } = useAddBot()
 const { capture } = useAnalytics()
 const { userInfos, ownedBots, fetch: fetchCurrentUser } = useCurrentUser()
-const breakpoints = useBreakpoints(breakpointsTailwind)
 const { isLoading, withLoading } = useLoading()
 
 const onboardingVersion = useFeatureFlag('onboarding-version')
@@ -83,7 +82,6 @@ onMounted(() => {
   }, 1000)
 })
 
-const largerThanMd = breakpoints.greater('md')
 const currentStep = ref(route.query.botId ? 2 : 1)
 
 const steps = [
@@ -252,42 +250,30 @@ function startSandbox() {
             <ArrowLeft class="mr-2 h-4 w-4" />
             {{ $t('pages.dash.onboarding.stepThree.getBack') }}
           </Button>
-          <Stepper
-            :model-value="currentStep"
-            :orientation="largerThanMd ? 'horizontal' : 'vertical'"
-            :class="cn('flex w-fit md:w-10/12 items-start gap-2 mx-auto flex-col md:flex-row')"
-          >
-            <StepperItem
-              v-for="item in steps"
-              :key="item.step"
-              :step="item.step"
-              class="relative flex w-full md:flex-col items-start md:items-center md:justify-center"
-            >
-              <StepperTrigger>
-                <StepperIndicator v-slot="{ step }" class="bg-muted">
-                  <template v-if="item.icon">
-                    <component :is="item.icon" class="w-4 h-4" />
-                  </template>
-                  <span v-else>{{ step }}</span>
-                </StepperIndicator>
-              </StepperTrigger>
-              <StepperSeparator
-                v-if="item.step !== steps[steps.length - 1]?.step"
-                :class="
-                  largerThanMd
-                    ? 'absolute left-[calc(50%+20px)] right-[calc(-50%+10px)] top-5 block h-0.5 shrink-0 rounded-full bg-muted group-data-[state=completed]:bg-primary'
-                    : 'absolute left-4.5 top-9.5 block h-[105%] w-0.5 shrink-0 rounded-full bg-muted group-data-[state=completed]:bg-primary'
-                "
-              />
-              <div class="flex flex-col md:items-center">
+          <Stepper :model-value="currentStep" class="mx-auto md:w-10/12">
+            <StepperTrack>
+              <StepperItem
+                v-for="item in steps"
+                v-slot="{ state }"
+                :key="item.step"
+                :step="item.step"
+              >
+                <StepperSeparator />
+                <StepperTrigger>
+                  <StepperIndicator>
+                    <Check v-if="state === 'completed'" />
+                    <component :is="item.icon" v-else-if="item.icon" />
+                    <span v-else>{{ item.step }}</span>
+                  </StepperIndicator>
+                </StepperTrigger>
                 <StepperTitle>
                   {{ item.title }}
                 </StepperTitle>
                 <StepperDescription>
                   {{ item.description }}
                 </StepperDescription>
-              </div>
-            </StepperItem>
+              </StepperItem>
+            </StepperTrack>
           </Stepper>
         </CardHeader>
         <CardContent class="mt-4">
