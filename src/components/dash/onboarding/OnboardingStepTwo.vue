@@ -142,7 +142,7 @@ onMounted(() => {
           <h2 class="text-lg font-semibold my-4">
             {{ $t('pages.dash.onboarding.stepTwo.install.startBotHeading') }}
           </h2>
-          <p>{{ $t('pages.dash.onboarding.stepTwo.install.startBotDescription') }}</p>
+          <p>{{ $t('pages.dash.onboarding.stepTwo.install.startBotDescriptionNode') }}</p>
           <CodeBlock code="export NODE_ENV=production # Linux/MacOS" lang="bash" />
           <CodeBlock code="$env:NODE_ENV='production' # Windows Powershell" lang="powershell" />
           <CodeBlock code="npm run start" lang="bash" />
@@ -161,7 +161,7 @@ onMounted(() => {
           <h2 class="text-lg font-semibold my-4">
             {{ $t('pages.dash.onboarding.stepTwo.install.startBotHeading') }}
           </h2>
-          <p>{{ $t('pages.dash.onboarding.stepTwo.install.startBotDescription') }}</p>
+          <p>{{ $t('pages.dash.onboarding.stepTwo.install.startBotDescriptionNode') }}</p>
           <CodeBlock code="export NODE_ENV=production # Linux/MacOS" lang="bash" />
           <CodeBlock code="$env:NODE_ENV='production' # Windows Powershell" lang="powershell" />
           <CodeBlock code="npm run start" lang="bash" />
@@ -180,9 +180,7 @@ onMounted(() => {
           <h2 class="text-lg font-semibold my-4">
             {{ $t('pages.dash.onboarding.stepTwo.install.startBotHeading') }}
           </h2>
-          <p>{{ $t('pages.dash.onboarding.stepTwo.install.startBotDescription') }}</p>
-          <CodeBlock code="export NODE_ENV=production # Linux/MacOS" lang="bash" />
-          <CodeBlock code="$env:NODE_ENV='production' # Windows Powershell" lang="powershell" />
+          <p>{{ $t('pages.dash.onboarding.stepTwo.install.startBotDescriptionPython') }}</p>
           <CodeBlock code="python main.py" lang="bash" />
         </div>
       </Transition>

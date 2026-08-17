@@ -68,7 +68,8 @@
       "pypiHeading": "a. Install the PyPi package",
       "addCodeHeading": "b. Add Discord Analytics to your code",
       "startBotHeading": "c. Start your bot",
-      "startBotDescription": "In order to start your bot with Discord Analytics, you need to add the NODE_ENV to you environment variables"
+      "startBotDescriptionNode": "In order to start your bot with Discord Analytics, you need to add NODE_ENV to your environment variables",
+      "startBotDescriptionPython": "That's it, no extra configuration needed. Start your bot as you usually do:"
     },
     "moreExamples": {
       "title": "More examples",
