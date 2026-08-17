@@ -4,7 +4,7 @@ import { Button, Separator } from '@/components/ui'
 </script>
 
 <template>
-  <footer class="">
+  <footer>
     <div
       class="bg-primary px-10 py-6 rounded-lg flex gap-4 items-center animate-floating w-fit md:m-auto my-8 mx-4 flex-col md:flex-row"
     >
@@ -16,8 +16,8 @@ import { Button, Separator } from '@/components/ui'
           {{ $t('components.footer.banner.description') }}
         </p>
       </div>
-      <RouterLink to="/support" target="_blank">
-        <Button variant="secondary" class="w-full md:w-auto">
+      <RouterLink to="/support" target="_blank" class="w-full md:w-auto">
+        <Button variant="secondary" class="w-full">
           {{ $t('components.footer.banner.button') }}
         </Button>
       </RouterLink>
