@@ -7,14 +7,14 @@ import { vReveal } from '@/utils/reveal.ts'
 
 <template>
   <section class="max-w-300 mx-auto w-full flex flex-col lg:flex-row items-center gap-16">
-    <div v-reveal>
+    <div v-reveal class="text-center md:text-start">
       <h2 class="text-4xl font-bold mb-8">
         {{ $t('pages.home.community.title') }}
       </h2>
       <p class="text-balance mb-4">
         {{ $t('pages.home.community.description') }}
       </p>
-      <div class="flex items-center gap-2">
+      <div class="flex items-center justify-center md:justify-start gap-2">
         <a href="https://opencollective.com/discordanalytics#category-CONTRIBUTE" target="_blank">
           <Button>
             {{ $t('pages.home.community.cta.primary') }}
