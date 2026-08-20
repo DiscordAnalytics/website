@@ -1,0 +1,82 @@
+{
+  "seo": {
+    "title": "Self-hosting",
+    "description": "Run Discord Analytics on your own hardware with Docker: three containers, your own MongoDB, and your bot's data never leaving your infrastructure."
+  },
+  "badge": "Open source, top to bottom",
+  "title": "Or run the whole thing yourself",
+  "description": "Same dashboard, same SDKs, your infrastructure. Three containers and a database you control — because \"trust us with your data\" is not an argument.",
+  "cta": {
+    "primary": "Read the install guide",
+    "secondary": "Try the hosted version first"
+  },
+  "compare": {
+    "title": "Which one should you pick?",
+    "description": "Most people should start with the hosted version and move later if they need to. Here's the honest split.",
+    "cloud": {
+      "title": "Hosted by us",
+      "description": "The version at discordanalytics.xyz."
+    },
+    "self_hosted": {
+      "title": "Hosted by you",
+      "description": "The same images, on your infrastructure."
+    },
+    "rows": {
+      "setup": {
+        "label": "Setup",
+        "cloud": "Nothing to deploy, patch or back up",
+        "self_hosted": "You provision and run the containers yourself"
+      },
+      "updates": {
+        "label": "Updates",
+        "cloud": "New features arrive without you doing anything",
+        "self_hosted": "You own the uptime and choose when to upgrade"
+      },
+      "data": {
+        "label": "Data",
+        "cloud": "Runs on our infrastructure",
+        "self_hosted": "Your bot's data never leaves your infrastructure"
+      },
+      "limits": {
+        "label": "Limits",
+        "cloud": "Account limits apply — see the pricing page",
+        "self_hosted": "No account limits — they're yours to set"
+      },
+      "cost": {
+        "label": "Cost",
+        "cloud": "Free, funded by contributors",
+        "self_hosted": "Infrastructure at your cost"
+      }
+    }
+  },
+  "stack": {
+    "title": "Three containers, three steps",
+    "description": "The website, the API and a MongoDB instance. If you can run Docker Compose, you can run Discord Analytics.",
+    "services": {
+      "1": { "title": "The website" },
+      "2": { "title": "The API" },
+      "3": { "title": "MongoDB" }
+    },
+    "resources": {
+      "install": { "title": "The install guide" },
+      "source": { "title": "The source, on GitHub" }
+    },
+    "terminal_alt": "Terminal output of docker compose up -d starting the website, API and MongoDB containers",
+    "steps": {
+      "1": {
+        "title": "Grab the compose file",
+        "description": "Pull the docker-compose.yml and env template from the install guide."
+      },
+      "2": {
+        "title": "Configure your bot",
+        "description": "Set your Discord OAuth credentials, Mongo URI and domain in the env file."
+      },
+      "3": {
+        "title": "docker compose up -d",
+        "description": "The website, the API and MongoDB come up healthy in a few seconds."
+      }
+    }
+  },
+  "dashboard_tagline": "Same dashboard. Your infrastructure.",
+  "dashboard_alt": "The Discord Analytics dashboard, identical whether hosted by us or by you"
+}

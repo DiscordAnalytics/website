@@ -5,10 +5,27 @@ import { useCurrentUser } from '@/composables'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) return savedPosition
+    if (to.hash) return { el: to.hash }
+    return { top: 0 }
+  },
   routes: [
     {
       path: '/',
       component: () => import('@/views/HomeView.vue'),
+    },
+    {
+      path: '/features/:slug',
+      component: () => import('@/views/features/FeatureView.vue'),
+    },
+    {
+      path: '/pricing',
+      component: () => import('@/views/PricingView.vue'),
+    },
+    {
+      path: '/self-hosting',
+      component: () => import('@/views/SelfHostingView.vue'),
     },
     {
       path: '/app-monetization-explorer',
