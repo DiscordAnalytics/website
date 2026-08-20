@@ -1,0 +1,98 @@
+{
+  "seo": {
+    "title": "Tarifs",
+    "description": "Discord Analytics est gratuit, sans offre payante ni fonctionnalité réservée. Voici les limites qui s'appliquent réellement, et le registre public qui montre comment le projet est financé."
+  },
+  "badge": "Gratuit, et les comptes sont publics",
+  "title": "Il n'y a pas de grille tarifaire",
+  "description": "Toutes les fonctionnalités sont disponibles sur tous les comptes. Voici la version honnête : les limites qui existent vraiment, et qui paie exactement les serveurs.",
+  "cta": {
+    "primary": "S'inscrire gratuitement",
+    "secondary": "Voir ce qui est inclus"
+  },
+  "included": {
+    "title": "Tout, sur chaque compte",
+    "description": "Il n'y a ni offre gratuite ni offre pro, donc rien à comparer. Tout ce qui suit est actif par défaut.",
+    "note": "Choisissez une fonctionnalité pour voir ce qu'elle fait."
+  },
+  "limits": {
+    "title": "Les limites qui, elles, existent",
+    "description": "Ce n'est pas un péage — juste les plafonds qui évitent qu'un seul compte consomme tout le serveur. Vous pouvez suivre votre propre consommation dans les paramètres de votre compte.",
+    "table": {
+      "resource": "Ressource",
+      "included": "Limite"
+    },
+    "rows": {
+      "bots": {
+        "label": "Bots",
+        "scope": "Par compte"
+      },
+      "achievements": {
+        "label": "Succès",
+        "scope": "Par bot"
+      },
+      "custom_events": {
+        "label": "Événements personnalisés",
+        "scope": "Par bot"
+      },
+      "teammates": {
+        "label": "Coéquipiers",
+        "scope": "Par bot"
+      }
+    },
+    "raise": {
+      "1": "Il vous en faut plus ? Les limites sont relevées sur demande —",
+      "2": "écrivez-nous sur Discord",
+      "3": "et dites-nous ce que vous construisez."
+    }
+  },
+  "funding": {
+    "title": "Porté par",
+    "description": "Ni entreprise ni budget publicitaire derrière ce projet — seulement les personnes qui écrivent le code, et celles qui paient pour le faire tourner. Les deux listes ci-dessous sont en direct.",
+    "contributors": {
+      "code": "Écrit par",
+      "donors": "Financé par"
+    },
+    "contribute": {
+      "title": "Contribuer sur Open Collective",
+      "description": "Ponctuellement ou chaque mois. C'est ce qui paie les serveurs."
+    },
+    "ledger": {
+      "title": "Consulter le registre",
+      "description": "Chaque transaction, entrante et sortante, en public."
+    },
+    "self_hosting": {
+      "title": "Ou ne dépendez pas de nous du tout",
+      "description": "Faites tourner toute la stack vous-même avec Docker, sur votre matériel, avec votre base de données."
+    }
+  },
+  "faq": {
+    "title": "Les questions auxquelles cette page doit répondre",
+    "questions": {
+      "1": {
+        "question": "C'est vraiment gratuit, ou c'est un essai ?",
+        "answer": "C'est gratuit. Pas de période d'essai, pas de carte bancaire et aucune offre payante vers laquelle migrer — les mêmes fonctionnalités sont sur tous les comptes, et les limites ci-dessus sont les seuls plafonds."
+      },
+      "2": {
+        "question": "Que se passe-t-il si les dons s'arrêtent ?",
+        "answer": {
+          "1": "C'est la question légitime à poser à tout service financé par les dons, et le registre est public pour que vous puissiez le surveiller. Le projet est open source : si la version hébergée s'arrêtait un jour, vous pourriez",
+          "2": "l'héberger vous-même",
+          "3": "avec vos données existantes — rien ici n'est prisonnier de nos serveurs."
+        }
+      },
+      "3": {
+        "question": "Vendez-vous mes données ou celles de mes utilisateurs ?",
+        "answer": {
+          "1": "Non. Le projet est financé par les dons, pas par les données. Ce que nous collectons et combien de temps nous le conservons est écrit dans la",
+          "2": "politique de confidentialité",
+          "3": ", et le code qui le fait est public."
+        }
+      },
+      "4": {
+        "question": "J'ai atteint une limite. Et maintenant ?",
+        "answer": "Demandez-nous. Les limites sont par compte et par bot, et elles sont relevées sur demande — il n'y a pas d'offre à acheter, dites simplement à notre équipe ce dont vous avez besoin et pourquoi."
+      }
+    }
+  }
+}

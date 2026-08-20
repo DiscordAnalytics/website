@@ -1,0 +1,98 @@
+{
+  "seo": {
+    "title": "Pricing",
+    "description": "Discord Analytics is free, with no paid tier and no feature gate. Here are the limits that actually apply, and the public ledger showing how the project is funded."
+  },
+  "badge": "Free, and the books are public",
+  "title": "There is no price list",
+  "description": "Every feature is available to every account. What follows is the honest version: the limits that do apply, and exactly who pays for the servers.",
+  "cta": {
+    "primary": "Sign up for free",
+    "secondary": "See what's included"
+  },
+  "included": {
+    "title": "All of it, on every account",
+    "description": "There is no free plan and no pro plan, so there is nothing to compare. Everything below is on by default.",
+    "note": "Pick any feature to see what it does."
+  },
+  "limits": {
+    "title": "The limits that do apply",
+    "description": "Not a paywall — just the ceilings that keep one account from consuming the whole server. You can see your own usage against them in your account settings.",
+    "table": {
+      "resource": "Resource",
+      "included": "Limit"
+    },
+    "rows": {
+      "bots": {
+        "label": "Bots",
+        "scope": "Per account"
+      },
+      "achievements": {
+        "label": "Achievements",
+        "scope": "Per bot"
+      },
+      "custom_events": {
+        "label": "Custom events",
+        "scope": "Per bot"
+      },
+      "teammates": {
+        "label": "Teammates",
+        "scope": "Per bot"
+      }
+    },
+    "raise": {
+      "1": "Need more than this? Limits are raised on request —",
+      "2": "ask us on Discord",
+      "3": "and tell us what you're building."
+    }
+  },
+  "funding": {
+    "title": "Brought to you by",
+    "description": "No company and no ad budget behind this — just the people who write the code, and the people who cover the bill for running it. Both lists below are live.",
+    "contributors": {
+      "code": "Written by",
+      "donors": "Funded by"
+    },
+    "contribute": {
+      "title": "Contribute on Open Collective",
+      "description": "One-off or monthly. This is what keeps the servers paid for."
+    },
+    "ledger": {
+      "title": "Read the ledger",
+      "description": "Every transaction in and out, public."
+    },
+    "self_hosting": {
+      "title": "Or don't depend on us at all",
+      "description": "Run the whole stack yourself with Docker, on your own hardware, with your own database."
+    }
+  },
+  "faq": {
+    "title": "The questions this page should answer",
+    "questions": {
+      "1": {
+        "question": "Is it really free, or is this a trial?",
+        "answer": "It's free. There is no trial period, no credit card and no paid tier to upgrade to — the same features are on every account, and the limits above are the only ceilings."
+      },
+      "2": {
+        "question": "What happens if the donations stop?",
+        "answer": {
+          "1": "That's the fair question to ask any donation-funded service, and the ledger is public so you can watch for it. The project is open source, so if the hosted version ever stopped, you could",
+          "2": "run it yourself",
+          "3": "with your existing data — nothing here is locked to our servers."
+        }
+      },
+      "3": {
+        "question": "Do you sell my data or my users' data?",
+        "answer": {
+          "1": "No. The project is funded by donations, not by data. What we collect and how long we keep it is written down in the",
+          "2": "privacy policy",
+          "3": ", and the code that does it is public."
+        }
+      },
+      "4": {
+        "question": "I've hit a limit. Now what?",
+        "answer": "Ask. Limits are per account and per bot, and they are raised on request — there's no plan to buy, just tell our team what you need and why."
+      }
+    }
+  }
+}
