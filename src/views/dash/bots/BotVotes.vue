@@ -58,8 +58,8 @@ const charts = computed((): ChartConfig[] => [
     data: votesData.value?.votesPie ?? [],
     tabs: [],
     component: PieChart,
-    getValue: defaultGetValue,
-    isEmpty: defaultIsEmpty,
+    getValue: (data) => data.reduce((sum, e) => sum + ((e.count as number) ?? 0), 0),
+    isEmpty: (data) => data.reduce((sum, e) => sum + ((e.count as number) ?? 0), 0) === 0,
   },
   {
     title: t('pages.dash.stats.charts.votes.providerEvolution', { provider: 'Top.gg' }),
