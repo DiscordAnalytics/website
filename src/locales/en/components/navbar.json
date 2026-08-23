@@ -24,7 +24,9 @@
       }
     },
     "blog": "Blog",
-    "support": "Support"
+    "support": "Support",
+    "features": "Features",
+    "pricing": "Pricing"
   },
   "customize": {
     "title": "Customize",
