@@ -431,27 +431,17 @@ export function calculateVotes(
       votesMap.set(date.getTime(), { total: 0, byProvider: new Map() })
     const entry = votesMap.get(date.getTime())!
 
-    entry.total = 0
-    entry.byProvider.clear()
-
     for (const [provider, count] of Object.entries(votes.votes)) {
       const providerName = selectVotesProvider(provider as VotesProvider)
       entry.total += count
       if (providerName) {
-        entry.byProvider.set(providerName, count)
+        entry.byProvider.set(providerName, (entry.byProvider.get(providerName) ?? 0) + count)
+        pieMap.set(providerName, (pieMap.get(providerName) ?? 0) + count)
       }
     }
   })
 
-  const lastVote = rawVotes[rawVotes.length - 1]
-  if (lastVote) {
-    for (const [provider, count] of Object.entries(lastVote.votes)) {
-      const providerName = selectVotesProvider(provider as VotesProvider)
-      if (providerName) pieMap.set(providerName, count)
-    }
-  }
-
-  chartsData.votesPie = Array.from(pieMap.entries()).map(([name, total]) => ({ name, total }))
+  chartsData.votesPie = Array.from(pieMap.entries()).map(([name, count]) => ({ name, count }))
 
   for (const date of generateBuckets(dateRange)) {
     const entry = votesMap.get(date.getTime())
