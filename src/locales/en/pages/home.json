@@ -53,7 +53,7 @@
       },
       "email": {
         "title": "Email reports",
-        "description": "Your weekly report every sunday in your mailbox",
+        "description": "Your stats summarised in your mailbox, weekly or monthly",
         "preview": {
           "sender": "Discord Analytics",
           "subject": "Weekly report for Analytics Guard",

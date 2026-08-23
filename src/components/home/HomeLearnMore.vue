@@ -14,9 +14,9 @@ import { vReveal } from '@/utils/reveal.ts'
     </h2>
     <div class="flex gap-4 flex-wrap">
       <div class="flex gap-4 flex-wrap w-full">
-        <a
+        <RouterLink
           v-reveal
-          href="/docs/get-started/advanced-usage/teams"
+          to="/features/teams"
           class="flex-1 min-w-80 h-80 relative hover:brightness-90 hover:-translate-y-1 transition-all duration-300"
         >
           <Card class="w-full h-full relative overflow-clip group">
@@ -38,10 +38,10 @@ import { vReveal } from '@/utils/reveal.ts'
               class="absolute top-0 w-full h-3/4 bg-linear-to-b from-background from-40% to-transparent"
             />
           </Card>
-        </a>
-        <a
+        </RouterLink>
+        <RouterLink
           v-reveal="100"
-          href="/docs/reference/graphs"
+          to="/features/graphs"
           class="flex-2 min-w-80 h-80 relative hover:brightness-90 hover:-translate-y-1 transition-all duration-300"
         >
           <Card class="w-full h-full relative overflow-clip group">
@@ -67,10 +67,10 @@ import { vReveal } from '@/utils/reveal.ts'
               </div>
             </div>
           </Card>
-        </a>
-        <a
+        </RouterLink>
+        <RouterLink
           v-reveal="200"
-          href="/docs/get-started/votes-integration"
+          to="/features/votes"
           class="flex-1 min-w-80 h-80 relative hover:brightness-90 hover:-translate-y-1 transition-all duration-300"
         >
           <Card class="w-full h-full relative overflow-clip group">
@@ -92,10 +92,14 @@ import { vReveal } from '@/utils/reveal.ts'
               class="absolute top-0 w-full h-3/4 bg-linear-to-b from-background from-40% to-transparent"
             />
           </Card>
-        </a>
+        </RouterLink>
       </div>
       <div class="flex gap-4 flex-wrap w-full">
-        <div v-reveal class="flex-1 min-w-80 h-80 relative">
+        <RouterLink
+          v-reveal
+          to="/features/graphs#reports"
+          class="flex-1 min-w-80 h-80 relative hover:brightness-90 hover:-translate-y-1 transition-all duration-300"
+        >
           <Card class="w-full h-full relative overflow-clip group flex items-center flex-col gap-4">
             <div class="w-full flex flex-col items-center p-4 pt-8">
               <h3 class="text-2xl font-semibold">
@@ -117,10 +121,10 @@ import { vReveal } from '@/utils/reveal.ts'
               </p>
             </div>
           </Card>
-        </div>
-        <a
+        </RouterLink>
+        <RouterLink
           v-reveal="100"
-          href="/docs/reference/achievements"
+          to="/features/achievements"
           class="flex-1 min-w-80 h-80 relative hover:brightness-90 hover:-translate-y-1 transition-all duration-300"
         >
           <Card class="w-full h-full relative overflow-clip group">
@@ -144,8 +148,12 @@ import { vReveal } from '@/utils/reveal.ts'
               class="absolute top-0 w-full h-3/4 bg-linear-to-b from-background from-40% to-transparent"
             />
           </Card>
-        </a>
-        <div v-reveal="200" class="flex-1 min-w-80 h-80 relative">
+        </RouterLink>
+        <RouterLink
+          v-reveal="200"
+          to="/features/custom-graphs"
+          class="flex-1 min-w-80 h-80 relative hover:brightness-90 hover:-translate-y-1 transition-all duration-300"
+        >
           <Card class="w-full h-full relative overflow-clip group">
             <div class="absolute bottom-0 z-10 w-full flex flex-col items-center p-4 pt-8">
               <h3 class="text-2xl font-semibold">
@@ -167,7 +175,7 @@ import { vReveal } from '@/utils/reveal.ts'
               class="absolute bottom-0 w-full h-3/4 bg-linear-to-t from-background from-40% to-transparent"
             />
           </Card>
-        </div>
+        </RouterLink>
       </div>
     </div>
   </section>

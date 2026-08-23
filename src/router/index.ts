@@ -16,8 +16,28 @@ const router = createRouter({
       component: () => import('@/views/HomeView.vue'),
     },
     {
+      path: '/features/graphs',
+      component: () => import('@/views/features/GraphsFeature.vue'),
+    },
+    {
+      path: '/features/custom-graphs',
+      component: () => import('@/views/features/CustomGraphsFeature.vue'),
+    },
+    {
+      path: '/features/votes',
+      component: () => import('@/views/features/VotesFeature.vue'),
+    },
+    {
+      path: '/features/achievements',
+      component: () => import('@/views/features/AchievementsFeature.vue'),
+    },
+    {
+      path: '/features/teams',
+      component: () => import('@/views/features/TeamsFeature.vue'),
+    },
+    {
       path: '/features/:slug',
-      component: () => import('@/views/features/FeatureView.vue'),
+      component: () => import('@/views/features/FeatureNotFound.vue'),
     },
     {
       path: '/pricing',
