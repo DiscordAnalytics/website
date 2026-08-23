@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "Free analytics for your Discord bot",
+    "description": "Discord Analytics is a free, open source analytics dashboard for Discord bots. Add four lines to your discord.js, Oceanic or discord.py bot and see which commands land, where you're growing, and who sticks around."
+  },
   "hero": {
     "tag": "Free & Open Source Software",
     "title": "Know how your Discord bot is really used",
@@ -107,10 +111,5 @@
         "answer": "Discord Analytics is Open Source, so you can contribute by making feature requests, bug reports, code pull requests or just by creating a donation on Open Collective!"
       }
     }
-  },
-  "cta": {
-    "start": "Start collecting stats, today.",
-    "sign_up": "Sign up for free",
-    "reassurance": "No credit card, no trial, no paid tier. Sign in with Discord and you're set."
   }
 }

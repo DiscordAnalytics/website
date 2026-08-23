@@ -108,9 +108,8 @@
       }
     }
   },
-  "cta": {
-    "start": "Commencez à collecter des statistiques dès aujourd'hui.",
-    "sign_up": "S'inscrire gratuitement",
-    "reassurance": "Pas de carte bancaire, pas d'essai, pas d'offre payante. Connectez-vous avec Discord et c'est parti."
+  "seo": {
+    "title": "Statistiques gratuites pour votre bot Discord",
+    "description": "Discord Analytics est un tableau de bord de statistiques gratuit et open source pour bots Discord. Ajoutez quatre lignes à votre bot discord.js, Oceanic ou discord.py et voyez quelles commandes fonctionnent, où vous grandissez et qui reste."
   }
 }
