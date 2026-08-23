@@ -11,7 +11,8 @@
         "features": "Features",
         "achievements": "Community Achievements",
         "docs": "Documentation",
-        "integrate": "Integrate in your bot"
+        "integrate": "Integrate in your bot",
+        "pricing": "Pricing"
       }
     },
     "company": {
@@ -19,7 +20,8 @@
       "items": {
         "source_code": "Source Code",
         "blog": "Blog",
-        "status": "Services Status"
+        "status": "Services Status",
+        "self_hosting": "Self-hosting"
       }
     },
     "contact": {
