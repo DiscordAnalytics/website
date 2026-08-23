@@ -125,7 +125,7 @@ const onManualConfigSubmit = manualConfigForm.handleSubmit(async (values) => {
       </a>
       <div v-else class="flex items-center gap-2 text-green-500">
         <CircleCheckIcon class="h-6 w-6" />
-        <p>{{ $t('pages.dash.settings.votes.provider.topgg.active') }}</p>
+        <p class="whitespace-nowrap">{{ $t('pages.dash.settings.votes.provider.topgg.active') }}</p>
       </div>
 
       <Dialog v-if="!providerConfig?.connectionId" v-model:open="manualConfigOpen">
