@@ -15,7 +15,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui'
-import { useBlogArticles } from '@/composables'
+import { useBlogArticles, useSeo } from '@/composables'
 import { df, dfWithHour } from '@/utils/dateTime.ts'
 import type { Anchor, BlogArticle } from '@/utils/types'
 
@@ -37,6 +37,12 @@ const anchors = computed<Anchor[]>(() => {
     level: parseInt(el.tagName[1] ?? '0'),
     children: [],
   }))
+})
+
+useSeo({
+  title: () => article.value?.title,
+  description: () => article.value?.description,
+  image: () => article.value?.cover,
 })
 
 onBeforeMount(async () => {

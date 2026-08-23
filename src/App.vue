@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { useHead } from '@unhead/vue'
 import { useColorMode, useLocalStorage, usePreferredLanguages } from '@vueuse/core'
-import { onBeforeMount, onErrorCaptured } from 'vue'
+import { computed, onBeforeMount, onErrorCaptured } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useRoute } from 'vue-router'
 import { toast } from 'vue-sonner'
 import 'vue-sonner/style.css'
 
@@ -15,6 +17,21 @@ const { setTheme } = useStore()
 const i18n = useI18n()
 const languages = usePreferredLanguages()
 const mode = useColorMode()
+const route = useRoute()
+
+const privatePaths = ['/dash', '/auth', '/invitations']
+
+useHead({
+  htmlAttrs: { lang: computed(() => i18n.locale.value) },
+  meta: [
+    {
+      name: 'robots',
+      content: computed(() =>
+        privatePaths.some((path) => route.path.startsWith(path)) ? 'noindex, nofollow' : undefined,
+      ),
+    },
+  ],
+})
 
 const isCarroted = useLocalStorage('isCarroted', false)
 const isChristmas = new Date().getMonth() === 11
@@ -34,7 +51,6 @@ onBeforeMount(() => {
       }
     }
   }
-  document.documentElement.lang = i18n.locale.value
 })
 
 onErrorCaptured((err, instance, info) => {

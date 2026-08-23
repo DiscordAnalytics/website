@@ -9,5 +9,9 @@
   },
   "updated": "(Modifié)",
   "updated_on": "Mis à jour le",
-  "table_of_contents": "Table des matières"
+  "table_of_contents": "Table des matières",
+  "seo": {
+    "title": "Blog",
+    "description": "Notes de version, articles techniques et actualités de celles et ceux qui construisent Discord Analytics."
+  }
 }

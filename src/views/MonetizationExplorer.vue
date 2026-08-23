@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ChevronsLeftRightEllipsisIcon } from '@lucide/vue'
+import { useI18n } from 'vue-i18n'
 
 import { PageLayout } from '@/components'
 import {
@@ -11,6 +12,14 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from '@/components/ui'
+import { useSeo } from '@/composables'
+
+const { t } = useI18n()
+
+useSeo({
+  title: () => t('pages.appMonetizationExplorer.title'),
+  description: () => t('pages.appMonetizationExplorer.description'),
+})
 </script>
 
 <template>

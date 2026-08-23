@@ -1,11 +1,19 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import { PageLayout } from '@/components'
-import { useConfig } from '@/composables'
+import { useConfig, useSeo } from '@/composables'
 import { cn } from '@/lib/utils'
 
 const { apiBaseUrl } = useConfig()
+const { t } = useI18n()
+
+useSeo({
+  title: () => t('pages.error404.title'),
+  description: () => t('pages.error404.description'),
+  noindex: true,
+})
 
 const userCount = ref<number>(1)
 const showRickroll = ref(false)

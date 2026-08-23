@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "Blog",
+    "description": "Release notes, technical write-ups and updates from the people building Discord Analytics."
+  },
   "header": {
     "search": "Search...",
     "dropdown": "Tags"
