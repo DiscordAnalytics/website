@@ -54,7 +54,8 @@
       "description": "This token allows your bot to interact with our API.",
       "doNotShare": "DON'T SHARE IT WITH ANYBODY",
       "tokenPlaceholder": "Your token",
-      "tokenCopied": "Token copied to clipboard"
+      "tokenCopied": "Token copied to clipboard",
+      "showToken": "Show token"
     },
     "integrate": {
       "heading": "2. Integrate into your code",

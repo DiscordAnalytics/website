@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CopyIcon, ExternalLinkIcon } from '@lucide/vue'
+import { CopyIcon, ExternalLinkIcon, EyeIcon, EyeOffIcon } from '@lucide/vue'
 import { useClipboard } from '@vueuse/core'
 import { useRouteQuery } from '@vueuse/router'
 import { onMounted, ref } from 'vue'
@@ -11,6 +11,7 @@ import {
   Button,
   InputGroup,
   InputGroupAddon,
+  InputGroupButton,
   InputGroupInput,
   Item,
   ItemActions,
@@ -40,6 +41,7 @@ const { t } = useI18n()
 const { isLoading, withLoading } = useLoading()
 
 const botToken = ref<string>('')
+const showBotToken = ref<boolean>(false)
 const botLibrary = ref<string>('discord.js')
 
 function copyToken() {
@@ -76,9 +78,21 @@ onMounted(() => {
             :placeholder="$t('pages.dash.onboarding.stepTwo.getToken.tokenPlaceholder')"
             :disabled="isLoading"
             readonly
+            :type="showBotToken ? 'text' : 'password'"
           />
           <InputGroupAddon align="inline-end">
             <Spinner v-if="isLoading" />
+          </InputGroupAddon>
+          <InputGroupAddon align="inline-end">
+            <InputGroupButton
+              :aria-label="$t('pages.dash.onboarding.stepTwo.getToken.showToken')"
+              :title="$t('pages.dash.onboarding.stepTwo.getToken.showToken')"
+              size="icon-xs"
+              @click="showBotToken = !showBotToken"
+            >
+              <EyeOffIcon v-if="showBotToken" />
+              <EyeIcon v-else />
+            </InputGroupButton>
           </InputGroupAddon>
         </InputGroup>
         <Button
