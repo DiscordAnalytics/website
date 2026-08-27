@@ -1,11 +1,17 @@
 <script setup lang="ts">
-import { BellIcon, ChartLineIcon, SendIcon, ThumbsUpIcon } from '@lucide/vue'
+import { BellIcon, ChartLineIcon, ExternalLinkIcon, SendIcon, ThumbsUpIcon } from '@lucide/vue'
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
 
-import { MarketingCTA, MarketingHeader, PageLayout } from '@/components'
+import { CustomIcon, MarketingCTA, MarketingHeader, PageLayout } from '@/components'
 import {
   Button,
+  Item,
+  ItemActions,
+  ItemContent,
+  ItemGroup,
+  ItemMedia,
+  ItemTitle,
   Stepper,
   StepperDescription,
   StepperIndicator,
@@ -16,6 +22,7 @@ import {
 } from '@/components/ui'
 import { useSeo } from '@/composables'
 import { vReveal } from '@/utils/reveal.ts'
+import type { VotesProvider } from '@/utils/types'
 
 const { t } = useI18n()
 const prefix = 'pages.features.pages.votes'
@@ -32,6 +39,14 @@ const steps = [
   { step: 2, icon: SendIcon },
   { step: 3, icon: ChartLineIcon },
   { step: 4, icon: BellIcon },
+]
+
+const providers: { id: VotesProvider; name: string; url: string }[] = [
+  { id: 'topgg', name: 'Top.gg', url: 'https://top.gg' },
+  { id: 'dblist', name: 'Discord Bot List', url: 'https://discordbotlist.com' },
+  { id: 'botlistme', name: 'BotList.me', url: 'https://botlist.me' },
+  { id: 'discordplace', name: 'Discord.place', url: 'https://discord.place' },
+  { id: 'discordscom', name: 'Discords.com', url: 'https://discords.com' },
 ]
 </script>
 
@@ -50,6 +65,41 @@ const steps = [
     </MarketingHeader>
 
     <section class="py-16 md:py-32 max-w-300 mx-auto w-full">
+      <h2 v-reveal class="text-3xl md:text-4xl font-black text-center text-balance">
+        {{ $t(`${prefix}.providers.title`) }}
+      </h2>
+      <p
+        v-reveal="80"
+        class="mt-4 text-center text-balance text-muted-foreground max-w-2xl mx-auto"
+      >
+        {{ $t(`${prefix}.providers.description`) }}
+      </p>
+
+      <ItemGroup class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <Item
+          v-for="(provider, index) in providers"
+          :key="provider.id"
+          v-reveal="(index % 3) * 100"
+          as="a"
+          :href="provider.url"
+          target="_blank"
+          rel="noopener noreferrer"
+          variant="outline"
+        >
+          <ItemMedia variant="icon">
+            <CustomIcon :icon="provider.id" />
+          </ItemMedia>
+          <ItemContent>
+            <ItemTitle>{{ provider.name }}</ItemTitle>
+          </ItemContent>
+          <ItemActions>
+            <ExternalLinkIcon class="size-4 text-muted-foreground" />
+          </ItemActions>
+        </Item>
+      </ItemGroup>
+    </section>
+
+    <section class="pb-16 md:pb-32 max-w-300 mx-auto w-full">
       <h2 v-reveal class="text-3xl md:text-4xl font-black text-center text-balance">
         {{ $t(`${prefix}.journey.title`) }}
       </h2>

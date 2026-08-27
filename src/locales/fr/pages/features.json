@@ -98,6 +98,10 @@
             "description": "Si vous avez configuré un webhook sortant, un message est publié."
           }
         }
+      },
+      "providers": {
+        "title": "Tous les grands sites de vote, couverts",
+        "description": "Top.gg, Discord Bot List, BotList.me, Discord.place et Discords.com — configurez ceux où votre bot est déjà référencé."
       }
     },
     "achievements": {
