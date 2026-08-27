@@ -4,7 +4,7 @@ import { toTypedSchema } from '@vee-validate/zod'
 import { useLocalStorage } from '@vueuse/core'
 import { useRouteQuery } from '@vueuse/router'
 import { useForm } from 'vee-validate'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import { toast } from 'vue-sonner'
@@ -83,6 +83,10 @@ onMounted(() => {
 })
 
 const currentStep = ref(route.query.botId ? 2 : 1)
+const stepTransition = ref('slide-right')
+watch(currentStep, (newStep, oldStep) => {
+  stepTransition.value = newStep > oldStep ? 'slide-right' : 'slide-left'
+})
 
 const steps = [
   {
@@ -277,7 +281,7 @@ function startSandbox() {
           </Stepper>
         </CardHeader>
         <CardContent class="mt-4">
-          <Transition name="slide-right" mode="out-in">
+          <Transition :name="stepTransition" mode="out-in">
             <OnboardingStepOne
               v-if="currentStep === 1"
               :loading="isLoading"
