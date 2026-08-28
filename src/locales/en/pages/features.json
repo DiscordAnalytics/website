@@ -98,6 +98,10 @@
             "description": "If you set an outgoing webhook, a message is posted."
           }
         }
+      },
+      "providers": {
+        "title": "Every major bot list, covered",
+        "description": "Top.gg, Discord Bot List, BotList.me, Discord.place and Discords.com — set up the ones your bot is already listed on."
       }
     },
     "achievements": {
