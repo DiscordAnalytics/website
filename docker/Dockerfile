@@ -39,6 +39,8 @@ FROM deps AS docs
 COPY --from=deps /app/node_modules ./node_modules
 COPY ./* ./
 COPY ./src/assets ./src/assets
+COPY ./src/composables ./src/composables
+COPY ./src/types.d.ts ./src/types.d.ts
 COPY ./public ./public
 COPY ./docs ./docs
 
