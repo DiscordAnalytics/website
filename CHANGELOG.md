@@ -1,3 +1,16 @@
+# [1.3.0](https://github.com/DiscordAnalytics/website/compare/v1.2.0...v1.3.0) (2026-08-28)
+
+
+### Bug Fixes
+
+* **onboarding:** apply the right slide direction per step navigation ([4301ef8](https://github.com/DiscordAnalytics/website/commit/4301ef85edb887fc31333edf4def9065162a49a9))
+
+
+### Features
+
+* **votes-page:** add a compatible bot-list providers section ([db5f146](https://github.com/DiscordAnalytics/website/commit/db5f14625dac66a57a2ab7f141559f708c1551ce))
+* **votes-page:** add compatible bot-list providers section ([#127](https://github.com/DiscordAnalytics/website/issues/127)) ([66adcfb](https://github.com/DiscordAnalytics/website/commit/66adcfbeab3e42254f9d2bba83b747a2ee44eb8f))
+
 # [1.2.0](https://github.com/DiscordAnalytics/website/compare/v1.1.10...v1.2.0) (2026-08-28)
 
 
