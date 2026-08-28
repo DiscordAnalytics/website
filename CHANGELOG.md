@@ -1,3 +1,36 @@
+# [1.2.0](https://github.com/DiscordAnalytics/website/compare/v1.1.10...v1.2.0) (2026-08-28)
+
+
+### Bug Fixes
+
+* **footer:** fixed discord server banner button on mobile ([1a790d3](https://github.com/DiscordAnalytics/website/commit/1a790d3a1ccafdd35d2e859a350a1edd96ea3269))
+* **home:** center the open collective section on mobile ([77c1c40](https://github.com/DiscordAnalytics/website/commit/77c1c4026f0ed5b0c30a9eff4bf43281fdfdf433))
+* **onboarding:** drop the NODE_ENV step from the discord.py instructions ([c11be94](https://github.com/DiscordAnalytics/website/commit/c11be94f3b614c178fe7dfba566fd40c4ea77fb1))
+* **onboarding:** keep the bot ID help in view and in sync with the field ([aa97466](https://github.com/DiscordAnalytics/website/commit/aa97466d5ff9a5af1c94e72256fe4fd5e2b90ca9))
+* **onboarding:** point users at the Application ID, not their own ([ab1e123](https://github.com/DiscordAnalytics/website/commit/ab1e123d5f7a04aaf22cf6dd397cf25bfa62cba2))
+* **self-hosting:** comparison table, deploy steps and scroll reset on navigation ([e77ebf6](https://github.com/DiscordAnalytics/website/commit/e77ebf6fae6d36eac0acf02bb805890a736d9567))
+* **ui:** make destructive text readable in dark mode ([1b19cc2](https://github.com/DiscordAnalytics/website/commit/1b19cc275b3ed922a33cfb61d7e3d22e496bf3af))
+* **votes:** aggregate the provider distribution over the whole range ([1104c77](https://github.com/DiscordAnalytics/website/commit/1104c7779768dc74ccf6af0efa813652e81fdd43))
+* **votes:** aggregate the provider distribution over the whole range ([#125](https://github.com/DiscordAnalytics/website/issues/125)) ([f05f464](https://github.com/DiscordAnalytics/website/commit/f05f464645fff81ba4b246bcb718a253573d2ba9))
+* **votes:** display the saved provider tokens in the settings inputs ([d5f5002](https://github.com/DiscordAnalytics/website/commit/d5f500257e248e3f604a749ab3ecf9d0bf9a31b9))
+* **votes:** keep the Top.gg active label on a single line ([b0943e1](https://github.com/DiscordAnalytics/website/commit/b0943e1076f9521db66a5b94b2b3dc89936a4cc8))
+
+
+### Features
+
+* **features:** add a dedicated page per feature ([45a9dba](https://github.com/DiscordAnalytics/website/commit/45a9dba91b086f42e68c2b668be82861bb0bf6af))
+* **footer:** link the pricing and self-hosting pages ([0f8411f](https://github.com/DiscordAnalytics/website/commit/0f8411fa5d5ccffc913dd2a3629d307fc74c4983))
+* **home:** animate sections as they scroll into view ([fdafd80](https://github.com/DiscordAnalytics/website/commit/fdafd80b4bee9f2a4ec1b0462eb154eeaf8a0c8d))
+* **home:** rework the homepage around the integration flow ([e9cef70](https://github.com/DiscordAnalytics/website/commit/e9cef705216fe71760acd317d13ca1216b030b93))
+* **navbar:** turn the Features link into a mega-menu ([f2a50dc](https://github.com/DiscordAnalytics/website/commit/f2a50dc13996f8416c3a3014ef3e5db013657cf0))
+* onboarding fixes and public marketing pages ([#126](https://github.com/DiscordAnalytics/website/issues/126)) ([d009d6c](https://github.com/DiscordAnalytics/website/commit/d009d6ca67fc0ee8defed5f1f85f8d27e2ad7b1b))
+* **onboarding:** add a button to reveal the bot token ([24260ee](https://github.com/DiscordAnalytics/website/commit/24260eee98f1071d58d900293573d2d535f72bc8))
+* **pricing:** add /pricing page with a feature grid and live contributor wall ([3a02428](https://github.com/DiscordAnalytics/website/commit/3a02428a092e2e36451e132c51927508ca2b578b))
+* **seo:** add per-route metadata, canonical URLs and a sitemap ([3d85209](https://github.com/DiscordAnalytics/website/commit/3d85209fff9cea96c504aefae47a512300e75e86))
+* **stepper:** slide steps into view on mobile instead of stacking them ([0482a5f](https://github.com/DiscordAnalytics/website/commit/0482a5fea494379555710331b5b5ef031a78c778))
+* **ui:** restyle code blocks with a copy button and diff highlighting ([0cc4b47](https://github.com/DiscordAnalytics/website/commit/0cc4b47743ae7d76894e01da75b7a07dadd56442))
+* **votes:** add a create token button for unconfigured providers ([bf706b3](https://github.com/DiscordAnalytics/website/commit/bf706b353df2c713534d2a7ebe9be26c5351c8dc))
+
 ## [1.1.10](https://github.com/DiscordAnalytics/website/compare/v1.1.9...v1.1.10) (2026-07-31)
 
 
