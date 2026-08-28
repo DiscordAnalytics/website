@@ -3,6 +3,9 @@ import { AlertTriangleIcon } from '@lucide/vue'
 import { Field as VeeField } from 'vee-validate'
 
 import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
   Button,
   Checkbox,
   Empty,
@@ -12,6 +15,7 @@ import {
   EmptyMedia,
   EmptyTitle,
   Field,
+  FieldDescription,
   FieldError,
   FieldGroup,
   FieldLabel,
@@ -21,8 +25,11 @@ import {
 } from '@/components/ui'
 import { useCurrentUser } from '@/composables'
 
+const DEVELOPER_PORTAL_URL = 'https://discord.com/developers/applications'
+
 defineProps<{
   loading: boolean
+  failed: boolean
 }>()
 
 defineEmits<{
@@ -42,10 +49,7 @@ const { userInfos, ownedBots } = useCurrentUser()
     </h1>
     <p class="flex flex-col items-center">
       {{ $t('pages.dash.onboarding.stepOne.subtitle') }}
-      <a
-        href="https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID"
-        target="_blank"
-      >
+      <a :href="DEVELOPER_PORTAL_URL" target="_blank" rel="noopener noreferrer">
         <Button variant="link">{{ $t('pages.dash.onboarding.stepOne.whereToGetId') }}</Button>
       </a>
     </p>
@@ -65,9 +69,32 @@ const { userInfos, ownedBots } = useCurrentUser()
               :aria-invalid="!!errors.length"
               :disabled="$props.loading"
             />
+            <FieldDescription v-if="!$props.failed">
+              {{ $t('pages.dash.onboarding.stepOne.botIdHint') }}
+            </FieldDescription>
             <FieldError v-if="errors.length" :errors="errors.map((message) => ({ message }))" />
           </Field>
         </VeeField>
+
+        <Alert v-if="$props.failed" variant="destructive">
+          <AlertTriangleIcon class="h-4 w-4" />
+          <AlertTitle>{{ $t('pages.dash.onboarding.stepOne.failureHelp.title') }}</AlertTitle>
+          <AlertDescription class="flex flex-col items-start gap-2">
+            <span>{{ $t('pages.dash.onboarding.stepOne.failureHelp.description') }}</span>
+            <div class="flex flex-wrap items-center gap-2">
+              <a :href="DEVELOPER_PORTAL_URL" target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" size="sm">
+                  {{ $t('pages.dash.onboarding.stepOne.failureHelp.openPortal') }}
+                </Button>
+              </a>
+              <RouterLink to="/support" target="_blank">
+                <Button variant="ghost" size="sm">
+                  {{ $t('pages.dash.onboarding.stepOne.failureHelp.contactSupport') }}
+                </Button>
+              </RouterLink>
+            </div>
+          </AlertDescription>
+        </Alert>
 
         <VeeField v-slot="{ field, errors }" name="acceptTos">
           <Field :data-invalid="!!errors.length">

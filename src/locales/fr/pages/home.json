@@ -1,16 +1,39 @@
 {
   "hero": {
     "tag": "Gratuit & Open Source",
-    "title": "Statistiques pour votre bot Discord",
-    "description": "Discord Analytics est un outil de statistiques puissant pour les bots Discord qui vous permet de traquer l'activité de votre bot en temps réel.",
+    "title": "Sachez comment votre bot Discord est vraiment utilisé",
+    "description": "Voyez quelles commandes fonctionnent, où vous grandissez et qui reste — en quatre lignes de code.",
     "cta": {
       "primary": "Commencer",
-      "secondary": "Voir plus"
+      "secondary": "Voir comment ça marche"
     },
+    "works_with": "Compatible discord.js · Oceanic · discord.py",
     "image_alt": "Capture d'écran du tableau de bord"
   },
+  "integration": {
+    "title": "Quatre lignes. C'est toute l'intégration.",
+    "description": "Installez le paquet, indiquez-lui votre bot, et votre tableau de bord se remplit. Aucun collecteur à héberger, aucun schéma à concevoir, rien à maintenir.",
+    "steps": {
+      "install": {
+        "title": "Installez le paquet",
+        "description": "Une seule dépendance, depuis npm ou PyPI."
+      },
+      "integrate": {
+        "title": "Ajoutez quatre lignes",
+        "description": "Importez-le, passez votre client et votre token d'API, puis appelez init et trackEvents."
+      },
+      "watch": {
+        "title": "Regardez les stats arriver",
+        "description": "Commandes, serveurs, utilisateurs et votes apparaissent dans votre tableau de bord au fil de l'exécution de votre bot."
+      }
+    },
+    "docs": {
+      "title": "Vous utilisez une autre bibliothèque ?",
+      "description": "Guides d'installation complets pour Oceanic et discord.py."
+    }
+  },
   "features": {
-    "title": "Discord Analytics c'est tout ça...",
+    "title": "Tout ce que vous obtenez, dès le départ",
     "cards": {
       "teams": {
         "title": "Une plateforme collaborative",
@@ -26,7 +49,7 @@
       },
       "email": {
         "title": "Rapports par email",
-        "description": "Votre rapport de la semaine chaque dimanche dans votre boite mail",
+        "description": "Vos statistiques résumées dans votre boîte mail, chaque semaine ou chaque mois",
         "preview": {
           "sender": "Discord Analytics",
           "subject": "Rapport hebdomadaire pour Analytics Guard",
@@ -44,7 +67,7 @@
     }
   },
   "community": {
-    "title": "...mais c'est aussi vous !",
+    "title": "Gratuit parce que vous le faites vivre",
     "description": "Discord Analytics est entièrement gratuit est financé par vos dons. L'usage de cet argent est transparent grâce à l'accès public à l'historique des transactions.",
     "cta": {
       "primary": "Contribuer",
@@ -85,8 +108,8 @@
       }
     }
   },
-  "cta": {
-    "start": "Commencez à collecter des statistiques dès aujourd'hui.",
-    "sign_up": "S'inscrire gratuitement"
+  "seo": {
+    "title": "Statistiques gratuites pour votre bot Discord",
+    "description": "Discord Analytics est un tableau de bord de statistiques gratuit et open source pour bots Discord. Ajoutez quatre lignes à votre bot discord.js, Oceanic ou discord.py et voyez quelles commandes fonctionnent, où vous grandissez et qui reste."
   }
 }

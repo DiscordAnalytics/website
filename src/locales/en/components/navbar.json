@@ -24,8 +24,9 @@
       }
     },
     "blog": "Blog",
-    "app_monetization": "App Monetization Explorer",
-    "support": "Support"
+    "support": "Support",
+    "features": "Features",
+    "pricing": "Pricing"
   },
   "customize": {
     "title": "Customize",

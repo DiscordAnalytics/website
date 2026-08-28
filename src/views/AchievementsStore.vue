@@ -36,7 +36,13 @@ import {
   SelectValue,
   Spinner,
 } from '@/components/ui'
-import { useAchievementsStore, useAnalytics, useCurrentUser, useLoading } from '@/composables'
+import {
+  useAchievementsStore,
+  useAnalytics,
+  useCurrentUser,
+  useLoading,
+  useSeo,
+} from '@/composables'
 import { copyAchievementFormSchema } from '@/utils/formSchemas.ts'
 import { selectLocale } from '@/utils/functions.ts'
 import type { Achievement } from '@/utils/types'
@@ -44,6 +50,11 @@ import type { Achievement } from '@/utils/types'
 const { achievements, fetch: fetchAchievements, copy: copyAchievement } = useAchievementsStore()
 const { userInfos, ownedBots: userBots } = useCurrentUser()
 const i18n = useI18n()
+
+useSeo({
+  title: () => i18n.t('pages.achievementsStore.header.title'),
+  description: () => i18n.t('pages.achievementsStore.header.description'),
+})
 
 const { isLoading, withLoading } = useLoading()
 const langFilter = ref<string | null>(null)

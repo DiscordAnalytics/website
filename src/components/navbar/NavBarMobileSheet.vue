@@ -11,6 +11,7 @@ import {
   SheetTrigger,
 } from '@/components/ui'
 import { useCurrentUser } from '@/composables'
+import { featurePages } from '@/utils/featurePages.ts'
 
 const { userInfos } = useCurrentUser()
 </script>
@@ -46,15 +47,27 @@ const { userInfos } = useCurrentUser()
                 </a>
               </AccordionContent>
             </AccordionItem>
+            <AccordionItem value="features" class="border-none">
+              <AccordionTrigger class="p-0">
+                {{ $t('components.navbar.links.features') }}
+              </AccordionTrigger>
+              <AccordionContent class="pl-2 pb-0">
+                <RouterLink
+                  v-for="(feature, slug) in featurePages"
+                  :key="slug"
+                  :to="`/features/${slug}`"
+                  class="flex w-full items-center py-2 hover:underline"
+                >
+                  {{ $t(`pages.features.pages.${feature.i18nKey}.nav_title`) }}
+                </RouterLink>
+              </AccordionContent>
+            </AccordionItem>
           </Accordion>
+          <RouterLink to="/pricing" class="flex w-full items-center py-2 hover:underline">
+            {{ $t('components.navbar.links.pricing') }}
+          </RouterLink>
           <RouterLink to="/blog" class="flex w-full items-center py-2 hover:underline">
             {{ $t('components.navbar.links.blog') }}
-          </RouterLink>
-          <RouterLink
-            to="/app-monetization-explorer"
-            class="flex w-full items-center py-2 hover:underline"
-          >
-            {{ $t('components.navbar.links.app_monetization') }}
           </RouterLink>
           <RouterLink to="/support" class="flex w-full items-center py-2 hover:underline">
             {{ $t('components.navbar.links.support') }}

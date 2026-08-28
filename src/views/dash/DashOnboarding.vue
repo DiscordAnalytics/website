@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ArrowLeft, Check, Clock, Code, IdCard } from '@lucide/vue'
 import { toTypedSchema } from '@vee-validate/zod'
-import { breakpointsTailwind, useBreakpoints, useLocalStorage } from '@vueuse/core'
+import { useLocalStorage } from '@vueuse/core'
 import { useRouteQuery } from '@vueuse/router'
 import { useForm } from 'vee-validate'
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import { toast } from 'vue-sonner'
@@ -30,17 +30,18 @@ import {
   StepperItem,
   StepperSeparator,
   StepperTitle,
+  StepperTrack,
   StepperTrigger,
 } from '@/components/ui'
 import { useAddBot, useAnalytics, useCurrentUser, useFeatureFlag, useLoading } from '@/composables'
-import { cn } from '@/lib/utils.ts'
+import { APIError } from '@/utils/api'
 import { addBotSchema } from '@/utils/formSchemas.ts'
 import fireworksParticlesOptions from '@/utils/particles/fireworks.ts'
 
 const { t } = useI18n()
 const router = useRouter()
 
-const { handleSubmit } = useForm({
+const { handleSubmit, setFieldError, errors } = useForm({
   validationSchema: toTypedSchema(addBotSchema),
   initialValues: {
     botId: '',
@@ -52,15 +53,15 @@ const botId = useRouteQuery<string | null>('botId')
 const { add: addBot } = useAddBot()
 const { capture } = useAnalytics()
 const { userInfos, ownedBots, fetch: fetchCurrentUser } = useCurrentUser()
-const breakpoints = useBreakpoints(breakpointsTailwind)
 const { isLoading, withLoading } = useLoading()
 
 const onboardingVersion = useFeatureFlag('onboarding-version')
 const selectedFlow = ref<'choose' | 'connect'>('choose')
 const eventCaptured = ref(false)
+const addBotFailed = ref(false)
+const showFailureHelp = computed(() => addBotFailed.value && !!errors.value.botId)
 
 onMounted(() => {
-  console.log(onboardingVersion.value, ownedBots.value, selectedFlow.value)
   if (onboardingVersion.value) {
     if (
       onboardingVersion.value === 'test' &&
@@ -81,7 +82,6 @@ onMounted(() => {
   }, 1000)
 })
 
-const largerThanMd = breakpoints.greater('md')
 const currentStep = ref(route.query.botId ? 2 : 1)
 
 const steps = [
@@ -121,17 +121,55 @@ function onStepThreeSubmit() {
   currentStep.value = 4
 }
 
+/**
+ * Turn a failed `addBot` into an analytics reason plus a message we can show under the field.
+ * The `not_a_bot` / `already_added` matches lean on the API's wording, so a copy change on the
+ * backend degrades them to `api_error` rather than dropping the event.
+ */
+function classifyAddBotError(err: unknown) {
+  if (!(err instanceof APIError)) {
+    return { reason: 'network', message: t('pages.dash.onboarding.stepOne.errors.network') }
+  }
+
+  const detail = err.detail || ''
+  const normalized = detail.toLowerCase()
+
+  let reason = 'api_error'
+  if (normalized.includes('bot account') || normalized.includes('not a bot')) reason = 'not_a_bot'
+  else if (err.status === 409 || normalized.includes('already')) reason = 'already_added'
+
+  return {
+    reason,
+    status: err.status,
+    message: detail || t('pages.dash.onboarding.stepOne.errors.unknown'),
+  }
+}
+
 const onSubmit = handleSubmit(async (values) => {
+  // The single most common onboarding failure: pasting your own account ID instead of the bot's.
+  // Catch it here so the user gets a message that names the mistake, with no round-trip.
+  if (userInfos.value && values.botId === userInfos.value.userId) {
+    addBotFailed.value = true
+    setFieldError('botId', t('pages.dash.onboarding.stepOne.errors.ownId'))
+    capture('onboarding_bot_add_failed', { reason: 'own_user_id', bot_id: values.botId })
+    return
+  }
+
   await withLoading(async () => {
-    await addBot(values.botId)
-      .then(() => {
-        currentStep.value = 2
-        botId.value = values.botId
-        capture('onboarding_bot_added', { bot_id: values.botId })
-      })
-      .catch((err) => {
-        toast.error(err.message)
-      })
+    try {
+      await addBot(values.botId)
+      addBotFailed.value = false
+      currentStep.value = 2
+      botId.value = values.botId
+      capture('onboarding_bot_added', { bot_id: values.botId })
+    } catch (err) {
+      const { reason, status, message } = classifyAddBotError(err)
+      addBotFailed.value = true
+      setFieldError('botId', message)
+      // Transport failures have nothing to do with what's in the field, so they stay a toast.
+      if (reason === 'network') toast.error(message)
+      capture('onboarding_bot_add_failed', { reason, status, bot_id: values.botId })
+    }
   })
 })
 
@@ -212,47 +250,40 @@ function startSandbox() {
             <ArrowLeft class="mr-2 h-4 w-4" />
             {{ $t('pages.dash.onboarding.stepThree.getBack') }}
           </Button>
-          <Stepper
-            :model-value="currentStep"
-            :orientation="largerThanMd ? 'horizontal' : 'vertical'"
-            :class="cn('flex w-fit md:w-10/12 items-start gap-2 mx-auto flex-col md:flex-row')"
-          >
-            <StepperItem
-              v-for="item in steps"
-              :key="item.step"
-              :step="item.step"
-              class="relative flex w-full md:flex-col items-start md:items-center md:justify-center"
-            >
-              <StepperTrigger>
-                <StepperIndicator v-slot="{ step }" class="bg-muted">
-                  <template v-if="item.icon">
-                    <component :is="item.icon" class="w-4 h-4" />
-                  </template>
-                  <span v-else>{{ step }}</span>
-                </StepperIndicator>
-              </StepperTrigger>
-              <StepperSeparator
-                v-if="item.step !== steps[steps.length - 1]?.step"
-                :class="
-                  largerThanMd
-                    ? 'absolute left-[calc(50%+20px)] right-[calc(-50%+10px)] top-5 block h-0.5 shrink-0 rounded-full bg-muted group-data-[state=completed]:bg-primary'
-                    : 'absolute left-4.5 top-9.5 block h-[105%] w-0.5 shrink-0 rounded-full bg-muted group-data-[state=completed]:bg-primary'
-                "
-              />
-              <div class="flex flex-col md:items-center">
+          <Stepper :model-value="currentStep" class="mx-auto md:w-10/12">
+            <StepperTrack>
+              <StepperItem
+                v-for="item in steps"
+                v-slot="{ state }"
+                :key="item.step"
+                :step="item.step"
+              >
+                <StepperSeparator />
+                <StepperTrigger>
+                  <StepperIndicator>
+                    <Check v-if="state === 'completed'" />
+                    <component :is="item.icon" v-else-if="item.icon" />
+                    <span v-else>{{ item.step }}</span>
+                  </StepperIndicator>
+                </StepperTrigger>
                 <StepperTitle>
                   {{ item.title }}
                 </StepperTitle>
                 <StepperDescription>
                   {{ item.description }}
                 </StepperDescription>
-              </div>
-            </StepperItem>
+              </StepperItem>
+            </StepperTrack>
           </Stepper>
         </CardHeader>
         <CardContent class="mt-4">
           <Transition name="slide-right" mode="out-in">
-            <OnboardingStepOne v-if="currentStep === 1" :loading="isLoading" @submit="onSubmit" />
+            <OnboardingStepOne
+              v-if="currentStep === 1"
+              :loading="isLoading"
+              :failed="showFailureHelp"
+              @submit="onSubmit"
+            />
             <OnboardingStepTwo v-else-if="currentStep === 2" @submit="onStepTwoSubmit" />
             <OnboardingStepThree
               v-else-if="currentStep === 3"

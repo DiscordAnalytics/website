@@ -1,0 +1,82 @@
+{
+  "seo": {
+    "title": "Auto-hébergement",
+    "description": "Faites tourner Discord Analytics sur votre propre matériel avec Docker : trois conteneurs, votre propre MongoDB, et les données de votre bot qui ne quittent jamais votre infrastructure."
+  },
+  "badge": "Open source, de bout en bout",
+  "title": "Ou faites tourner le tout vous-même",
+  "description": "Le même tableau de bord, les mêmes SDK, votre infrastructure. Trois conteneurs et une base de données que vous contrôlez — parce que « faites-nous confiance avec vos données » n'est pas un argument.",
+  "cta": {
+    "primary": "Lire le guide d'installation",
+    "secondary": "Essayer d'abord la version hébergée"
+  },
+  "compare": {
+    "title": "Laquelle choisir ?",
+    "description": "La plupart des gens devraient commencer par la version hébergée et migrer plus tard si besoin. Voici le partage honnête.",
+    "cloud": {
+      "title": "Hébergé par nous",
+      "description": "La version sur discordanalytics.xyz."
+    },
+    "self_hosted": {
+      "title": "Hébergé par vous",
+      "description": "Les mêmes images, sur votre infrastructure."
+    },
+    "rows": {
+      "setup": {
+        "label": "Mise en place",
+        "cloud": "Rien à déployer, à mettre à jour ni à sauvegarder",
+        "self_hosted": "Vous provisionnez et faites tourner les conteneurs vous-même"
+      },
+      "updates": {
+        "label": "Mises à jour",
+        "cloud": "Les nouveautés arrivent sans que vous ayez à lever le petit doigt",
+        "self_hosted": "La disponibilité vous appartient, vous choisissez quand mettre à jour"
+      },
+      "data": {
+        "label": "Données",
+        "cloud": "Fonctionne sur notre infrastructure",
+        "self_hosted": "Les données de votre bot ne quittent jamais votre infrastructure"
+      },
+      "limits": {
+        "label": "Limites",
+        "cloud": "Des limites de compte s'appliquent — voir la page des tarifs",
+        "self_hosted": "Aucune limite de compte — c'est vous qui les fixez"
+      },
+      "cost": {
+        "label": "Coût",
+        "cloud": "Gratuit, financé par les contributeurs",
+        "self_hosted": "Infrastructure à votre charge"
+      }
+    }
+  },
+  "stack": {
+    "title": "Trois conteneurs, trois étapes",
+    "description": "Le site, l'API et une instance MongoDB. Si vous savez faire tourner Docker Compose, vous savez faire tourner Discord Analytics.",
+    "services": {
+      "1": { "title": "Le site" },
+      "2": { "title": "L'API" },
+      "3": { "title": "MongoDB" }
+    },
+    "resources": {
+      "install": { "title": "Le guide d'installation" },
+      "source": { "title": "Les sources, sur GitHub" }
+    },
+    "terminal_alt": "Sortie du terminal montrant docker compose up -d démarrer les conteneurs du site, de l'API et de MongoDB",
+    "steps": {
+      "1": {
+        "title": "Récupérez le fichier compose",
+        "description": "Téléchargez le docker-compose.yml et le modèle de fichier d'environnement depuis le guide d'installation."
+      },
+      "2": {
+        "title": "Configurez votre bot",
+        "description": "Renseignez vos identifiants OAuth Discord, l'URI Mongo et le domaine dans le fichier d'environnement."
+      },
+      "3": {
+        "title": "docker compose up -d",
+        "description": "Le site, l'API et MongoDB démarrent et passent à l'état sain en quelques secondes."
+      }
+    }
+  },
+  "dashboard_tagline": "Le même tableau de bord. Votre infrastructure.",
+  "dashboard_alt": "Le tableau de bord Discord Analytics, identique qu'il soit hébergé par nous ou par vous"
+}

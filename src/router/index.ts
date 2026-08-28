@@ -5,10 +5,47 @@ import { useCurrentUser } from '@/composables'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) return savedPosition
+    if (to.hash) return { el: to.hash }
+    return { top: 0 }
+  },
   routes: [
     {
       path: '/',
       component: () => import('@/views/HomeView.vue'),
+    },
+    {
+      path: '/features/graphs',
+      component: () => import('@/views/features/GraphsFeature.vue'),
+    },
+    {
+      path: '/features/custom-graphs',
+      component: () => import('@/views/features/CustomGraphsFeature.vue'),
+    },
+    {
+      path: '/features/votes',
+      component: () => import('@/views/features/VotesFeature.vue'),
+    },
+    {
+      path: '/features/achievements',
+      component: () => import('@/views/features/AchievementsFeature.vue'),
+    },
+    {
+      path: '/features/teams',
+      component: () => import('@/views/features/TeamsFeature.vue'),
+    },
+    {
+      path: '/features/:slug',
+      component: () => import('@/views/features/FeatureNotFound.vue'),
+    },
+    {
+      path: '/pricing',
+      component: () => import('@/views/PricingView.vue'),
+    },
+    {
+      path: '/self-hosting',
+      component: () => import('@/views/SelfHostingView.vue'),
     },
     {
       path: '/app-monetization-explorer',

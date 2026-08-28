@@ -1,0 +1,6 @@
+{
+  "seo": {
+    "title": "Référence de l'API",
+    "description": "La référence complète de l'API REST de Discord Analytics : authentification, points d'entrée et charges utiles pour lire les statistiques de votre bot par programmation."
+  }
+}

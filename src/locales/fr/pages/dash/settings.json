@@ -67,8 +67,10 @@
     "provider": {
       "description": "Configurer les votes entrants de {provider}",
       "tokenPlaceholder": "TOKEN TRÈS SECRET",
+      "createToken": "Créer une clé",
       "toast": {
         "copied": "Clé copiée dans le presse-papiers",
+        "created": "Clé créée avec succès.",
         "regenerated": "Clé régénérée avec succès.",
         "updated": "Clé sauvegardée avec succès."
       },

@@ -17,7 +17,12 @@ const forwarded = useForwardProps(delegatedProps)
   <StepperDescription
     v-slot="slotProps"
     v-bind="forwarded"
-    :class="cn('text-xs text-muted-foreground', props.class)"
+    :class="
+      cn(
+        'mt-1 text-xs text-balance text-muted-foreground group-data-[disabled]:opacity-50',
+        props.class,
+      )
+    "
   >
     <slot v-bind="slotProps" />
   </StepperDescription>

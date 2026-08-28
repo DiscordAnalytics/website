@@ -1,14 +1,21 @@
 <script setup lang="ts">
 import { ApiReference } from '@scalar/api-reference'
 import '@scalar/api-reference/style.css'
+import { useI18n } from 'vue-i18n'
 
 import { NavBar } from '@/components'
 import { Separator } from '@/components/ui'
-import { useConfig } from '@/composables'
+import { useConfig, useSeo } from '@/composables'
 
 const config = useConfig()
+const { t } = useI18n()
 
 const apiSpecs = config.apiBaseUrl + '/openapi.json'
+
+useSeo({
+  title: () => t('pages.apiDocs.seo.title'),
+  description: () => t('pages.apiDocs.seo.description'),
+})
 </script>
 
 <template>

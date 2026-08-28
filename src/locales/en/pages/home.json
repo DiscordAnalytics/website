@@ -1,16 +1,43 @@
 {
+  "seo": {
+    "title": "Free analytics for your Discord bot",
+    "description": "Discord Analytics is a free, open source analytics dashboard for Discord bots. Add four lines to your discord.js, Oceanic or discord.py bot and see which commands land, where you're growing, and who sticks around."
+  },
   "hero": {
     "tag": "Free & Open Source Software",
-    "title": "Stats for your Discord bot",
-    "description": "Discord Analytics is a powerful analytics tool for Discord bots that allows you to monitor and track your bot's activity in depth.",
+    "title": "Know how your Discord bot is really used",
+    "description": "See which commands land, where you're growing, and who sticks around — in four lines of code.",
     "cta": {
       "primary": "Get Started",
-      "secondary": "Learn More"
+      "secondary": "See how it works"
     },
+    "works_with": "Works with discord.js · Oceanic · discord.py",
     "image_alt": "Dashboard's screenshot"
   },
+  "integration": {
+    "title": "Four lines. That's the whole integration.",
+    "description": "Install the package, point it at your bot, and your dashboard starts filling up. No collectors to host, no schema to design, nothing to maintain.",
+    "steps": {
+      "install": {
+        "title": "Install the package",
+        "description": "One dependency, from npm or PyPI."
+      },
+      "integrate": {
+        "title": "Add four lines",
+        "description": "Import it, pass your client and API token, then call init and trackEvents."
+      },
+      "watch": {
+        "title": "Watch the stats land",
+        "description": "Commands, servers, users and votes appear in your dashboard as your bot runs."
+      }
+    },
+    "docs": {
+      "title": "Using another library?",
+      "description": "Full setup guides for Oceanic and discord.py."
+    }
+  },
   "features": {
-    "title": "Discord Analytics is all that...",
+    "title": "Everything you get, out of the box",
     "cards": {
       "teams": {
         "title": "A collaborative platform",
@@ -26,7 +53,7 @@
       },
       "email": {
         "title": "Email reports",
-        "description": "Your weekly report every sunday in your mailbox",
+        "description": "Your stats summarised in your mailbox, weekly or monthly",
         "preview": {
           "sender": "Discord Analytics",
           "subject": "Weekly report for Analytics Guard",
@@ -44,7 +71,7 @@
     }
   },
   "community": {
-    "title": "...but it's also you!",
+    "title": "Free because you keep it running",
     "description": "Discord Analytics is completely free and funded by your donations. The use of these funds is fully transparent thanks to public access to the transaction history.",
     "cta": {
       "primary": "Contribute",
@@ -84,9 +111,5 @@
         "answer": "Discord Analytics is Open Source, so you can contribute by making feature requests, bug reports, code pull requests or just by creating a donation on Open Collective!"
       }
     }
-  },
-  "cta": {
-    "start": "Start collecting stats, today.",
-    "sign_up": "Sign up for free"
   }
 }

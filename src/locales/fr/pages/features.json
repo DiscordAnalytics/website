@@ -1,0 +1,187 @@
+{
+  "cta": {
+    "primary": "Commencer"
+  },
+  "not_found": {
+    "title": "Cette fonctionnalité n'existe pas",
+    "description": "Cette page n'existe pas — elle a peut-être été renommée. Voici tout ce que Discord Analytics fait réellement.",
+    "cta": "Voir toutes les fonctionnalités"
+  },
+  "pages": {
+    "graphs": {
+      "nav_title": "Graphiques",
+      "title": "Une tonne de graphiques",
+      "card_description": "Des dizaines de graphiques interactifs, prêts dès que votre bot se connecte.",
+      "description": "Utilisation des commandes, croissance des serveurs, utilisateurs actifs et votes — déjà tracés, déjà agrégés, déjà comparables sur la période de votre choix.",
+      "seo": {
+        "title": "Graphiques et tableaux de bord pour bots Discord",
+        "description": "Des graphiques interactifs pour votre bot Discord : utilisation des commandes, croissance des serveurs, activité des utilisateurs et votes, agrégés à l'heure ou au jour sur la période de votre choix."
+      },
+      "image_alt": "La page Interactions montrant l'évolution des interactions sur les 30 derniers jours",
+      "pages_section": {
+        "title": "Une page par question",
+        "description": "Quatre pages, chacune répondant à une question différente sur votre bot. Rien à assembler — c'est ce que vous voyez la première fois que vous ouvrez le tableau de bord.",
+        "interactions": {
+          "title": "Interactions",
+          "description": "Évolution des interactions, interactions les plus utilisées, commandes, composants et modales les plus utilisés, avec la répartition par type pour chacun."
+        },
+        "guilds": {
+          "title": "Serveurs",
+          "description": "Croissance dans le temps, ajouts et retraits côte à côte, répartition par taille, et où se trouvent vos serveurs — par langue."
+        },
+        "users": {
+          "title": "Utilisateurs",
+          "description": "Croissance des utilisateurs et des installations, répartition par langue, types d'utilisateurs, et à quel moment de la semaine ils sont réellement actifs."
+        },
+        "votes": {
+          "title": "Votes",
+          "description": "Une courbe d'évolution tous sites confondus, une répartition par plateforme, et un graphique distinct par plateforme."
+        }
+      },
+      "range": {
+        "title": "Choisissez une période, l'agrégation suit",
+        "description": "Il n'y a pas de réglage de « granularité » séparé à mal configurer. Les périodes d'une semaine ou moins sont agrégées à l'heure ; au-delà, elles le sont au jour, et tous les graphiques de la page se recalculent d'un coup.",
+        "presets": "Dix préréglages sont fournis — Aujourd'hui, Hier, 7 derniers jours, 30 derniers jours, 90 derniers jours, Mois en cours, Mois dernier, Année en cours, 12 derniers mois — plus une période personnalisée si aucun ne convient."
+      },
+      "advanced": {
+        "title": "Les classements, si vous les activez",
+        "description": "Les plus grands serveurs et les serveurs les plus actifs sont des listes nominatives et non des agrégats : elles n'apparaissent qu'une fois les Statistiques avancées activées sur votre bot."
+      },
+      "reports": {
+        "title": "Et un résumé arrive dans votre boîte mail",
+        "description": "Vous n'ouvrirez pas le tableau de bord tous les jours. Un rapport vous envoie les mêmes chiffres avec la période précédente tracée en dessous : une semaine plate saute aux yeux sans que vous ayez à aller la chercher.",
+        "image_alt": "Un rapport par e-mail comparant les interactions, serveurs et utilisateurs de cette semaine à ceux de la semaine précédente"
+      }
+    },
+    "custom_graphs": {
+      "nav_title": "Événements personnalisés",
+      "title": "Votre bot, vos statistiques",
+      "card_description": "Suivez les événements qui ne concernent que votre bot.",
+      "description": "Les graphiques intégrés couvrent ce que fait n'importe quel bot. Les événements personnalisés couvrent ce que fait le vôtre — musiques ajoutées, tickets ouverts, images générées, bref ce à quoi votre bot sert vraiment.",
+      "seo": {
+        "title": "Événements et graphiques personnalisés pour bots Discord",
+        "description": "Envoyez vos propres événements depuis votre bot Discord et retrouvez-les tracés à côté des métriques intégrées — sans outillage supplémentaire ni seconde stack d'analytics."
+      },
+      "image_alt": "Trois graphiques d'événements personnalisés : serveurs de moins de 30 membres, tickets créés, et réactions sous les messages de MEE6",
+      "form": {
+        "title": "Configuré dans le tableau de bord, envoyé depuis votre code",
+        "description": "Vous créez l'événement dans une boîte de dialogue — aucun schéma à écrire, aucune migration à lancer — et votre bot se met à l'envoyer. À partir de là, il se comporte comme n'importe quel autre graphique : mêmes périodes, même agrégation, même page."
+      }
+    },
+    "votes": {
+      "nav_title": "Votes",
+      "title": "Tous vos votes au même endroit",
+      "card_description": "Réunissez les webhooks de vote de tous les sites en un seul flux.",
+      "description": "Si votre bot est référencé sur plusieurs sites de vote, vous maintenez plusieurs handlers de webhook et vous consultez plusieurs tableaux de bord. Pointez-les tous vers Discord Analytics et lisez un seul graphique.",
+      "seo": {
+        "title": "Suivi des votes de bots Discord sur tous les sites",
+        "description": "Réunissez les webhooks de vote de vos sites de référencement en un seul flux et un seul graphique, au lieu de maintenir un handler et un tableau de bord par site."
+      },
+      "journey": {
+        "title": "Le trajet d'un vote",
+        "description": "Cinq sites de vote, un secret pour chacun, et rien à héberger entre les deux.",
+        "steps": {
+          "1": {
+            "title": "Quelqu'un vote",
+            "description": "Sur n'importe lequel des cinq sites où figure votre bot."
+          },
+          "2": {
+            "title": "Le site nous appelle",
+            "description": "Signé avec le secret que vous avez configuré pour cette plateforme."
+          },
+          "3": {
+            "title": "Le vote arrive dans vos graphiques",
+            "description": "Compté dans le total toutes plateformes et dans le graphique propre à celle-ci."
+          },
+          "4": {
+            "title": "Votre communauté l'apprend",
+            "description": "Si vous avez configuré un webhook sortant, un message est publié."
+          }
+        }
+      }
+    },
+    "achievements": {
+      "nav_title": "Succès",
+      "title": "C'est l'heure de frimer",
+      "card_description": "Donnez à vos utilisateurs quelque chose à débloquer.",
+      "description": "Les succès transforment les métriques de votre bot en objectifs que vos utilisateurs peuvent viser. Créez les vôtres, ou reprenez-en un qui fonctionne déjà depuis la boutique communautaire.",
+      "seo": {
+        "title": "Succès pour bots Discord",
+        "description": "Transformez les métriques de votre bot Discord en succès que vos utilisateurs peuvent débloquer, ou reprenez ceux qui ont fait leurs preuves dans la boutique communautaire."
+      },
+      "image_alt": "Des cartes de succès montrant la progression vers leurs objectifs",
+      "defaults": {
+        "title": "Vous démarrez avec l'étagère pleine",
+        "description": "Chaque bot reçoit une série de succès dès le premier jour, de dix serveurs à dix mille. Vos utilisateurs ont de quoi viser avant même que vous en ayez écrit un seul.",
+        "1": {
+          "title": "#RoadToCertification",
+          "description": "Être sur 75 serveurs."
+        },
+        "2": {
+          "title": "French power 🥖",
+          "description": "Avoir au moins 10 % d'utilisateurs francophones."
+        },
+        "3": {
+          "title": "Vieux de la vieille",
+          "description": "Utiliser Discord Analytics depuis au moins un an."
+        }
+      },
+      "store": {
+        "title": "Ou reprenez-en un qui marche déjà",
+        "description": "La boutique communautaire, ce sont les succès publiés par d'autres créateurs de bots. Ceux-ci en sortent en direct — copiez-en un plutôt que de le concevoir.",
+        "cta": "Parcourir la boutique communautaire"
+      }
+    },
+    "teams": {
+      "nav_title": "Équipes",
+      "title": "Une plateforme collaborative",
+      "card_description": "Faites entrer vos co-mainteneurs dans le tableau de bord.",
+      "description": "Un bot est rarement un projet solo. Invitez les personnes qui maintiennent le vôtre pour qu'elles lisent les mêmes statistiques, sans partager votre compte.",
+      "seo": {
+        "title": "Accès partagé aux statistiques de votre bot Discord",
+        "description": "Invitez vos co-mainteneurs sur le tableau de bord de votre bot Discord pour que tout le monde lise les mêmes statistiques sans partager de compte."
+      },
+      "invite": {
+        "title": "Quatre étapes, aucun compte partagé",
+        "steps": {
+          "1": {
+            "title": "Saisissez un identifiant Discord",
+            "description": "Depuis la carte Accès aux statistiques dans les paramètres de votre bot."
+          },
+          "2": {
+            "title": "La personne reçoit un e-mail",
+            "description": "Et si nous n'arrivons pas à la joindre, vous copiez le lien d'invitation à la place."
+          },
+          "3": {
+            "title": "Elle se connecte avec Discord",
+            "description": "Avec son propre compte. L'invitation expire au bout de 7 jours."
+          },
+          "4": {
+            "title": "Elle voit les statistiques",
+            "description": "Le tableau de bord que vous avez sous les yeux, sur ce bot uniquement."
+          }
+        }
+      },
+      "access": {
+        "title": "Ce qu'un coéquipier peut et ne peut pas faire",
+        "description": "L'accès est volontairement plat — aucun rôle à concevoir, aucune matrice de permissions à auditer. Un coéquipier lit ; vous seul administrez.",
+        "table": {
+          "capability": "Possibilité",
+          "teammate": "Coéquipier",
+          "owner": "Vous"
+        },
+        "rows": {
+          "stats": "Toutes les pages de statistiques — interactions, serveurs, utilisateurs, votes, événements personnalisés",
+          "achievements": "Les succès et la boutique communautaire",
+          "reports": "Ses propres rapports par e-mail",
+          "settings": "Les paramètres du bot, la clé d'API et la configuration des votes",
+          "team": "Inviter et retirer des coéquipiers"
+        }
+      },
+      "scope": {
+        "title": "Par bot, pas par compte",
+        "description": "L'accès s'accorde bot par bot. Une personne qui vous aide sur un projet n'obtient pas de fenêtre sur les autres, et la retirer se fait en un clic depuis la carte qui a servi à l'inviter."
+      }
+    }
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "cta": {
+    "primary": "Get Started"
+  },
+  "not_found": {
+    "title": "No such feature",
+    "description": "That feature page doesn't exist — it may have been renamed. Here's everything Discord Analytics actually does.",
+    "cta": "See all features"
+  },
+  "pages": {
+    "graphs": {
+      "nav_title": "Graphs",
+      "title": "A ton of graphs",
+      "card_description": "Dozens of interactive graphs, ready the moment your bot connects.",
+      "description": "Command usage, server growth, active users and votes — already charted, already bucketed, already comparable across any date range you pick.",
+      "seo": {
+        "title": "Discord bot graphs and dashboards",
+        "description": "Interactive graphs for your Discord bot: command usage, server growth, user activity and votes, bucketed hourly or daily over any date range."
+      },
+      "image_alt": "The Interactions page showing the evolution of interactions over the last 30 days",
+      "pages_section": {
+        "title": "One page per question",
+        "description": "Four pages, each answering a different question about your bot. Nothing to assemble — this is what you see the first time you open the dashboard.",
+        "interactions": {
+          "title": "Interactions",
+          "description": "Evolution of interactions, most used interactions, most used commands, components and modals, plus type breakdowns for each."
+        },
+        "guilds": {
+          "title": "Guilds",
+          "description": "Growth over time, additions and removals side by side, distribution by size, and where your servers are — by locale."
+        },
+        "users": {
+          "title": "Users",
+          "description": "User and install growth, locale distribution, types of users, and when in the week they're actually active."
+        },
+        "votes": {
+          "title": "Votes",
+          "description": "One evolution chart across every bot list, a split by provider, and a separate chart per provider."
+        }
+      },
+      "range": {
+        "title": "Pick a range, the buckets follow",
+        "description": "There is no separate \"granularity\" setting to get wrong. Ranges of a week or less are bucketed hourly; anything longer is bucketed daily, and every chart on the page re-buckets at once.",
+        "presets": "Ten presets ship with it — Today, Yesterday, Last 7 days, Last 30 days, Last 90 days, Month to Date, Last Month, Year to Date, Last 12 Months — plus a custom range if none of them fit."
+      },
+      "advanced": {
+        "title": "Rankings, once you opt in",
+        "description": "Largest guilds and most active guilds are named lists rather than aggregates, so they only appear once you enable Advanced Stats on your bot."
+      },
+      "reports": {
+        "title": "And a summary lands in your inbox",
+        "description": "You won't open the dashboard every day. A report emails you the same numbers with the previous period drawn underneath, so a flat week is obvious without going looking for it.",
+        "image_alt": "A report email comparing this week's interactions, guilds and users against last week's"
+      }
+    },
+    "custom_graphs": {
+      "nav_title": "Custom events",
+      "title": "Your bot, your stats",
+      "card_description": "Track the events that only matter to your bot.",
+      "description": "The built-in graphs cover what every bot does. Custom events cover what yours does — songs queued, tickets opened, images generated, whatever your bot is actually for.",
+      "seo": {
+        "title": "Custom events and graphs for Discord bots",
+        "description": "Send your own events from your Discord bot and get them charted alongside the built-in metrics — no extra tooling, no separate analytics stack."
+      },
+      "image_alt": "Three custom event charts: guilds with less than 30 members, tickets created, and reactions under MEE6 messages",
+      "form": {
+        "title": "Set up in the dashboard, sent from your code",
+        "description": "You create the event in a dialog — no schema to write, no migration to run — and your bot starts sending it. From that point it behaves like any other chart: same date ranges, same bucketing, same page."
+      }
+    },
+    "votes": {
+      "nav_title": "Votes",
+      "title": "All your votes in one place",
+      "card_description": "Merge every bot-list vote webhook into a single feed.",
+      "description": "If your bot is on several bot lists, you're running several webhook handlers and reading several dashboards. Point them all at Discord Analytics instead and read one graph.",
+      "seo": {
+        "title": "Discord bot vote tracking across bot lists",
+        "description": "Merge vote webhooks from your bot lists into one feed and one graph, instead of running a handler and reading a dashboard per list."
+      },
+      "journey": {
+        "title": "How a vote travels",
+        "description": "Five bot lists, one secret each, and nothing for you to host in between.",
+        "steps": {
+          "1": {
+            "title": "Someone votes",
+            "description": "On any of the five lists your bot is on."
+          },
+          "2": {
+            "title": "The list calls us",
+            "description": "Signed with the secret you configured for that provider."
+          },
+          "3": {
+            "title": "It lands in your charts",
+            "description": "Counted in the all-providers total and in that provider's own chart."
+          },
+          "4": {
+            "title": "Your community hears about it",
+            "description": "If you set an outgoing webhook, a message is posted."
+          }
+        }
+      }
+    },
+    "achievements": {
+      "nav_title": "Achievements",
+      "title": "Time to flex",
+      "card_description": "Give your users something to unlock.",
+      "description": "Achievements turn your bot's own metrics into goals your users can chase. Craft your own, or copy one that already works from the Community Store.",
+      "seo": {
+        "title": "Achievements for Discord bots",
+        "description": "Turn your Discord bot's metrics into achievements your users can unlock, or copy proven ones from the community store."
+      },
+      "image_alt": "Achievement cards showing progress towards their goals",
+      "defaults": {
+        "title": "You start with a shelf full",
+        "description": "Every bot gets a set of achievements on day one, spanning ten servers to ten thousand. Your users have something to chase before you've written a single one.",
+        "1": {
+          "title": "#RoadToCertification",
+          "description": "Be on 75 servers."
+        },
+        "2": {
+          "title": "French power 🥖",
+          "description": "Have at least 10% of French-speaking users."
+        },
+        "3": {
+          "title": "Old member",
+          "description": "Use Discord Analytics for at least a year."
+        }
+      },
+      "store": {
+        "title": "Or take one that already works",
+        "description": "The Community Store is achievements other bot owners have published. These are live from the store right now — copy one instead of designing it.",
+        "cta": "Browse the Community Store"
+      }
+    },
+    "teams": {
+      "nav_title": "Teams",
+      "title": "A collaborative platform",
+      "card_description": "Bring your co-maintainers into the dashboard.",
+      "description": "Bots are rarely a one-person project. Invite the people who maintain yours so they can read the same stats, without sharing your account.",
+      "seo": {
+        "title": "Shared team access for Discord bot analytics",
+        "description": "Invite your co-maintainers to your Discord bot's analytics dashboard so everyone reads the same stats without sharing an account."
+      },
+      "invite": {
+        "title": "Four steps, no account sharing",
+        "steps": {
+          "1": {
+            "title": "Enter a Discord user ID",
+            "description": "From the Stats Access card on your bot's settings."
+          },
+          "2": {
+            "title": "They get an email",
+            "description": "And if we can't reach them, you copy the invitation link instead."
+          },
+          "3": {
+            "title": "They sign in with Discord",
+            "description": "Their own account. The invitation expires after 7 days."
+          },
+          "4": {
+            "title": "They see the stats",
+            "description": "The same dashboard you're looking at, on that bot only."
+          }
+        }
+      },
+      "access": {
+        "title": "What a teammate can and can't do",
+        "description": "Access is deliberately flat — there are no roles to design, and no permission matrix to audit. A teammate reads; only you administer.",
+        "table": {
+          "capability": "Capability",
+          "teammate": "Teammate",
+          "owner": "You"
+        },
+        "rows": {
+          "stats": "Every stats page — interactions, guilds, users, votes, custom events",
+          "achievements": "Achievements and the Community Store",
+          "reports": "Their own email reports",
+          "settings": "Bot settings, API key and votes configuration",
+          "team": "Inviting and removing teammates"
+        }
+      },
+      "scope": {
+        "title": "Per bot, not per account",
+        "description": "Membership is granted on one bot at a time. A contributor helping on one project doesn't get a window into the others, and removing someone is one click on the same card that invited them."
+      }
+    }
+  }
+}

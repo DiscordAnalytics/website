@@ -2,18 +2,19 @@
 import { ServerIcon } from '@lucide/vue'
 
 import { Avatar, AvatarImage, Button, Card, CardHeader } from '@/components/ui'
+import { vReveal } from '@/utils/reveal.ts'
 </script>
 
 <template>
   <section class="max-w-300 mx-auto w-full flex flex-col lg:flex-row items-center gap-16">
-    <div>
+    <div v-reveal class="text-center md:text-start">
       <h2 class="text-4xl font-bold mb-8">
         {{ $t('pages.home.community.title') }}
       </h2>
       <p class="text-balance mb-4">
         {{ $t('pages.home.community.description') }}
       </p>
-      <div class="flex items-center gap-2">
+      <div class="flex items-center justify-center md:justify-start gap-2">
         <a href="https://opencollective.com/discordanalytics#category-CONTRIBUTE" target="_blank">
           <Button>
             {{ $t('pages.home.community.cta.primary') }}
@@ -27,7 +28,7 @@ import { Avatar, AvatarImage, Button, Card, CardHeader } from '@/components/ui'
       </div>
     </div>
     <div class="hidden md:block relative w-full h-120">
-      <Card class="w-72">
+      <Card v-reveal="150" class="w-72 transition-transform hover:-translate-y-1">
         <CardHeader>
           <div class="flex items-center gap-2">
             <Avatar size="base">
@@ -42,7 +43,10 @@ import { Avatar, AvatarImage, Button, Card, CardHeader } from '@/components/ui'
           </div>
         </CardHeader>
       </Card>
-      <Card class="w-72 absolute left-52 top-36">
+      <Card
+        v-reveal="300"
+        class="w-72 absolute left-52 top-36 transition-transform hover:-translate-y-1"
+      >
         <CardHeader>
           <div class="flex items-center gap-2">
             <Avatar size="base">
@@ -59,7 +63,10 @@ import { Avatar, AvatarImage, Button, Card, CardHeader } from '@/components/ui'
           </div>
         </CardHeader>
       </Card>
-      <Card class="w-72 absolute left-4 top-72">
+      <Card
+        v-reveal="450"
+        class="w-72 absolute left-4 top-72 transition-transform hover:-translate-y-1"
+      >
         <CardHeader>
           <div class="flex items-center gap-2">
             <Avatar size="base">

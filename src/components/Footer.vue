@@ -4,20 +4,20 @@ import { Button, Separator } from '@/components/ui'
 </script>
 
 <template>
-  <footer class="">
+  <footer>
     <div
       class="bg-primary px-10 py-6 rounded-lg flex gap-4 items-center animate-floating w-fit md:m-auto my-8 mx-4 flex-col md:flex-row"
     >
       <div class="flex flex-col">
-        <h1 class="text-primary-foreground font-bold text-lg">
+        <p class="text-primary-foreground font-bold text-lg">
           {{ $t('components.footer.banner.title') }}
-        </h1>
+        </p>
         <p class="text-primary-foreground">
           {{ $t('components.footer.banner.description') }}
         </p>
       </div>
-      <RouterLink to="/support" target="_blank">
-        <Button variant="secondary" class="w-full md:w-auto">
+      <RouterLink to="/support" target="_blank" class="w-full md:w-auto">
+        <Button variant="secondary" class="w-full">
           {{ $t('components.footer.banner.button') }}
         </Button>
       </RouterLink>
@@ -41,6 +41,11 @@ import { Button, Separator } from '@/components/ui'
               <RouterLink to="/#learn-more">
                 <Button variant="link" class="px-0 justify-start">
                   {{ $t('components.footer.columns.product.items.features') }}
+                </Button>
+              </RouterLink>
+              <RouterLink to="/pricing">
+                <Button variant="link" class="px-0 justify-start">
+                  {{ $t('components.footer.columns.product.items.pricing') }}
                 </Button>
               </RouterLink>
               <RouterLink to="/community/achievements">
@@ -71,6 +76,11 @@ import { Button, Separator } from '@/components/ui'
               <RouterLink to="/status">
                 <Button variant="link" class="px-0 justify-start">
                   {{ $t('components.footer.columns.company.items.status') }}
+                </Button>
+              </RouterLink>
+              <RouterLink to="/self-hosting">
+                <Button variant="link" class="px-0 justify-start">
+                  {{ $t('components.footer.columns.company.items.self_hosting') }}
                 </Button>
               </RouterLink>
               <RouterLink to="/github">

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { FilterIcon, NewspaperIcon, SearchIcon } from '@lucide/vue'
 import { computed, onBeforeMount, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import { BlogArticleCard, PageLayout } from '@/components'
 import {
@@ -25,7 +26,14 @@ import {
   InputGroupInput,
   Skeleton,
 } from '@/components/ui'
-import { useBlogArticles, useLoading } from '@/composables'
+import { useBlogArticles, useLoading, useSeo } from '@/composables'
+
+const { t } = useI18n()
+
+useSeo({
+  title: () => t('pages.blog.seo.title'),
+  description: () => t('pages.blog.seo.description'),
+})
 
 const { articles, tags, fetch: fetchArticles } = useBlogArticles()
 

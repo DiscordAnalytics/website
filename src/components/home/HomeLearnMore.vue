@@ -4,18 +4,20 @@ import { Vue3Marquee } from 'vue3-marquee'
 
 import { ThemedImg } from '@/components'
 import { Card } from '@/components/ui'
+import { vReveal } from '@/utils/reveal.ts'
 </script>
 
 <template>
   <section id="learn-more" v-bind="$attrs">
-    <h2 class="text-4xl font-black text-center mb-12">
+    <h2 v-reveal class="text-4xl font-black text-center mb-12">
       {{ $t('pages.home.features.title') }}
     </h2>
     <div class="flex gap-4 flex-wrap">
       <div class="flex gap-4 flex-wrap w-full">
-        <a
-          href="/docs/get-started/advanced-usage/teams"
-          class="flex-1 min-w-80 h-80 relative hover:brightness-90 transition-all"
+        <RouterLink
+          v-reveal
+          to="/features/teams"
+          class="flex-1 min-w-80 h-80 relative hover:brightness-90 hover:-translate-y-1 transition-all duration-300"
         >
           <Card class="w-full h-full relative overflow-clip group">
             <div class="absolute z-10 w-full flex flex-col items-center p-4 pt-8">
@@ -36,10 +38,11 @@ import { Card } from '@/components/ui'
               class="absolute top-0 w-full h-3/4 bg-linear-to-b from-background from-40% to-transparent"
             />
           </Card>
-        </a>
-        <a
-          href="/docs/reference/graphs"
-          class="flex-2 min-w-80 h-80 relative hover:brightness-90 transition-all"
+        </RouterLink>
+        <RouterLink
+          v-reveal="100"
+          to="/features/graphs"
+          class="flex-2 min-w-80 h-80 relative hover:brightness-90 hover:-translate-y-1 transition-all duration-300"
         >
           <Card class="w-full h-full relative overflow-clip group">
             <div class="relative">
@@ -55,19 +58,20 @@ import { Card } from '@/components/ui'
               <div
                 class="absolute top-0 left-0 w-full h-full bg-white/50 dark:bg-black/50 z-10 text-center flex flex-col items-center justify-center gap-2"
               >
-                <h2 class="text-4xl font-bold mb-4">
+                <h3 class="text-4xl font-bold mb-4">
                   {{ $t('pages.home.features.cards.graphs.title') }}
-                </h2>
+                </h3>
                 <p class="text-balance mb-4 max-w-96">
                   {{ $t('pages.home.features.cards.graphs.description') }}
                 </p>
               </div>
             </div>
           </Card>
-        </a>
-        <a
-          href="/docs/get-started/votes-integration"
-          class="flex-1 min-w-80 h-80 relative hover:brightness-90 transition-all"
+        </RouterLink>
+        <RouterLink
+          v-reveal="200"
+          to="/features/votes"
+          class="flex-1 min-w-80 h-80 relative hover:brightness-90 hover:-translate-y-1 transition-all duration-300"
         >
           <Card class="w-full h-full relative overflow-clip group">
             <div class="absolute z-10 w-full flex flex-col items-center p-4 pt-8">
@@ -88,10 +92,14 @@ import { Card } from '@/components/ui'
               class="absolute top-0 w-full h-3/4 bg-linear-to-b from-background from-40% to-transparent"
             />
           </Card>
-        </a>
+        </RouterLink>
       </div>
       <div class="flex gap-4 flex-wrap w-full">
-        <RouterLink to="#" class="flex-1 min-w-80 h-80 relative hover:brightness-90 transition-all">
+        <RouterLink
+          v-reveal
+          to="/features/graphs#reports"
+          class="flex-1 min-w-80 h-80 relative hover:brightness-90 hover:-translate-y-1 transition-all duration-300"
+        >
           <Card class="w-full h-full relative overflow-clip group flex items-center flex-col gap-4">
             <div class="w-full flex flex-col items-center p-4 pt-8">
               <h3 class="text-2xl font-semibold">
@@ -114,9 +122,10 @@ import { Card } from '@/components/ui'
             </div>
           </Card>
         </RouterLink>
-        <a
-          href="/docs/reference/achievements"
-          class="flex-1 min-w-80 h-80 relative hover:brightness-90 transition-all"
+        <RouterLink
+          v-reveal="100"
+          to="/features/achievements"
+          class="flex-1 min-w-80 h-80 relative hover:brightness-90 hover:-translate-y-1 transition-all duration-300"
         >
           <Card class="w-full h-full relative overflow-clip group">
             <div class="absolute z-10 w-full flex flex-col items-center p-4 pt-8">
@@ -139,8 +148,12 @@ import { Card } from '@/components/ui'
               class="absolute top-0 w-full h-3/4 bg-linear-to-b from-background from-40% to-transparent"
             />
           </Card>
-        </a>
-        <RouterLink to="#" class="flex-1 min-w-80 h-80 relative hover:brightness-90 transition-all">
+        </RouterLink>
+        <RouterLink
+          v-reveal="200"
+          to="/features/custom-graphs"
+          class="flex-1 min-w-80 h-80 relative hover:brightness-90 hover:-translate-y-1 transition-all duration-300"
+        >
           <Card class="w-full h-full relative overflow-clip group">
             <div class="absolute bottom-0 z-10 w-full flex flex-col items-center p-4 pt-8">
               <h3 class="text-2xl font-semibold">

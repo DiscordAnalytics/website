@@ -1,0 +1,6 @@
+{
+  "seo": {
+    "title": "API reference",
+    "description": "The full REST API reference for Discord Analytics: authentication, endpoints and payloads for reading your bot's stats programmatically."
+  }
+}

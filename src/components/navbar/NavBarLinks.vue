@@ -11,6 +11,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from '@/components/ui'
+import { featurePages } from '@/utils/featurePages.ts'
 </script>
 
 <template>
@@ -60,13 +61,37 @@ import {
         </NavigationMenuContent>
       </NavigationMenuItem>
       <NavigationMenuItem>
-        <RouterLink to="/blog" :class="navigationMenuTriggerStyle()">
-          {{ $t('components.navbar.links.blog') }}
+        <NavigationMenuTrigger>
+          {{ $t('components.navbar.links.features') }}
+        </NavigationMenuTrigger>
+        <NavigationMenuContent class="z-50">
+          <ul class="grid gap-1 p-4 md:w-[30rem] md:grid-cols-2">
+            <li v-for="(feature, slug) in featurePages" :key="slug">
+              <NavigationMenuLink as-child>
+                <RouterLink
+                  :to="`/features/${slug}`"
+                  class="focus:shadow-md hover:bg-linear-to-b from-muted/50 to-muted block select-none rounded-[6px] p-3 text-[15px] leading-none no-underline outline-hidden transition-colors"
+                >
+                  <div class="mb-1.25 font-medium leading-[1.2]">
+                    {{ $t(`pages.features.pages.${feature.i18nKey}.nav_title`) }}
+                  </div>
+                  <p class="text-muted-foreground my-0 leading-[1.4]">
+                    {{ $t(`pages.features.pages.${feature.i18nKey}.card_description`) }}
+                  </p>
+                </RouterLink>
+              </NavigationMenuLink>
+            </li>
+          </ul>
+        </NavigationMenuContent>
+      </NavigationMenuItem>
+      <NavigationMenuItem>
+        <RouterLink to="/pricing" :class="navigationMenuTriggerStyle()">
+          {{ $t('components.navbar.links.pricing') }}
         </RouterLink>
       </NavigationMenuItem>
       <NavigationMenuItem>
-        <RouterLink to="/app-monetization-explorer" :class="navigationMenuTriggerStyle()">
-          {{ $t('components.navbar.links.app_monetization') }}
+        <RouterLink to="/blog" :class="navigationMenuTriggerStyle()">
+          {{ $t('components.navbar.links.blog') }}
         </RouterLink>
       </NavigationMenuItem>
       <NavigationMenuItem>

@@ -1,10 +1,17 @@
 <script setup lang="ts">
-import { CircleCheckIcon, CopyIcon, EyeIcon, EyeOffIcon, RefreshCwIcon } from '@lucide/vue'
+import {
+  CircleCheckIcon,
+  CopyIcon,
+  EyeIcon,
+  EyeOffIcon,
+  PlusIcon,
+  RefreshCwIcon,
+} from '@lucide/vue'
 import { toTypedSchema } from '@vee-validate/zod'
 import { useClipboard } from '@vueuse/core'
 import { useRouteParams } from '@vueuse/router'
 import { Field as VeeField, useForm } from 'vee-validate'
-import { h, ref } from 'vue'
+import { computed, h, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { toast } from 'vue-sonner'
 
@@ -48,8 +55,16 @@ const { isLoading, withLoading } = useLoading()
 const showToken = ref<boolean>(false)
 const manualConfigOpen = ref<boolean>(false)
 
+// Bots are created without a secret, so the provider has to be set up from the card
+const hasToken = computed(() => !!providerConfig.value?.webhookSecret)
+
 const manualConfigForm = useForm({
   validationSchema: toTypedSchema(topggTokenUpdateFormSchema),
+})
+
+// `default-value` is only read once, so the dialog has to be filled every time it opens
+watch(manualConfigOpen, (open) => {
+  if (open) manualConfigForm.setValues({ webhookSecret: providerConfig.value?.webhookSecret ?? '' })
 })
 
 function copyToken() {
@@ -66,6 +81,8 @@ function generateWebhookSecret() {
 }
 
 async function updateToken(token: string = generateWebhookSecret()) {
+  const hadToken = hasToken.value
+
   await withLoading(async () => {
     await updateProvider(token)
       .then(() => {
@@ -73,8 +90,9 @@ async function updateToken(token: string = generateWebhookSecret()) {
           provider: props.id,
           bot_id: botId.value,
         })
-        if (props.provider === 'topgg')
+        if (props.id === 'topgg')
           toast.success(t('pages.dash.settings.votes.provider.toast.updated'))
+        else if (!hadToken) toast.success(t('pages.dash.settings.votes.provider.toast.created'))
         else toast.success(t('pages.dash.settings.votes.provider.toast.regenerated'))
         manualConfigOpen.value = false
       })
@@ -107,7 +125,7 @@ const onManualConfigSubmit = manualConfigForm.handleSubmit(async (values) => {
       </a>
       <div v-else class="flex items-center gap-2 text-green-500">
         <CircleCheckIcon class="h-6 w-6" />
-        <p>{{ $t('pages.dash.settings.votes.provider.topgg.active') }}</p>
+        <p class="whitespace-nowrap">{{ $t('pages.dash.settings.votes.provider.topgg.active') }}</p>
       </div>
 
       <Dialog v-if="!providerConfig?.connectionId" v-model:open="manualConfigOpen">
@@ -128,7 +146,7 @@ const onManualConfigSubmit = manualConfigForm.handleSubmit(async (values) => {
 
           <form id="manualConfigForm" @submit="onManualConfigSubmit">
             <FieldGroup>
-              <VeeField v-slot="{ field, errors }" name="webhookSecret">
+              <VeeField v-slot="{ componentField, errors }" name="webhookSecret">
                 <Field :data-invalid="!!errors.length">
                   <FieldLabel for="webhookSecretInput">
                     {{
@@ -137,9 +155,8 @@ const onManualConfigSubmit = manualConfigForm.handleSubmit(async (values) => {
                   </FieldLabel>
                   <Input
                     id="webhookSecretInput"
-                    v-bind="field"
+                    v-bind="componentField"
                     :placeholder="$t('pages.dash.settings.votes.provider.tokenPlaceholder')"
-                    :default-value="providerConfig?.webhookSecret"
                     autocomplete="off"
                     autofocus
                     :aria-invalid="!!errors.length"
@@ -172,12 +189,18 @@ const onManualConfigSubmit = manualConfigForm.handleSubmit(async (values) => {
         </DialogContent>
       </Dialog>
     </template>
+    <template v-else-if="!hasToken" #actions>
+      <Button class="w-full md:w-fit" :disabled="isLoading" @click="updateToken()">
+        <Spinner v-if="isLoading" />
+        <PlusIcon v-else />
+        {{ $t('pages.dash.settings.votes.provider.createToken') }}
+      </Button>
+    </template>
     <template v-else #content>
       <div class="flex items-center gap-2 w-full flex-col md:flex-row">
         <InputGroup class="my-2 w-full">
           <InputGroupInput
-            :default-value="providerConfig?.webhookSecret"
-            :value="providerConfig?.webhookSecret"
+            :model-value="providerConfig?.webhookSecret ?? ''"
             :placeholder="$t('pages.dash.settings.votes.provider.tokenPlaceholder')"
             :disabled="isLoading"
             readonly

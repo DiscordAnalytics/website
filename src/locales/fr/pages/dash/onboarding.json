@@ -25,10 +25,22 @@
   "stepOne": {
     "addNewBot": "Ajouter un nouveau bot",
     "welcome": "Bienvenue sur Discord Analytics",
-    "subtitle": "Vous êtes à 5 minutes de vos statistiques. Pour commencer, nous aurons besoin de l'ID de votre bot.",
-    "whereToGetId": "Où trouver l'ID ?",
-    "botIdLabel": "ID du bot",
+    "subtitle": "Vous êtes à 5 minutes de vos statistiques. Pour commencer, nous aurons besoin de l'ID d'application de votre bot.",
+    "whereToGetId": "Ouvrir le portail développeur Discord",
+    "botIdLabel": "ID d'application",
+    "botIdHint": "Portail développeur Discord → votre application → General Information → Application ID. Il s'agit de l'ID de votre bot, et non de l'ID de votre propre compte Discord.",
     "botIdPlaceholder": "1082615775619199057",
+    "errors": {
+      "ownId": "Il s'agit de l'ID de votre propre compte Discord, pas de celui de votre bot.",
+      "network": "Nous n'avons pas pu joindre nos serveurs. Vérifiez votre connexion et réessayez.",
+      "unknown": "Une erreur est survenue de notre côté. Réessayez, ou contactez le support si le problème persiste."
+    },
+    "failureHelp": {
+      "title": "Cet ID n'a pas fonctionné",
+      "description": "Vous trouverez l'ID d'application dans l'onglet General Information de votre application, sur le portail développeur Discord.",
+      "openPortal": "Ouvrir le portail développeur",
+      "contactSupport": "Demander de l'aide"
+    },
     "acceptTos": "Accepter les conditions d'utilisation",
     "acceptTosDescription": "En soumettant ce formulaire, vous acceptez nos",
     "termsOfService": "Conditions d'utilisation",
@@ -42,7 +54,8 @@
       "description": "Ce token permet à votre bot d'interagir avec notre API.",
       "doNotShare": "NE LE PARTAGEZ AVEC PERSONNE",
       "tokenPlaceholder": "Votre token",
-      "tokenCopied": "Token copié dans le presse papier"
+      "tokenCopied": "Token copié dans le presse papier",
+      "showToken": "Afficher le token"
     },
     "integrate": {
       "heading": "2. Intégrez dans votre code",
@@ -56,7 +69,8 @@
       "pypiHeading": "a. Installez le package PyPi",
       "addCodeHeading": "b. Ajoutez Discord Analytics à votre code",
       "startBotHeading": "c. Démarrez votre bot",
-      "startBotDescription": "Pour démarrer votre bot avec Discord Analytics, vous devez ajouter NODE_ENV à vos variables d'environnement"
+      "startBotDescriptionNode": "Pour démarrer votre bot avec Discord Analytics, vous devez ajouter NODE_ENV à vos variables d'environnement",
+      "startBotDescriptionPython": "C'est tout, aucune configuration supplémentaire n'est nécessaire. Démarrez votre bot comme d'habitude :"
     },
     "moreExamples": {
       "title": "Plus d'exemples",

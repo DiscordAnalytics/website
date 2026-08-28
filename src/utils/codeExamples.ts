@@ -1,3 +1,19 @@
+export const discordjsQuickstart = {
+  code: `import { Client, IntentsBitField } from 'discord.js'
+import DiscordAnalytics from '@discordanalytics/discordjs'
+
+const client = new Client({ intents: [IntentsBitField.Flags.Guilds] })
+const analytics = new DiscordAnalytics({ client, api_key: 'YOUR_API_TOKEN' })
+
+client.on('clientReady', async () => {
+  await analytics.init()
+  analytics.trackEvents()
+})
+
+client.login('token')`,
+  addedLines: [2, 5, 8, 9],
+}
+
 export const discordjs = `// Import Discord.js's client and intents
 const { Client, IntentsBitField } = require("discord.js")
 // import discord-analytics

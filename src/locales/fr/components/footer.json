@@ -11,7 +11,8 @@
         "features": "Fonctionnalités",
         "achievements": "Succès de la communauté",
         "docs": "Documentation",
-        "integrate": "Intégrer dans votre bot"
+        "integrate": "Intégrer dans votre bot",
+        "pricing": "Tarifs"
       }
     },
     "company": {
@@ -19,7 +20,8 @@
       "items": {
         "source_code": "Code Source",
         "blog": "Blog",
-        "status": "Statut des services"
+        "status": "Statut des services",
+        "self_hosting": "Auto-hébergement"
       }
     },
     "contact": {
