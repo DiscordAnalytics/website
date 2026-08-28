@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/DiscordAnalytics/website/compare/v1.3.0...v1.3.1) (2026-08-28)
+
+
+### Bug Fixes
+
+* **docker:** copy src/composables into the docs build stage ([8e08d6b](https://github.com/DiscordAnalytics/website/commit/8e08d6b090b4a0338920caf712d0db0633872a01))
+
 # [1.3.0](https://github.com/DiscordAnalytics/website/compare/v1.2.0...v1.3.0) (2026-08-28)
 
 
