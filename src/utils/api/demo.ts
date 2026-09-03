@@ -185,6 +185,7 @@ function generateMockStats(fromStr: string, toStr: string) {
       botId: 'demo-bot',
       votes: {
         topgg: Math.floor(seed * 18),
+        botillon: Math.floor(seed * 5),
         botlistme: Math.floor(seed * 10),
         dblist: Math.floor(seed * 14),
         discordplace: Math.floor(seed * 6),

@@ -74,15 +74,15 @@
         "regenerated": "Clé régénérée avec succès.",
         "updated": "Clé sauvegardée avec succès."
       },
-      "topgg": {
+      "connect": {
         "installButton": "Installer l'intégration",
         "active": "L'intégration est active",
         "manualConfig": "Configuration manuelle",
         "manualConfigDialog": {
           "title": "Configuration manuelle",
-          "description": "Collez le secret du webhook fourni par Top.gg.",
+          "description": "Collez le secret du webhook fourni par {provider}.",
           "tokenLabel": "Secret du webhook",
-          "tokenDescription": "Vous pouvez trouver ce jeton sur Top.gg dans le tableau de bord de votre bot > \"Integrations & API\".",
+          "tokenDescription": "Vous pouvez trouver ce jeton sur {provider} dans le tableau de bord de votre bot > \"Integrations & API\".",
           "submitButton": "Enregistrer"
         }
       }

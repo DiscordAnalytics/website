@@ -20,7 +20,8 @@ import {
 import { useBotStats } from '@/composables'
 import { useStore } from '@/stores'
 import { calculateVotes, getRangeGranularity, getTickFormatter } from '@/utils/statsManager.ts'
-import type { ChartConfig, ChartData } from '@/utils/types'
+import type { ChartConfig, ChartData, VotesProvider } from '@/utils/types'
+import { votesProviders } from '@/utils/votesProviders'
 
 const botId = useRouteParams<string>('id')
 const { stats, isLoading } = useBotStats(botId)
@@ -61,46 +62,17 @@ const charts = computed((): ChartConfig[] => [
     getValue: (data) => data.reduce((sum, e) => sum + ((e.count as number) ?? 0), 0),
     isEmpty: (data) => data.reduce((sum, e) => sum + ((e.count as number) ?? 0), 0) === 0,
   },
-  {
-    title: t('pages.dash.stats.charts.votes.providerEvolution', { provider: 'Top.gg' }),
-    data: votesData.value?.topggVotesEvolution ?? [],
-    tabs: [{ id: 'Votes', label: 'Votes' }],
-    component: LineChart,
-    getValue: defaultGetValue,
-    isEmpty: defaultIsEmpty,
-  },
-  {
-    title: t('pages.dash.stats.charts.votes.providerEvolution', { provider: 'BotList.me' }),
-    data: votesData.value?.botlistmeVotesEvolution ?? [],
-    tabs: [{ id: 'Votes', label: 'Votes' }],
-    component: LineChart,
-    getValue: defaultGetValue,
-    isEmpty: defaultIsEmpty,
-  },
-  {
-    title: t('pages.dash.stats.charts.votes.providerEvolution', { provider: 'Discord Bot List' }),
-    data: votesData.value?.dblistVotesEvolution ?? [],
-    tabs: [{ id: 'Votes', label: 'Votes' }],
-    component: LineChart,
-    getValue: defaultGetValue,
-    isEmpty: defaultIsEmpty,
-  },
-  {
-    title: t('pages.dash.stats.charts.votes.providerEvolution', { provider: 'Discord Place' }),
-    data: votesData.value?.discordplaceVotesEvolution ?? [],
-    tabs: [{ id: 'Votes', label: 'Votes' }],
-    component: LineChart,
-    getValue: defaultGetValue,
-    isEmpty: defaultIsEmpty,
-  },
-  {
-    title: t('pages.dash.stats.charts.votes.providerEvolution', { provider: 'Discords.com' }),
-    data: votesData.value?.discordscomVotesEvolution ?? [],
-    tabs: [{ id: 'Votes', label: 'Votes' }],
-    component: LineChart,
-    getValue: defaultGetValue,
-    isEmpty: defaultIsEmpty,
-  },
+  ...Object.entries(votesProviders).map(([id, provider]): ChartConfig => {
+    const providerId = id as VotesProvider
+    return {
+      title: t('pages.dash.stats.charts.votes.providerEvolution', { provider: provider.name }),
+      data: votesData.value?.providerEvolutions[providerId] ?? [],
+      tabs: [{ id: 'Votes', label: 'Votes' }],
+      component: LineChart,
+      getValue: defaultGetValue,
+      isEmpty: defaultIsEmpty,
+    }
+  }),
 ])
 
 const areAllChartEmpty = computed(() =>

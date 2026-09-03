@@ -23,6 +23,7 @@ import {
 import { useSeo } from '@/composables'
 import { vReveal } from '@/utils/reveal.ts'
 import type { VotesProvider } from '@/utils/types'
+import { type VotesProviderDefinition, votesProviders } from '@/utils/votesProviders'
 
 const { t } = useI18n()
 const prefix = 'pages.features.pages.votes'
@@ -41,13 +42,7 @@ const steps = [
   { step: 4, icon: BellIcon },
 ]
 
-const providers: { id: VotesProvider; name: string; url: string }[] = [
-  { id: 'topgg', name: 'Top.gg', url: 'https://top.gg' },
-  { id: 'dblist', name: 'Discord Bot List', url: 'https://discordbotlist.com' },
-  { id: 'botlistme', name: 'BotList.me', url: 'https://botlist.me' },
-  { id: 'discordplace', name: 'Discord.place', url: 'https://discord.place' },
-  { id: 'discordscom', name: 'Discords.com', url: 'https://discords.com' },
-]
+const providers = Object.entries(votesProviders) as [VotesProvider, VotesProviderDefinition][]
 </script>
 
 <template>
@@ -77,17 +72,17 @@ const providers: { id: VotesProvider; name: string; url: string }[] = [
 
       <ItemGroup class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <Item
-          v-for="(provider, index) in providers"
-          :key="provider.id"
+          v-for="([id, provider], index) in providers"
+          :key="id"
           v-reveal="(index % 3) * 100"
           as="a"
-          :href="provider.url"
+          :href="provider.homepage"
           target="_blank"
           rel="noopener noreferrer"
           variant="outline"
         >
           <ItemMedia variant="icon">
-            <CustomIcon :icon="provider.id" />
+            <CustomIcon :icon="id" />
           </ItemMedia>
           <ItemContent>
             <ItemTitle>{{ provider.name }}</ItemTitle>

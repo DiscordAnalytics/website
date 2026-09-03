@@ -1,6 +1,10 @@
 import type { Table } from '@tanstack/vue-table'
 import type { Component, FunctionalComponent } from 'vue'
 
+import type { VotesProvider } from './votesProviders'
+
+export type { VotesProvider }
+
 export enum InteractionType {
   Unknown,
   Ping,
@@ -213,11 +217,7 @@ export interface FormattedStats {
   votes: {
     allVotesEvolution: ChartData[]
     votesPie: Omit<ChartData, 'date'>[]
-    topggVotesEvolution: ChartData[]
-    botlistmeVotesEvolution: ChartData[]
-    dblistVotesEvolution: ChartData[]
-    discordplaceVotesEvolution: ChartData[]
-    discordscomVotesEvolution: ChartData[]
+    providerEvolutions: Record<VotesProvider, ChartData[]>
   }
   global: {
     usersEvolution: ChartData[]
@@ -423,7 +423,6 @@ export type Anchor = {
   level: number
   children: Anchor[]
 }
-export type VotesProvider = 'topgg' | 'dblist' | 'botlistme' | 'discordplace' | 'discordscom'
 export type GoalType =
   | 'GuildCount'
   | 'InteractionAverageWeek'

@@ -8,6 +8,7 @@ import { BotDashLayout, ProviderSettingsCard, VotesWebhookSettingsCard } from '@
 import { Button, Item, ItemContent, ItemDescription, ItemMedia, ItemTitle } from '@/components/ui'
 import { useBot, useLoading } from '@/composables'
 import type { VotesProvider } from '@/utils/types'
+import { votesProviders } from '@/utils/votesProviders'
 
 const botId = useRouteParams<string>('id')
 const { fetch: fetchBot } = useBot(botId)
@@ -15,59 +16,9 @@ const { isLoading, withLoading } = useLoading()
 
 const providerAvailability = ref<VotesProvider[]>([])
 
-const isNormalProviderApiAvailable = async (res: Response) => {
-  if (res.status === 200) {
-    const data = await res.json()
-    if (data.status.http_code === 200) return true
-  }
-  return false
-}
-
-const providers = computed<{
-  [provider: string]: {
-    title: string
-    botPage: string
-    submitPage: string
-    isAvailable: (res: Response) => Promise<boolean>
-  }
-}>(() => ({
-  topgg: {
-    title: 'Top.gg',
-    botPage: `https://top.gg/bot/${botId.value}`,
-    submitPage: `https://top.gg/bot/new`,
-    isAvailable: isNormalProviderApiAvailable,
-  },
-  discordscom: {
-    title: 'Discords.com',
-    botPage: `https://top.gg/bot/${botId.value}`,
-    submitPage: `https://discords.com/bots/add`,
-    isAvailable: async () => true,
-  },
-  botlistme: {
-    title: 'BotList.me',
-    botPage: `https://api.botlist.me/api/v1/bots/${botId.value}`,
-    submitPage: `https://botlist.me/add`,
-    isAvailable: async (res) => {
-      if (res.status === 200) {
-        const data = await res.json()
-        if (!data.contents.includes('error')) return true
-      }
-      return false
-    },
-  },
-  discordplace: {
-    title: 'Discord.place',
-    botPage: `https://api.discord.place/bots/${botId.value}`,
-    submitPage: `https://discord.place/account`,
-    isAvailable: isNormalProviderApiAvailable,
-  },
-  dblist: {
-    title: 'Discord Bot List',
-    botPage: `https://discordbotlist.com/bots/${botId.value}`,
-    submitPage: `https://discordbotlist.com/bots/add`,
-    isAvailable: isNormalProviderApiAvailable,
-  },
-}))
+const listingProviders = computed(() =>
+  Object.entries(votesProviders).filter(([, provider]) => provider.listing),
+)
 
 // The cards read the providers config from the store, so make sure the full bot is loaded
 watch(
@@ -84,9 +35,9 @@ watch(
     providerAvailability.value = []
 
     await withLoading(async () => {
-      for (const provider of Object.keys(providers.value)) {
+      for (const [provider, data] of listingProviders.value) {
         const res = await fetch(
-          `https://proxy.discordanalytics.xyz/get?url=${encodeURIComponent(providers.value[provider]!.botPage)}`,
+          `https://proxy.discordanalytics.xyz/get?url=${encodeURIComponent(data.listing!.botPage(botId.value))}`,
           {
             method: 'GET',
             cache: 'force-cache',
@@ -96,7 +47,7 @@ watch(
         // Another scan started for a different bot — drop this one
         if (id !== botId.value) return
 
-        if (await providers.value[provider]!.isAvailable(res))
+        if (await data.listing!.isAvailable(res))
           providerAvailability.value.push(provider as VotesProvider)
       }
     })
@@ -118,7 +69,7 @@ watch(
       </header>
 
       <Item
-        v-if="!isLoading && providerAvailability.length < Object.keys(providers).length"
+        v-if="!isLoading && providerAvailability.length < listingProviders.length"
         variant="outline"
         class="border-orange-500"
       >
@@ -131,14 +82,14 @@ watch(
             {{ $t('pages.dash.settings.votes.providers.missing.description') }}
             <ul class="list-disc ml-8">
               <li
-                v-for="[provider, data] in Object.entries(providers).filter(
-                  ([key, value]) => !providerAvailability.includes(key as VotesProvider),
+                v-for="[provider, data] in listingProviders.filter(
+                  ([key]) => !providerAvailability.includes(key as VotesProvider),
                 )"
                 :key="provider"
               >
-                <a :href="data.submitPage" target="_blank">
+                <a :href="data.listing!.submitPage" target="_blank">
                   <Button variant="link" size="xs" class="">
-                    {{ data.title }}
+                    {{ data.name }}
                     <ExternalLinkIcon />
                   </Button>
                 </a>
@@ -149,9 +100,8 @@ watch(
       </Item>
 
       <ProviderSettingsCard
-        v-for="[provider, data] in Object.entries(providers)"
+        v-for="[provider] in Object.entries(votesProviders)"
         :id="provider as VotesProvider"
-        :provider="data.title"
         :key="provider"
       />
     </main>
