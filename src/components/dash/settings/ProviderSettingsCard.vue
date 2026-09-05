@@ -39,13 +39,15 @@ import {
 import { useAnalytics, useBotVotesProvider, useLoading } from '@/composables'
 import { topggTokenUpdateFormSchema } from '@/utils/formSchemas.ts'
 import type { VotesProvider } from '@/utils/types'
+import { votesProviders } from '@/utils/votesProviders'
 
 const { t } = useI18n()
 
 const props = defineProps<{
   id: VotesProvider
-  provider: string
 }>()
+
+const definition = computed(() => votesProviders[props.id])
 
 const { copy, isSupported: isCopySupported } = useClipboard()
 const botId = useRouteParams<string>('id')
@@ -90,7 +92,7 @@ async function updateToken(token: string = generateWebhookSecret()) {
           provider: props.id,
           bot_id: botId.value,
         })
-        if (props.id === 'topgg')
+        if (definition.value.connect?.manualFallback)
           toast.success(t('pages.dash.settings.votes.provider.toast.updated'))
         else if (!hadToken) toast.success(t('pages.dash.settings.votes.provider.toast.created'))
         else toast.success(t('pages.dash.settings.votes.provider.toast.regenerated'))
@@ -107,40 +109,45 @@ const onManualConfigSubmit = manualConfigForm.handleSubmit(async (values) => {
 
 <template>
   <SettingCard
-    :title="$props.provider"
+    :title="definition.name"
     :icon="() => h(CustomIcon, { icon: $props.id, class: 'h-8 w-8' })"
     :description="
-      $t('pages.dash.settings.votes.provider.description', { provider: $props.provider })
+      $t('pages.dash.settings.votes.provider.description', { provider: definition.name })
     "
   >
-    <template v-if="$props.id === 'topgg'" #actions>
-      <a
-        v-if="!providerConfig?.connectionId"
-        :href="`https://top.gg/discord/bots/${botId}/dashboard/integrations`"
-        target="_blank"
-      >
+    <template v-if="definition.connect" #actions>
+      <a v-if="!providerConfig?.connectionId" :href="definition.connect.url(botId)" target="_blank">
         <Button class="w-full md:w-fit">
-          {{ $t('pages.dash.settings.votes.provider.topgg.installButton') }}
+          {{ $t('pages.dash.settings.votes.provider.connect.installButton') }}
         </Button>
       </a>
       <div v-else class="flex items-center gap-2 text-green-500">
         <CircleCheckIcon class="h-6 w-6" />
-        <p class="whitespace-nowrap">{{ $t('pages.dash.settings.votes.provider.topgg.active') }}</p>
+        <p class="whitespace-nowrap">
+          {{ $t('pages.dash.settings.votes.provider.connect.active') }}
+        </p>
       </div>
 
-      <Dialog v-if="!providerConfig?.connectionId" v-model:open="manualConfigOpen">
+      <Dialog
+        v-if="definition.connect.manualFallback && !providerConfig?.connectionId"
+        v-model:open="manualConfigOpen"
+      >
         <DialogTrigger as-child>
           <Button variant="ghost" class="w-full md:w-fit">
-            {{ $t('pages.dash.settings.votes.provider.topgg.manualConfig') }}
+            {{ $t('pages.dash.settings.votes.provider.connect.manualConfig') }}
           </Button>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>
-              {{ $t('pages.dash.settings.votes.provider.topgg.manualConfigDialog.title') }}
+              {{ $t('pages.dash.settings.votes.provider.connect.manualConfigDialog.title') }}
             </DialogTitle>
             <DialogDescription>
-              {{ $t('pages.dash.settings.votes.provider.topgg.manualConfigDialog.description') }}
+              {{
+                $t('pages.dash.settings.votes.provider.connect.manualConfigDialog.description', {
+                  provider: definition.name,
+                })
+              }}
             </DialogDescription>
           </DialogHeader>
 
@@ -150,7 +157,7 @@ const onManualConfigSubmit = manualConfigForm.handleSubmit(async (values) => {
                 <Field :data-invalid="!!errors.length">
                   <FieldLabel for="webhookSecretInput">
                     {{
-                      $t('pages.dash.settings.votes.provider.topgg.manualConfigDialog.tokenLabel')
+                      $t('pages.dash.settings.votes.provider.connect.manualConfigDialog.tokenLabel')
                     }}
                   </FieldLabel>
                   <Input
@@ -169,7 +176,8 @@ const onManualConfigSubmit = manualConfigForm.handleSubmit(async (values) => {
                   <FieldDescription v-else>
                     {{
                       $t(
-                        'pages.dash.settings.votes.provider.topgg.manualConfigDialog.tokenDescription',
+                        'pages.dash.settings.votes.provider.connect.manualConfigDialog.tokenDescription',
+                        { provider: definition.name },
                       )
                     }}
                   </FieldDescription>
@@ -180,7 +188,7 @@ const onManualConfigSubmit = manualConfigForm.handleSubmit(async (values) => {
                 <Button type="submit" form="manualConfigForm" :disabled="isLoading">
                   <Spinner v-if="isLoading" />
                   {{
-                    $t('pages.dash.settings.votes.provider.topgg.manualConfigDialog.submitButton')
+                    $t('pages.dash.settings.votes.provider.connect.manualConfigDialog.submitButton')
                   }}
                 </Button>
               </Field>

@@ -74,15 +74,15 @@
         "regenerated": "Secret successfully regenerated.",
         "updated": "Secret successfully updated."
       },
-      "topgg": {
+      "connect": {
         "installButton": "Install Integration",
         "active": "Integration is active",
         "manualConfig": "Manual configuration",
         "manualConfigDialog": {
           "title": "Manual configuration",
-          "description": "Paste the webhook secret provided by Top.gg in your bot's dashboard integrations page.",
+          "description": "Paste the webhook secret provided by {provider} in your bot's dashboard integrations page.",
           "tokenLabel": "Webhook Secret",
-          "tokenDescription": "You can find this token on Top.gg under your bot's dashboard > \"Integrations & API\".",
+          "tokenDescription": "You can find this token on {provider} under your bot's dashboard > \"Integrations & API\".",
           "submitButton": "Save"
         }
       }

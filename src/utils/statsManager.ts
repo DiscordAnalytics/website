@@ -9,6 +9,7 @@ import {
   type RawVotes,
   type VotesProvider,
 } from '@/utils/types'
+import { votesProviders } from '@/utils/votesProviders'
 
 type Granularity = 'hour' | 'day'
 
@@ -410,18 +411,18 @@ export function calculateVotes(
   dateRange: DateRange,
 ): FormattedStats['votes'] {
   const granularity = getRangeGranularity(dateRange)
+  const providerIds = Object.keys(votesProviders) as VotesProvider[]
+
   const chartsData: FormattedStats['votes'] = {
     allVotesEvolution: [],
     votesPie: [],
-    topggVotesEvolution: [],
-    botlistmeVotesEvolution: [],
-    dblistVotesEvolution: [],
-    discordplaceVotesEvolution: [],
-    discordscomVotesEvolution: [],
+    providerEvolutions: Object.fromEntries(
+      providerIds.map((id): [VotesProvider, ChartData[]] => [id, []]),
+    ) as Record<VotesProvider, ChartData[]>,
   }
 
   // Aggregate votes by bucket and provider
-  const votesMap = new Map<number, { total: number; byProvider: Map<string, number> }>()
+  const votesMap = new Map<number, { total: number; byProvider: Map<VotesProvider, number> }>()
   const pieMap = new Map<string, number>()
 
   rawVotes.forEach((votes) => {
@@ -432,12 +433,12 @@ export function calculateVotes(
     const entry = votesMap.get(date.getTime())!
 
     for (const [provider, count] of Object.entries(votes.votes)) {
-      const providerName = selectVotesProvider(provider as VotesProvider)
+      const providerId = provider as VotesProvider
       entry.total += count
-      if (providerName) {
-        entry.byProvider.set(providerName, (entry.byProvider.get(providerName) ?? 0) + count)
-        pieMap.set(providerName, (pieMap.get(providerName) ?? 0) + count)
-      }
+      entry.byProvider.set(providerId, (entry.byProvider.get(providerId) ?? 0) + count)
+
+      const providerName = selectVotesProvider(providerId)
+      if (providerName) pieMap.set(providerName, (pieMap.get(providerName) ?? 0) + count)
     }
   })
 
@@ -447,23 +448,9 @@ export function calculateVotes(
     const entry = votesMap.get(date.getTime())
 
     chartsData.allVotesEvolution.push({ date, Votes: entry?.total ?? 0 })
-    chartsData.topggVotesEvolution.push({ date, Votes: entry?.byProvider.get('Top.gg') ?? 0 })
-    chartsData.botlistmeVotesEvolution.push({
-      date,
-      Votes: entry?.byProvider.get('BotList.me') ?? 0,
-    })
-    chartsData.dblistVotesEvolution.push({
-      date,
-      Votes: entry?.byProvider.get('Discord Bot List') ?? 0,
-    })
-    chartsData.discordplaceVotesEvolution.push({
-      date,
-      Votes: entry?.byProvider.get('Discord Place') ?? 0,
-    })
-    chartsData.discordscomVotesEvolution.push({
-      date,
-      Votes: entry?.byProvider.get('Discords.com') ?? 0,
-    })
+    for (const id of providerIds) {
+      chartsData.providerEvolutions[id].push({ date, Votes: entry?.byProvider.get(id) ?? 0 })
+    }
   }
 
   return chartsData
@@ -522,14 +509,6 @@ export function goal2Percent(goal: Achievement): number {
   return Math.min(Number.isNaN(percent) ? 0 : percent, 100)
 }
 
-const votesProviderMap: Record<VotesProvider, string> = {
-  topgg: 'Top.gg',
-  botlistme: 'BotList.me',
-  dblist: 'Discord Bot List',
-  discordplace: 'Discord Place',
-  discordscom: 'Discords.com',
-}
-
 export function selectVotesProvider(entry: VotesProvider): string | undefined {
-  return votesProviderMap[entry]
+  return votesProviders[entry]?.name
 }
