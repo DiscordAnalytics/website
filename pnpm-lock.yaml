@@ -27,8 +27,8 @@ importers:
         specifier: ^3.9.1
         version: 3.9.1
       '@tsparticles/vue3':
-        specifier: ^3.0.1
-        version: 3.0.1(typescript@5.9.3)
+        specifier: ^4.0.0
+        version: 4.4.0(@tsparticles/engine@3.9.1)(vue@3.5.34(typescript@5.9.3))
       '@unhead/vue':
         specifier: ^3.3.2
         version: 3.3.2(@oxc-project/types@0.133.0)(esbuild@0.27.7)(lightningcss@1.32.0)(rolldown@1.0.3)(rollup@4.60.1)(vite@8.0.16(@types/node@24.12.4)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.9.0))(vue@3.5.34(typescript@5.9.3))
@@ -1813,9 +1813,11 @@ packages:
     resolution: {integrity: sha512-c99Ogy9q4QWO+zsDXol0UnpUwZiY2UucFb8ltuDv9AlbGUeprygoub8jhgT5pEDv+GdzWOJGSgq7rfgv9cHBrg==}
     deprecated: Please update to version 4.1.1
 
-  '@tsparticles/vue3@3.0.1':
-    resolution: {integrity: sha512-BxaSZ0wtxq33SDsrqLkLWoV88Jd5BnBoYjyVhKSNzOLOesCiG8Z5WQC1QZGTez79l/gBe0xaCDF0ng1e2iKJvA==}
-    deprecated: Please update to version 4.1.1
+  '@tsparticles/vue3@4.4.0':
+    resolution: {integrity: sha512-bhS8TeSu2TJuJi3KqFSRbmTDaFrNUXeXin3kuHtEY298oUTesXyUqiNLkos4molgc+ndAJeQbbfIBNrts4xlpg==}
+    peerDependencies:
+      '@tsparticles/engine': 4.4.0
+      vue: ^3
 
   '@tybys/wasm-util@0.10.2':
     resolution: {integrity: sha512-RoBvJ2X0wuKlWFIjrwffGw1IqZHKQqzIchKaadZZfnNpsAYp2mM0h36JtPCjNDAHGgYez/15uMBpfGwchhiMgg==}
@@ -6498,12 +6500,10 @@ snapshots:
     dependencies:
       '@tsparticles/engine': 3.9.1
 
-  '@tsparticles/vue3@3.0.1(typescript@5.9.3)':
+  '@tsparticles/vue3@4.4.0(@tsparticles/engine@3.9.1)(vue@3.5.34(typescript@5.9.3))':
     dependencies:
       '@tsparticles/engine': 3.9.1
       vue: 3.5.34(typescript@5.9.3)
-    transitivePeerDependencies:
-      - typescript
 
   '@tybys/wasm-util@0.10.2':
     dependencies:
