@@ -1,7 +1,7 @@
-onlyBuiltDependencies:
-  - '@tsparticles/engine'
-  - core-js
-  - esbuild
-  - maplibre-gl
-  - protobufjs
-  - vue-demi
+allowBuilds:
+  '@tsparticles/engine': true
+  core-js: true
+  esbuild: true
+  maplibre-gl: true
+  protobufjs: true
+  vue-demi: true
