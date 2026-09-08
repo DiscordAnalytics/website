@@ -1,3 +1,17 @@
+# [1.4.0](https://github.com/DiscordAnalytics/website/compare/v1.3.1...v1.4.0) (2026-09-08)
+
+
+### Bug Fixes
+
+* **deps:** update tsparticles, @tsparticles/vue3 and @tsparticles/engine to v4 ([41cc651](https://github.com/DiscordAnalytics/website/commit/41cc6510c505139cbe90269e019fd976965195ff))
+* **deps:** update tsparticles, @tsparticles/vue3 and @tsparticles/engine to v4 ([#115](https://github.com/DiscordAnalytics/website/issues/115)) ([3032876](https://github.com/DiscordAnalytics/website/commit/30328760464d6df0e9c7d645e3c7e4ce926cb8a3))
+
+
+### Features
+
+* **votes:** add Botillon as a vote provider ([c51ca21](https://github.com/DiscordAnalytics/website/commit/c51ca212ce47d206fca76b3a310dfd3785201086))
+* **votes:** add Botillon as a vote provider ([#128](https://github.com/DiscordAnalytics/website/issues/128)) ([ede1964](https://github.com/DiscordAnalytics/website/commit/ede19647237e3c5372ca11fdce4a29e2be1bd296))
+
 ## [1.3.1](https://github.com/DiscordAnalytics/website/compare/v1.3.0...v1.3.1) (2026-08-28)
 
 
