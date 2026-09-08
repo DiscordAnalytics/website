@@ -1,3 +1,11 @@
+## [1.4.1](https://github.com/DiscordAnalytics/website/compare/v1.4.0...v1.4.1) (2026-09-08)
+
+
+### Bug Fixes
+
+* **docker:** copy pnpm-workspace.yaml into deps stage ([2aebd2b](https://github.com/DiscordAnalytics/website/commit/2aebd2b68fcc11d1437dabe2a8fab0bbaef6f0ba))
+* **docker:** copy pnpm-workspace.yaml into deps stage ([#154](https://github.com/DiscordAnalytics/website/issues/154)) ([4b14465](https://github.com/DiscordAnalytics/website/commit/4b14465ba95927b6f4441229b1042f46128dfc1b))
+
 # [1.4.0](https://github.com/DiscordAnalytics/website/compare/v1.3.1...v1.4.0) (2026-09-08)
 
 
