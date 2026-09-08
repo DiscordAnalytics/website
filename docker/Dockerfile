@@ -8,6 +8,7 @@ RUN corepack prepare pnpm --activate
 
 COPY package.json ./
 COPY pnpm-lock.yaml ./
+COPY pnpm-workspace.yaml ./
 
 FROM pnpm AS locales
 
