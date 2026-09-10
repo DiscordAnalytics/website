@@ -13,7 +13,7 @@ importers:
         version: 3.12.4
       '@lucide/vue':
         specifier: ^1.8.0
-        version: 1.41.0(vue@3.5.42(typescript@5.9.3))
+        version: 1.42.0(vue@3.5.42(typescript@5.9.3))
       '@scalar/api-reference':
         specifier: ^1.52.1
         version: 1.67.0(tailwindcss@4.3.3)(typescript@5.9.3)(universal-cookie@8.1.2)(zod@4.4.3)
@@ -806,8 +806,8 @@ packages:
   '@lezer/yaml@1.0.4':
     resolution: {integrity: sha512-2lrrHqxalACEbxIbsjhqGpSW8kWpUKuY6RHgnSAFZa6qK62wvnPxA8hGOwOoDbwHcOFs5M4o27mjGu+P7TvBmw==}
 
-  '@lucide/vue@1.41.0':
-    resolution: {integrity: sha512-ciHtudHTeqMDzJKPI36AGboypCk8Jz3qFin3oU0nJfPc5MwXmqLXIEQvXE+yI6Sz5SnxVqREgm8rVN4KdDlnVQ==}
+  '@lucide/vue@1.42.0':
+    resolution: {integrity: sha512-Jd/tfet8WBt7ctEQ9bMwtn9xMr8OZXe5wu8mQ/q05uPP0wnNIXDmhz+BnOTbPTOBJUjKqtQ6cZsyj2aCAMAw8A==}
     peerDependencies:
       vue: '>=3.0.1'
 
@@ -5830,7 +5830,7 @@ snapshots:
       '@lezer/highlight': 1.2.3
       '@lezer/lr': 1.4.10
 
-  '@lucide/vue@1.41.0(vue@3.5.42(typescript@5.9.3))':
+  '@lucide/vue@1.42.0(vue@3.5.42(typescript@5.9.3))':
     dependencies:
       vue: 3.5.42(typescript@5.9.3)
 
