@@ -63,7 +63,7 @@
     "@trivago/prettier-plugin-sort-imports": "6.0.2",
     "@tsconfig/node24": "24.0.5",
     "@types/markdown-it": "14.2.0",
-    "@types/node": "24.12.4",
+    "@types/node": "24.13.3",
     "@vitejs/plugin-vue": "6.0.8",
     "@vue/eslint-config-typescript": "14.7.0",
     "@vue/tsconfig": "0.9.1",
