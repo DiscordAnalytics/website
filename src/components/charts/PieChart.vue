@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import type { BulletLegendItemInterface } from '@unovis/ts'
 import { Donut } from '@unovis/ts'
 import { VisDonut, VisSingleContainer } from '@unovis/vue'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 
 import { type ChartConfig, ChartLegend, ChartSingleTooltip } from '@/components/ui'
 import { useLocale } from '@/composables'
@@ -15,6 +16,8 @@ const props = defineProps<{
 
 const { getLocaleName } = useLocale()
 
+const hiddenNames = ref(new Set<string>())
+
 const chartConfig = computed(() => {
   return props.data.reduce((config, data, index) => {
     config[data.name as string] = {
@@ -24,13 +27,31 @@ const chartConfig = computed(() => {
     return config
   }, {} as ChartConfig)
 })
+
+const visibleData = computed(() =>
+  props.data.filter((item) => !hiddenNames.value.has(item.name as string)),
+)
+
+const legendItems = computed<BulletLegendItemInterface[]>(() =>
+  props.data.map((item) => ({
+    name: getLocaleName(item.name as string) ?? (item.name as string),
+    color: chartConfig.value[item.name as string]!.color,
+    inactive: hiddenNames.value.has(item.name as string),
+  })),
+)
+
+function onUpdateLegendItems(items: BulletLegendItemInterface[]) {
+  hiddenNames.value = new Set(
+    props.data.filter((_, i) => items[i]?.inactive).map((item) => item.name as string),
+  )
+}
 </script>
 
 <template>
   <div class="flex flex-col justify-center text-xs relative mx-auto max-h-full">
     <VisSingleContainer
       :data="
-        $props.data.map((e) => ({
+        visibleData.map((e) => ({
           ...e,
           _active: e[props.activeTab as keyof typeof e],
         }))
@@ -46,9 +67,9 @@ const chartConfig = computed(() => {
         :selector="Donut.selectors.segment"
         index="count"
         :items="
-          $props.data.map((item, i) => ({
+          visibleData.map((item) => ({
             name: getLocaleName(item.name as string) ?? (item.name as string),
-            color: `var(--chart-${i + 1})`,
+            color: chartConfig[item.name as string]!.color,
             inactive: false,
           }))
         "
@@ -56,13 +77,6 @@ const chartConfig = computed(() => {
       />
     </VisSingleContainer>
 
-    <ChartLegend
-      :items="
-        $props.data.map((item, i) => ({
-          name: getLocaleName(item.name as string) ?? (item.name as string),
-          color: `var(--chart-${i + 1})`,
-        }))
-      "
-    />
+    <ChartLegend :items="legendItems" @update:items="onUpdateLegendItems" />
   </div>
 </template>
