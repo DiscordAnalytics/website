@@ -11,7 +11,10 @@
       "mostUsedCommands": "Most Used commands",
       "commandsTypesPie": "Most Used commands by type",
       "mostUsedComponents": "Most Used components",
-      "mostUsedModals": "Most Used modals"
+      "mostUsedModals": "Most Used modals",
+      "activity": "Répartition de l'activité",
+      "activityHourLabel": "{hour}h",
+      "activityTooltip": "{count} interactions le {day} à {hour}h"
     },
     "trendUp": "En hausse de {percentage}% sur cette période",
     "trendDown": "En baisse de {percentage}% sur cette période",
@@ -36,7 +39,6 @@
       "installsEvolution": "Évolution des User Installs",
       "localesEvolution": "Évolution of langues des utilisateurs",
       "localesPie": "Répartition des langues des utilisateurs",
-      "activity": "Répartition de l'activité sur une semaine",
       "types": "Types d'utilisateurs",
       "alert": {
         "title": "Avertissement",
@@ -94,6 +96,7 @@
         "defaultValue": "Valeur par défaut",
         "defaultValueDescription": "La valeur utilisée lorsqu'aucune donnée de l'heure précédente n'existe."
       }
-    }
+    },
+    "all": "Tout"
   }
 }

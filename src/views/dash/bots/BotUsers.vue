@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { getDayOfWeek, parseDate } from '@internationalized/date'
 import { InfoIcon, XIcon } from '@lucide/vue'
 import { useLocalStorage } from '@vueuse/core'
 import { useRouteParams } from '@vueuse/router'
@@ -8,7 +7,7 @@ import type { DateRange } from 'reka-ui'
 import { type Ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { BarChart, LineChart, PieChart, StatsPage } from '@/components'
+import { LineChart, PieChart, StatsPage } from '@/components'
 import {
   Button,
   Item,
@@ -20,7 +19,6 @@ import {
 } from '@/components/ui'
 import { useBotStats, useLocale } from '@/composables'
 import { useStore } from '@/stores'
-import { dfWeekDay } from '@/utils/dateTime.ts'
 import { calculateUsers, getRangeGranularity, getTickFormatter } from '@/utils/statsManager.ts'
 import type { ChartConfig, ChartData } from '@/utils/types'
 
@@ -48,15 +46,13 @@ const defaultIsEmpty = (
   currentTab: string,
 ): boolean => data.every((d) => ((d[currentTab] as number) ?? 0) === 0)
 
-const toWeekDay = (date: Date) =>
-  getDayOfWeek(parseDate(new Date(date).toISOString().slice(0, 10)), navigator.language)
-
 const charts = computed((): ChartConfig[] => [
   {
     title: t('pages.dash.stats.charts.users.evolution'),
     data: usersData.value?.usersEvolution ?? [],
     tabs: [{ id: 'Users', label: 'Users' }],
     component: LineChart,
+    colSpan: 2,
     getValue: defaultGetValue,
     isEmpty: defaultIsEmpty,
   },
@@ -86,26 +82,6 @@ const charts = computed((): ChartConfig[] => [
     getValue: (data, currentTab) =>
       data.reduce((sum, e) => sum + ((e[currentTab] as number) ?? 0), 0),
     isEmpty: (data) => data.reduce((sum, e) => sum + (e.count as number), 0) === 0,
-  },
-  {
-    title: t('pages.dash.stats.charts.users.activity'),
-    description: ' ',
-    data: (usersData.value?.activityOverTheWeek ?? []).map((e) => ({
-      ...e,
-      _origDate: e.date,
-      date: toWeekDay(e.date),
-    })),
-    tabs: [{ id: 'Interactions', label: 'Interactions' }],
-    component: BarChart,
-    getValue: (data, currentTab) =>
-      data.reduce((sum, e) => sum + ((e[currentTab] as number) ?? 0), 0),
-    isEmpty: defaultIsEmpty,
-    tickFormatter: (d: number | Date) => {
-      const days = usersData.value?.activityOverTheWeek ?? []
-      const entry = days.find((e) => toWeekDay(e.date) === d)
-      if (!entry) return ''
-      return dfWeekDay.format(new Date(entry.date))
-    },
   },
   {
     title: t('pages.dash.stats.charts.users.types'),

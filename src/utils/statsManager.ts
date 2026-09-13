@@ -84,11 +84,18 @@ export function calculateInteractions(
       { name: 'Message Component', count: 0 },
       { name: 'Modal Submit', count: 0 },
     ],
+    activityHeatmap: Array.from({ length: 7 }, (_, day) => ({
+      date: new Date(Date.UTC(1970, 0, 4 + day)),
+      ...Object.fromEntries(Array.from({ length: 24 }, (_, hour) => [`h${hour}`, 0])),
+    })),
   }
 
   const allInteractionsMap = new Map<string, { number: number; type: number }>()
 
   for (const stats of rawStats) {
+    const heatmapBucket = chartsData.activityHeatmap[new Date(stats.date).getDay()]!
+    const hourKey = `h${new Date(stats.date).getHours()}`
+
     for (const interaction of stats.interactions || []) {
       const interactionName = interaction.name.replace(/\d{17,19}/g, 'id')
       const key = `${interaction.type}-${interactionName}`
@@ -96,6 +103,8 @@ export function calculateInteractions(
 
       if (existingInteraction) existingInteraction.number += interaction.number
       else allInteractionsMap.set(key, { number: interaction.number, type: interaction.type })
+
+      heatmapBucket[hourKey] = (heatmapBucket[hourKey] as number) + interaction.number
 
       if (interaction.commandType) {
         const pieEntry = chartsData.commandsTypesPie[interaction.commandType - 1]
@@ -328,15 +337,6 @@ export function calculateUsers(
     usersEvolution: [],
     usersLocalesEvolution: [],
     usersLocalesPie: [],
-    activityOverTheWeek: [
-      { date: new Date('1970-01-04'), Interactions: 0 }, // Sunday
-      { date: new Date('1970-01-05'), Interactions: 0 }, // Monday
-      { date: new Date('1970-01-06'), Interactions: 0 }, // Tuesday
-      { date: new Date('1970-01-07'), Interactions: 0 }, // Wednesday
-      { date: new Date('1970-01-08'), Interactions: 0 }, // Thursday
-      { date: new Date('1970-01-09'), Interactions: 0 }, // Friday
-      { date: new Date('1970-01-10'), Interactions: 0 }, // Saturday
-    ],
     usersTypesPie: [
       { name: 'Server Administrator', count: 0 },
       { name: 'Server Moderator', count: 0 },
@@ -358,14 +358,7 @@ export function calculateUsers(
   const sortedLocales = [...allLocales.entries()].sort((a, b) => b[1] - a[1])
 
   rawStats.forEach((stats, index) => {
-    const day = new Date(stats.date).getDay()
     const isLast = index === rawStats.length - 1
-
-    const totalInteractions =
-      stats.interactions?.reduce((sum, interaction) => sum + interaction.number, 0) ?? 0
-    // day is always 0–6 (derived from getDay()), array always has 7 entries
-    chartsData.activityOverTheWeek[day]!['Interactions'] =
-      (chartsData.activityOverTheWeek[day]!['Interactions'] as number) + totalInteractions
 
     if (isLast) {
       stats.interactionsLocales?.forEach((locale) => {
