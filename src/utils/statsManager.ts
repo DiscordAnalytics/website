@@ -323,7 +323,9 @@ export function calculateGuilds(
 
   chartsData.mostActiveGuildsRank.sort((a, b) => b.count - a.count)
   chartsData.biggestGuildsRank.sort((a, b) => b.count - a.count)
-  chartsData.guildsLocalesPie = chartsData.guildsLocalesPie.slice(0, 5)
+  chartsData.guildsLocalesPie = chartsData.guildsLocalesPie
+    .sort((a, b) => (b.count as number) - (a.count as number))
+    .slice(0, 5)
 
   return chartsData
 }
