@@ -67,7 +67,7 @@ importers:
         version: 3.0.4(typescript@5.9.3)(vue@3.5.42(typescript@5.9.3))
       posthog-js:
         specifier: ^1.368.2
-        version: 1.429.5
+        version: 1.430.2
       reka-ui:
         specifier: ^2.8.2
         version: 2.10.4(vue@3.5.42(typescript@5.9.3))
@@ -4052,8 +4052,8 @@ packages:
     resolution: {integrity: sha512-RRuzqDtt5Y9h3quz5hWhK+TPnsmVs6WwSU6LkJMeY4HstUEDuYTG8UJSdawMRzmzAtV+KEoG8N3Qg2qLy5vM/A==}
     engines: {node: ^10 || ^12 || >=14}
 
-  posthog-js@1.429.5:
-    resolution: {integrity: sha512-pVV3g0G+1B0XIuttzuTrUPlDONgOd//fijwZceFE8KDrHKTyJYtQqO29T9ol0kDE/XJkBa8jKhiOeZP1fhsxPQ==}
+  posthog-js@1.430.2:
+    resolution: {integrity: sha512-JwNTuFyNu2HwTFxcO/4SJJlnr1CkdZdmKxeg2PvuKUO5RMW3xw0sCCBKOMg/76pANUWk4+z1UrMJVLfpJY0KsQ==}
     peerDependencies:
       '@types/react': '>=16.8.0'
       react: '>=16.8.0'
@@ -9103,7 +9103,7 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  posthog-js@1.429.5:
+  posthog-js@1.430.2:
     dependencies:
       '@posthog/browser-common': 0.8.3
       '@posthog/core': 1.53.2
