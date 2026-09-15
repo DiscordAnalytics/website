@@ -82,7 +82,7 @@
     "vite-plugin-vue-devtools": "8.2.1",
     "vitepress": "2.0.0-alpha.20",
     "vitepress-plugin-tabs": "0.9.1",
-    "vue-tsc": "3.2.9"
+    "vue-tsc": "3.3.11"
   },
   "engines": {
     "node": "^20.19.0 || >=22.12.0"
