@@ -16,7 +16,7 @@ importers:
         version: 1.45.0(vue@3.5.42(typescript@5.9.3))
       '@scalar/api-reference':
         specifier: ^1.52.1
-        version: 1.68.0(tailwindcss@4.3.3)(typescript@5.9.3)(universal-cookie@8.1.2)(zod@4.4.3)
+        version: 1.68.0(tailwindcss@4.3.3)(typescript@5.9.3)(universal-cookie@8.1.2)(zod@4.6.2)
       '@tailwindcss/vite':
         specifier: ^4.2.1
         version: 4.3.3(vite@8.3.0(@types/node@24.13.4)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.9.0))
@@ -40,7 +40,7 @@ importers:
         version: 1.7.0(@unovis/ts@1.7.0)(vue@3.5.42(typescript@5.9.3))
       '@vee-validate/zod':
         specifier: ^4.15.1
-        version: 4.15.1(vue@3.5.42(typescript@5.9.3))(zod@4.4.3)
+        version: 4.15.1(vue@3.5.42(typescript@5.9.3))(zod@4.6.2)
       '@vueuse/core':
         specifier: ^14.2.1
         version: 14.4.0(vue@3.5.42(typescript@5.9.3))
@@ -112,7 +112,7 @@ importers:
         version: 4.2.2(vue@3.5.42(typescript@5.9.3))
       zod:
         specifier: ^4.3.6
-        version: 4.4.3
+        version: 4.6.2
     devDependencies:
       '@intlify/eslint-plugin-vue-i18n':
         specifier: 4.5.1
@@ -4701,36 +4701,36 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  zod@4.4.3:
-    resolution: {integrity: sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ==}
+  zod@4.6.2:
+    resolution: {integrity: sha512-lh5RCAGFa1Cm2hjtNwLQhSs/AsqdWnTQaBER9fEwN/88pSh7KOtJavtBx/0VlkN/uFd61SwYmljLMDAsHlvzBQ==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
 snapshots:
 
-  '@ai-sdk/gateway@3.0.13(zod@4.4.3)':
+  '@ai-sdk/gateway@3.0.13(zod@4.6.2)':
     dependencies:
       '@ai-sdk/provider': 3.0.2
-      '@ai-sdk/provider-utils': 4.0.5(zod@4.4.3)
+      '@ai-sdk/provider-utils': 4.0.5(zod@4.6.2)
       '@vercel/oidc': 3.1.0
-      zod: 4.4.3
+      zod: 4.6.2
 
-  '@ai-sdk/provider-utils@4.0.5(zod@4.4.3)':
+  '@ai-sdk/provider-utils@4.0.5(zod@4.6.2)':
     dependencies:
       '@ai-sdk/provider': 3.0.2
       '@standard-schema/spec': 1.1.0
       eventsource-parser: 3.0.8
-      zod: 4.4.3
+      zod: 4.6.2
 
   '@ai-sdk/provider@3.0.2':
     dependencies:
       json-schema: 0.4.0
 
-  '@ai-sdk/vue@3.0.33(vue@3.5.42(typescript@5.9.3))(zod@4.4.3)':
+  '@ai-sdk/vue@3.0.33(vue@3.5.42(typescript@5.9.3))(zod@4.6.2)':
     dependencies:
-      '@ai-sdk/provider-utils': 4.0.5(zod@4.4.3)
-      ai: 6.0.33(zod@4.4.3)
+      '@ai-sdk/provider-utils': 4.0.5(zod@4.6.2)
+      ai: 6.0.33(zod@4.6.2)
       swrv: 1.2.0(vue@3.5.42(typescript@5.9.3))
       vue: 3.5.42(typescript@5.9.3)
     transitivePeerDependencies:
@@ -5685,9 +5685,9 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.60.1':
     optional: true
 
-  '@scalar/agent-chat@0.12.30(tailwindcss@4.3.3)(typescript@5.9.3)(universal-cookie@8.1.2)(zod@4.4.3)':
+  '@scalar/agent-chat@0.12.30(tailwindcss@4.3.3)(typescript@5.9.3)(universal-cookie@8.1.2)(zod@4.6.2)':
     dependencies:
-      '@ai-sdk/vue': 3.0.33(vue@3.5.42(typescript@5.9.3))(zod@4.4.3)
+      '@ai-sdk/vue': 3.0.33(vue@3.5.42(typescript@5.9.3))(zod@4.6.2)
       '@scalar/api-client': 3.18.0(tailwindcss@4.3.3)(typescript@5.9.3)(universal-cookie@8.1.2)
       '@scalar/components': 0.29.1(tailwindcss@4.3.3)(typescript@5.9.3)
       '@scalar/helpers': 0.11.3
@@ -5701,7 +5701,7 @@ snapshots:
       '@scalar/validation': 0.6.3
       '@scalar/workspace-store': 0.60.0(typescript@5.9.3)
       '@vueuse/core': 13.9.0(vue@3.5.42(typescript@5.9.3))
-      ai: 6.0.33(zod@4.4.3)
+      ai: 6.0.33(zod@4.6.2)
       js-base64: 3.9.3
       neverpanic: 0.0.8
       truncate-json: 3.0.1
@@ -5754,7 +5754,7 @@ snapshots:
       set-cookie-parser: 3.1.0
       vue: 3.5.42(typescript@5.9.3)
       yaml: 2.9.0
-      zod: 4.4.3
+      zod: 4.6.2
     transitivePeerDependencies:
       - '@vue/composition-api'
       - async-validator
@@ -5771,10 +5771,10 @@ snapshots:
       - typescript
       - universal-cookie
 
-  '@scalar/api-reference@1.68.0(tailwindcss@4.3.3)(typescript@5.9.3)(universal-cookie@8.1.2)(zod@4.4.3)':
+  '@scalar/api-reference@1.68.0(tailwindcss@4.3.3)(typescript@5.9.3)(universal-cookie@8.1.2)(zod@4.6.2)':
     dependencies:
       '@headlessui/vue': 1.7.23(vue@3.5.42(typescript@5.9.3))
-      '@scalar/agent-chat': 0.12.30(tailwindcss@4.3.3)(typescript@5.9.3)(universal-cookie@8.1.2)(zod@4.4.3)
+      '@scalar/agent-chat': 0.12.30(tailwindcss@4.3.3)(typescript@5.9.3)(universal-cookie@8.1.2)(zod@4.6.2)
       '@scalar/api-client': 3.18.0(tailwindcss@4.3.3)(typescript@5.9.3)(universal-cookie@8.1.2)
       '@scalar/blocks': 0.1.16(tailwindcss@4.3.3)(typescript@5.9.3)
       '@scalar/code-highlight': 0.4.5
@@ -5952,7 +5952,7 @@ snapshots:
       '@scalar/helpers': 0.11.3
       nanoid: 5.1.11
       type-fest: 5.9.0
-      zod: 4.4.3
+      zod: 4.6.2
 
   '@scalar/use-codemirror@0.14.15(typescript@5.9.3)':
     dependencies:
@@ -6901,11 +6901,11 @@ snapshots:
       '@unovis/ts': 1.7.0
       vue: 3.5.42(typescript@5.9.3)
 
-  '@vee-validate/zod@4.15.1(vue@3.5.42(typescript@5.9.3))(zod@4.4.3)':
+  '@vee-validate/zod@4.15.1(vue@3.5.42(typescript@5.9.3))(zod@4.6.2)':
     dependencies:
       type-fest: 4.41.0
       vee-validate: 4.15.1(vue@3.5.42(typescript@5.9.3))
-      zod: 4.4.3
+      zod: 4.6.2
     transitivePeerDependencies:
       - vue
 
@@ -7178,13 +7178,13 @@ snapshots:
 
   acorn@8.16.0: {}
 
-  ai@6.0.33(zod@4.4.3):
+  ai@6.0.33(zod@4.6.2):
     dependencies:
-      '@ai-sdk/gateway': 3.0.13(zod@4.4.3)
+      '@ai-sdk/gateway': 3.0.13(zod@4.6.2)
       '@ai-sdk/provider': 3.0.2
-      '@ai-sdk/provider-utils': 4.0.5(zod@4.4.3)
+      '@ai-sdk/provider-utils': 4.0.5(zod@4.6.2)
       '@opentelemetry/api': 1.9.0
-      zod: 4.4.3
+      zod: 4.6.2
 
   ajv@6.14.0:
     dependencies:
@@ -9744,6 +9744,6 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
-  zod@4.4.3: {}
+  zod@4.6.2: {}
 
   zwitch@2.0.4: {}
