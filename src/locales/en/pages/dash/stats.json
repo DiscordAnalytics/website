@@ -11,7 +11,10 @@
       "mostUsedCommands": "Most Used commands",
       "commandsTypesPie": "Most Used commands by type",
       "mostUsedComponents": "Most Used components",
-      "mostUsedModals": "Most Used modals"
+      "mostUsedModals": "Most Used modals",
+      "activity": "Activity Heatmap",
+      "activityHourLabel": "{hour}h",
+      "activityTooltip": "{count} interactions on {day} at {hour}h"
     },
     "guilds": {
       "evolution": "Evolution of Guilds",
@@ -34,7 +37,6 @@
       "installsEvolution": "Evolution of User Installs",
       "localesEvolution": "Evolution of User Locales",
       "localesPie": "Distribution of User Locales",
-      "activity": "Distribution of activity over the week",
       "types": "Types of users",
       "alert": {
         "title": "Disclaimer",
@@ -94,6 +96,7 @@
       }
     },
     "trendUp": "Trending up by {percentage}% on this period",
-    "trendDown": "Trending down by {percentage}% on this period"
+    "trendDown": "Trending down by {percentage}% on this period",
+    "all": "All"
   }
 }

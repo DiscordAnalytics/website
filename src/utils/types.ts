@@ -185,6 +185,7 @@ export interface FormattedStats {
     mostUsedModals: ChartData[]
     commandsTypesPie: Omit<ChartData, 'date'>[]
     interactionsTypesPie: Omit<ChartData, 'date'>[]
+    activityHeatmap: ChartData[]
   }
   guilds: {
     guildsEvolution: ChartData[]
@@ -210,7 +211,6 @@ export interface FormattedStats {
     usersEvolution: ChartData[]
     usersLocalesEvolution: ChartData[]
     usersLocalesPie: Omit<ChartData, 'date'>[]
-    activityOverTheWeek: ChartData[]
     usersTypesPie: Omit<ChartData, 'date'>[]
     userInstallEvolution: Omit<ChartData, 'date'>[]
   }

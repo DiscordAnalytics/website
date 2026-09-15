@@ -5,7 +5,7 @@ import type { DateRange } from 'reka-ui'
 import { type Ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { LineChart, PieChart, StatsPage } from '@/components'
+import { ActivityHeatmap, LineChart, PieChart, StatsPage } from '@/components'
 import { useBotStats } from '@/composables'
 import { useStore } from '@/stores'
 import {
@@ -104,6 +104,29 @@ const charts = computed((): ChartConfig[] => [
       data.reduce((sum, e) => sum + ((e[currentTab] as number) ?? 0), 0),
     isEmpty: (data, currentTab) =>
       data.reduce((sum, e) => sum + ((e[currentTab] as number) ?? 0), 0) === 0,
+  },
+  {
+    title: t('pages.dash.stats.charts.interactions.activity'),
+    description: ' ',
+    data: interactionsData.value?.activityHeatmap ?? [],
+    tabs: [{ id: 'Interactions', label: 'Interactions' }],
+    component: ActivityHeatmap,
+    colSpan: 2,
+    getValue: (data) =>
+      data.reduce(
+        (sum, e) =>
+          sum +
+          Object.keys(e)
+            .filter((key) => key !== 'date')
+            .reduce((hourSum, key) => hourSum + ((e[key] as number) ?? 0), 0),
+        0,
+      ),
+    isEmpty: (data) =>
+      data.every((e) =>
+        Object.keys(e)
+          .filter((key) => key !== 'date')
+          .every((key) => ((e[key] as number) ?? 0) === 0),
+      ),
   },
 ])
 </script>
