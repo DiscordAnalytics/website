@@ -1,3 +1,17 @@
+# [1.5.0](https://github.com/DiscordAnalytics/website/compare/v1.4.1...v1.5.0) (2026-09-15)
+
+
+### Bug Fixes
+
+* **stats:** show the top 5 guild locales in the locales pie ([1a1dff0](https://github.com/DiscordAnalytics/website/commit/1a1dff0e106d5eec8d7f171a62d3defe7a18d529))
+
+
+### Features
+
+* **charts:** toggle pie legend items to hide their slice ([269c6e7](https://github.com/DiscordAnalytics/website/commit/269c6e7f309d91bcdee6f10ff3a371e2e4b78e2e))
+* **stats:** added activity heatmap ([64f5747](https://github.com/DiscordAnalytics/website/commit/64f574740cdda11a947fdf496bb4c5a3ea3ab0aa))
+* **stats:** added activity heatmap ([#175](https://github.com/DiscordAnalytics/website/issues/175)) ([141e95b](https://github.com/DiscordAnalytics/website/commit/141e95b6b85306425a9483546d53aaeffd8f06db))
+
 ## [1.4.1](https://github.com/DiscordAnalytics/website/compare/v1.4.0...v1.4.1) (2026-09-08)
 
 
