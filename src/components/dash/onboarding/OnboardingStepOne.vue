@@ -50,7 +50,9 @@ const { userInfos, ownedBots } = useCurrentUser()
     <p class="flex flex-col items-center">
       {{ $t('pages.dash.onboarding.stepOne.subtitle') }}
       <a :href="DEVELOPER_PORTAL_URL" target="_blank" rel="noopener noreferrer">
-        <Button variant="link">{{ $t('pages.dash.onboarding.stepOne.whereToGetId') }}</Button>
+        <Button variant="link" class="font-bold">
+          {{ $t('pages.dash.onboarding.stepOne.whereToGetId') }}
+        </Button>
       </a>
     </p>
     <form id="addBotForm" @submit="(e) => $emit('submit', e)" class="max-w-100 mx-auto mt-8">
