@@ -1,3 +1,17 @@
+# [1.6.0](https://github.com/DiscordAnalytics/website/compare/v1.5.0...v1.6.0) (2026-09-19)
+
+
+### Bug Fixes
+
+* **ci:** Use POST for Coolify deployment webhook ([9e51af4](https://github.com/DiscordAnalytics/website/commit/9e51af422b9bd518370124ccccbcac26c6ccaeea))
+
+
+### Features
+
+* **onboarding:** resume setup for bots the user already owns ([363e103](https://github.com/DiscordAnalytics/website/commit/363e103a93f3c67c820d7f99c8d8fb526d70bc68))
+* **onboarding:** resume setup for owned bots and default to blue theme ([#196](https://github.com/DiscordAnalytics/website/issues/196)) ([5da3201](https://github.com/DiscordAnalytics/website/commit/5da3201c357e1e962c5e151ebaf8ade752bf2128))
+* **theme:** default to the blue color theme ([cbff152](https://github.com/DiscordAnalytics/website/commit/cbff152e299ee78ccbc125f2f2e0419bbc31f170))
+
 # [1.5.0](https://github.com/DiscordAnalytics/website/compare/v1.4.1...v1.5.0) (2026-09-15)
 
 
