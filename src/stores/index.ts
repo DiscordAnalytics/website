@@ -34,7 +34,7 @@ export const useStore = defineStore('store', () => {
 
   const allUsers = ref<User[]>([])
 
-  const theme = useLocalStorage<Color>('theme', 'zinc')
+  const theme = useLocalStorage<Color>('theme', 'blue')
 
   const statsRange = ref<DateRange>({
     start: undefined,
