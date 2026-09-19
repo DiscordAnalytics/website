@@ -150,13 +150,20 @@ function classifyAddBotError(err: unknown) {
 }
 
 const onSubmit = handleSubmit(async (values) => {
-  // The single most common onboarding failure: pasting your own account ID instead of the bot's.
-  // Catch it here so the user gets a message that names the mistake, with no round-trip.
   if (userInfos.value && values.botId === userInfos.value.userId) {
     addBotFailed.value = true
     setFieldError('botId', t('pages.dash.onboarding.stepOne.errors.ownId'))
     capture('onboarding_bot_add_failed', { reason: 'own_user_id', bot_id: values.botId })
     return
+  }
+
+  if (ownedBots.value.some((bot) => bot.botId === values.botId)) {
+    const bot = ownedBots.value.find((bot) => bot.botId === values.botId)!
+    if (bot.framework && bot.lastPush) return router.push(`/dash/bots/${bot.botId}`)
+    else {
+      currentStep.value = 2
+      botId.value = values.botId
+    }
   }
 
   await withLoading(async () => {
@@ -170,7 +177,6 @@ const onSubmit = handleSubmit(async (values) => {
       const { reason, status, message } = classifyAddBotError(err)
       addBotFailed.value = true
       setFieldError('botId', message)
-      // Transport failures have nothing to do with what's in the field, so they stay a toast.
       if (reason === 'network') toast.error(message)
       capture('onboarding_bot_add_failed', { reason, status, bot_id: values.botId })
     }
