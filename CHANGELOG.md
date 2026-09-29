@@ -1,3 +1,11 @@
+## [1.6.1](https://github.com/DiscordAnalytics/website/compare/v1.6.0...v1.6.1) (2026-09-29)
+
+
+### Bug Fixes
+
+* initialize locale from stored or preferred language ([bccc475](https://github.com/DiscordAnalytics/website/commit/bccc475f5fe7d253d0a60b6ffcbe7b54764b982b))
+* initialize locale from stored or preferred language ([#197](https://github.com/DiscordAnalytics/website/issues/197)) ([0c21966](https://github.com/DiscordAnalytics/website/commit/0c2196629136a3466f28e7fa8c7d2bf1b74c31cf))
+
 # [1.6.0](https://github.com/DiscordAnalytics/website/compare/v1.5.0...v1.6.0) (2026-09-19)
 
 
