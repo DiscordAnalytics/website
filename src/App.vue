@@ -41,15 +41,12 @@ onBeforeMount(() => {
   const store = useStore()
   setTheme(store.theme)
 
-  const locale = useLocalStorage('locale', '')
-  if (locale.value) i18n.locale.value = locale.value
-  else {
-    for (const lang of languages.value) {
-      if (i18n.availableLocales.includes(lang)) {
-        i18n.locale.value = lang
-        locale.value = lang
-      }
-    }
+  const storedLocale = useLocalStorage('locale', '')
+  const language =
+    storedLocale.value || languages.value.find((lang) => i18n.availableLocales.includes(lang))
+  if (language) {
+    i18n.locale.value = language
+    storedLocale.value = language
   }
 })
 
