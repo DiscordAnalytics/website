@@ -24,7 +24,7 @@
     "@lucide/vue": "^1.8.0",
     "@scalar/api-reference": "^1.52.1",
     "@tailwindcss/vite": "^4.2.1",
-    "@tanstack/vue-table": "^8.21.3",
+    "@tanstack/vue-table": "^9.0.0",
     "@tsparticles/engine": "^4.4.0",
     "@tsparticles/vue3": "^4.4.0",
     "@unhead/vue": "^3.3.2",
